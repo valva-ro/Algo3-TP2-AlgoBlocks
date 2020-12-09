@@ -1,5 +1,5 @@
 [![Build Status][build-shield]][build-url]
-[![codecov][codecov-shield]][codecov-url]
+[![Codacy Status][codacy-shield]][codacy-url]
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -49,8 +49,8 @@ Este repositorio está bajo la [Licencia MIT][license-url]
 
 [build-shield]: https://api.travis-ci.org/valva-ro/Algo3-TP2-AlgoBlocks.svg?branch=master
 [build-url]: https://travis-ci.org/github/valva-ro/Algo3-TP2-AlgoBlocks
-[codecov-shield]: https://codecov.io/gh/valva-ro/Algo3-TP2-AlgoBlocks/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/valva-ro/Algo3-TP2-AlgoBlocks
+[codacy-shield]: https://app.codacy.com/project/badge/Grade/f125e3600adf4ebfa08e4753d97a9f82
+[codacy-url]: https://www.codacy.com/gh/valva-ro/algo3-tp2-algoblocks/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=valva-ro/algo3-tp2-algoblocks&amp;utm_campaign=Badge_Grade
 [contributors-shield]: https://img.shields.io/github/contributors/valva-ro/Algo3-TP2-AlgoBlocks.svg?style=flat-square
 [contributors-url]: https://github.com/valva-ro/Algo3-TP2-AlgoBlocks/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/valva-ro/Algo3-TP2-AlgoBlocks.svg?style=flat-square
