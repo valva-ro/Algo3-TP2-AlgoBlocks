@@ -8,14 +8,15 @@
 
 # TP2 Algoritmos 3: AlgoBlocks
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
-
+<img  height="420" width="680" src="https://raw.githubusercontent.com/valva-ro/Algo3-TP2-AlgoBlocks/master/scratch-logo-1280x720.jpg">
 ## Grupo N7
   * [Alejo Villores](https://github.com/alejovillores)
   * [Alex Teper](https://github.com/AlexTeper99)
   * [Kevin Meaca](https://github.com/root-MKevin)
   * [Valentina Varela Rodriguez](https://github.com/valva-ro)
+  
 
-Corrector: **xxxx**
+Corrector: [Tomas Bustamante](https://github.com/tomasBustamante) 
 
 ### Pre-requisitos
 
@@ -42,7 +43,7 @@ Este comando crea el reporte de cobertura para CI y el reporte HTML que pueden a
 ## Ejecutando la aplicación
 
 Explicación de como ejecutar la aplicación
-
+ 
 ## Licencia
 
 Este repositorio está bajo la [Licencia MIT][license-url]
