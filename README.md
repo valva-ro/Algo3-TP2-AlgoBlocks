@@ -1,4 +1,3 @@
-<!--
 [![Build Status][build-shield]][build-url]
 [![codecov][codecov-shield]][codecov-url]
 [![Contributors][contributors-shield]][contributors-url]
@@ -6,7 +5,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![License][license-shield]][license-url]
--->
+
 # TP2 Algoritmos 3: AlgoBlocks
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
@@ -48,11 +47,10 @@ Explicación de como ejecutar la aplicación
 
 Este repositorio está bajo la [Licencia MIT][license-url]
 
-<!--
-[build-shield]: 
-[build-url]: 
-[codecov-shield]: 
-[codecov-url]: 
+[build-shield]: https://api.travis-ci.org/valva-ro/Algo3-TP2-AlgoBlocks.svg?branch=master
+[build-url]: https://travis-ci.org/github/valva-ro/Algo3-TP2-AlgoBlocks
+[codecov-shield]: https://codecov.io/gh/valva-ro/Algo3-TP2-AlgoBlocks/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/valva-ro/Algo3-TP2-AlgoBlocks
 [contributors-shield]: https://img.shields.io/github/contributors/valva-ro/Algo3-TP2-AlgoBlocks.svg?style=flat-square
 [contributors-url]: https://github.com/valva-ro/Algo3-TP2-AlgoBlocks/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/valva-ro/Algo3-TP2-AlgoBlocks.svg?style=flat-square
@@ -63,4 +61,3 @@ Este repositorio está bajo la [Licencia MIT][license-url]
 [issues-url]: https://github.com/valva-ro/Algo3-TP2-AlgoBlocks/issues
 [license-shield]: https://img.shields.io/github/license/valva-ro/Algo3-TP2-AlgoBlocks.svg?style=flat-square
 [license-url]: https://github.com/valva-ro/Algo3-TP2-AlgoBlocks/blob/master/LICENSE.md
--->
