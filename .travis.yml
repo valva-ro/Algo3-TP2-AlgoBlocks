@@ -6,5 +6,8 @@ notifications:
   email:
     recipients:
       - vvarela@fi.uba.ar
+      - avillores@fi.uba.ar
+      - ateper@fi.uba.ar
+      - kmeaca@fi.uba.ar
     on_success: always
     on_failure: always
