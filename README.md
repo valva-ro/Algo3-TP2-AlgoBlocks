@@ -6,9 +6,10 @@
 [![Issues][issues-shield]][issues-url]
 [![License][license-shield]][license-url]
 
-# TP2 Algoritmos 3: AlgoBlocks
+# TP2 Algoritmos 3: AlgoBlocks <img height="35" src="https://raw.githubusercontent.com/valva-ro/Algo3-TP2-AlgoBlocks/master/logo.png">
+
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
-<img  height="420" width="680" src="https://raw.githubusercontent.com/valva-ro/Algo3-TP2-AlgoBlocks/master/scratch-logo-1280x720.jpg">
+
 ## Grupo N7
   * [Alejo Villores](https://github.com/alejovillores)
   * [Alex Teper](https://github.com/AlexTeper99)
