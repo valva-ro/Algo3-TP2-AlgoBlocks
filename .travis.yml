@@ -9,5 +9,6 @@ notifications:
       - avillores@fi.uba.ar
       - ateper@fi.uba.ar
       - kmeaca@fi.uba.ar
+      - akuballa@fi.uba.ar
     on_success: always
     on_failure: always

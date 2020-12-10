@@ -13,6 +13,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 ## Grupo N7
   * [Alejo Villores](https://github.com/alejovillores)
   * [Alex Teper](https://github.com/AlexTeper99)
+  * [Andreas Kuballa](https://github.com/AndreasKub)  
   * [Kevin Meaca](https://github.com/root-MKevin)
   * [Valentina Varela Rodriguez](https://github.com/valva-ro)
   
