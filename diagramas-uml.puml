@@ -12,6 +12,8 @@ skinparam class {
     BorderColor DarkBlue
 }
 
+title Diagrama de clase de un posible modelo
+
 class Tablero {}
 
 class Personaje {
@@ -26,7 +28,6 @@ class Posicion {
     + decrementarCoordenadaX() : void
     + incrementarCoordenadaY() : void
     + decrementarCoordenadaY() : void
-}
 
 class SectorDibujo {
     + moverPersonaje(unBloque : Bloque) : void
@@ -35,6 +36,21 @@ class SectorDibujo {
 class SectorAlgoritmo {
     + agregarBloque(unBloque : Bloque) : void
     + ejecutar() : void
+}
+
+class SectorBloquesDisponibles {}
+
+interface Bloque {
+    + {abstract} ejecutar(unPersonaje : Pe
+}
+
+class SectorDibujo {
+    + moverPersonaje(unBloque : Bloque) : void
+}
+
+class SectorAlgoritmo {
+    + agregarBloque(unBloque : Bloque) : void
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
 }
 
 class SectorBloquesDisponibles {}
@@ -108,7 +124,7 @@ Lapiz <|.. NoDibuja
 
 'moverDelPersonaje(unBloque) {
 '    origen = posicion
-'    unBloque mover(self)
+'    unBloque.mover(this)
 '    destino = posicion
 '    lapiz dibuja(origen, destino)
 '}
@@ -138,13 +154,14 @@ skinparam participant {
     BorderColor DarkBlue
 }
 
+title Ejecución de un algoritmo que sólo tiene un bloque hacia la derecha
+
 actor Actor
-participant "personaje:Personaje" as Personaje
-participant "bloqueDerecha:BloqueDerecha" as BloqueDerecha
+participant ":BloqueDerecha" as BloqueDerecha
+participant "unPersonaje:Personaje" as Personaje
 participant ":Posicion" as Posicion
 
-Actor -> Personaje : mover(bloqueDerecha)
-Personaje -> BloqueDerecha : ejecutar(personaje)
+Actor -> BloqueDerecha : ejecutar(unPersonaje)
 BloqueDerecha -> Personaje : moverDerecha()
 Personaje -> Posicion : incrementarCoordenadaX()
 @enduml
@@ -170,17 +187,18 @@ skinparam participant {
     BorderColor DarkBlue
 }
 
+title Ejecución de un algoritmo cuyos bloques desconocemos
+
 participant ":SectorAlgoritmo" as SectorAlgoritmo
 participant ":SectorDibujo" as SectorDibujo
-participant ":Personaje" as Personaje
 participant "Bloque" as Bloque
+participant ":Personaje" as Personaje
 participant ":Posicion" as Posicion
 
-SectorAlgoritmo -> SectorAlgoritmo : ejecutar()
+SectorAlgoritmo -> SectorAlgoritmo : ejecutar(sectorDibujo)
 loop para cada bloque
     SectorAlgoritmo -> SectorDibujo : moverPersonaje(bloque)
-    SectorDibujo -> Personaje : mover(bloque)
-    Personaje -> Bloque : ejecutar(personaje)
+    SectorDibujo -> Bloque : ejecutar(personaje)
     Bloque -> Personaje : mover...()
     Personaje -> Posicion : ...Coordenada...()
 end
