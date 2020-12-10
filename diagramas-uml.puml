@@ -28,17 +28,7 @@ class Posicion {
     + decrementarCoordenadaX() : void
     + incrementarCoordenadaY() : void
     + decrementarCoordenadaY() : void
-
-class SectorDibujo {
-    + moverPersonaje(unBloque : Bloque) : void
 }
-
-class SectorAlgoritmo {
-    + agregarBloque(unBloque : Bloque) : void
-    + ejecutar() : void
-}
-
-class SectorBloquesDisponibles {}
 
 interface Bloque {
     + {abstract} ejecutar(unPersonaje : Pe
@@ -187,7 +177,7 @@ skinparam participant {
     BorderColor DarkBlue
 }
 
-title Ejecución de un algoritmo cuyos bloques desconocemos
+title Ejecución de un algoritmo cuyos bloques de movimiento desconocemos
 
 participant ":SectorAlgoritmo" as SectorAlgoritmo
 participant ":SectorDibujo" as SectorDibujo
@@ -200,6 +190,44 @@ loop para cada bloque
     SectorAlgoritmo -> SectorDibujo : moverPersonaje(bloque)
     SectorDibujo -> Bloque : ejecutar(personaje)
     Bloque -> Personaje : mover...()
+    Personaje -> Posicion : ...Coordenada...()
+end
+@enduml
+
+@startuml
+'Diagrama de secuencia para el caso de ejecución de un algoritmo con un solo bloque de mover a la derecha
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+skinparam ArrowColor DarkBlue
+skinparam SequenceLifeLineBorderColor DarkBlue
+skinparam SequenceLoopBackgroundColor DarkBlue
+
+skinparam actor {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+skinparam participant {
+    Bound DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+title Ejecución de un algoritmo cuyos bloques de movimiento desconocemos
+
+participant ":SectorAlgoritmo" as SectorAlgoritmo
+participant "Bloque" as Bloque
+participant ":SectorDibujo" as SectorDibujo
+participant ":Personaje" as Personaje
+participant ":Posicion" as Posicion
+
+SectorAlgoritmo -> SectorAlgoritmo : ejecutar(unSectorDibujo)
+loop para cada bloque
+    SectorAlgoritmo -> Bloque : ejecutar(unSectorDibujo)
+    Bloque -> SectorDibujo : mover...()
+    SectorDibujo -> Personaje : mover...()
     Personaje -> Posicion : ...Coordenada...()
 end
 @enduml
