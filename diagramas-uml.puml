@@ -14,8 +14,6 @@ skinparam class {
 
 title Diagrama de clase de un posible modelo
 
-class Tablero {}
-
 class Personaje {
     + mover(unBloque : Bloque) : void
     + asignarLapiz(unLapiz : Lapiz) : void
@@ -31,24 +29,67 @@ class Posicion {
 }
 
 interface Bloque {
-    + {abstract} ejecutar(unPersonaje : Pe
+    + {abstract} ejecutar(unPersonaje) : void
 }
 
 class SectorDibujo {
     + moverPersonaje(unBloque : Bloque) : void
 }
 
-class SectorAlgoritmo {
+class Algoritmo {
     + agregarBloque(unBloque : Bloque) : void
+    + sacar(unBloque : Bloque) : void
     + ejecutar(unSectorDibujo : SectorDibujo) : void
 }
 
-class SectorBloquesDisponibles {}
-
-interface Bloque {
-    + {abstract} ejecutar(unPersonaje : Personaje) : void
+class BloquesDisponibles {
+    + estaDisponible(unBloque) : boolean
 }
 
+interface Lapiz {
+    + dibuja()
+}
+class Dibuja {
+    + dibuja()
+}
+class NoDibuja {
+    + dibuja()
+}
+BloquesDisponibles "1" *--up "1..*" Bloque
+
+Algoritmo "1" --> "0..*" Bloque
+Algoritmo ..left> SectorDibujo
+
+SectorDibujo *-- Personaje
+Personaje *-- Posicion
+Personaje *--left Lapiz
+Lapiz <|.. Dibuja
+Lapiz <|.. NoDibuja
+
+'moverDelPersonaje(unBloque) {
+'    origen = posicion
+'    unBloque.mover(this)
+'    destino = posicion
+'    lapiz dibuja(origen, destino)
+'}
+@enduml
+
+@startuml
+'Diagrama de clase relacion entre bloques
+hide circle
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+
+skinparam class {
+    ArrowColor DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+interface Bloque {
+    + {abstract} ejecutar(unPersonaje) : void
+}
 class BloqueArriba {
     + ejecutar(unPersonaje : Personaje) : void
 }
@@ -68,6 +109,8 @@ class BloqueRepetir {
     - repeticiones : int
     - bloques
     + ejecutar(unPersonaje : Personaje) : void
+    + agregar(unBloque : Bloque) : void
+    + sacar(unBloque : Bloque) : void
 }
 class BloqueDibuja {
     + ejecutar(unPersonaje : Personaje) : void
@@ -75,53 +118,20 @@ class BloqueDibuja {
 class BloqueNoDibuja {
     + ejecutar(unPersonaje : Personaje) : void
 }
-class BloqueInvertirComportamiento {}
-
-interface Lapiz {
-    + dibuja()
+class BloqueInvertirComportamiento {
+    + ejecutar(unPersonaje : Personaje) : void
 }
-class Dibuja {
-    + dibuja()
-}
-class NoDibuja {
-    + dibuja()
-}
-
-Tablero --> SectorDibujo
-Tablero --> SectorAlgoritmo
-Tablero --> SectorBloquesDisponibles
 
 Bloque <|.. BloqueArriba
 Bloque <|.. BloqueAbajo
 Bloque <|.. BloqueIzquierda
 Bloque <|.. BloqueDerecha
-Bloque <|.. BloquePersonalizado
 Bloque <|.. BloqueRepetir
 Bloque <|.. BloqueDibuja
 Bloque <|.. BloqueNoDibuja
+Bloque <|.. BloquePersonalizado
 Bloque <|.. BloqueInvertirComportamiento
-
-SectorBloquesDisponibles "1" *--left "1..*" Bloque
-
-SectorAlgoritmo "1" ---> "0..*" Bloque
-SectorAlgoritmo ..left> SectorDibujo
-
-SectorDibujo *-- Personaje
-Personaje *-- Posicion
-Personaje *--left Lapiz
-Lapiz <|.. Dibuja
-Lapiz <|.. NoDibuja
-
-'moverDelPersonaje(unBloque) {
-'    origen = posicion
-'    unBloque.mover(this)
-'    destino = posicion
-'    lapiz dibuja(origen, destino)
-'}
-
 @enduml
-
-
 
 @startuml
 'Diagrama de secuencia para el caso de ejecución de un algoritmo con un solo bloque de mover a la derecha
@@ -179,19 +189,153 @@ skinparam participant {
 
 title Ejecución de un algoritmo cuyos bloques de movimiento desconocemos
 
-participant ":SectorAlgoritmo" as SectorAlgoritmo
+participant ":Algoritmo" as Algoritmo
 participant ":SectorDibujo" as SectorDibujo
 participant "Bloque" as Bloque
 participant ":Personaje" as Personaje
 participant ":Posicion" as Posicion
 
-SectorAlgoritmo -> SectorAlgoritmo : ejecutar(sectorDibujo)
+Algoritmo -> Algoritmo : ejecutar(sectorDibujo)
 loop para cada bloque
-    SectorAlgoritmo -> SectorDibujo : moverPersonaje(bloque)
+    Algoritmo -> SectorDibujo : moverPersonaje(bloque)
     SectorDibujo -> Bloque : ejecutar(personaje)
     Bloque -> Personaje : mover...()
     Personaje -> Posicion : ...Coordenada...()
 end
+@enduml
+
+@startuml
+'Diagrama de otro modelo (version Andreas)
+hide circle
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+
+skinparam class {
+    ArrowColor DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+title Diagrama de clase de otro posible modelo
+
+class Personaje {
+    + moverArriba() : void
+    + moverAbajo() : void
+    + moverDerecha() : void
+    + moverIzquierda() : void
+    + asignarLapiz(unLapiz : Lapiz) : void
+}
+
+class Posicion {
+    - coordenadaX : int
+    - coordenadaY : int
+    + incrementarCoordenadaX() : void
+    + decrementarCoordenadaX() : void
+    + incrementarCoordenadaY() : void
+    + decrementarCoordenadaY() : void
+}
+
+interface Bloque {
+    + {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+
+class SectorDibujo {
+    + moverPersonajeHaciaArriba() : void
+    + moverPersonajeHaciaAbajo() : void
+    + moverPersonajeHaciaDerecha() : void
+    + moverPersonajeHaciaIzquierda() : void
+}
+
+class Algoritmo {
+    + agregarBloque(unBloque : Bloque) : void
+    + sacar(unBloque : Bloque) : void
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+
+class BloquesDisponibles {
+    + estaDisponible(unBloque) : boolean
+}
+
+interface Lapiz {
+    + dibuja()
+}
+class Dibuja {
+    + dibuja()
+}
+class NoDibuja {
+    + dibuja()
+}
+
+BloquesDisponibles "1" *--up "1..*" Bloque
+Algoritmo "1" --> "0..*" Bloque
+Bloque ..right> SectorDibujo
+
+SectorDibujo *-- Personaje
+Personaje *-- Posicion
+Personaje *-- Lapiz
+Lapiz <|.. Dibuja
+Lapiz <|.. NoDibuja
+@enduml
+
+@startuml
+'Diagrama de clase relacion entre bloques (version Andreas)
+hide circle
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+
+skinparam class {
+    ArrowColor DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+interface Bloque {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+class BloqueArriba {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+class BloqueAbajo {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+class BloqueIzquierda{
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+class BloqueDerecha {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+class BloquePersonalizado {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+class BloqueRepetir {
+    - repeticiones : int
+    - bloques
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+    + agregar(unBloque : Bloque) : void
+    + sacar(unBloque : Bloque) : void
+}
+class BloqueDibuja {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+class BloqueNoDibuja {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+class BloqueInvertirComportamiento {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+
+Bloque <|.. BloqueArriba
+Bloque <|.. BloqueAbajo
+Bloque <|.. BloqueIzquierda
+Bloque <|.. BloqueDerecha
+Bloque <|.. BloqueRepetir
+Bloque <|.. BloqueDibuja
+Bloque <|.. BloqueNoDibuja
+Bloque <|.. BloquePersonalizado
+Bloque <|.. BloqueInvertirComportamiento
 @enduml
 
 @startuml
@@ -217,16 +361,16 @@ skinparam participant {
 
 title Ejecución de un algoritmo cuyos bloques de movimiento desconocemos
 
-participant ":SectorAlgoritmo" as SectorAlgoritmo
+participant ":Algoritmo" as Algoritmo
 participant "Bloque" as Bloque
 participant ":SectorDibujo" as SectorDibujo
 participant ":Personaje" as Personaje
 participant ":Posicion" as Posicion
 
-SectorAlgoritmo -> SectorAlgoritmo : ejecutar(unSectorDibujo)
+Algoritmo -> Algoritmo : ejecutar(unSectorDibujo)
 loop para cada bloque
-    SectorAlgoritmo -> Bloque : ejecutar(unSectorDibujo)
-    Bloque -> SectorDibujo : mover...()
+    Algoritmo -> Bloque : ejecutar(unSectorDibujo)
+    Bloque -> SectorDibujo : moverPersonajeHacia...()
     SectorDibujo -> Personaje : mover...()
     Personaje -> Posicion : ...Coordenada...()
 end
