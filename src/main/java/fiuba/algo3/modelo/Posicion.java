@@ -18,15 +18,24 @@ public class Posicion {
     }
 
     public boolean esIgual(Posicion posicion) {
-        boolean esIgualY = (coordenadaY == posicion.obtenerCoordenadaY());
-        boolean esIgualX = (coordenadaX == posicion.obtenerCoordenadaX());
+        boolean esIgualX = (this.coordenadaX == posicion.obtenerCoordenadaX());
+        boolean esIgualY = (this.coordenadaY == posicion.obtenerCoordenadaY());
 
         return (esIgualX && esIgualY);
     }
 
     public void actualizar(Posicion posicion){
-        this.coordenadaX  = this.coordenadaX + posicion.obtenerCoordenadaX();
-        this.coordenadaY  = this.coordenadaY + posicion.obtenerCoordenadaY();
+        this.coordenadaX  += posicion.obtenerCoordenadaX();
+        this.coordenadaY  += posicion.obtenerCoordenadaY();
     }
 
+    public boolean estaEnDiagonal(Posicion posicion) {
+        boolean estaEnDiagonalPositivo = ((Math.abs(this.coordenadaX) + 1) == Math.abs(posicion.obtenerCoordenadaX()) &&
+                                         (Math.abs(this.coordenadaY) + 1) == Math.abs(posicion.obtenerCoordenadaY()));
+
+        boolean estaEnDiagonalNegativo = ((Math.abs(this.coordenadaX) - 1) == Math.abs(posicion.obtenerCoordenadaX()) &&
+                                         (Math.abs(this.coordenadaY) - 1) == Math.abs(posicion.obtenerCoordenadaY()));
+
+        return (estaEnDiagonalPositivo || estaEnDiagonalNegativo);
+    }
 }

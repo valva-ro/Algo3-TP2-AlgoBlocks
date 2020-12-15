@@ -16,9 +16,11 @@ public class SectorDibujo {
         this.personaje.levantarLapiz();
     }
 
-    public void bajarLapiz() { this.personaje.bajarLapiz();}
+    public void bajarLapiz() {
+        this.personaje.bajarLapiz();
+    }
 
     public void mover(Posicion posicion){
-        this.personaje.mover(posicion);
+        this.personaje.moverHacia(posicion);
     }
 }

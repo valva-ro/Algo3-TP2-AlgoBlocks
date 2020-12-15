@@ -1,6 +1,5 @@
 package fiuba.algo3.modelo;
 
-import javafx.geometry.Pos;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +8,7 @@ public class PersonajeTests {
 
     @Test
     public void test01AlCrearElPersonajeTieneElLapizLevantado() {
-        // Preguntar
+        // TODO: preguntar si conviene usar el getClass() o implementar un metodo que sea lapizEstaLevantado() (aunque solo se use aca)
         Personaje personaje = new Personaje();
         LapizLevantado lapiz = new LapizLevantado();
 
@@ -27,14 +26,44 @@ public class PersonajeTests {
     }
 
     @Test
-    public void test03AlCrearElPersonajeSeUbicaEnElCentroDeCoordenadas(){
+    public void test03AlCrearElPersonajeSeUbicaEnElCentroDeCoordenadas() {
         Personaje personaje = new Personaje();
         Posicion  posicion  = new Posicion(0,0);
 
         assertTrue(personaje.estaEn(posicion));
     }
 
+    @Test
+    public void test04AlCrearElPersonajeYMoverloHaciaX0Y1EstaEnEsaPosicion() {
+        Personaje personaje = new Personaje();
+        Posicion  posicion  = new Posicion(0,1);
 
+        personaje.moverHacia(posicion);
 
+        assertTrue(personaje.estaEn(posicion));
+    }
 
+    @Test
+    public void test05NoSePuedeMoverAlPersonajeALaMismaPosicionEnLaQueEsta() {
+        Personaje personaje = new Personaje();
+        Posicion  posicion  = new Posicion(1,0);
+
+        personaje.moverHacia(posicion);
+
+        assertThrows(PersonajeYaSeEncuentraEnEsaPosicionError.class,
+                () -> {
+                    personaje.moverHacia(posicion);
+                });
+    }
+
+    @Test
+    public void test06NoSePuedeMoverElPersonajeEnDiagonal() {
+        Personaje personaje = new Personaje();
+        Posicion  posicion  = new Posicion(1,1);
+
+        assertThrows(PersonajeNoSePuedeMoverEnDiagonalError.class,
+                () -> {
+                    personaje.moverHacia(posicion);
+                });
+    }
 }

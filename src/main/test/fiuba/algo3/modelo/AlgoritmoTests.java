@@ -11,7 +11,6 @@ public class AlgoritmoTests {
     public void test01AlCrearUnNuevoAlgoritmoNoDebeTenerBloques () {
         Algoritmo algoritmo = new Algoritmo();
         assertEquals(algoritmo.obtenerBloques().size(), 0);
-
     }
 
     @Test
@@ -111,6 +110,4 @@ public class AlgoritmoTests {
 
         assertTrue(sectorDibujo.obtenerPersonaje().estaEn(posicion));
     }
-
-
 }

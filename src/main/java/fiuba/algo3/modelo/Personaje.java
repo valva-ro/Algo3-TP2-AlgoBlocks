@@ -26,7 +26,13 @@ public class Personaje {
         return this.posicion.esIgual(posicion);
     }
 
-    public void mover(Posicion posicion){
+    public void moverHacia(Posicion posicion){
+        if (this.estaEn(posicion)) {
+            throw new PersonajeYaSeEncuentraEnEsaPosicionError();
+        }
+        else if (this.posicion.estaEnDiagonal(posicion)) {
+            throw new PersonajeNoSePuedeMoverEnDiagonalError();
+        }
         this.posicion.actualizar(posicion);
     }
 }
