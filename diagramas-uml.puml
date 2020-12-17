@@ -270,3 +270,43 @@ loop para cada bloque
     Lapiz -> Dibujo : dibuja(posicionActual, destinoInvertido)
 end
 @enduml
+
+
+
+@startuml
+'Diagrama de secuencia para el caso de ejecución de un algoritmo con un solo bloque de mover a la derecha
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+skinparam ArrowColor DarkBlue
+skinparam SequenceLifeLineBorderColor DarkBlue
+skinparam SequenceLoopBackgroundColor DarkBlue
+
+skinparam actor {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+skinparam participant {
+    Bound DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+title Ejecución de un algoritmo cuyos bloques de movimiento desconocemos
+
+participant ":Algoritmo" as Algoritmo
+participant ":BloqueMovimiento" as Bloque
+participant ":SectorDibujo" as SectorDibujo
+participant ":Personaje" as Personaje
+participant ":Posicion" as Posicion
+
+Algoritmo -> Algoritmo : ejecutar(unSectorDibujo)
+loop para cada bloque
+    Algoritmo -> Bloque : ejecutar(unSectorDibujo)
+    Bloque -> SectorDibujo : moverPersonajeHacia(destino)
+    SectorDibujo -> Personaje : moverHacia(destino, dibujo)
+    Personaje -> Posicion : actualizarPosicion(destino)
+end
+@enduml
