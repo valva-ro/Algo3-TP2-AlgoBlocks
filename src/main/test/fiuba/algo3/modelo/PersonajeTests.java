@@ -42,28 +42,4 @@ public class PersonajeTests {
 
         assertTrue(personaje.estaEn(posicion));
     }
-
-    @Test
-    public void test05NoSePuedeMoverAlPersonajeALaMismaPosicionEnLaQueEsta() {
-        Personaje personaje = new Personaje();
-        Posicion  posicion  = new Posicion(1,0);
-
-        personaje.moverHacia(posicion);
-
-        assertThrows(PersonajeYaSeEncuentraEnEsaPosicionError.class,
-                () -> {
-                    personaje.moverHacia(posicion);
-                });
-    }
-
-    @Test
-    public void test06NoSePuedeMoverElPersonajeEnDiagonal() {
-        Personaje personaje = new Personaje();
-        Posicion  posicion  = new Posicion(1,1);
-
-        assertThrows(PersonajeNoSePuedeMoverEnDiagonalError.class,
-                () -> {
-                    personaje.moverHacia(posicion);
-                });
-    }
 }

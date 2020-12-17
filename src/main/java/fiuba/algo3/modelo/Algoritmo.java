@@ -15,6 +15,9 @@ public class Algoritmo {
     }
 
     public void ejecutar(SectorDibujo sectorDibujo) {
+        if (bloques.size() == 0) {
+            throw new AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError();
+        }
         for (Bloque bloque : bloques) {
             bloque.ejecutar(sectorDibujo);
         }

@@ -4,7 +4,7 @@ public class BloqueMovimiento implements Bloque {
 
     private Posicion posicion;
 
-    public BloqueMovimiento(Posicion posicion){
+    public BloqueMovimiento(Posicion posicion) {
         this.posicion = posicion;
     }
 

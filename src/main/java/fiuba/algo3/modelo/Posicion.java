@@ -28,14 +28,4 @@ public class Posicion {
         this.coordenadaX  += posicion.obtenerCoordenadaX();
         this.coordenadaY  += posicion.obtenerCoordenadaY();
     }
-
-    public boolean estaEnDiagonal(Posicion posicion) {
-        boolean estaEnDiagonalPositivo = ((Math.abs(this.coordenadaX) + 1) == Math.abs(posicion.obtenerCoordenadaX()) &&
-                                         (Math.abs(this.coordenadaY) + 1) == Math.abs(posicion.obtenerCoordenadaY()));
-
-        boolean estaEnDiagonalNegativo = ((Math.abs(this.coordenadaX) - 1) == Math.abs(posicion.obtenerCoordenadaX()) &&
-                                         (Math.abs(this.coordenadaY) - 1) == Math.abs(posicion.obtenerCoordenadaY()));
-
-        return (estaEnDiagonalPositivo || estaEnDiagonalNegativo);
-    }
 }

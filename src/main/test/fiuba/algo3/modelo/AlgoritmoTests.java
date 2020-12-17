@@ -2,8 +2,7 @@ package fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AlgoritmoTests {
 
@@ -109,5 +108,16 @@ public class AlgoritmoTests {
         algoritmo.ejecutar(sectorDibujo);
 
         assertTrue(sectorDibujo.obtenerPersonaje().estaEn(posicion));
+    }
+
+    @Test
+    public void test10NoSePuedeEjecutarUnAlgoritmoQueNoTieneBloques(){
+        Algoritmo algoritmo = new Algoritmo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+
+        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+                () -> {
+                    algoritmo.ejecutar(sectorDibujo);
+                });
     }
 }
