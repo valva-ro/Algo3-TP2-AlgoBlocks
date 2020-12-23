@@ -1,5 +1,4 @@
 @startuml
-'Diagrama de otro modelo (version Andreas)
 hide circle
 skinparam classAttributeIconSize 0
 skinparam backgroundColor White
@@ -17,84 +16,60 @@ skinparam note {
     BorderColor DarkBlue
 }
 
-title Diagrama de clase de otro posible modelo
+title Diagrama de clase general
 
-class Personaje {
-    + moverHacia(posicion : Posicion) : void
-    + asignarLapiz(unLapiz : Lapiz) : void
+class AlgoBlocks {
+    + agregarBloqueMovimientoArriba() : void
+    + agregarBloqueMovimientoAbajo() : void
+    + agregarBloqueMovimientoIzquierda() : void
+    + agregarBloqueMovimientoDerecha() : void
+    + agregarBloqueRepetirDoble() : void
+    + agregarBloqueRepetirTriple() : void
+    + agregarBloqueInvertir() : void
+    + agregarBloqueLevantarLapiz() : void
+    + agregarBloqueBajarLapiz() : void
+    + ejecutar() : void
 }
-note right
-    moverHacia(posicion) {
-        lapiz.dibuja(dibujo, posicionActual, posicion)
-    }
-end note
-
-class Posicion {
-    - coordenadaX : int
-    - coordenadaY : int
-    + Posicion(coordenadaX, coordenadaY)
-    + actualizarPosicion(posicion) : void
-    + invertir() : Posicion
+AlgoBlocks --> Algoritmo
+AlgoBlocks --> FabricaAbstractaDeBloques
+FabricaAbstractaDeBloques <|.. FabricaConcretaBloqueQueDibuja
+FabricaAbstractaDeBloques <|.. FabricaConcretaBloqueQueNoDibuja
+interface FabricaAbstractaDeBloques {
+    + {abstract} crearBloqueMovimientoArriba() : BloqueMovimiento
+    + {abstract} crearBloqueMovimientoAbajo() : BloqueMovimiento
+    + {abstract} crearBloqueMovimientoIzquierda() : BloqueMovimiento
+    + {abstract} crearBloqueMovimientoDerecha() : BloqueMovimiento
 }
-note right
-    ¿Cambiar por Direccion?
-    ¿Agregar Direccion?
-
-    La idea del método
-    actualizarPosicion()
-    es que le sume a la
-    instancia actual las
-    coordenadas de la
-    recibida.
-    Podria llamarse
-    sumarCoordenadas()
-end note
-
-note right
-    Se me ocurre que podemos
-    mantener Posicion y agregar
-    una interfaz Direccion que
-    interactue con Posicion.
-    Tipo tener Arriba, Abajo
-    Izquierda, Derecha imple-
-    mentando Direccion
-    Y que cada una actualice
-    actualice a Posicion.
-    Arriba lo haria con una Posicion(0,1)
-    Abajo con Posicion(0,-1), etc.
-end note
+class FabricaConcretaBloqueQueDibuja {
+    + crearBloqueMovimientoArriba() : BloqueMovimiento
+    + crearBloqueMovimientoAbajo() : BloqueMovimiento
+    + crearBloqueMovimientoIzquierda() : BloqueMovimiento
+    + crearBloqueMovimientoDerecha() : BloqueMovimiento
+}
+class FabricaConcretaBloqueQueNoDibuja {
+    + crearBloqueMovimientoArriba() : BloqueMovimiento
+    + crearBloqueMovimientoAbajo() : BloqueMovimiento
+    + crearBloqueMovimientoIzquierda() : BloqueMovimiento
+    + crearBloqueMovimientoDerecha() : BloqueMovimiento
+}
 
 interface Bloque {
     + {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
 }
 
 class SectorDibujo {
-    - dibujo
-    + moverPersonajeHacia(posicion : Posicion) : void
-    + levantarLapiz() : void
-    + bajarLapiz() : void
-    + dibujar(origen, destino) : void
+    + dibujar(unMovimiento) : void
+    + obtenerMovimientosDibujados() : Estructura<Movimiento>
 }
-note right
-    ¿Para guardar el dibujo
-    que estructura usamos?
-end note
 
+interface Movimiento {
+    + {abstract} estaDibujado() : boolean
+}
 
 class Algoritmo {
     + agregarBloque(unBloque : Bloque) : void
     + sacar(unBloque : Bloque) : void
     + ejecutar(unSectorDibujo : SectorDibujo) : void
-}
-
-interface Lapiz {
-    + {abstract} dibuja(dibujo, origen, destino) : void
-}
-class Dibuja {
-    + dibuja(dibujo, origen, destino) : void
-}
-class NoDibuja {
-    + dibuja(dibujo, origen, destino) : void
 }
 interface Comportamiento {
     + {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
@@ -105,208 +80,141 @@ class ComportamientoRegular {
 class ComportamientoInvertido {
     + ejecutar(unSectorDibujo : SectorDibujo) : void
 }
-
 Algoritmo "1" o-- "0..*" Bloque
 Bloque ..down> SectorDibujo
 Bloque *--left Comportamiento
 Comportamiento <|.. ComportamientoRegular
 Comportamiento <|.. ComportamientoInvertido
-SectorDibujo *-- Personaje
-Personaje *-- Posicion
-Personaje *--left Lapiz
-Lapiz <|.. Dibuja
-Lapiz <|.. NoDibuja
+SectorDibujo "1" o-- "1..*" Movimiento
 @enduml
 
+
+
+
+
 @startuml
-'Diagrama de clase relacion entre bloques (version Andreas 2.0)
 hide circle
 skinparam classAttributeIconSize 0
 skinparam backgroundColor White
 skinparam RoundCorner 10
 skinparam Shadowing true
-
 skinparam class {
     ArrowColor DarkBlue
     BackgroundColor LightBlue
     BorderColor DarkBlue
 }
+skinparam note {
+    BackgroundColor LightYellow
+    BorderColor DarkBlue
+}
+
 interface Bloque {
     + {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
 }
 class BloqueMovimiento {
-    - destino : Posicion
-    + BloqueMovimiento(posicion : Posicion)
-    + ejecutar(unSectorDibujo : SectorDibujo) : void
-}
-class BloqueRepetir {
-    - repeticiones : int
-    + BloqueRepetir(repeticiones : int)
-    + agregar(unBloque : Bloque) : void
-    + sacar(unBloque : Bloque) : void
-}
-class BloqueLevantarLapiz {
-    + ejecutar(unSectorDibujo : SectorDibujo) : void
-}
-abstract class BloquePersonalizado {
-    + BloquePersonalizado(comportamiento : Comportamiento)
+    + BloqueMovimiento(movimiento : Movimiento)
     + ejecutar(unSectorDibujo : SectorDibujo) : void
 }
 interface Comportamiento {
     + ejecutar(unSectorDibujo : SectorDibujo) : void
 }
+interface Bloques {
+    +  {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+class BloquePersonalizado {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+note bottom of BloquePersonalizado
+for cadaBloque in Bloques:
+    cadaBloque.ejecutar()
+end note
+class RepetirDoble {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+note bottom of RepetirDoble
+super.ejecutar() x2
+end note
+class RepetirTriple {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+note bottom of RepetirTriple
+super.ejecutar() x3
+end note
+class Invertir {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+note bottom of Invertir
+for cadaBloque in Bloques:
+    cadaBloque.invertir()
+super.ejecutar()
+end note
+abstract class Movimiento {
+    + Movimiento(estado : Estado)
+    + {abstract} estaDibujado() : boolean
+}
+class Arriba {
+    + estaDibujado() : boolean
+}
+class Abajo {
+    + estaDibujado() : boolean
+}
+class Derecha {
+    + estaDibujado() : boolean
+}
+class Izquierda {
+    + estaDibujado() : boolean
+}
+class DecoratorBloquePersonalizadoBase {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+note right
+objetoQueEnvuelve.ejecutar()
+end note
+note right
+Envuelve solo UN objeto!
+Puede ser un BloquePersonalizado,
+un RepetirDoble, RepetirTriple o
+Invertir. Cada uno de los ultimos
+tiene que envolver a su vez otro
+hasta llegar a la utilma capa
+que sería quien envuelve a
+BloquePersonalizado
+end note
+interface Estado {
+    + {abstract} estaDibujado() : boolean
+}
+class Dibuja {
+    + estaDibujado() : boolean
+}
+class NoDibuja {
+    + estaDibujado() : boolean
+}
 
+interface FabricaAbstractaDeBloques {
+    + {abstract} crearBloqueMovimientoArriba() : BloqueMovimiento
+    + {abstract} crearBloqueMovimientoAbajo() : BloqueMovimiento
+    + {abstract} crearBloqueMovimientoIzquierda() : BloqueMovimiento
+    + {abstract} crearBloqueMovimientoDerecha() : BloqueMovimiento
+}
+FabricaAbstractaDeBloques ..left> BloqueMovimiento
+
+Movimiento *-- Estado
+Estado <|.. Dibuja
+Estado <|.. NoDibuja
+Bloque <|.. Bloques
+Bloques "1" *-- "1..*" Bloque
+Bloques <|.. BloquePersonalizado
+Bloques <|.. DecoratorBloquePersonalizadoBase
+DecoratorBloquePersonalizadoBase o-- Bloques
+DecoratorBloquePersonalizadoBase <|-- RepetirDoble
+DecoratorBloquePersonalizadoBase <|-- RepetirTriple
+DecoratorBloquePersonalizadoBase <|-- Invertir
 Bloque *-left Comportamiento
-BloquePersonalizado "1" *-- "1..*" Bloque
-Bloque <|.. BloquePersonalizado
 Bloque <|.. BloqueMovimiento
-Bloque <|... BloqueLevantarLapiz
-BloquePersonalizado <|-- BloqueRepetir
-@enduml
 
-@startuml
-'Diagrama de secuencia para el caso de ejecución de un algoritmo con un solo bloque de mover a la derecha
-skinparam classAttributeIconSize 0
-skinparam backgroundColor White
-skinparam RoundCorner 10
-skinparam Shadowing true
-skinparam ArrowColor DarkBlue
-skinparam SequenceLifeLineBorderColor DarkBlue
-skinparam SequenceLoopBackgroundColor DarkBlue
-
-skinparam actor {
-    BackgroundColor LightBlue
-    BorderColor DarkBlue
-}
-
-skinparam participant {
-    Bound DarkBlue
-    BackgroundColor LightBlue
-    BorderColor DarkBlue
-}
-
-title Ejecución de un algoritmo cuyos bloques de movimiento desconocemos
-
-participant ":Algoritmo" as Algoritmo
-participant "Bloque" as Bloque
-participant "ComportamientoRegular" as ComportamientoRegular
-participant ":SectorDibujo" as SectorDibujo
-participant ":Personaje" as Personaje
-participant ":Posicion" as Posicion
-participant "Lapiz" as Lapiz
-participant ":Dibujo" as Dibujo
-
-Algoritmo -> Algoritmo : ejecutar(unSectorDibujo)
-loop para cada bloque
-    Algoritmo -> Bloque : ejecutar(unSectorDibujo)
-    Bloque -> ComportamientoRegular : ejecutar(unSectorDibujo)
-    ComportamientoRegular -> Bloque : ejecutarRegular(unSectorDibujo)
-
-    'Bloque tiene como atributo una Posicion destino
-    Bloque -> SectorDibujo : moverPersonajeHacia(destino)
-
-    'SectorDibujo tiene como atributo un Dibujo dibujo
-    SectorDibujo -> Personaje : moverHacia(destino, dibujo)
-    Personaje -> Posicion : actualizarPosicion(destino)
-
-    'Personaje tiene como atributo una Posicion posicionActual
-    Personaje -> Lapiz : dibuja(dibujo, posicionActual, destino)
-
-    Lapiz -> Dibujo : dibuja(posicionActual, destino)
-end
-@enduml
-
-@startuml
-'Diagrama de secuencia para el caso de ejecución de un algoritmo con un solo bloque de mover a la derecha
-skinparam classAttributeIconSize 0
-skinparam backgroundColor White
-skinparam RoundCorner 10
-skinparam Shadowing true
-skinparam ArrowColor DarkBlue
-skinparam SequenceLifeLineBorderColor DarkBlue
-skinparam SequenceLoopBackgroundColor DarkBlue
-
-skinparam actor {
-    BackgroundColor LightBlue
-    BorderColor DarkBlue
-}
-
-skinparam participant {
-    Bound DarkBlue
-    BackgroundColor LightBlue
-    BorderColor DarkBlue
-}
-
-title Ejecución de un algoritmo cuyos bloques de movimiento desconocemos
-
-participant ":Algoritmo" as Algoritmo
-participant ":BloqueMovimiento" as Bloque
-participant "ComportamientoInvertido" as ComportamientoInvertido
-participant ":SectorDibujo" as SectorDibujo
-participant ":Personaje" as Personaje
-participant ":Posicion" as Posicion
-participant "Lapiz" as Lapiz
-participant ":Dibujo" as Dibujo
-
-Algoritmo -> Algoritmo : ejecutar(unSectorDibujo)
-loop para cada bloque
-    Algoritmo -> Bloque : ejecutar(unSectorDibujo)
-    Bloque -> ComportamientoInvertido : ejecutar(unSectorDibujo)
-    ComportamientoInvertido -> Bloque : ejecutarInvertido(unSectorDibujo)
-
-    Bloque -> Posicion : invertir()
-    Posicion --> Bloque : destinoInvertido
-
-    'Bloque tiene como atributo una Posicion destino
-    Bloque -> SectorDibujo : moverPersonajeHacia(destinoInvertido)
-
-    'SectorDibujo tiene como atributo un Dibujo dibujo
-    SectorDibujo -> Personaje : moverHacia(destinoInvertido, dibujo)
-    Personaje -> Posicion : actualizarPosicion(destinoInvertido)
-
-    'Personaje tiene como atributo una Posicion posicionActual
-    Personaje -> Lapiz : dibuja(dibujo, posicionActual, destinoInvertido)
-
-    Lapiz -> Dibujo : dibuja(posicionActual, destinoInvertido)
-end
-@enduml
-
-
-
-@startuml
-'Diagrama de secuencia para el caso de ejecución de un algoritmo con un solo bloque de mover a la derecha
-skinparam classAttributeIconSize 0
-skinparam backgroundColor White
-skinparam RoundCorner 10
-skinparam Shadowing true
-skinparam ArrowColor DarkBlue
-skinparam SequenceLifeLineBorderColor DarkBlue
-skinparam SequenceLoopBackgroundColor DarkBlue
-
-skinparam actor {
-    BackgroundColor LightBlue
-    BorderColor DarkBlue
-}
-
-skinparam participant {
-    Bound DarkBlue
-    BackgroundColor LightBlue
-    BorderColor DarkBlue
-}
-
-title Ejecución de un algoritmo cuyos bloques de movimiento desconocemos
-
-participant ":Algoritmo" as Algoritmo
-participant ":BloqueMovimiento" as Bloque
-participant ":SectorDibujo" as SectorDibujo
-participant ":Personaje" as Personaje
-participant ":Posicion" as Posicion
-
-Algoritmo -> Algoritmo : ejecutar(unSectorDibujo)
-loop para cada bloque
-    Algoritmo -> Bloque : ejecutar(unSectorDibujo)
-    Bloque -> SectorDibujo : moverPersonajeHacia(destino)
-    SectorDibujo -> Personaje : moverHacia(destino, dibujo)
-    Personaje -> Posicion : actualizarPosicion(destino)
-end
+BloqueMovimiento *--left Movimiento
+Movimiento <|.. Arriba
+Movimiento <|.. Abajo
+Movimiento <|.. Derecha
+Movimiento <|.. Izquierda
 @enduml
