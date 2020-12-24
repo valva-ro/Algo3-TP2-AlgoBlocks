@@ -1,4 +1,4 @@
-package fiuba.algo3.modelo;
+/*package fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
@@ -122,4 +122,4 @@ public class AlgoritmoTests {
                     algoritmo.ejecutar(sectorDibujo);
                 });
     }
-}
+}*/

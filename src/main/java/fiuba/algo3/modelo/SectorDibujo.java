@@ -20,7 +20,7 @@ public class SectorDibujo {
         this.personaje.bajarLapiz();
     }
 
-    public void mover(Posicion posicion){
+    /*public void mover(P){
         this.personaje.moverHacia(posicion);
-    }
+    }*/
 }
