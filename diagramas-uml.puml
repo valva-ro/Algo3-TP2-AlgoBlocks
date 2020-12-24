@@ -119,7 +119,8 @@ interface Comportamiento {
     + ejecutar(unSectorDibujo : SectorDibujo) : void
 }
 interface Bloques {
-    +  {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
+    + {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
+    + agregar(unBloque : bloque) : void
 }
 class BloquePersonalizado {
     + ejecutar(unSectorDibujo : SectorDibujo) : void
@@ -203,8 +204,8 @@ Estado <|.. Dibuja
 Estado <|.. NoDibuja
 Bloque <|.. Bloques
 Bloques "1" *-- "1..*" Bloque
-Bloques <|.. BloquePersonalizado
-Bloques <|.. DecoratorBloquePersonalizadoBase
+Bloques <|-- BloquePersonalizado
+Bloques <|-- DecoratorBloquePersonalizadoBase
 DecoratorBloquePersonalizadoBase o-- Bloques
 DecoratorBloquePersonalizadoBase <|-- RepetirDoble
 DecoratorBloquePersonalizadoBase <|-- RepetirTriple
