@@ -12,10 +12,11 @@ public class BloquePersonalizadoTests {
         BloquePersonalizado bloque = new BloquePersonalizado();
         SectorDibujo sectorDibujo = new SectorDibujo();
 
-        bloque.agregar(new BloqueMovimiento(new Posicion(1, 0)));
+        bloque.agregar(new BloqueMovimiento(new Derecha(new Dibuja())));
         bloque.ejecutar(sectorDibujo);
 
-        // TODO: testear comportamiento con BloqueMovimiento cuando este implementado
+        // TODO: testear comportamiento en SectorDibujo cuando este implementado
+        assert(true);
     }
 
     @Test
@@ -24,13 +25,14 @@ public class BloquePersonalizadoTests {
         BloquePersonalizado bloque = new BloquePersonalizado();
         SectorDibujo sectorDibujo = new SectorDibujo();
 
-        bloque.agregar(new BloqueMovimiento(new Posicion(1, 0)));
+        bloque.agregar(new BloqueMovimiento(new Derecha(new Dibuja())));
 
         DecoratorBloquePersonalizadoBase decorator = new DecoratorBloquePersonalizadoBase(bloque);
 
         decorator.ejecutar(sectorDibujo);
 
-        // TODO: testear comportamiento con BloqueMovimiento cuando este implementado
+        // TODO: testear comportamiento en SectorDibujo cuando este implementado
+        assert(true);
     }
 
     @Test
@@ -40,11 +42,12 @@ public class BloquePersonalizadoTests {
         SectorDibujo sectorDibujo = new SectorDibujo();
 
         for (int i = 0; i < 10; i++) {
-            bloque.agregar(new BloqueMovimiento(new Posicion(1,0)));
+            bloque.agregar(new BloqueMovimiento(new Derecha(new Dibuja())));
         }
         bloque.ejecutar(sectorDibujo);
 
-        // TODO: testear comportamiento con BloqueMovimiento cuando este implementado
+        // TODO: testear comportamiento en SectorDibujo cuando este implementado
+        assert(true);
     }
 
     @Test

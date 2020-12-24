@@ -8,10 +8,6 @@ public class SectorDibujo {
         this.personaje = new Personaje();
     }
 
-    public Personaje obtenerPersonaje() {
-        return personaje;
-    }
-
     public void levantarLapiz() {
         this.personaje.levantarLapiz();
     }
@@ -19,8 +15,4 @@ public class SectorDibujo {
     public void bajarLapiz() {
         this.personaje.bajarLapiz();
     }
-
-    /*public void mover(P){
-        this.personaje.moverHacia(posicion);
-    }*/
 }

@@ -10,7 +10,7 @@ public class BloqueMovimiento implements Bloque {
 
     @Override
     public void ejecutar(SectorDibujo sectorDibujo) {
-        //sectorDibujo.mover(this.movimiento);
+        //sectorDibujo.dibujar(this.movimiento);
     }
 
     public Movimiento obtenerMovimiento() {
