@@ -1,17 +1,10 @@
 package fiuba.algo3.modelo;
 
-public class Arriba implements Movimiento {
-    private Estado estado;
+public class Arriba extends Movimiento {
 
     //Constructor
     public Arriba(Estado estado) {
         this.estado = estado;
-    }
-
-    //Metodos
-    @Override
-    public boolean estaDibujado(){
-        return estado.estaDibujado();
     }
 
 }

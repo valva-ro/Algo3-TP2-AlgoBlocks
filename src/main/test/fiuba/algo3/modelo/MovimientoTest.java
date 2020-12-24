@@ -53,7 +53,7 @@ public class MovimientoTest {
 
     @Test
     public void test07UnMovimientoAbajoEstaEnDibuja(){
-        Arriba movimientoArriba = new Arriba(new NoDibuja());
+        Arriba movimientoArriba = new Arriba(new Dibuja());
 
         assertTrue(movimientoArriba.estaDibujado());
     }
