@@ -7,4 +7,9 @@ public class Derecha extends Movimiento {
         this.estado = estado;
     }
 
+    @Override
+    public Movimiento invertir()
+    {
+        return new Izquierda(estado);
+    }
 }

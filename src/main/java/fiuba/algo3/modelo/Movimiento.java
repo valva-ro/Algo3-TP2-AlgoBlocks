@@ -7,4 +7,6 @@ public abstract class Movimiento {
         return estado.estaDibujado();
     }
 
+
+    public abstract Movimiento invertir();
 }

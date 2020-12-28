@@ -16,4 +16,8 @@ public class BloqueMovimiento implements Bloque {
     public Movimiento obtenerMovimiento() {
         return movimiento;
     }
+
+    public void invertirMovimiento() {
+        this.movimiento = movimiento.invertir();
+    }
 }

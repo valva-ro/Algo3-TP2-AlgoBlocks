@@ -7,4 +7,10 @@ public class Arriba extends Movimiento {
         this.estado = estado;
     }
 
+    @Override
+    public Movimiento invertir()
+    {
+        return new Abajo(estado);
+    }
+
 }

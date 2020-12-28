@@ -5,4 +5,10 @@ public class Abajo extends Movimiento {
     public Abajo(Estado estado) {
         this.estado = estado;
     }
+
+    @Override
+    public Movimiento invertir()
+    {
+        return new Arriba(estado);
+    }
 }
