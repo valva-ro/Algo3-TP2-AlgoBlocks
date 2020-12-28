@@ -1,9 +1,7 @@
 package fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MovimientoTest {
 
@@ -63,5 +61,58 @@ public class MovimientoTest {
         Abajo movimientoAbajo = new Abajo(new NoDibuja());
 
         assertFalse(movimientoAbajo.estaDibujado());
+    }
+
+    //Test de comportamiento de los movimientos sobre bloques
+    @Test
+    public void test09UnMovimientoAbajoSeInvierteHaciaArriba(){
+
+        Abajo movimientoAbajo             = new Abajo(new Dibuja());
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(movimientoAbajo);
+        Arriba movimientoArriba           = new Arriba(new Dibuja());
+
+        bloqueMovimiento.invertirMovimiento();
+
+        assertEquals(movimientoArriba.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
+
+    }
+
+    @Test
+    public void test10UnMovimientoArribaSeInvierteHaciaAbajo(){
+
+        Abajo movimientoAbajo             = new Abajo(new Dibuja());
+        Arriba movimientoArriba           = new Arriba(new Dibuja());
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(movimientoArriba);
+
+        bloqueMovimiento.invertirMovimiento();
+
+        assertEquals(movimientoAbajo.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
+
+    }
+
+
+    @Test
+    public void test11UnMovimientoDerechaSeInvierteHaciaIzquierda(){
+
+        Derecha movimientoDerecha         = new Derecha(new Dibuja());
+        Izquierda movimientoIzquierda     = new Izquierda(new Dibuja());
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(movimientoDerecha);
+
+        bloqueMovimiento.invertirMovimiento();
+
+        assertEquals(movimientoIzquierda.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
+
+    }
+    @Test
+    public void test12UnMovimientoIzquierdaSeInvierteHaciaDerecha(){
+
+        Derecha movimientoDerecha         = new Derecha(new Dibuja());
+        Izquierda movimientoIzquierda     = new Izquierda(new Dibuja());
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(movimientoIzquierda);
+
+        bloqueMovimiento.invertirMovimiento();
+
+        assertEquals(movimientoDerecha.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
+
     }
 }

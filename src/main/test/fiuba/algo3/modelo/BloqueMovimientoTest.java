@@ -77,4 +77,45 @@ public class BloqueMovimientoTest {
         assertEquals(abajoDibuja,bloqueMovimiento.obtenerMovimiento());
     }
 
+    @Test
+    public void test08BloqueMovimientoTieneMovimientoDerechaDibujandoYSeInvierteAIzquierda(){
+        Dibuja estado = new Dibuja();
+        Derecha derechaDibuja = new Derecha(estado);
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(derechaDibuja);
+
+        bloqueMovimiento.invertirMovimiento();
+        assertNotEquals(derechaDibuja,bloqueMovimiento.obtenerMovimiento());
+    }
+
+    @Test
+    public void test09BloqueMovimientoTieneMovimientoIzquierdaDibujandoYSeInvierteADerecha(){
+        Dibuja estado = new Dibuja();
+        Izquierda izquierdaDibuja = new Izquierda(estado);
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(izquierdaDibuja);
+
+        bloqueMovimiento.invertirMovimiento();
+        assertNotEquals(izquierdaDibuja,bloqueMovimiento.obtenerMovimiento());
+    }
+
+    @Test
+    public void test10BloqueMovimientoTieneMovimientoAbajoDibujandoYSeInvierteArriba(){
+        Dibuja estado = new Dibuja();
+        Abajo abajoDibuja = new Abajo(estado);
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(abajoDibuja);
+
+        bloqueMovimiento.invertirMovimiento();
+        assertNotEquals(abajoDibuja,bloqueMovimiento.obtenerMovimiento());
+    }
+
+    @Test
+    public void test11BloqueMovimientoTieneMovimientoArribaDibujandoYSeInvierteAbajo(){
+        Dibuja estado = new Dibuja();
+        Arriba arribaDibuja = new Arriba(estado);
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(arribaDibuja);
+
+        bloqueMovimiento.invertirMovimiento();
+        assertNotEquals(arribaDibuja,bloqueMovimiento.obtenerMovimiento());
+    }
+
+
 }
