@@ -1,26 +1,24 @@
 package fiuba.algo3.modelo;
 
+import java.util.ArrayList;
+
 public class SectorDibujo {
 
-    private Personaje personaje;
+    private ArrayList<MockMovimiento> bloquesDibujados = new ArrayList<>();
 
-    public SectorDibujo() {
-        this.personaje = new Personaje();
+    public ArrayList<MockMovimiento> obtenerMovimientos() {
+        return this.bloquesDibujados;
     }
 
-    public Personaje obtenerPersonaje() {
-        return personaje;
-    }
+    public void dibujar (MockMovimiento unMovimiento) {
+        unMovimiento.ejecutar();
+        bloquesDibujados.add(unMovimiento);
 
-    public void levantarLapiz() {
-        this.personaje.levantarLapiz();
     }
 
     public void bajarLapiz() {
-        this.personaje.bajarLapiz();
     }
 
-    public void mover(Posicion posicion){
-        this.personaje.moverHacia(posicion);
+    public void levantarLapiz() {
     }
 }
