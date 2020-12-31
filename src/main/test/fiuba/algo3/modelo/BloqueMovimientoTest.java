@@ -116,8 +116,8 @@ public class BloqueMovimientoTest {
 
     @Test
     public void test11BloqueMovimientoTieneMovimientoArribaDibujandoYSeInvierteAbajo(){
-        Dibuja estado                     = new Dibuja();
-        Arriba arribaDibuja               = new Arriba(estado);
+        Dibuja estado = new Dibuja();
+        Arriba arribaDibuja = new Arriba(estado);
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(arribaDibuja);
 
         bloqueMovimiento.invertirMovimiento();
@@ -126,10 +126,10 @@ public class BloqueMovimientoTest {
 
     @Test
     public void test12SectorDibujoContieneArribaTrasEjecutarseBloqueMovimiento(){
-        Dibuja estado                     = new Dibuja();
-        Arriba arribaDibuja               = new Arriba(estado);
+        Dibuja estado = new Dibuja();
+        Arriba arribaDibuja = new Arriba(estado);
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(arribaDibuja);
-        SectorDibujo sectorDibujo         = new SectorDibujo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
 
         bloqueMovimiento.ejecutar(sectorDibujo);
 
@@ -139,10 +139,10 @@ public class BloqueMovimientoTest {
 
     @Test
     public void test13SectorDibujoContieneAbajoTrasEjecutarseBloqueMovimiento(){
-        Dibuja estado                     = new Dibuja();
-        Abajo abajoDibuja                 = new Abajo(estado);
+        Dibuja estado = new Dibuja();
+        Abajo abajoDibuja = new Abajo(estado);
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(abajoDibuja );
-        SectorDibujo sectorDibujo         = new SectorDibujo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
 
         bloqueMovimiento.ejecutar(sectorDibujo);
 
@@ -152,10 +152,10 @@ public class BloqueMovimientoTest {
 
     @Test
     public void test14SectorDibujoContieneDerechaTrasEjecutarseBloqueMovimiento(){
-        Dibuja estado                     = new Dibuja();
-        Derecha derechaDibuja             = new Derecha(estado);
+        Dibuja estado = new Dibuja();
+        Derecha derechaDibuja = new Derecha(estado);
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(derechaDibuja );
-        SectorDibujo sectorDibujo         = new SectorDibujo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
 
         bloqueMovimiento.ejecutar(sectorDibujo);
 
@@ -165,10 +165,10 @@ public class BloqueMovimientoTest {
 
     @Test
     public void test15SectorDibujoContieneIzquierdaTrasEjecutarseBloqueMovimiento(){
-        Dibuja estado                     = new Dibuja();
-        Izquierda izquierdaDibuja         = new Izquierda(estado);
+        Dibuja estado = new Dibuja();
+        Izquierda izquierdaDibuja = new Izquierda(estado);
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(izquierdaDibuja );
-        SectorDibujo sectorDibujo         = new SectorDibujo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
 
         bloqueMovimiento.ejecutar(sectorDibujo);
 
