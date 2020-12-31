@@ -81,7 +81,6 @@ public class MovimientoTest {
         bloqueMovimiento.invertirMovimiento();
 
         assertEquals(movimientoArriba.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
-
     }
 
     @Test
@@ -94,7 +93,6 @@ public class MovimientoTest {
         bloqueMovimiento.invertirMovimiento();
 
         assertEquals(movimientoAbajo.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
-
     }
 
 
@@ -108,7 +106,6 @@ public class MovimientoTest {
         bloqueMovimiento.invertirMovimiento();
 
         assertEquals(movimientoIzquierda.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
-
     }
     @Test
     public void test12UnMovimientoIzquierdaSeInvierteHaciaDerecha(){
@@ -120,6 +117,59 @@ public class MovimientoTest {
         bloqueMovimiento.invertirMovimiento();
 
         assertEquals(movimientoDerecha.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
+    }
 
+    @Test
+    public void test13SectorMovimientoPosee3MovimientosALaDerecha(){
+        Derecha movimientoDerecha = new Derecha(new Dibuja());
+        SectorDibujo sectorDibujo = new SectorDibujo();
+
+        for(int i = 0; i < 3; i++) {
+           sectorDibujo.dibujar(movimientoDerecha);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            assertEquals(movimientoDerecha,sectorDibujo.obtenerMovimientos().get(i));
+        }
+    }
+
+    @Test
+    public void test14SectorMovimientoPosee10MovimientosALaDerechaEIzquierda(){
+        Derecha   movimientoDerecha   = new Derecha(new Dibuja());
+        Izquierda movimientoIzquierda = new Izquierda(new Dibuja());
+        SectorDibujo sectorDibujo     = new SectorDibujo();
+
+        for(int i = 0; i < 10; i++) {
+            sectorDibujo.dibujar(movimientoIzquierda);
+            sectorDibujo.dibujar(movimientoDerecha);
+        }
+
+        for (int i = 0; i < 10; i+=2) {
+            assertEquals(movimientoIzquierda,sectorDibujo.obtenerMovimientos().get(i));
+            assertEquals(movimientoDerecha,sectorDibujo.obtenerMovimientos().get(i+1));
+        }
+    }
+
+    @Test
+    public void test15SectorMovimientoPosee10MovimientosParaTodosLados(){
+        Derecha   movimientoDerecha   = new Derecha(new Dibuja());
+        Izquierda movimientoIzquierda = new Izquierda(new Dibuja());
+        Arriba    movimientoArriba    = new Arriba(new Dibuja());
+        Abajo     movimientoAbajo     = new Abajo(new Dibuja());
+        SectorDibujo sectorDibujo     = new SectorDibujo();
+
+        for(int i = 0; i < 10; i++) {
+            sectorDibujo.dibujar(movimientoIzquierda);
+            sectorDibujo.dibujar(movimientoDerecha);
+            sectorDibujo.dibujar(movimientoArriba);
+            sectorDibujo.dibujar(movimientoAbajo);
+        }
+
+        for (int i = 0; i < 10; i+=4) {
+            assertEquals(movimientoIzquierda,sectorDibujo.obtenerMovimientos().get(i));
+            assertEquals(movimientoDerecha,sectorDibujo.obtenerMovimientos().get(i+1));
+            assertEquals(movimientoArriba,sectorDibujo.obtenerMovimientos().get(i+2));
+            assertEquals(movimientoAbajo,sectorDibujo.obtenerMovimientos().get(i+3));
+        }
     }
 }
