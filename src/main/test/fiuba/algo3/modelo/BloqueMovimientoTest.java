@@ -3,9 +3,15 @@ package fiuba.algo3.modelo;
 import fiuba.algo3.modelo.bloques.BloqueMovimiento;
 import fiuba.algo3.modelo.bloques.Dibuja;
 import fiuba.algo3.modelo.bloques.NoDibuja;
-import fiuba.algo3.modelo.movimientos.*;
+import fiuba.algo3.modelo.movimientos.Arriba;
+import fiuba.algo3.modelo.movimientos.Abajo;
+import fiuba.algo3.modelo.movimientos.Izquierda;
+import fiuba.algo3.modelo.movimientos.Derecha;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BloqueMovimientoTest {
 
