@@ -1,15 +1,15 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.movimientos;
+
+import fiuba.algo3.modelo.bloques.Estado;
 
 public class Derecha extends Movimiento {
 
-    //Constructor
     public Derecha(Estado estado) {
         this.estado = estado;
     }
 
     @Override
-    public Movimiento invertir()
-    {
+    public Movimiento invertir() {
         return new Izquierda(estado);
     }
 }

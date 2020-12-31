@@ -1,4 +1,4 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.bloques;
 
 public class NoDibuja implements Estado {
 

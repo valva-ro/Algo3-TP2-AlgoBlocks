@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// TODO: actualizar estos tests al nuevo modelo
+
 public class AlgoritmoTests {
 
     @Test

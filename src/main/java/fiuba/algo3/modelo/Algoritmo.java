@@ -1,5 +1,7 @@
 package fiuba.algo3.modelo;
 
+import fiuba.algo3.modelo.bloques.Bloque;
+
 import java.util.ArrayList;
 
 public class Algoritmo {

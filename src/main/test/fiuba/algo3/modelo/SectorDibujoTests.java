@@ -1,52 +1,43 @@
 package fiuba.algo3.modelo;
 
 
+import fiuba.algo3.modelo.bloques.NoDibuja;
+import fiuba.algo3.modelo.movimientos.*;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import java.util.ArrayList;
-
-import static org.mockito.Mockito.mock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SectorDibujoTests {
 
-    @Mock
-    public MockMovimiento unMovimeinto;
-    public MockArriba unArriba;
-    public MockAbajo unAbajo;
-    public MockIzquierda unIzquierda;
-    public MockDerecha unDerecha;
-
     @Test
-    public void test05SectorDibujoAlmacenoCorrectamenteLosMovimientos () {
+    public void test01SectorDibujoAlmacenoCorrectamenteLosMovimientos () {
 
         SectorDibujo unSectorDibujo = new SectorDibujo();
-        ArrayList <MockMovimiento> ListaMovimientos = new ArrayList<>();
+        ArrayList <Movimiento> movimientos = new ArrayList<>();
 
-        MockArriba unArriba = mock(MockArriba.class);
-        MockDerecha unDerecha = mock(MockDerecha.class);
-        MockAbajo unAbajo = mock(MockAbajo.class);
-        MockIzquierda unIzquierda = mock(MockIzquierda.class);
+        Arriba unArriba = new Arriba(new NoDibuja());
+        Derecha unDerecha = new Derecha(new NoDibuja());
+        Abajo unAbajo = new Abajo(new NoDibuja());
+        Izquierda unIzquierda = new Izquierda(new NoDibuja());
 
         unSectorDibujo.dibujar(unArriba);
         unSectorDibujo.dibujar(unDerecha);
         unSectorDibujo.dibujar(unAbajo);
         unSectorDibujo.dibujar(unIzquierda);
 
-        ListaMovimientos.add(unArriba);
-        ListaMovimientos.add(unDerecha);
-        ListaMovimientos.add(unAbajo);
-        ListaMovimientos.add(unIzquierda);
+        movimientos.add(unArriba);
+        movimientos.add(unDerecha);
+        movimientos.add(unAbajo);
+        movimientos.add(unIzquierda);
 
-        ArrayList <MockMovimiento> Movimientos = unSectorDibujo.obtenerMovimientos();
+        ArrayList <Movimiento> dibujo = unSectorDibujo.obtenerMovimientos();
 
-        for (int i = 0; i < ListaMovimientos.size(); i++) {
-            assertEquals(ListaMovimientos.get(i), Movimientos.get(i));
+        for (int i = 0; i < movimientos.size(); i++) {
+            assertEquals(movimientos.get(i), dibujo.get(i));
         }
     }
-
 }
 
 

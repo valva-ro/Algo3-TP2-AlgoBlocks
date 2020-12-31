@@ -1,4 +1,7 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.bloques;
+
+import fiuba.algo3.modelo.SectorDibujo;
+import fiuba.algo3.modelo.movimientos.Movimiento;
 
 public class BloqueMovimiento implements Bloque {
 
@@ -10,7 +13,7 @@ public class BloqueMovimiento implements Bloque {
 
     @Override
     public void ejecutar(SectorDibujo sectorDibujo) {
-        //sectorDibujo.mover(this.movimiento);
+        sectorDibujo.dibujar(this.movimiento);
     }
 
     public Movimiento obtenerMovimiento() {
