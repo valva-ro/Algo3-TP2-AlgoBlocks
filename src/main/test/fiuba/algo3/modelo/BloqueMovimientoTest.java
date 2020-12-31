@@ -3,19 +3,22 @@ package fiuba.algo3.modelo;
 import fiuba.algo3.modelo.bloques.BloqueMovimiento;
 import fiuba.algo3.modelo.bloques.Dibuja;
 import fiuba.algo3.modelo.bloques.NoDibuja;
-import fiuba.algo3.modelo.movimientos.Abajo;
 import fiuba.algo3.modelo.movimientos.Arriba;
-import fiuba.algo3.modelo.movimientos.Derecha;
+import fiuba.algo3.modelo.movimientos.Abajo;
 import fiuba.algo3.modelo.movimientos.Izquierda;
+import fiuba.algo3.modelo.movimientos.Derecha;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BloqueMovimientoTest {
 
     @Test
     public void test01BloqueMovimientoTieneMovimientoDerechaNoDibuja(){
-        NoDibuja estado= new NoDibuja();
-        Derecha derechaNoDibuja= new Derecha(estado);
+        NoDibuja estado       = new NoDibuja();
+        Derecha derechaNoDibuja   = new Derecha(estado);
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(derechaNoDibuja);
 
         assertEquals(derechaNoDibuja,bloqueMovimiento.obtenerMovimiento());
@@ -23,7 +26,7 @@ public class BloqueMovimientoTest {
 
     @Test
     public void test02BloqueMovimientoTieneMovimientoDerechaDibuja(){
-        Dibuja estado= new Dibuja();
+        Dibuja estado = new Dibuja();
         Derecha derechaDibuja = new Derecha(estado);
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(derechaDibuja);
 
@@ -32,8 +35,8 @@ public class BloqueMovimientoTest {
 
     @Test
     public void test03BloqueMovimientoTieneMovimientoIzquierdaNoDibuja(){
-        NoDibuja estado = new NoDibuja();
-        Izquierda izquierdaNoDibuja = new Izquierda(estado);
+        NoDibuja estado       = new NoDibuja();
+        Izquierda izquierdaNoDibuja       = new Izquierda(estado);
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(izquierdaNoDibuja);
 
         assertEquals(izquierdaNoDibuja,bloqueMovimiento.obtenerMovimiento());
@@ -50,7 +53,7 @@ public class BloqueMovimientoTest {
 
     @Test
     public void test05BloqueMovimientoTieneMovimientoIzquierdaNoDibuja(){
-        NoDibuja estado = new NoDibuja();
+        NoDibuja estado       = new NoDibuja();
         Arriba arribaNoDibuja = new Arriba(estado);
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(arribaNoDibuja);
 
@@ -60,7 +63,7 @@ public class BloqueMovimientoTest {
     @Test
     public void test06BloqueMovimientoTieneMovimientoArribaDibuja(){
         Dibuja estado = new Dibuja();
-        Arriba arribaDibuja = new Arriba(estado);
+        Arriba arribaDibuja   = new Arriba(estado);
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(arribaDibuja);
 
         assertEquals(arribaDibuja,bloqueMovimiento.obtenerMovimiento());
@@ -127,52 +130,48 @@ public class BloqueMovimientoTest {
     @Test
     public void test12SectorDibujoContieneArribaTrasEjecutarseBloqueMovimiento(){
         Dibuja estado = new Dibuja();
-        Arriba arribaDibuja = new Arriba(estado);
+        Arriba arribaDibuja   = new Arriba(estado);
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(arribaDibuja);
         SectorDibujo sectorDibujo = new SectorDibujo();
 
         bloqueMovimiento.ejecutar(sectorDibujo);
 
         assertTrue(sectorDibujo.obtenerMovimientos().contains(arribaDibuja));
-
     }
 
     @Test
     public void test13SectorDibujoContieneAbajoTrasEjecutarseBloqueMovimiento(){
         Dibuja estado = new Dibuja();
         Abajo abajoDibuja = new Abajo(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(abajoDibuja );
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(abajoDibuja);
         SectorDibujo sectorDibujo = new SectorDibujo();
 
         bloqueMovimiento.ejecutar(sectorDibujo);
 
-        assertTrue(sectorDibujo.obtenerMovimientos().contains(abajoDibuja ));
-
+        assertTrue(sectorDibujo.obtenerMovimientos().contains(abajoDibuja));
     }
 
     @Test
     public void test14SectorDibujoContieneDerechaTrasEjecutarseBloqueMovimiento(){
         Dibuja estado = new Dibuja();
         Derecha derechaDibuja = new Derecha(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(derechaDibuja );
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(derechaDibuja);
         SectorDibujo sectorDibujo = new SectorDibujo();
 
         bloqueMovimiento.ejecutar(sectorDibujo);
 
-        assertTrue(sectorDibujo.obtenerMovimientos().contains(derechaDibuja ));
-
+        assertTrue(sectorDibujo.obtenerMovimientos().contains(derechaDibuja));
     }
 
     @Test
     public void test15SectorDibujoContieneIzquierdaTrasEjecutarseBloqueMovimiento(){
         Dibuja estado = new Dibuja();
         Izquierda izquierdaDibuja = new Izquierda(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(izquierdaDibuja );
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(izquierdaDibuja);
         SectorDibujo sectorDibujo = new SectorDibujo();
 
         bloqueMovimiento.ejecutar(sectorDibujo);
 
-        assertTrue(sectorDibujo.obtenerMovimientos().contains(izquierdaDibuja ));
-
+        assertTrue(sectorDibujo.obtenerMovimientos().contains(izquierdaDibuja));
     }
 }
