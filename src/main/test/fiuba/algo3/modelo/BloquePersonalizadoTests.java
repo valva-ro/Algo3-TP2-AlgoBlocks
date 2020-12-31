@@ -1,9 +1,7 @@
 package fiuba.algo3.modelo;
 
 import fiuba.algo3.modelo.bloques.*;
-import fiuba.algo3.modelo.movimientos.Arriba;
-import fiuba.algo3.modelo.movimientos.Derecha;
-import fiuba.algo3.modelo.movimientos.Movimiento;
+import fiuba.algo3.modelo.movimientos.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -43,7 +41,7 @@ public class BloquePersonalizadoTests {
     }
 
     @Test
-    public void test03BloquePersonalizadoSeEjecutaConDiezBloquesDeMovimientoHaciaLaDerecha () {
+    public void test03BloquePersonalizadoSeEjecutaCon5BloquesDeMovimientoHaciaLaDerechaY5HaciaArriba () {
 
         BloquePersonalizado bloque = new BloquePersonalizado();
         SectorDibujo sectorDibujo = new SectorDibujo();
@@ -73,5 +71,34 @@ public class BloquePersonalizadoTests {
                 () -> {
                     bloque.ejecutar(sectorDibujo);
                 });
+    }
+
+    @Test
+    public void test05BloquePersonalizadoSeEjecutaConDecoratorInvertirYBloquesDeMovimiento () {
+
+        BloquePersonalizado bloque = new BloquePersonalizado();
+        // TODO: falta DecoratorInvertir
+        // DecoratorInvertirBloquePersonalizado invertir;
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        Derecha derecha = new Derecha(new Dibuja());
+        Izquierda izquierda = new Izquierda(new Dibuja());
+        Arriba arriba = new Arriba(new Dibuja());
+        Abajo abajo = new Abajo(new Dibuja());
+
+        for (int i = 0; i < 5; i++) {
+            bloque.agregar(new BloqueMovimiento(derecha));
+            bloque.agregar(new BloqueMovimiento(arriba));
+        }
+
+        /*
+        invertir = new DecoratorInvertirBloquePersonalizado(bloque);
+
+        invertir.ejecutar(sectorDibujo);
+
+        for (int i = 0; i < 5; i += 2) {
+            assertEquals(izquierda, sectorDibujo.obtenerMovimientos().get(i));
+            assertEquals(abajo, sectorDibujo.obtenerMovimientos().get(i+1));
+        }
+         */
     }
 }
