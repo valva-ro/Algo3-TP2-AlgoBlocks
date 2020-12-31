@@ -74,9 +74,9 @@ public class MovimientoTest {
     @Test
     public void test09UnMovimientoAbajoSeInvierteHaciaArriba(){
 
-        Abajo movimientoAbajo             = new Abajo(new Dibuja());
+        Abajo movimientoAbajo = new Abajo(new Dibuja());
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(movimientoAbajo);
-        Arriba movimientoArriba           = new Arriba(new Dibuja());
+        Arriba movimientoArriba = new Arriba(new Dibuja());
 
         bloqueMovimiento.invertirMovimiento();
 
@@ -86,8 +86,8 @@ public class MovimientoTest {
     @Test
     public void test10UnMovimientoArribaSeInvierteHaciaAbajo(){
 
-        Abajo movimientoAbajo             = new Abajo(new Dibuja());
-        Arriba movimientoArriba           = new Arriba(new Dibuja());
+        Abajo movimientoAbajo = new Abajo(new Dibuja());
+        Arriba movimientoArriba = new Arriba(new Dibuja());
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(movimientoArriba);
 
         bloqueMovimiento.invertirMovimiento();
@@ -99,8 +99,8 @@ public class MovimientoTest {
     @Test
     public void test11UnMovimientoDerechaSeInvierteHaciaIzquierda(){
 
-        Derecha movimientoDerecha         = new Derecha(new Dibuja());
-        Izquierda movimientoIzquierda     = new Izquierda(new Dibuja());
+        Derecha movimientoDerecha = new Derecha(new Dibuja());
+        Izquierda movimientoIzquierda = new Izquierda(new Dibuja());
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(movimientoDerecha);
 
         bloqueMovimiento.invertirMovimiento();
@@ -110,8 +110,8 @@ public class MovimientoTest {
     @Test
     public void test12UnMovimientoIzquierdaSeInvierteHaciaDerecha(){
 
-        Derecha movimientoDerecha         = new Derecha(new Dibuja());
-        Izquierda movimientoIzquierda     = new Izquierda(new Dibuja());
+        Derecha movimientoDerecha = new Derecha(new Dibuja());
+        Izquierda movimientoIzquierda = new Izquierda(new Dibuja());
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(movimientoIzquierda);
 
         bloqueMovimiento.invertirMovimiento();
@@ -135,9 +135,9 @@ public class MovimientoTest {
 
     @Test
     public void test14SectorMovimientoPosee10MovimientosALaDerechaEIzquierda(){
-        Derecha   movimientoDerecha   = new Derecha(new Dibuja());
+        Derecha   movimientoDerecha = new Derecha(new Dibuja());
         Izquierda movimientoIzquierda = new Izquierda(new Dibuja());
-        SectorDibujo sectorDibujo     = new SectorDibujo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
 
         for(int i = 0; i < 10; i++) {
             sectorDibujo.dibujar(movimientoIzquierda);
@@ -152,11 +152,11 @@ public class MovimientoTest {
 
     @Test
     public void test15SectorMovimientoPosee10MovimientosParaTodosLados(){
-        Derecha   movimientoDerecha   = new Derecha(new Dibuja());
+        Derecha   movimientoDerecha = new Derecha(new Dibuja());
         Izquierda movimientoIzquierda = new Izquierda(new Dibuja());
-        Arriba    movimientoArriba    = new Arriba(new Dibuja());
-        Abajo     movimientoAbajo     = new Abajo(new Dibuja());
-        SectorDibujo sectorDibujo     = new SectorDibujo();
+        Arriba    movimientoArriba = new Arriba(new Dibuja());
+        Abajo     movimientoAbajo = new Abajo(new Dibuja());
+        SectorDibujo sectorDibujo = new SectorDibujo();
 
         for(int i = 0; i < 10; i++) {
             sectorDibujo.dibujar(movimientoIzquierda);
