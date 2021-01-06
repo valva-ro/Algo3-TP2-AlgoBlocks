@@ -10,7 +10,7 @@ public class BloqueInvertir extends DecoratorBloquePersonalizadoBase {
 
     @Override
     public void ejecutar(SectorDibujo sectorDibujo) {
-        //TODO
+        //TODO: Hay un problema de diseño
         /*
         for(Bloque bloque: bloques){
             //bloque.invertir();
