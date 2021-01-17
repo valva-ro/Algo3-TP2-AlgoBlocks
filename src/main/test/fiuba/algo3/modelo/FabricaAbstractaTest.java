@@ -70,4 +70,61 @@ public class FabricaAbstractaTest {
         assertEquals(fabricaNoDibuja.crearBloqueMovimientoIzquierda().getClass(),bloqueMovimiento.getClass());
 
     }
+
+    @Test
+    public void test05FabricaDibujaCreaBloqueMovimientoDerecha(){
+
+        Dibuja estado       = new Dibuja();
+        Derecha derechaDibuja   = new Derecha(estado);
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(derechaDibuja);
+
+        FabricaConcretaBloqueQueDibuja fabricaDibuja = new FabricaConcretaBloqueQueDibuja();
+
+        assertEquals(fabricaDibuja.crearBloqueMovimientoDerecha().getClass(),bloqueMovimiento.getClass());
+
+        // assertEquals(fabricaNoDibuja.crearBloqueMovimientoDerecha().obtenerMovimiento().getClass(),bloqueMovimiento.obtenerMovimiento().getClass());
+
+    }
+
+    @Test
+    public void test06FabricaNoDibujaCreaBloqueMovimientoIzquierda(){
+
+        Dibuja estado       = new Dibuja();
+        Izquierda izquierdaDibuja       = new Izquierda(estado);
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(izquierdaDibuja);
+
+        FabricaConcretaBloqueQueDibuja fabricaDibuja = new FabricaConcretaBloqueQueDibuja();
+
+        assertEquals(fabricaDibuja.crearBloqueMovimientoIzquierda().getClass(),bloqueMovimiento.getClass());
+
+
+    }
+
+    @Test
+    public void test07FabricaNoDibujaCreaBloqueMovimientoArriba(){
+
+        Dibuja estado = new Dibuja();
+        Arriba arribaDibuja = new Arriba(estado);
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(arribaDibuja);
+
+        FabricaConcretaBloqueQueDibuja fabricaDibuja = new FabricaConcretaBloqueQueDibuja();
+
+        assertEquals(fabricaDibuja.crearBloqueMovimientoArriba().getClass(),bloqueMovimiento.getClass());
+
+
+    }
+
+    @Test
+    public void test08FabricaNoDibujaCreaBloqueMovimientoAbajo(){
+
+        Dibuja estado = new Dibuja();
+        Abajo abajoDibuja = new Abajo(estado);
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(abajoDibuja);
+
+        FabricaConcretaBloqueQueDibuja fabricaDibuja = new FabricaConcretaBloqueQueDibuja();
+
+        assertEquals(fabricaDibuja.crearBloqueMovimientoAbajo().getClass(),bloqueMovimiento.getClass());
+
+
+    }
 }
