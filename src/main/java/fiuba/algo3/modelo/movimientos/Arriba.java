@@ -13,4 +13,8 @@ public class Arriba extends Movimiento {
         return new Abajo(estado);
     }
 
+    @Override
+    public boolean esIgualA(Movimiento movimiento) {
+        return (movimiento instanceof Arriba && this.estado.estaDibujado() == movimiento.estaDibujado());
+    }
 }

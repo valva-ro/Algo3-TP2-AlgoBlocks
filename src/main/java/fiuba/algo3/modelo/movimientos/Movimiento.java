@@ -11,4 +11,6 @@ public abstract class Movimiento {
     }
 
     public abstract Movimiento invertir();
+
+    public abstract boolean esIgualA(Movimiento movimiento);
 }

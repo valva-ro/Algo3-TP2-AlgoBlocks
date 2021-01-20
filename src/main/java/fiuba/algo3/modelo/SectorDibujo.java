@@ -12,6 +12,25 @@ public class SectorDibujo {
         return this.bloquesDibujados;
     }
 
+    public boolean dibujoEsIgual(ArrayList<Movimiento> movimientos) {
+        Movimiento movimiento;
+        boolean esIgual = true;
+        int i = 0;
+
+        if (bloquesDibujados.size() != movimientos.size()) {
+            esIgual = false;
+        }
+
+        while (i < bloquesDibujados.size() && esIgual) {
+            movimiento = bloquesDibujados.get(i);
+            if (!movimiento.esIgualA(movimientos.get(i))) {
+                esIgual = false;
+            }
+            i++;
+        }
+        return esIgual;
+    }
+
     public void dibujar (Movimiento unMovimiento) {
         bloquesDibujados.add(unMovimiento);
     }

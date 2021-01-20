@@ -12,4 +12,9 @@ public class Izquierda extends Movimiento {
     public Movimiento invertir() {
         return new Derecha(estado);
     }
+
+    @Override
+    public boolean esIgualA(Movimiento movimiento) {
+        return (movimiento instanceof Izquierda && this.estado.estaDibujado() == movimiento.estaDibujado());
+    }
 }

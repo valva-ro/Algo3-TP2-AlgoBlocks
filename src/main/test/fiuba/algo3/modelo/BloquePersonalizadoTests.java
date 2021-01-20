@@ -5,13 +5,12 @@ import fiuba.algo3.modelo.bloques.BloquePersonalizado;
 import fiuba.algo3.modelo.bloques.DecoratorBloquePersonalizadoBase;
 import fiuba.algo3.modelo.bloques.Dibuja;
 import fiuba.algo3.modelo.bloques.BloquePersonalizadoNoPuedeEjecutarseSinBloquesError;
-import fiuba.algo3.modelo.movimientos.Arriba;
-import fiuba.algo3.modelo.movimientos.Abajo;
-import fiuba.algo3.modelo.movimientos.Izquierda;
-import fiuba.algo3.modelo.movimientos.Derecha;
+import fiuba.algo3.modelo.movimientos.*;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BloquePersonalizadoTests {
@@ -23,11 +22,13 @@ public class BloquePersonalizadoTests {
         SectorDibujo sectorDibujo = new SectorDibujo();
         Derecha movimiento = new Derecha(new Dibuja());
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(movimiento);
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
         bloque.agregar(bloqueMovimiento);
         bloque.ejecutar(sectorDibujo);
+        movimientos.add(movimiento);
 
-        assertEquals(movimiento, sectorDibujo.obtenerMovimientos().get(0));
+        assert(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -37,14 +38,16 @@ public class BloquePersonalizadoTests {
         SectorDibujo sectorDibujo = new SectorDibujo();
         Derecha movimiento = new Derecha(new Dibuja());
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(movimiento);
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
         bloque.agregar(bloqueMovimiento);
+        movimientos.add(movimiento);
 
         DecoratorBloquePersonalizadoBase decorator = new DecoratorBloquePersonalizadoBase(bloque);
 
         decorator.ejecutar(sectorDibujo);
 
-        assertEquals(movimiento, sectorDibujo.obtenerMovimientos().get(0));
+        assert(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -53,16 +56,16 @@ public class BloquePersonalizadoTests {
         BloquePersonalizado bloque = new BloquePersonalizado();
         SectorDibujo sectorDibujo = new SectorDibujo();
         Derecha derecha = new Derecha(new Dibuja());
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
             bloque.agregar(new BloqueMovimiento(derecha));
+            movimientos.add(derecha);
         }
 
         bloque.ejecutar(sectorDibujo);
 
-        for (int i = 0; i < 5; i += 2) {
-            assertEquals(derecha, sectorDibujo.obtenerMovimientos().get(i));
-        }
+        assert(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -93,18 +96,19 @@ public class BloquePersonalizadoTests {
         SectorDibujo sectorDibujo = new SectorDibujo();
         Derecha derecha = new Derecha(new Dibuja());
         Arriba arriba = new Arriba(new Dibuja());
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
             bloque.agregar(new BloqueMovimiento(derecha));
             bloque.agregar(new BloqueMovimiento(arriba));
+
+            movimientos.add(derecha);
+            movimientos.add(arriba);
         }
 
         bloque.ejecutar(sectorDibujo);
 
-        for (int i = 0; i < 5; i += 2) {
-            assertEquals(derecha, sectorDibujo.obtenerMovimientos().get(i));
-            assertEquals(arriba, sectorDibujo.obtenerMovimientos().get(i+1));
-        }
+        assert(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -114,18 +118,19 @@ public class BloquePersonalizadoTests {
         SectorDibujo sectorDibujo = new SectorDibujo();
         Izquierda izquierda = new Izquierda(new Dibuja());
         Arriba arriba = new Arriba(new Dibuja());
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
             bloque.agregar(new BloqueMovimiento(izquierda));
             bloque.agregar(new BloqueMovimiento(arriba));
+
+            movimientos.add(izquierda);
+            movimientos.add(arriba);
         }
 
         bloque.ejecutar(sectorDibujo);
 
-        for (int i = 0; i < 5; i += 2) {
-            assertEquals(izquierda, sectorDibujo.obtenerMovimientos().get(i));
-            assertEquals(arriba, sectorDibujo.obtenerMovimientos().get(i+1));
-        }
+        assert(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -135,18 +140,19 @@ public class BloquePersonalizadoTests {
         SectorDibujo sectorDibujo = new SectorDibujo();
         Abajo abajo = new Abajo(new Dibuja());
         Arriba arriba = new Arriba(new Dibuja());
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
             bloque.agregar(new BloqueMovimiento(abajo));
             bloque.agregar(new BloqueMovimiento(arriba));
+
+            movimientos.add(abajo);
+            movimientos.add(arriba);
         }
 
         bloque.ejecutar(sectorDibujo);
 
-        for (int i = 0; i < 5; i += 2) {
-            assertEquals(abajo, sectorDibujo.obtenerMovimientos().get(i));
-            assertEquals(arriba, sectorDibujo.obtenerMovimientos().get(i+1));
-        }
+        assert(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -158,18 +164,21 @@ public class BloquePersonalizadoTests {
         Izquierda izquierda = new Izquierda(new Dibuja());
         Arriba arriba = new Arriba(new Dibuja());
         Abajo abajo = new Abajo(new Dibuja());
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
         bloque.agregar(new BloqueMovimiento(derecha));
         bloque.agregar(new BloqueMovimiento(izquierda));
         bloque.agregar(new BloqueMovimiento(arriba));
         bloque.agregar(new BloqueMovimiento(abajo));
 
+        movimientos.add(derecha);
+        movimientos.add(izquierda);
+        movimientos.add(arriba);
+        movimientos.add(abajo);
+
         bloque.ejecutar(sectorDibujo);
 
-        assertEquals(derecha, sectorDibujo.obtenerMovimientos().get(0));
-        assertEquals(izquierda, sectorDibujo.obtenerMovimientos().get(1));
-        assertEquals(arriba, sectorDibujo.obtenerMovimientos().get(2));
-        assertEquals(abajo, sectorDibujo.obtenerMovimientos().get(3));
+        assert(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -181,22 +190,23 @@ public class BloquePersonalizadoTests {
         Izquierda izquierda = new Izquierda(new Dibuja());
         Arriba arriba = new Arriba(new Dibuja());
         Abajo abajo = new Abajo(new Dibuja());
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
             bloque.agregar(new BloqueMovimiento(derecha));
             bloque.agregar(new BloqueMovimiento(izquierda));
             bloque.agregar(new BloqueMovimiento(arriba));
             bloque.agregar(new BloqueMovimiento(abajo));
+
+            movimientos.add(derecha);
+            movimientos.add(izquierda);
+            movimientos.add(arriba);
+            movimientos.add(abajo);
         }
 
         bloque.ejecutar(sectorDibujo);
 
-        for (int i = 0; i < 10; i += 4) {
-            assertEquals(derecha, sectorDibujo.obtenerMovimientos().get(i));
-            assertEquals(izquierda, sectorDibujo.obtenerMovimientos().get(i + 1));
-            assertEquals(arriba, sectorDibujo.obtenerMovimientos().get(i + 2));
-            assertEquals(abajo, sectorDibujo.obtenerMovimientos().get(i + 3));
-        }
+        assert(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -209,22 +219,23 @@ public class BloquePersonalizadoTests {
         Izquierda izquierda = new Izquierda(new Dibuja());
         Arriba arriba = new Arriba(new Dibuja());
         Abajo abajo = new Abajo(new Dibuja());
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
             bloque.agregar(new BloqueMovimiento(derecha));
             bloque.agregar(new BloqueMovimiento(izquierda));
             bloque.agregar(new BloqueMovimiento(arriba));
             bloque.agregar(new BloqueMovimiento(abajo));
+
+            movimientos.add(derecha);
+            movimientos.add(izquierda);
+            movimientos.add(arriba);
+            movimientos.add(abajo);
         }
 
         decoratorBase = new DecoratorBloquePersonalizadoBase(bloque);
         decoratorBase.ejecutar(sectorDibujo);
 
-        for (int i = 0; i < 10; i += 4) {
-            assertEquals(derecha, sectorDibujo.obtenerMovimientos().get(i));
-            assertEquals(izquierda, sectorDibujo.obtenerMovimientos().get(i + 1));
-            assertEquals(arriba, sectorDibujo.obtenerMovimientos().get(i + 2));
-            assertEquals(abajo, sectorDibujo.obtenerMovimientos().get(i + 3));
-        }
+        assert(sectorDibujo.dibujoEsIgual(movimientos));
     }
 }
