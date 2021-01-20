@@ -3,12 +3,13 @@ package fiuba.algo3.modelo;
 import fiuba.algo3.modelo.bloques.BloqueMovimiento;
 import fiuba.algo3.modelo.bloques.Dibuja;
 import fiuba.algo3.modelo.bloques.NoDibuja;
-import fiuba.algo3.modelo.movimientos.Abajo;
-import fiuba.algo3.modelo.movimientos.Arriba;
-import fiuba.algo3.modelo.movimientos.Derecha;
-import fiuba.algo3.modelo.movimientos.Izquierda;
+import fiuba.algo3.modelo.movimientos.*;
 import org.junit.jupiter.api.Test;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class MovimientoTest {
 
@@ -171,5 +172,30 @@ public class MovimientoTest {
             assertEquals(movimientoArriba,sectorDibujo.obtenerMovimientos().get(i+2));
             assertEquals(movimientoAbajo,sectorDibujo.obtenerMovimientos().get(i+3));
         }
+    }
+
+    @Test
+    public void test16EjecutarUnBloqueMovimientoDeManeraInvertidaModificaSuEstado()
+    {
+        Movimiento movimientoMock = mock(Movimiento.class);
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(movimientoMock);
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        bloqueMovimiento.ejecutarInvertido(sectorDibujoMock);
+
+        verify(movimientoMock,times(1)).invertir();
+    }
+
+    @Test
+    public void test17EjecutarUnBloqueMovimientoDeManeraInvertidaAgregaUnMovimientoInvertidoAlSectorDibujo()
+    {
+        Movimiento movimientoMock = mock(Movimiento.class);
+        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(movimientoMock);
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        bloqueMovimiento.ejecutarInvertido(sectorDibujoMock);
+
+        verify(sectorDibujoMock,times(1)).dibujar(movimientoMock.invertir());
+
     }
 }
