@@ -16,4 +16,20 @@ public class DecoratorBloquePersonalizadoBase extends Bloques {
     public void ejecutar(SectorDibujo sectorDibujo) {
         bloqueAEnvolver.ejecutar(sectorDibujo);
     }
+
+    public void ejecutarInvertido(SectorDibujo sectorDibujo){
+        bloqueAEnvolver.ejecutarInvertido(sectorDibujo);
+    }
+
+    protected void ejecutarBloques(SectorDibujo sectorDibujo){
+        for(Bloque bloque: bloques){
+            bloque.ejecutar(sectorDibujo);
+        }
+    }
+
+    protected void ejecutarBloquesInvertidos(SectorDibujo sectorDibujo){
+        for(Bloque bloque: bloques){
+            bloque.ejecutarInvertido(sectorDibujo);
+        }
+    }
 }

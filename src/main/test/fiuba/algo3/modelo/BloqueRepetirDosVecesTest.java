@@ -129,4 +129,79 @@ public class BloqueRepetirDosVecesTest {
 
         verify(bloqueMovimientoMock,times(6)).ejecutar(sectorDibujoMock);
     }
+
+    @Test
+    public void test08EjecutarDeFormaInvertidaUnBloqueRepetirDosVecesEjecutaDosVecesDeFormaInvertidaLosBloquesInternos()
+    {
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+        BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        bloquePersonalizado.agregar(bloqueMovimientoMock);
+
+        BloqueRepetirDosVeces bloqueRepetirDosVeces = new BloqueRepetirDosVeces(bloquePersonalizado);
+
+        bloqueRepetirDosVeces.ejecutarInvertido(sectorDibujoMock);
+
+        verify(bloqueMovimientoMock,times(2)).ejecutarInvertido(sectorDibujoMock);
+    }
+
+
+    @Test
+    public void test09EjecutarDeFormaInvertidaUnBloqueRepetirDosVecesNoEjecutaLaFormaEstandard()
+    {
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+        BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        bloquePersonalizado.agregar(bloqueMovimientoMock);
+
+        BloqueRepetirDosVeces bloqueRepetirDosVeces = new BloqueRepetirDosVeces(bloquePersonalizado);
+
+        bloqueRepetirDosVeces.ejecutarInvertido(sectorDibujoMock);
+
+        verify(bloqueMovimientoMock,times(0)).ejecutar(sectorDibujoMock);
+    }
+
+    @Test
+    public void test10AgregarBloquesAlBloqueRepetirDosVecesTambienLosEjecutaDosVeces()
+    {
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+        BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        bloquePersonalizado.agregar(bloqueMovimientoMock);
+
+        BloqueRepetirDosVeces bloqueRepetir = new BloqueRepetirDosVeces(bloquePersonalizado);
+
+        BloqueMovimiento otroMovimientoMock = mock(BloqueMovimiento.class);
+
+        bloqueRepetir.agregar(otroMovimientoMock);
+
+        bloqueRepetir.ejecutar(sectorDibujoMock);
+
+        verify(bloqueMovimientoMock,times(2)).ejecutar(sectorDibujoMock);
+        verify(otroMovimientoMock,times(2)).ejecutar(sectorDibujoMock);
+    }
+
+    @Test
+    public void test11AgregarBloquesAlBloqueRepetirDosVecesTambienLosEjecutaDosVecesDeFormaInvertida()
+    {
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+        BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        bloquePersonalizado.agregar(bloqueMovimientoMock);
+
+        BloqueRepetirDosVeces bloqueRepetir = new BloqueRepetirDosVeces(bloquePersonalizado);
+
+        BloqueMovimiento otroMovimientoMock = mock(BloqueMovimiento.class);
+
+        bloqueRepetir.agregar(otroMovimientoMock);
+
+        bloqueRepetir.ejecutarInvertido(sectorDibujoMock);
+
+        verify(bloqueMovimientoMock,times(2)).ejecutarInvertido(sectorDibujoMock);
+        verify(otroMovimientoMock,times(2)).ejecutarInvertido(sectorDibujoMock);
+    }
 }

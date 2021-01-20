@@ -12,12 +12,23 @@ public class BloquePersonalizado extends Bloques {
 
     public void ejecutar(SectorDibujo sectorDibujo) {
 
-        if (bloques.size() < 1) {
-            throw new BloquePersonalizadoNoPuedeEjecutarseSinBloquesError();
-        }
-
+        this.contieneBloques();
         for (Bloque bloque : bloques) {
             bloque.ejecutar(sectorDibujo);
+        }
+    }
+
+    public void ejecutarInvertido(SectorDibujo sectorDibujo) {
+
+        this.contieneBloques();
+        for (Bloque bloque : bloques) {
+            bloque.ejecutarInvertido(sectorDibujo);
+        }
+    }
+
+    public void contieneBloques(){
+        if (bloques.size() < 1) {
+            throw new BloquePersonalizadoNoPuedeEjecutarseSinBloquesError();
         }
     }
 }
