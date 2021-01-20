@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 // TODO: actualizar estos tests al nuevo modelo
+
 public class AlgoritmoTests {
 
     @Test
@@ -17,7 +18,7 @@ public class AlgoritmoTests {
                     algoritmo.ejecutar(sectorDibujo);
                 });
     }
-
+    // TODO: Andreas los primeros 9
     @Test
     public void test02AlCrearUnNuevoAlgoritmoNoDebeTenerBloques() {
         assert(true);
@@ -58,6 +59,7 @@ public class AlgoritmoTests {
         assert(true);
     }
 
+    // TODO: Kevin  los faltantes
     @Test
     public void test10SeEjecutaUnAlgoritmoConUnBloqueDeRepetirDobleQueTiene10BloqueArriba() {
         assert(true);

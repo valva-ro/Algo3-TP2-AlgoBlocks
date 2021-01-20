@@ -5,14 +5,13 @@ import fiuba.algo3.modelo.bloques.Dibuja;
 import fiuba.algo3.modelo.bloques.NoDibuja;
 import fiuba.algo3.modelo.movimientos.*;
 import org.junit.jupiter.api.Test;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class MovimientoTest {
 
+    // TODO: Alejo corregir los get.Class() por el esIgual()
 
     @Test
     public void test01UnMovimientoALaDerechaEstaEnDibuja(){

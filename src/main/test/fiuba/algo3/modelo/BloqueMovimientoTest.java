@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BloqueMovimientoTest {
-
+    // TODO: Alejo corregir los get.Class() por el esIgual()
     @Test
     public void test01BloqueMovimientoTieneMovimientoDerechaNoDibuja(){
         NoDibuja estado = new NoDibuja();
