@@ -17,8 +17,6 @@ public class BloqueInvertir extends DecoratorBloquePersonalizadoBase {
     @Override
     public void ejecutarInvertido(SectorDibujo sectorDibujo){
         super.ejecutar(sectorDibujo);
-        for(Bloque bloque: bloques){
-            bloque.ejecutar(sectorDibujo);
-        }
+        super.ejecutarBloques(sectorDibujo);
     }
 }
