@@ -1,119 +1,14 @@
-/*package fiuba.algo3.modelo;
+package fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 // TODO: actualizar estos tests al nuevo modelo
-
 public class AlgoritmoTests {
 
     @Test
-    public void test01AlCrearUnNuevoAlgoritmoNoDebeTenerBloques () {
-        Algoritmo algoritmo = new Algoritmo();
-        assertEquals(algoritmo.obtenerBloques().size(), 0);
-    }
-
-    @Test
-    public void test02AlEjecutarUnAlgoritmoQueTieneBloqueDeLevantarLapizElPersonajeTieneElLapizLevantado () {
-        Algoritmo algoritmo = new Algoritmo();
-        LapizLevantado lapiz = new LapizLevantado();
-        SectorDibujo sectorDibujo = new SectorDibujo();
-
-        algoritmo.agregar(new BloqueLevantarLapiz());
-        algoritmo.ejecutar(sectorDibujo);
-
-        assertEquals(sectorDibujo.obtenerPersonaje().obtenerLapiz().getClass(), lapiz.getClass());
-    }
-
-    @Test
-    public void test03AlEjecutarUnAlgoritmoQueTieneBloqueDeBajarLapizElPersonajeTieneElLapizAbajo(){
-        Algoritmo algoritmo = new Algoritmo();
-        LapizBajado lapiz = new LapizBajado();
-        SectorDibujo sectorDibujo = new SectorDibujo();
-
-        algoritmo.agregar(new BloqueBajarLapiz());
-        algoritmo.ejecutar(sectorDibujo);
-
-        assertEquals(sectorDibujo.obtenerPersonaje().obtenerLapiz().getClass(), lapiz.getClass());
-    }
-
-    @Test
-    public void test04AlEjecutarUnAlgortimoQueTieneBloqueALaDerechaElPersonajeEstaEnX1Y0(){
-        Algoritmo algoritmo = new Algoritmo();
-        SectorDibujo sectorDibujo = new SectorDibujo();
-        Posicion posicion = new Posicion(1,0);
-
-        algoritmo.agregar(new BloqueMovimiento(new Posicion(1,0)));
-        algoritmo.ejecutar(sectorDibujo);
-
-        assertTrue(sectorDibujo.obtenerPersonaje().estaEn(posicion));
-    }
-
-    @Test
-    public void test05AlEjecutarUnAlgortimoQueTieneBloqueALaIzquierdaElPersonajeEstaEnXmenos1Y0(){
-        Algoritmo algoritmo = new Algoritmo();
-        SectorDibujo sectorDibujo = new SectorDibujo();
-        Posicion posicion = new Posicion(-1,0);
-
-        algoritmo.agregar(new BloqueMovimiento(new Posicion(-1,0)));
-        algoritmo.ejecutar(sectorDibujo);
-
-        assertTrue(sectorDibujo.obtenerPersonaje().estaEn(posicion));
-    }
-
-    @Test
-    public void test06AlEjecutarUnAlgortimoQueTieneBloqueArribaElPersonajeEstaEnX0Y1(){
-        Algoritmo algoritmo = new Algoritmo();
-        SectorDibujo sectorDibujo = new SectorDibujo();
-        Posicion posicion = new Posicion(0,1);
-
-        algoritmo.agregar(new BloqueMovimiento(new Posicion(0,1)));
-        algoritmo.ejecutar(sectorDibujo);
-
-        assertTrue(sectorDibujo.obtenerPersonaje().estaEn(posicion));
-    }
-
-    @Test
-    public void test07AlEjecutarUnAlgortimoQueTieneBloqueAbajoElPersonajeEstaEnX0Ymenos1(){
-        Algoritmo algoritmo = new Algoritmo();
-        SectorDibujo sectorDibujo = new SectorDibujo();
-        Posicion posicion = new Posicion(0,-1);
-
-        algoritmo.agregar(new BloqueMovimiento(new Posicion(0,-1)));
-        algoritmo.ejecutar(sectorDibujo);
-
-        assertTrue(sectorDibujo.obtenerPersonaje().estaEn(posicion));
-    }
-
-    @Test
-    public void test08AlEjecutarUnAlgortimoQueTieneBloqueArribaYLaDerechaElPersonajeEstaEnX1Y1(){
-        Algoritmo algoritmo = new Algoritmo();
-        SectorDibujo sectorDibujo = new SectorDibujo();
-        Posicion posicion = new Posicion(1,1);
-
-        algoritmo.agregar(new BloqueMovimiento(new Posicion(0,1)));
-        algoritmo.agregar(new BloqueMovimiento(new Posicion(1,0)));
-        algoritmo.ejecutar(sectorDibujo);
-
-        assertTrue(sectorDibujo.obtenerPersonaje().estaEn(posicion));
-    }
-
-    @Test
-    public void test09AlEjecutarUnAlgortimoQueTieneBloqueAbajoYLaIzquierdaElPersonajeEstaEnXmenos1Ymenos1(){
-        Algoritmo algoritmo = new Algoritmo();
-        SectorDibujo sectorDibujo = new SectorDibujo();
-        Posicion posicion = new Posicion(-1,-1);
-
-        algoritmo.agregar(new BloqueMovimiento(new Posicion(0,-1)));
-        algoritmo.agregar(new BloqueMovimiento(new Posicion(-1,0)));
-        algoritmo.ejecutar(sectorDibujo);
-
-        assertTrue(sectorDibujo.obtenerPersonaje().estaEn(posicion));
-    }
-
-    @Test
-    public void test10NoSePuedeEjecutarUnAlgoritmoQueNoTieneBloques(){
+    public void test01NoSePuedeEjecutarUnAlgoritmoQueNoTieneBloques() {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
 
@@ -122,4 +17,89 @@ public class AlgoritmoTests {
                     algoritmo.ejecutar(sectorDibujo);
                 });
     }
-}*/
+
+    @Test
+    public void test02AlCrearUnNuevoAlgoritmoNoDebeTenerBloques() {
+        assert(true);
+    }
+
+    @Test
+    public void test03SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoHaciaArriba() {
+        assert(true);
+    }
+
+    @Test
+    public void test04SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoHaciaAbajo() {
+        assert(true);
+    }
+
+    @Test
+    public void test05SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoHaciaLaDerecha() {
+        assert(true);
+    }
+
+    @Test
+    public void test06SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoHaciaLaIzquierda() {
+        assert(true);
+    }
+
+    @Test
+    public void test07SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoEnCadaDireccion() {
+        assert(true);
+    }
+
+    @Test
+    public void test08SeEjecutaUnAlgoritmoCon100BloquesDeMovimientoEnCadaDireccion() {
+        assert(true);
+    }
+
+    @Test
+    public void test09SeEjecutaUnAlgoritmoConUnBloqueDeRepetirDobleQueTiene1BloqueArriba() {
+        assert(true);
+    }
+
+    @Test
+    public void test10SeEjecutaUnAlgoritmoConUnBloqueDeRepetirDobleQueTiene10BloqueArriba() {
+        assert(true);
+    }
+
+    @Test
+    public void test11SeEjecutaUnAlgoritmoConUnBloqueDeRepetirTripleQueTiene1BloqueArriba() {
+        assert(true);
+    }
+
+    @Test
+    public void test12SeEjecutaUnAlgoritmoConUnBloqueDeRepetirTripleQueTiene10BloqueArriba() {
+        assert(true);
+    }
+
+    @Test
+    public void test13SeEjecutaUnAlgoritmoConUnBloquePersonalizado() {
+        assert(true);
+    }
+
+    @Test
+    public void test14SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueArriba() {
+        assert(true);
+    }
+
+    @Test
+    public void test15SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueAbajo() {
+        assert(true);
+    }
+
+    @Test
+    public void test16SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueIzquierda() {
+        assert(true);
+    }
+
+    @Test
+    public void test17SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueDerecha() {
+        assert(true);
+    }
+
+    @Test
+    public void test18SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueEnCadaDireccion() {
+        assert(true);
+    }
+}

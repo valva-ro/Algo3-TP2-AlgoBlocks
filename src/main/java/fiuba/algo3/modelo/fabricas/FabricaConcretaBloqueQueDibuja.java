@@ -27,17 +27,16 @@ public class FabricaConcretaBloqueQueDibuja implements FabricaAbstractaDeBloques
 
     @Override
     public BloqueMovimiento crearBloqueMovimientoIzquierda() {
-        Dibuja estado       = new Dibuja();
-        Izquierda izquierdaDibuja       = new Izquierda(estado);
+        Dibuja estado = new Dibuja();
+        Izquierda izquierdaDibuja = new Izquierda(estado);
 
         return new BloqueMovimiento(izquierdaDibuja);
     }
 
     @Override
     public BloqueMovimiento crearBloqueMovimientoDerecha() {
-
-        Dibuja estado       = new Dibuja();
-        Derecha derechaDibuja   = new Derecha(estado);
+        Dibuja estado = new Dibuja();
+        Derecha derechaDibuja = new Derecha(estado);
 
         return new BloqueMovimiento(derechaDibuja);
     }

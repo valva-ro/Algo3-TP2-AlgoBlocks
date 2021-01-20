@@ -35,7 +35,6 @@ public class FabricaConcretaBloqueQueNoDibuja implements FabricaAbstractaDeBloqu
 
     @Override
     public BloqueMovimiento crearBloqueMovimientoDerecha() {
-
         NoDibuja estado       = new NoDibuja();
         Derecha derechaNoDibuja   = new Derecha(estado);
 
