@@ -95,7 +95,6 @@ public class MovimientoTest {
         assertEquals(movimientoAbajo.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
     }
 
-
     @Test
     public void test11UnMovimientoDerechaSeInvierteHaciaIzquierda(){
 
@@ -107,6 +106,7 @@ public class MovimientoTest {
 
         assertEquals(movimientoIzquierda.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
     }
+
     @Test
     public void test12UnMovimientoIzquierdaSeInvierteHaciaDerecha(){
 
