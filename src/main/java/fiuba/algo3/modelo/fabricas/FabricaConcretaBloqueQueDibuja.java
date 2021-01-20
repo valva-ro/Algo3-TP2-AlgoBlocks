@@ -1,4 +1,4 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.fabricas;
 
 import fiuba.algo3.modelo.bloques.BloqueMovimiento;
 import fiuba.algo3.modelo.bloques.Dibuja;

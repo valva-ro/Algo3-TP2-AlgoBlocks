@@ -1,7 +1,9 @@
 package fiuba.algo3;
 
 import fiuba.algo3.modelo.*;
-import fiuba.algo3.modelo.bloques.BloqueMovimiento;
+import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
+import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
+import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
 
 public class AlgoBlocks {
 
@@ -11,7 +13,6 @@ public class AlgoBlocks {
     public AlgoBlocks(){
         fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
     }
-
 
     public void agregarBloqueMovimientoArriba(){
         algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
@@ -37,7 +38,7 @@ public class AlgoBlocks {
         this.fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
     }
 
-    public void ejecutar(SectorDibujo sectorDibujo){ //actualizar que recibe un parametro en el UML
+    public void ejecutar(SectorDibujo sectorDibujo){
         algoritmo.ejecutar(sectorDibujo);
     }
 
@@ -48,8 +49,6 @@ public class AlgoBlocks {
     public FabricaAbstractaDeBloques obtenerFabrica(){
         return this.fabricaDeBloques;
     }
-
-
 }
 
 
