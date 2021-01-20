@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MovimientoTest {
 
-    //Testear comportamiento
+
     @Test
     public void test01UnMovimientoALaDerechaEstaEnDibuja(){
         Derecha movimientoDerecha = new Derecha(new Dibuja());
@@ -70,7 +70,7 @@ public class MovimientoTest {
         assertFalse(movimientoAbajo.estaDibujado());
     }
 
-    //Test de comportamiento de los movimientos sobre bloques
+
     @Test
     public void test09UnMovimientoAbajoSeInvierteHaciaArriba(){
 
