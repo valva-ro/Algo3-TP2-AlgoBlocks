@@ -1,6 +1,14 @@
 package fiuba.algo3.modelo;
 
+import fiuba.algo3.modelo.bloques.Bloque;
+import fiuba.algo3.modelo.bloques.BloqueMovimiento;
+import fiuba.algo3.modelo.bloques.BloquePersonalizado;
+import fiuba.algo3.modelo.bloques.BloqueRepetirDosVeces;
+import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
+import fiuba.algo3.modelo.movimientos.Movimiento;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,45 +26,166 @@ public class AlgoritmoTests {
                     algoritmo.ejecutar(sectorDibujo);
                 });
     }
-    // TODO: Andreas los primeros 9
+
     @Test
     public void test02AlCrearUnNuevoAlgoritmoNoDebeTenerBloques() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        ArrayList <Bloque> Bloques = algoritmo.obtenerBloques();
+        Integer numero = 0;
+
+        assertEquals(Bloques.size(),numero);
     }
 
     @Test
     public void test03SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoHaciaArriba() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloqueMovimiento bloqueArriba = fabrica.crearBloqueMovimientoArriba();
+        SectorDibujo SecDib = new SectorDibujo();
+
+        for ( int i = 0; i < 5; i = i+1){
+            algoritmo.agregar(bloqueArriba);
+        }
+        algoritmo.ejecutar(SecDib);
+        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+
+        for ( int i = 0; i < 5; i = i+1) {
+
+            assertEquals(Movimientos.get(i),bloqueArriba.obtenerMovimiento());
+        }
     }
 
     @Test
     public void test04SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoHaciaAbajo() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloqueMovimiento bloqueAbajo = fabrica.crearBloqueMovimientoAbajo();
+        SectorDibujo SecDib = new SectorDibujo();
+
+        for ( int i = 0; i < 5; i = i+1){
+            algoritmo.agregar(bloqueAbajo);
+        }
+        algoritmo.ejecutar(SecDib);
+        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+
+        for ( int i = 0; i < 5; i = i+1) {
+
+            assertEquals(Movimientos.get(i),bloqueAbajo.obtenerMovimiento());
+        }
     }
 
     @Test
     public void test05SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoHaciaLaDerecha() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloqueMovimiento bloqueDerecha = fabrica.crearBloqueMovimientoDerecha();
+        SectorDibujo SecDib = new SectorDibujo();
+
+        for ( int i = 0; i < 5; i = i+1){
+            algoritmo.agregar(bloqueDerecha);
+        }
+        algoritmo.ejecutar(SecDib);
+        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+
+        for ( int i = 0; i < 5; i = i+1) {
+
+            assertEquals(Movimientos.get(i),bloqueDerecha.obtenerMovimiento());
+        }
     }
 
     @Test
     public void test06SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoHaciaLaIzquierda() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloqueMovimiento bloqueIzquierda = fabrica.crearBloqueMovimientoIzquierda();
+        SectorDibujo SecDib = new SectorDibujo();
+
+        for ( int i = 0; i < 5; i = i+1){
+            algoritmo.agregar(bloqueIzquierda);
+        }
+        algoritmo.ejecutar(SecDib);
+        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+
+        for ( int i = 0; i < 5; i = i+1) {
+
+            assertEquals(Movimientos.get(i),bloqueIzquierda.obtenerMovimiento());
+        }
     }
 
     @Test
     public void test07SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoEnCadaDireccion() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloqueMovimiento bloqueArriba = fabrica.crearBloqueMovimientoArriba();
+        BloqueMovimiento bloqueAbajo = fabrica.crearBloqueMovimientoAbajo();
+        BloqueMovimiento bloqueDerecha = fabrica.crearBloqueMovimientoDerecha();
+        BloqueMovimiento bloqueIzquierda = fabrica.crearBloqueMovimientoIzquierda();
+        SectorDibujo SecDib = new SectorDibujo();
+
+        for ( int i = 0; i < 5; i = i+1){
+            algoritmo.agregar(bloqueArriba);
+            algoritmo.agregar(bloqueAbajo);
+            algoritmo.agregar(bloqueDerecha);
+            algoritmo.agregar(bloqueIzquierda);
+        }
+        algoritmo.ejecutar(SecDib);
+        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+
+        for ( int i = 0; i < 20; i = i+4) {
+
+            assertEquals(Movimientos.get(i),bloqueArriba.obtenerMovimiento());
+            assertEquals(Movimientos.get(i+1),bloqueAbajo.obtenerMovimiento());
+            assertEquals(Movimientos.get(i+2),bloqueDerecha.obtenerMovimiento());
+            assertEquals(Movimientos.get(i+3),bloqueIzquierda.obtenerMovimiento());
+        }
     }
 
     @Test
     public void test08SeEjecutaUnAlgoritmoCon100BloquesDeMovimientoEnCadaDireccion() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloqueMovimiento bloqueArriba = fabrica.crearBloqueMovimientoArriba();
+        BloqueMovimiento bloqueAbajo = fabrica.crearBloqueMovimientoAbajo();
+        BloqueMovimiento bloqueDerecha = fabrica.crearBloqueMovimientoDerecha();
+        BloqueMovimiento bloqueIzquierda = fabrica.crearBloqueMovimientoIzquierda();
+        SectorDibujo SecDib = new SectorDibujo();
+
+        for ( int i = 0; i < 100; i = i+1){
+            algoritmo.agregar(bloqueArriba);
+            algoritmo.agregar(bloqueAbajo);
+            algoritmo.agregar(bloqueDerecha);
+            algoritmo.agregar(bloqueIzquierda);
+        }
+        algoritmo.ejecutar(SecDib);
+        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+
+        for ( int i = 0; i < 400; i = i+4) {
+
+            assertEquals(Movimientos.get(i),bloqueArriba.obtenerMovimiento());
+            assertEquals(Movimientos.get(i+1),bloqueAbajo.obtenerMovimiento());
+            assertEquals(Movimientos.get(i+2),bloqueDerecha.obtenerMovimiento());
+            assertEquals(Movimientos.get(i+3),bloqueIzquierda.obtenerMovimiento());
+        }
     }
 
     @Test
     public void test09SeEjecutaUnAlgoritmoConUnBloqueDeRepetirDobleQueTiene1BloqueArriba() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloqueMovimiento bloqueArriba = fabrica.crearBloqueMovimientoArriba();
+        BloquePersonalizado BloqueP = new BloquePersonalizado();
+        BloqueP.agregar(bloqueArriba);
+        BloqueRepetirDosVeces BloqueDosV = new BloqueRepetirDosVeces(BloqueP);
+        SectorDibujo SecDib = new SectorDibujo();
+
+        algoritmo.agregar(BloqueDosV);
+        algoritmo.ejecutar(SecDib);
+        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+
+        for ( int i = 0; i < 2; i = i+1) {
+
+            assertEquals(Movimientos.get(i),bloqueArriba.obtenerMovimiento());
+        }
     }
 
     // TODO: Kevin  los faltantes
