@@ -2,7 +2,7 @@ package fiuba.algo3.modelo;
 
 
 
-import fiuba.algo3.modelo.bloques.NoDibuja;
+import fiuba.algo3.modelo.movimientos.NoDibuja;
 import fiuba.algo3.modelo.movimientos.*;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,5 @@
 package fiuba.algo3.modelo.movimientos;
 
-import fiuba.algo3.modelo.bloques.Estado;
-
 public abstract class Movimiento {
 
     protected Estado estado;

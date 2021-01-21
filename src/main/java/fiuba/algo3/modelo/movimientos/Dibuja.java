@@ -1,4 +1,4 @@
-package fiuba.algo3.modelo.bloques;
+package fiuba.algo3.modelo.movimientos;
 
 public class Dibuja implements Estado {
     @Override

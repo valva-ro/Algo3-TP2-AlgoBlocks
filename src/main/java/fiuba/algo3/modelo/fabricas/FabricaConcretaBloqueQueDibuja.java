@@ -1,7 +1,7 @@
 package fiuba.algo3.modelo.fabricas;
 
 import fiuba.algo3.modelo.bloques.BloqueMovimiento;
-import fiuba.algo3.modelo.bloques.Dibuja;
+import fiuba.algo3.modelo.movimientos.Dibuja;
 import fiuba.algo3.modelo.movimientos.Abajo;
 import fiuba.algo3.modelo.movimientos.Arriba;
 import fiuba.algo3.modelo.movimientos.Derecha;

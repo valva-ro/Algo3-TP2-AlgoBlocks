@@ -3,7 +3,7 @@ package fiuba.algo3.modelo;
 import fiuba.algo3.modelo.bloques.BloqueMovimiento;
 import fiuba.algo3.modelo.bloques.BloquePersonalizado;
 import fiuba.algo3.modelo.bloques.DecoratorBloquePersonalizadoBase;
-import fiuba.algo3.modelo.bloques.Dibuja;
+import fiuba.algo3.modelo.movimientos.Dibuja;
 import fiuba.algo3.modelo.bloques.BloquePersonalizadoNoPuedeEjecutarseSinBloquesError;
 import fiuba.algo3.modelo.movimientos.*;
 
