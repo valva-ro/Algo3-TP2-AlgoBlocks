@@ -12,8 +12,7 @@ import fiuba.algo3.modelo.bloques.*;
 public class BloqueRepetirDosVecesTest {
 
     @Test
-    public void test01ElBloqueRepetirDosVecesLanzaLaExcepcionDeBloquePersonalizadoAlEjecutarseSinNingunBloqueDentro()
-    {
+    public void test01ElBloqueRepetirDosVecesLanzaLaExcepcionDeBloquePersonalizadoAlEjecutarseSinNingunBloqueDentro() {
         BloquePersonalizado bloque = new BloquePersonalizado();
         BloqueRepetirDosVeces bloqueRepetir = new BloqueRepetirDosVeces(bloque);
         SectorDibujo sectorDibujo = new SectorDibujo();
@@ -23,8 +22,7 @@ public class BloqueRepetirDosVecesTest {
     }
 
     @Test
-    public void test02AlEjecutarElBloqueRepetirDosVecesConUnBloqueSoloEsteUltimoSeEjecutaDosVeces()
-    {
+    public void test02AlEjecutarElBloqueRepetirDosVecesConUnBloqueSoloEsteUltimoSeEjecutaDosVeces() {
         BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
 
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
@@ -40,8 +38,7 @@ public class BloqueRepetirDosVecesTest {
 
 
     @Test
-    public void test03AlEjecutarDosVecesElBloqueRepetirConUnBloqueSoloEsteUltimoSeEjecutaCuatroVeces()
-    {
+    public void test03AlEjecutarDosVecesElBloqueRepetirConUnBloqueSoloEsteUltimoSeEjecutaCuatroVeces() {
         BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
 
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
@@ -57,8 +54,7 @@ public class BloqueRepetirDosVecesTest {
     }
 
     @Test
-    public void test04AlEjecutarUnaVezElBloqueRepetirConDosBloquesSeEjecutaCadaUnoDosVeces()
-    {
+    public void test04AlEjecutarUnaVezElBloqueRepetirConDosBloquesSeEjecutaCadaUnoDosVeces() {
 
         BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
 
@@ -77,8 +73,7 @@ public class BloqueRepetirDosVecesTest {
     }
 
     @Test
-    public void test05AlEjecutarDosVecesElBloqueRepetirConDosBloquesSeEjecutaCadaUnoCuatroVeces()
-    {
+    public void test05AlEjecutarDosVecesElBloqueRepetirConDosBloquesSeEjecutaCadaUnoCuatroVeces() {
         BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
 
         BloqueMovimiento movimientoMock = mock(BloqueMovimiento.class);
@@ -97,8 +92,7 @@ public class BloqueRepetirDosVecesTest {
     }
 
     @Test
-    public void test06TenerUnBloqueRepetirDosVecesDentroDeOtroBloqueRepetirDosVecesSeEjecutaCuatroVeces()
-    {
+    public void test06TenerUnBloqueRepetirDosVecesDentroDeOtroBloqueRepetirDosVecesSeEjecutaCuatroVeces() {
         BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
@@ -114,8 +108,7 @@ public class BloqueRepetirDosVecesTest {
     }
 
     @Test
-    public void test07TenerUnBloqueRepetirTresVecesDentroDeUnBloqueRepetirDosVecesSeEjecutaSeisVeces()
-    {
+    public void test07TenerUnBloqueRepetirTresVecesDentroDeUnBloqueRepetirDosVecesSeEjecutaSeisVeces() {
         BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
@@ -131,8 +124,7 @@ public class BloqueRepetirDosVecesTest {
     }
 
     @Test
-    public void test08EjecutarDeFormaInvertidaUnBloqueRepetirDosVecesEjecutaDosVecesDeFormaInvertidaLosBloquesInternos()
-    {
+    public void test08EjecutarDeFormaInvertidaUnBloqueRepetirDosVecesEjecutaDosVecesDeFormaInvertidaLosBloquesInternos() {
         BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
@@ -148,8 +140,7 @@ public class BloqueRepetirDosVecesTest {
 
 
     @Test
-    public void test09EjecutarDeFormaInvertidaUnBloqueRepetirDosVecesNoEjecutaLaFormaEstandard()
-    {
+    public void test09EjecutarDeFormaInvertidaUnBloqueRepetirDosVecesNoEjecutaLaFormaEstandard() {
         BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
@@ -164,8 +155,7 @@ public class BloqueRepetirDosVecesTest {
     }
 
     @Test
-    public void test10AgregarBloquesAlBloqueRepetirDosVecesTambienLosEjecutaDosVeces()
-    {
+    public void test10AgregarBloquesAlBloqueRepetirDosVecesTambienLosEjecutaDosVeces() {
         BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
@@ -185,8 +175,7 @@ public class BloqueRepetirDosVecesTest {
     }
 
     @Test
-    public void test11AgregarBloquesAlBloqueRepetirDosVecesTambienLosEjecutaDosVecesDeFormaInvertida()
-    {
+    public void test11AgregarBloquesAlBloqueRepetirDosVecesTambienLosEjecutaDosVecesDeFormaInvertida() {
         BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
