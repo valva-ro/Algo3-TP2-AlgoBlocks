@@ -173,7 +173,6 @@ public class AlgoritmoTests {
         Algoritmo algoritmo = new Algoritmo();
         FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
         BloqueMovimiento bloqueArriba = fabrica.crearBloqueMovimientoArriba();
-        // TODO: Chequear si BloqueRepetirDosVeces se debe poder construir con un objeto de tipo BloqueMovimiento en vez de un objeto de tipo Bloques
         BloquePersonalizado BloqueP = new BloquePersonalizado();
         BloqueP.agregar(bloqueArriba);
         BloqueRepetirDosVeces BloqueDosV = new BloqueRepetirDosVeces(BloqueP);
