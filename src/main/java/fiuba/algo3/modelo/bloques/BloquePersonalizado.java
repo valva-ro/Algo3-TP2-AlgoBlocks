@@ -2,7 +2,19 @@ package fiuba.algo3.modelo.bloques;
 
 import fiuba.algo3.modelo.SectorDibujo;
 
-public class BloquePersonalizado extends Bloques {
+import java.util.ArrayList;
+
+public class BloquePersonalizado implements Bloques {
+
+    private ArrayList<Bloque> bloques;
+
+    public BloquePersonalizado() {
+        this.bloques = new ArrayList<>();
+    }
+
+    public void agregar(Bloque unBloque) {
+        bloques.add(unBloque);
+    }
 
     public void ejecutar(SectorDibujo sectorDibujo) {
 

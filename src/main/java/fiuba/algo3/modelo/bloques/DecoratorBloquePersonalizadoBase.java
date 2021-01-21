@@ -2,21 +2,26 @@ package fiuba.algo3.modelo.bloques;
 
 import fiuba.algo3.modelo.SectorDibujo;
 
-public class DecoratorBloquePersonalizadoBase extends Bloques {
+public class DecoratorBloquePersonalizadoBase implements Bloques {
 
-    private Bloques bloquesAEnvolver;
+    private Bloques bloqueAEnvolver;
+    public DecoratorBloquePersonalizadoBase() {
+        this.bloqueAEnvolver = new BloquePersonalizado();
+    }
 
-    public DecoratorBloquePersonalizadoBase(Bloques bloquesAEnvolver) {
-        this.bloquesAEnvolver = bloquesAEnvolver;
+    public DecoratorBloquePersonalizadoBase(Bloques bloqueAEnvolver) {
+        this.bloqueAEnvolver = bloqueAEnvolver;
+    }
+
+    public void agregar(Bloque unBloque) {
+        bloqueAEnvolver.agregar(unBloque);
     }
 
     public void ejecutar(SectorDibujo sectorDibujo) {
-        bloquesAEnvolver.ejecutar(sectorDibujo);
-        super.ejecutar(sectorDibujo);
+        bloqueAEnvolver.ejecutar(sectorDibujo);
     }
 
     public void ejecutarInvertido(SectorDibujo sectorDibujo){
-        bloquesAEnvolver.ejecutarInvertido(sectorDibujo);
-        super.ejecutarInvertido(sectorDibujo);
+        bloqueAEnvolver.ejecutarInvertido(sectorDibujo);
     }
 }

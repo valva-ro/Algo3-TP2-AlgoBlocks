@@ -14,8 +14,7 @@ public class BloqueInvertirTest {
     @Test
     public void test01ElBloqueInvertirLanzaLaExcepcionDeBloquePersonalizadoAlEjecutarseSinNingunBloqueDentro()
     {
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
-        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
+        BloqueInvertir bloqueInvertir = new BloqueInvertir();
         SectorDibujo sectorDibujo = new SectorDibujo();
 
         assertThrows(BloquePersonalizadoNoPuedeEjecutarseSinBloquesError.class,
@@ -25,13 +24,11 @@ public class BloqueInvertirTest {
     @Test
     public void test02AgregarUnBloqueAlBloqueInvertirYEjecutarloRealizaLaOperaciónInversaDelBloqueInterior()
     {
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
+        BloqueInvertir bloqueInvertir = new BloqueInvertir();
 
-        bloquePersonalizado.agregar(bloqueMovimientoMock);
-
-        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
+        bloqueInvertir.agregar(bloqueMovimientoMock);
 
         bloqueInvertir.ejecutar(sectorDibujoMock);
 
@@ -42,15 +39,13 @@ public class BloqueInvertirTest {
     @Test
     public void test03EjecutarElBloqueInvertirConDosBloquesInterioresRealizaLaOperaciónInversaEnCadaUnoDeEllos()
     {
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
         BloqueMovimiento otroMovimientoMock = mock(BloqueMovimiento.class);
+        BloqueInvertir bloqueInvertir = new BloqueInvertir();
 
-        bloquePersonalizado.agregar(bloqueMovimientoMock);
-        bloquePersonalizado.agregar(otroMovimientoMock);
-
-        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
+        bloqueInvertir.agregar(bloqueMovimientoMock);
+        bloqueInvertir.agregar(otroMovimientoMock);
 
         bloqueInvertir.ejecutar(sectorDibujoMock);
 
@@ -61,13 +56,11 @@ public class BloqueInvertirTest {
     @Test
     public void test04UnBloqueInvertirConUnBloqueRepetirDosVecesQueAdemasTieneOtroBloqueLoEjecutaDosVecesInvertido()
     {
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+        BloqueRepetirDosVeces bloqueRepetir = new BloqueRepetirDosVeces();
 
-        bloquePersonalizado.agregar(bloqueMovimientoMock);
-
-        BloqueRepetirDosVeces bloqueRepetir = new BloqueRepetirDosVeces(bloquePersonalizado);
+        bloqueRepetir.agregar(bloqueMovimientoMock);
 
         BloqueInvertir bloqueInvertir = new BloqueInvertir(bloqueRepetir);
 
@@ -79,13 +72,11 @@ public class BloqueInvertirTest {
     @Test
     public void test05UnBloqueInvertirConUnBloqueRepetirTresVecesConUnBloqueDeMovimientoLoEjecutaTresVecesInvertido()
     {
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+        BloqueRepetirTresVeces bloqueRepetir = new BloqueRepetirTresVeces();
 
-        bloquePersonalizado.agregar(bloqueMovimientoMock);
-
-        BloqueRepetirTresVeces bloqueRepetir = new BloqueRepetirTresVeces(bloquePersonalizado);
+        bloqueRepetir.agregar(bloqueMovimientoMock);
 
         BloqueInvertir bloqueInvertir = new BloqueInvertir(bloqueRepetir);
 
@@ -98,13 +89,11 @@ public class BloqueInvertirTest {
     @Test
     public void test06ElEjecutarInvertidoDeUnBloqueInvertirRealizaLaEjecucionNormalDeLosBloquesInteriores()
     {
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+        BloqueInvertir bloqueInvertir = new BloqueInvertir();
 
-        bloquePersonalizado.agregar(bloqueMovimientoMock);
-
-        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
+        bloqueInvertir.agregar(bloqueMovimientoMock);
 
         bloqueInvertir.ejecutarInvertido(sectorDibujoMock);
 
@@ -115,13 +104,12 @@ public class BloqueInvertirTest {
     @Test
     public void test07EjecutarUnBloqueInvertirConUnBloqueInvertirDentroRealizaUnaOperacionSinInvertir()
     {
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+        BloqueInvertir bloqueInvertir = new BloqueInvertir();
 
-        bloquePersonalizado.agregar(bloqueMovimientoMock);
+        bloqueInvertir.agregar(bloqueMovimientoMock);
 
-        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
         BloqueInvertir otroBloqueInvertir = new BloqueInvertir(bloqueInvertir);
 
         otroBloqueInvertir.ejecutar(sectorDibujoMock);
@@ -133,13 +121,12 @@ public class BloqueInvertirTest {
     @Test
     public void test08TenerTresBloquesInvertirUnoDentroDeOtroEjecutaDeManeraInvertida()
     {
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
         BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+        BloqueInvertir primerInvertir = new BloqueInvertir();
 
-        bloquePersonalizado.agregar(bloqueMovimientoMock);
+        primerInvertir.agregar(bloqueMovimientoMock);
 
-        BloqueInvertir primerInvertir = new BloqueInvertir(bloquePersonalizado);
         BloqueInvertir segundoInvertir = new BloqueInvertir(primerInvertir);
         BloqueInvertir tercerInvertir = new BloqueInvertir(segundoInvertir);
 
@@ -151,22 +138,21 @@ public class BloqueInvertirTest {
     @Test
     public void test09TenerUnBloqueInvertirDentroDeOtroNoInviertePeroSiInvierteLoQueNoEsteEnElPrimerInvertir()
     {
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
-        BloqueMovimiento bloqueMovimientoMock = mock(BloqueMovimiento.class);
+        BloqueMovimiento unBloqueMovimientoMock = mock(BloqueMovimiento.class);
+        BloqueMovimiento otroMovimientoMock = mock(BloqueMovimiento.class);
         SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
 
-        bloquePersonalizado.agregar(bloqueMovimientoMock);
+        BloqueInvertir primerInvertir = new BloqueInvertir();
+        BloqueInvertir segundoInvertir = new BloqueInvertir();
 
-        BloqueInvertir primerInvertir = new BloqueInvertir(bloquePersonalizado);
-        BloqueInvertir segundoInvertir = new BloqueInvertir(primerInvertir);
+        primerInvertir.agregar(unBloqueMovimientoMock);
 
-        BloqueMovimiento otroMovimientoMock = mock(BloqueMovimiento.class);
-
+        segundoInvertir.agregar(primerInvertir);
         segundoInvertir.agregar(otroMovimientoMock);
 
         segundoInvertir.ejecutar(sectorDibujoMock);
 
-        verify(bloqueMovimientoMock,times(0)).ejecutarInvertido(sectorDibujoMock);
+        verify(unBloqueMovimientoMock,times(0)).ejecutarInvertido(sectorDibujoMock);
         verify(otroMovimientoMock,times(1)).ejecutarInvertido(sectorDibujoMock);
     }
 }

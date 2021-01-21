@@ -4,6 +4,10 @@ import fiuba.algo3.modelo.SectorDibujo;
 
 public class BloqueRepetirDosVeces extends DecoratorBloquePersonalizadoBase{
 
+    public BloqueRepetirDosVeces() {
+        super();
+    }
+
     public BloqueRepetirDosVeces(Bloques bloque) {
         super(bloque);
     }
