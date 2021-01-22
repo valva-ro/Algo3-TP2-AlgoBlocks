@@ -50,7 +50,7 @@ public class AlgoritmoTests {
         algoritmo.ejecutar(SecDib);
         ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        assert(SecDib.dibujoEsIgual(movimientos));
+        assertTrue(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class AlgoritmoTests {
         algoritmo.ejecutar(SecDib);
         ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        assert(SecDib.dibujoEsIgual(movimientos));
+        assertTrue(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -82,7 +82,7 @@ public class AlgoritmoTests {
         algoritmo.ejecutar(SecDib);
         ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        assert(SecDib.dibujoEsIgual(movimientos));
+        assertTrue(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -98,7 +98,7 @@ public class AlgoritmoTests {
         algoritmo.ejecutar(SecDib);
         ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        assert(SecDib.dibujoEsIgual(movimientos));
+        assertTrue(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -120,7 +120,7 @@ public class AlgoritmoTests {
         algoritmo.ejecutar(SecDib);
         ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        assert(SecDib.dibujoEsIgual(movimientos));
+        assertTrue(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -142,7 +142,7 @@ public class AlgoritmoTests {
         algoritmo.ejecutar(SecDib);
         ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        assert(SecDib.dibujoEsIgual(movimientos));
+        assertTrue(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -159,7 +159,7 @@ public class AlgoritmoTests {
         algoritmo.ejecutar(SecDib);
         ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        assert(SecDib.dibujoEsIgual(movimientos));
+        assertTrue(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
