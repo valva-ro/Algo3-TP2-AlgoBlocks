@@ -6,12 +6,13 @@ import fiuba.algo3.modelo.movimientos.NoDibuja;
 import fiuba.algo3.modelo.movimientos.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class MovimientoTest {
 
-    // TODO: Alejo corregir los get.Class() por el esIgual()
 
     @Test
     public void test01UnMovimientoALaDerechaEstaEnDibuja(){
@@ -80,7 +81,7 @@ public class MovimientoTest {
 
         bloqueMovimiento.invertirMovimiento();
 
-        assertEquals(movimientoArriba.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
+        assertTrue(movimientoArriba.esIgualA(bloqueMovimiento.obtenerMovimiento()));
     }
 
     @Test
@@ -91,8 +92,7 @@ public class MovimientoTest {
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(movimientoArriba);
 
         bloqueMovimiento.invertirMovimiento();
-
-        assertEquals(movimientoAbajo.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
+        assertTrue(movimientoAbajo.esIgualA(bloqueMovimiento.obtenerMovimiento()));
     }
 
     @Test
@@ -104,7 +104,7 @@ public class MovimientoTest {
 
         bloqueMovimiento.invertirMovimiento();
 
-        assertEquals(movimientoIzquierda.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
+        assertTrue(movimientoIzquierda.esIgualA(bloqueMovimiento.obtenerMovimiento()));
     }
 
     @Test
@@ -116,21 +116,20 @@ public class MovimientoTest {
 
         bloqueMovimiento.invertirMovimiento();
 
-        assertEquals(movimientoDerecha.getClass(), bloqueMovimiento.obtenerMovimiento().getClass());
+        assertTrue(movimientoDerecha.esIgualA(bloqueMovimiento.obtenerMovimiento()));
     }
 
     @Test
     public void test13SectorMovimientoPosee3MovimientosALaDerecha(){
         Derecha movimientoDerecha = new Derecha(new Dibuja());
         SectorDibujo sectorDibujo = new SectorDibujo();
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
         for(int i = 0; i < 3; i++) {
            sectorDibujo.dibujar(movimientoDerecha);
+           movimientos.add(movimientoDerecha);
         }
-
-        for (int i = 0; i < 3; i++) {
-            assertEquals(movimientoDerecha,sectorDibujo.obtenerMovimientos().get(i));
-        }
+        assertTrue(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -138,16 +137,16 @@ public class MovimientoTest {
         Derecha   movimientoDerecha = new Derecha(new Dibuja());
         Izquierda movimientoIzquierda = new Izquierda(new Dibuja());
         SectorDibujo sectorDibujo = new SectorDibujo();
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
         for(int i = 0; i < 10; i++) {
             sectorDibujo.dibujar(movimientoIzquierda);
-            sectorDibujo.dibujar(movimientoDerecha);
-        }
+            movimientos.add(movimientoIzquierda);
 
-        for (int i = 0; i < 10; i+=2) {
-            assertEquals(movimientoIzquierda,sectorDibujo.obtenerMovimientos().get(i));
-            assertEquals(movimientoDerecha,sectorDibujo.obtenerMovimientos().get(i+1));
+            sectorDibujo.dibujar(movimientoDerecha);
+            movimientos.add(movimientoDerecha);
         }
+        assertTrue(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -158,19 +157,24 @@ public class MovimientoTest {
         Abajo     movimientoAbajo = new Abajo(new Dibuja());
         SectorDibujo sectorDibujo = new SectorDibujo();
 
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
+
         for(int i = 0; i < 10; i++) {
             sectorDibujo.dibujar(movimientoIzquierda);
+            movimientos.add(movimientoIzquierda);
+
             sectorDibujo.dibujar(movimientoDerecha);
+            movimientos.add(movimientoDerecha);
+
             sectorDibujo.dibujar(movimientoArriba);
+            movimientos.add(movimientoArriba);
+
             sectorDibujo.dibujar(movimientoAbajo);
+            movimientos.add(movimientoAbajo);
         }
 
-        for (int i = 0; i < 10; i+=4) {
-            assertEquals(movimientoIzquierda,sectorDibujo.obtenerMovimientos().get(i));
-            assertEquals(movimientoDerecha,sectorDibujo.obtenerMovimientos().get(i+1));
-            assertEquals(movimientoArriba,sectorDibujo.obtenerMovimientos().get(i+2));
-            assertEquals(movimientoAbajo,sectorDibujo.obtenerMovimientos().get(i+3));
-        }
+        assertTrue(sectorDibujo.dibujoEsIgual(movimientos));
+
     }
 
     @Test
