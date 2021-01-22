@@ -48,12 +48,9 @@ public class AlgoritmoTests {
             algoritmo.agregar(bloqueArriba);
         }
         algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        for ( int i = 0; i < 5; i = i+1) {
-
-            assertEquals(Movimientos.get(i),bloqueArriba.obtenerMovimiento());
-        }
+        assert(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -67,12 +64,9 @@ public class AlgoritmoTests {
             algoritmo.agregar(bloqueAbajo);
         }
         algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        for ( int i = 0; i < 5; i = i+1) {
-
-            assertEquals(Movimientos.get(i),bloqueAbajo.obtenerMovimiento());
-        }
+        assert(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -86,12 +80,9 @@ public class AlgoritmoTests {
             algoritmo.agregar(bloqueDerecha);
         }
         algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        for ( int i = 0; i < 5; i = i+1) {
-
-            assertEquals(Movimientos.get(i),bloqueDerecha.obtenerMovimiento());
-        }
+        assert(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -105,12 +96,9 @@ public class AlgoritmoTests {
             algoritmo.agregar(bloqueIzquierda);
         }
         algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        for ( int i = 0; i < 5; i = i+1) {
-
-            assertEquals(Movimientos.get(i),bloqueIzquierda.obtenerMovimiento());
-        }
+        assert(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -130,15 +118,9 @@ public class AlgoritmoTests {
             algoritmo.agregar(bloqueIzquierda);
         }
         algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        for ( int i = 0; i < 20; i = i+4) {
-
-            assertEquals(Movimientos.get(i),bloqueArriba.obtenerMovimiento());
-            assertEquals(Movimientos.get(i+1),bloqueAbajo.obtenerMovimiento());
-            assertEquals(Movimientos.get(i+2),bloqueDerecha.obtenerMovimiento());
-            assertEquals(Movimientos.get(i+3),bloqueIzquierda.obtenerMovimiento());
-        }
+        assert(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -158,15 +140,9 @@ public class AlgoritmoTests {
             algoritmo.agregar(bloqueIzquierda);
         }
         algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        for ( int i = 0; i < 400; i = i+4) {
-
-            assertEquals(Movimientos.get(i),bloqueArriba.obtenerMovimiento());
-            assertEquals(Movimientos.get(i+1),bloqueAbajo.obtenerMovimiento());
-            assertEquals(Movimientos.get(i+2),bloqueDerecha.obtenerMovimiento());
-            assertEquals(Movimientos.get(i+3),bloqueIzquierda.obtenerMovimiento());
-        }
+        assert(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
@@ -181,12 +157,9 @@ public class AlgoritmoTests {
 
         algoritmo.agregar(BloqueDosV);
         algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> Movimientos = SecDib.obtenerMovimientos();
+        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
 
-        for ( int i = 0; i < 2; i = i+1) {
-
-            assertEquals(Movimientos.get(i),bloqueArriba.obtenerMovimiento());
-        }
+        assert(SecDib.dibujoEsIgual(movimientos));
     }
 
     @Test
