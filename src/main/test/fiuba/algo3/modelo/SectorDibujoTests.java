@@ -33,11 +33,7 @@ public class SectorDibujoTests {
         movimientos.add(unAbajo);
         movimientos.add(unIzquierda);
 
-        ArrayList <Movimiento> dibujo = unSectorDibujo.obtenerMovimientos();
-
-        for (int i = 0; i < movimientos.size(); i++) {
-            assertEquals(movimientos.get(i), dibujo.get(i));
-        }
+        assert(unSectorDibujo.dibujoEsIgual(movimientos));
     }
 }
 
