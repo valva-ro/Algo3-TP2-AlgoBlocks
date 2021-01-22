@@ -30,10 +30,7 @@ class AlgoBlocks {
     + agregarBloqueBajarLapiz() : void
     + ejecutar() : void
 }
-AlgoBlocks --> Algoritmo
-AlgoBlocks --> FabricaAbstractaDeBloques
-FabricaAbstractaDeBloques <|.. FabricaConcretaBloqueQueDibuja
-FabricaAbstractaDeBloques <|.. FabricaConcretaBloqueQueNoDibuja
+
 interface FabricaAbstractaDeBloques {
     + {abstract} crearBloqueMovimientoArriba() : BloqueMovimiento
     + {abstract} crearBloqueMovimientoAbajo() : BloqueMovimiento
@@ -60,7 +57,7 @@ interface Bloque {
 
 class SectorDibujo {
     + dibujar(unMovimiento) : void
-    + obtenerMovimientosDibujados() : Estructura<Movimiento>
+    + esIgualA(movimientos) : boolean
 }
 
 interface Movimiento {
@@ -73,8 +70,13 @@ class Algoritmo {
     + ejecutar(unSectorDibujo : SectorDibujo) : void
 }
 Algoritmo "1" o-- "0..*" Bloque
-Bloque ..down> SectorDibujo
+Bloque ..> SectorDibujo
 SectorDibujo "1" o-- "1..*" Movimiento
+FabricaAbstractaDeBloques .> Bloque
+AlgoBlocks -> Algoritmo
+AlgoBlocks --> FabricaAbstractaDeBloques
+FabricaAbstractaDeBloques <|.. FabricaConcretaBloqueQueDibuja
+FabricaAbstractaDeBloques <|.. FabricaConcretaBloqueQueNoDibuja
 @enduml
 
 
@@ -96,76 +98,44 @@ skinparam note {
     BorderColor DarkBlue
 }
 
+title Diagrama de clase de Bloque y Movimiento
+
 interface Bloque {
     + {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
+    + {abstract} ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
+
 }
 class BloqueMovimiento {
     + BloqueMovimiento(movimiento : Movimiento)
     + ejecutar(unSectorDibujo : SectorDibujo) : void
+    + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
 }
-interface Bloques {
-    + {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
-    + agregar(unBloque : bloque) : void
-}
-class BloquePersonalizado {
-    + ejecutar(unSectorDibujo : SectorDibujo) : void
-}
-note bottom of BloquePersonalizado
-for cadaBloque in Bloques:
-    cadaBloque.ejecutar()
-end note
-class RepetirDoble {
-    + ejecutar(unSectorDibujo : SectorDibujo) : void
-}
-note bottom of RepetirDoble
-super.ejecutar() x2
-end note
-class RepetirTriple {
-    + ejecutar(unSectorDibujo : SectorDibujo) : void
-}
-note bottom of RepetirTriple
-super.ejecutar() x3
-end note
-class Invertir {
-    + ejecutar(unSectorDibujo : SectorDibujo) : void
-}
-note bottom of Invertir
-for cadaBloque in Bloques:
-    cadaBloque.invertir()
-super.ejecutar()
-end note
 abstract class Movimiento {
     + Movimiento(estado : Estado)
-    + {abstract} estaDibujado() : boolean
+    + estaDibujado() : boolean
+    + {abstract} esIgualA(movimiento : Movimiento) : boolean
+    + {abstract} invertir() : Movimiento
 }
 class Arriba {
     + estaDibujado() : boolean
+    + esIgualA(movimiento : Movimiento) : boolean
+    + invertir() : Movimiento
 }
 class Abajo {
     + estaDibujado() : boolean
+    + esIgualA(movimiento : Movimiento) : boolean
+    + invertir() : Movimiento
 }
 class Derecha {
     + estaDibujado() : boolean
+    + esIgualA(movimiento : Movimiento) : boolean
+    + invertir() : Movimiento
 }
 class Izquierda {
     + estaDibujado() : boolean
+    + esIgualA(movimiento : Movimiento) : boolean
+    + invertir() : Movimiento
 }
-class DecoratorBloquePersonalizadoBase {
-    + ejecutar(unSectorDibujo : SectorDibujo) : void
-}
-note right
-objetoQueEnvuelve.ejecutar()
-end note
-note right
-Envuelve solo UN objeto!
-Puede ser un BloquePersonalizado,
-un RepetirDoble, RepetirTriple o
-Invertir. Cada uno de los ultimos
-tiene que envolver a su vez otro
-hasta llegar a la utilma capa
-que sería quien envuelve a
-BloquePersonalizado
-end note
 interface Estado {
     + {abstract} estaDibujado() : boolean
 }
@@ -176,30 +146,254 @@ class NoDibuja {
     + estaDibujado() : boolean
 }
 
-interface FabricaAbstractaDeBloques {
-    + {abstract} crearBloqueMovimientoArriba() : BloqueMovimiento
-    + {abstract} crearBloqueMovimientoAbajo() : BloqueMovimiento
-    + {abstract} crearBloqueMovimientoIzquierda() : BloqueMovimiento
-    + {abstract} crearBloqueMovimientoDerecha() : BloqueMovimiento
-}
-FabricaAbstractaDeBloques ..left> BloqueMovimiento
-
-Movimiento *-- Estado
+Movimiento *--right Estado
 Estado <|.. Dibuja
 Estado <|.. NoDibuja
+Bloque <|.. BloqueMovimiento
+
+BloqueMovimiento *-- Movimiento
+Movimiento <|... Arriba
+Movimiento <|.. Abajo
+Movimiento <|... Derecha
+Movimiento <|.. Izquierda
+@enduml
+
+
+
+
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+skinparam class {
+    ArrowColor DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+skinparam note {
+    BackgroundColor LightYellow
+    BorderColor DarkBlue
+}
+
+title Diagrama de clase de Bloque y bloques especiales
+
+interface Bloque {
+    + {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
+    + {abstract} ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
+
+}
+class BloqueMovimiento {
+    + BloqueMovimiento(movimiento : Movimiento)
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+    + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
+}
+interface Bloques {
+    + {abstract} agregar(unBloque : bloque) : void
+}
+class BloquePersonalizado {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+    + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
+    + agregar(unBloque : bloque) : void
+}
+class RepetirDoble {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+    + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
+    + agregar(unBloque : bloque) : void
+}
+class RepetirTriple {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+    + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
+    + agregar(unBloque : bloque) : void
+}
+class Invertir {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+    + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
+    + agregar(unBloque : bloque) : void
+}
+class DecoratorBloquePersonalizadoBase {
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+    + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
+    + agregar(unBloque : bloque) : void
+}
+
 Bloque <|.. Bloques
 Bloques "1" *-- "1..*" Bloque
-Bloques <|-- BloquePersonalizado
-Bloques <|-- DecoratorBloquePersonalizadoBase
+Bloques <|.. BloquePersonalizado
+Bloques <|.. DecoratorBloquePersonalizadoBase
 DecoratorBloquePersonalizadoBase o-- Bloques
 DecoratorBloquePersonalizadoBase <|-- RepetirDoble
 DecoratorBloquePersonalizadoBase <|-- RepetirTriple
 DecoratorBloquePersonalizadoBase <|-- Invertir
 Bloque <|.. BloqueMovimiento
+@enduml
 
-BloqueMovimiento *--left Movimiento
-Movimiento <|.. Arriba
-Movimiento <|.. Abajo
-Movimiento <|.. Derecha
-Movimiento <|.. Izquierda
+
+
+@startuml
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+skinparam ArrowColor DarkBlue
+skinparam SequenceLifeLineBorderColor DarkBlue
+skinparam SequenceLoopBackgroundColor DarkBlue
+
+skinparam actor {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+skinparam participant {
+    Bound DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+title Ejecución de un algoritmo con bloques de movimiento
+
+participant ":Algoritmo" as Algoritmo
+participant ":BloqueMovimiento" as Bloque
+participant ":SectorDibujo" as SectorDibujo
+
+Algoritmo -> Algoritmo : ejecutar(unSectorDibujo)
+loop para cada bloque
+    Algoritmo -> Bloque : ejecutar(unSectorDibujo)
+    Bloque -> SectorDibujo : dibuja(unMovimiento)
+end
+@enduml
+
+
+
+@startuml
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+skinparam ArrowColor DarkBlue
+skinparam SequenceLifeLineBorderColor DarkBlue
+skinparam SequenceLoopBackgroundColor DarkBlue
+
+skinparam actor {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+skinparam participant {
+    Bound DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+title Ejecución de un algoritmo con un solo bloque de repetición doble que tiene bloques de movimiento
+
+participant ":Algoritmo" as Algoritmo
+participant ":BloqueRepeticionDoble" as BloqueRepetirDoble
+participant ":DecoratorBloquePersonalizadoBase" as DecoratorBloquePersonalizadoBase
+participant ":BloquePersonalizado" as BloquePersonalizado
+participant ":BloqueMovimiento" as BloqueMovimiento
+participant ":SectorDibujo" as SectorDibujo
+
+Algoritmo -> Algoritmo : ejecutar(unSectorDibujo)
+Algoritmo -> BloqueRepetirDoble : ejecutar(unSectorDibujo)
+loop x2
+    BloqueRepetirDoble -> DecoratorBloquePersonalizadoBase : ejecutar(unSectorDibujo)
+    DecoratorBloquePersonalizadoBase ->  BloquePersonalizado : ejecutar(unSectorDibujo)
+    loop para cada bloque dentro de BloquePersonalizado
+        BloquePersonalizado -> BloqueMovimiento : ejecutar(unSectorDibujo)
+        BloqueMovimiento -> SectorDibujo : dibuja(unMovimiento)
+    end loop
+end loop
+@enduml
+
+
+
+@startuml
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+skinparam ArrowColor DarkBlue
+skinparam SequenceLifeLineBorderColor DarkBlue
+skinparam SequenceLoopBackgroundColor DarkBlue
+
+skinparam actor {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+skinparam participant {
+    Bound DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+title Ejecución de un algoritmo con un bloque invertir que tiene bloques de movimiento
+
+participant ":Algoritmo" as Algoritmo
+participant ":BloqueInvertir" as BloqueInvertir
+participant ":DecoratorBloquePersonalizadoBase" as DecoratorBloquePersonalizadoBase
+participant ":BloquePersonalizado" as BloquePersonalizado
+participant ":BloqueMovimiento" as BloqueMovimiento
+participant "Movimiento" as Movimiento
+participant ":SectorDibujo" as SectorDibujo
+
+Algoritmo -> Algoritmo : ejecutar(unSectorDibujo)
+Algoritmo -> BloqueInvertir : ejecutar(unSectorDibujo)
+BloqueInvertir -> DecoratorBloquePersonalizadoBase : ejecutarInvertido(unSectorDibujo)
+DecoratorBloquePersonalizadoBase ->  BloquePersonalizado : ejecutarInvertido(unSectorDibujo)
+loop para cada bloque dentro de BloquePersonalizado
+    BloquePersonalizado -> BloqueMovimiento : ejecutarInvertido(unSectorDibujo)
+    BloqueMovimiento -> Movimiento : invertir()
+    Movimiento --> BloqueMovimiento : unMovimientoInvertido
+    BloqueMovimiento -> SectorDibujo : dibuja(unMovimientoInvertido)
+end loop
+@enduml
+
+
+
+@startuml
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+skinparam ArrowColor DarkBlue
+skinparam SequenceLifeLineBorderColor DarkBlue
+skinparam SequenceLoopBackgroundColor DarkBlue
+
+skinparam actor {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+skinparam participant {
+    Bound DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+title Ejecución de un algoritmo con un bloque invertir que tiene un bloque de movimiento hacia arriba
+
+participant ":Algoritmo" as Algoritmo
+participant ":BloqueInvertir" as BloqueInvertir
+participant ":DecoratorBloquePersonalizadoBase" as DecoratorBloquePersonalizadoBase
+participant ":BloquePersonalizado" as BloquePersonalizado
+participant ":BloqueMovimiento" as BloqueMovimiento
+participant ":Arriba" as Arriba
+participant ":Abajo" as Abajo
+participant ":SectorDibujo" as SectorDibujo
+
+Algoritmo -> Algoritmo : ejecutar(unSectorDibujo)
+Algoritmo -> BloqueInvertir : ejecutar(unSectorDibujo)
+BloqueInvertir -> DecoratorBloquePersonalizadoBase : ejecutarInvertido(unSectorDibujo)
+DecoratorBloquePersonalizadoBase ->  BloquePersonalizado : ejecutarInvertido(unSectorDibujo)
+loop para cada bloque dentro de BloquePersonalizado
+    BloquePersonalizado -> BloqueMovimiento : ejecutarInvertido(unSectorDibujo)
+    BloqueMovimiento -> Arriba : invertir()
+    Arriba -> Abajo : new
+    Abajo --> Arriba : unAbajo
+    Arriba --> BloqueMovimiento : unAbajo
+    BloqueMovimiento -> SectorDibujo : dibuja(unAbajo)
+end loop
 @enduml
