@@ -44,7 +44,7 @@ public class AlgoBlocksTest {
     }
 
     @Test
-    public void test03AgregarBloqueMovimientoDerechaAgregaUnBloqueMovimientoDerecha(){
+    public void test03AgregarBloqueMovimientoDerechaDibujaEnSectorDibujoMovimientoDerecha(){
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
         Derecha derechaMock = mock(Derecha.class);
@@ -59,7 +59,7 @@ public class AlgoBlocksTest {
     }
 
     @Test
-    public void test04AgregarBloqueMovimientoIzquierdaAgregaUnBloqueMovimientoIzquierda(){
+    public void test04AgregarBloqueMovimientoIzquierdaDibujaEnSectorDibujoMovimientoIzquierda(){
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
         Izquierda izquierdaMock = mock(Izquierda.class);
