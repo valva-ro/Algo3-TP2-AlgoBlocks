@@ -115,7 +115,7 @@ public class BloqueMovimientoTest {
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(abajoDibuja);
 
         bloqueMovimiento.invertirMovimiento();
-        assertEquals(arribaDibuja.getClass(),bloqueMovimiento.obtenerMovimiento().getClass());
+        assertTrue(arribaDibuja.esIgualA(bloqueMovimiento.obtenerMovimiento()));
     }
 
     @Test
@@ -126,7 +126,7 @@ public class BloqueMovimientoTest {
         BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(arribaDibuja);
 
         bloqueMovimiento.invertirMovimiento();
-        assertEquals(abajoDibuja.getClass(),bloqueMovimiento.obtenerMovimiento().getClass());
+        assertTrue(abajoDibuja.esIgualA(bloqueMovimiento.obtenerMovimiento()));
     }
 
     @Test
