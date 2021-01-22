@@ -4,48 +4,73 @@ import fiuba.algo3.AlgoBlocks;
 import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
 import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
 
+import fiuba.algo3.modelo.movimientos.*;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class AlgoBlocksTest {
     @Test
-    public void test01AgregarBloqueMovimientoArribaAgregaUnBloqueMovimientoArriba(){
+    public void test01AgregarBloqueMovimientoArribaDibujaEnSectorDibujoMovimientoArriba(){
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
-        algoBlocks.agregarBloqueMovimientoArriba();
-        FabricaConcretaBloqueQueNoDibuja fabricaNoDibuja = new FabricaConcretaBloqueQueNoDibuja();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        Arriba arribaMock = mock(Arriba.class);
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
-        assertEquals(algoBlocks.obtenerAlgoritmo().obtenerBloques().get(0).getClass(), fabricaNoDibuja.crearBloqueMovimientoArriba().getClass());
+        algoBlocks.agregarBloqueMovimientoArriba();
+        movimientos.add(arribaMock);
+        algoBlocks.ejecutar(sectorDibujo);
+
+        assertTrue(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
-    public void test02AgregarBloqueMovimientoAbajoAgregaUnBloqueMovimientoAbajo(){
+    public void test02AgregarBloqueMovimientoAbajoDibujaEnSectorDibujoMovimientoAbajo(){
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
-        algoBlocks.agregarBloqueMovimientoAbajo();
-        FabricaConcretaBloqueQueNoDibuja fabricaNoDibuja = new FabricaConcretaBloqueQueNoDibuja();
+        Abajo abajoMock = mock(Abajo.class);
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
+        SectorDibujo sectorDibujo = new SectorDibujo();
 
-        assertEquals(algoBlocks.obtenerAlgoritmo().obtenerBloques().get(0).getClass(), fabricaNoDibuja.crearBloqueMovimientoAbajo().getClass());
+        algoBlocks.agregarBloqueMovimientoAbajo();
+        movimientos.add(abajoMock);
+        algoBlocks.ejecutar(sectorDibujo);
+
+        assertTrue(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
     public void test03AgregarBloqueMovimientoDerechaAgregaUnBloqueMovimientoDerecha(){
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
-        algoBlocks.agregarBloqueMovimientoDerecha();
-        FabricaConcretaBloqueQueNoDibuja fabricaNoDibuja = new FabricaConcretaBloqueQueNoDibuja();
+        Derecha derechaMock = mock(Derecha.class);
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
+        SectorDibujo sectorDibujo = new SectorDibujo();
 
-        assertEquals(algoBlocks.obtenerAlgoritmo().obtenerBloques().get(0).getClass(), fabricaNoDibuja.crearBloqueMovimientoDerecha().getClass());
+        algoBlocks.agregarBloqueMovimientoDerecha();
+        movimientos.add(derechaMock);
+        algoBlocks.ejecutar(sectorDibujo);
+
+        assertTrue(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
     public void test04AgregarBloqueMovimientoIzquierdaAgregaUnBloqueMovimientoIzquierda(){
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
-        algoBlocks.agregarBloqueMovimientoIzquierda();
-        FabricaConcretaBloqueQueNoDibuja fabricaNoDibuja = new FabricaConcretaBloqueQueNoDibuja();
+        Izquierda izquierdaMock = mock(Izquierda.class);
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
+        SectorDibujo sectorDibujo = new SectorDibujo();
 
-        assertEquals(algoBlocks.obtenerAlgoritmo().obtenerBloques().get(0).getClass(), fabricaNoDibuja.crearBloqueMovimientoIzquierda().getClass());
+        algoBlocks.agregarBloqueMovimientoIzquierda();
+        movimientos.add(izquierdaMock);
+        algoBlocks.ejecutar(sectorDibujo);
+
+        assertTrue(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
