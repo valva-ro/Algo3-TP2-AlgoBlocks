@@ -1,9 +1,6 @@
 package fiuba.algo3.modelo;
 
-import fiuba.algo3.modelo.bloques.Bloque;
-import fiuba.algo3.modelo.bloques.BloqueMovimiento;
-import fiuba.algo3.modelo.bloques.BloquePersonalizado;
-import fiuba.algo3.modelo.bloques.BloqueRepetirDosVeces;
+import fiuba.algo3.modelo.bloques.*;
 import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
 import fiuba.algo3.modelo.movimientos.Movimiento;
 import org.junit.jupiter.api.Test;
@@ -11,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 // TODO: actualizar estos tests al nuevo modelo
 
@@ -191,46 +192,199 @@ public class AlgoritmoTests {
     // TODO: Kevin  los faltantes
     @Test
     public void test10SeEjecutaUnAlgoritmoConUnBloqueDeRepetirDobleQueTiene10BloqueArriba() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+
+        BloqueMovimiento bloqueArriba;
+
+        ArrayList <Movimiento> movimientos = new ArrayList<>();
+
+        for(int i=0; i < 10; i = i + 1) {
+            bloqueArriba = fabrica.crearBloqueMovimientoArriba();
+            bloquePersonalizado.agregar(bloqueArriba);
+            movimientos.add(bloqueArriba.obtenerMovimiento());
+        }
+
+        BloqueRepetirDosVeces bloqueRepetir = new BloqueRepetirDosVeces(bloquePersonalizado);
+
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        algoritmo.agregar(bloqueRepetir);
+        algoritmo.ejecutar(sectorDibujoMock);
+
+        for(Movimiento movimiento: movimientos)
+            verify(sectorDibujoMock,times(2)).dibujar(movimiento);
     }
 
     @Test
     public void test11SeEjecutaUnAlgoritmoConUnBloqueDeRepetirTripleQueTiene1BloqueArriba() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+        BloqueMovimiento bloqueMovimiento = fabrica.crearBloqueMovimientoArriba();
+
+        bloquePersonalizado.agregar(bloqueMovimiento);
+
+        BloqueRepetirTresVeces bloqueRepetir = new BloqueRepetirTresVeces(bloquePersonalizado);
+
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        algoritmo.agregar(bloqueRepetir);
+        algoritmo.ejecutar(sectorDibujoMock);
+
+        verify(sectorDibujoMock,times(3)).dibujar(bloqueMovimiento.obtenerMovimiento());
+
     }
 
     @Test
     public void test12SeEjecutaUnAlgoritmoConUnBloqueDeRepetirTripleQueTiene10BloqueArriba() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+
+        BloqueMovimiento bloqueArriba;
+
+        ArrayList <Movimiento> movimientos = new ArrayList<>();
+
+        for(int i=0; i < 10; i = i + 1) {
+            bloqueArriba = fabrica.crearBloqueMovimientoArriba();
+            bloquePersonalizado.agregar(bloqueArriba);
+            movimientos.add(bloqueArriba.obtenerMovimiento());
+        }
+
+        BloqueRepetirTresVeces bloqueRepetir = new BloqueRepetirTresVeces(bloquePersonalizado);
+
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        algoritmo.agregar(bloqueRepetir);
+        algoritmo.ejecutar(sectorDibujoMock);
+
+        for(Movimiento movimiento: movimientos)
+            verify(sectorDibujoMock,times(3)).dibujar(movimiento);
     }
 
     @Test
     public void test13SeEjecutaUnAlgoritmoConUnBloquePersonalizado() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+        BloqueMovimiento bloqueMovimiento = fabrica.crearBloqueMovimientoArriba();
+
+        bloquePersonalizado.agregar(bloqueMovimiento);
+
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        algoritmo.agregar(bloquePersonalizado);
+        algoritmo.ejecutar(sectorDibujoMock);
+
+        verify(sectorDibujoMock,times(1)).dibujar(bloqueMovimiento.obtenerMovimiento());
+
     }
 
     @Test
     public void test14SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueArriba() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+        BloqueMovimiento bloqueMovimiento = fabrica.crearBloqueMovimientoArriba();
+
+        bloquePersonalizado.agregar(bloqueMovimiento);
+
+        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
+
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        algoritmo.agregar(bloqueInvertir);
+        algoritmo.ejecutar(sectorDibujoMock);
+
+        verify(sectorDibujoMock,times(1)).dibujar(bloqueMovimiento.obtenerMovimiento());
     }
 
     @Test
     public void test15SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueAbajo() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+        BloqueMovimiento bloqueMovimiento = fabrica.crearBloqueMovimientoAbajo();
+
+        bloquePersonalizado.agregar(bloqueMovimiento);
+
+        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
+
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        algoritmo.agregar(bloqueInvertir);
+        algoritmo.ejecutar(sectorDibujoMock);
+
+        verify(sectorDibujoMock,times(1)).dibujar(bloqueMovimiento.obtenerMovimiento());
     }
 
     @Test
     public void test16SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueIzquierda() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+        BloqueMovimiento bloqueMovimiento = fabrica.crearBloqueMovimientoIzquierda();
+
+        bloquePersonalizado.agregar(bloqueMovimiento);
+
+        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
+
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        algoritmo.agregar(bloqueInvertir);
+        algoritmo.ejecutar(sectorDibujoMock);
+
+        verify(sectorDibujoMock,times(1)).dibujar(bloqueMovimiento.obtenerMovimiento());
     }
 
     @Test
     public void test17SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueDerecha() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+        BloqueMovimiento bloqueMovimiento = fabrica.crearBloqueMovimientoDerecha();
+
+        bloquePersonalizado.agregar(bloqueMovimiento);
+
+        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
+
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        algoritmo.agregar(bloqueInvertir);
+        algoritmo.ejecutar(sectorDibujoMock);
+
+        verify(sectorDibujoMock,times(1)).dibujar(bloqueMovimiento.obtenerMovimiento());
     }
 
     @Test
     public void test18SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueEnCadaDireccion() {
-        assert(true);
+        Algoritmo algoritmo = new Algoritmo();
+        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+
+        BloqueMovimiento bloqueArriba = fabrica.crearBloqueMovimientoArriba();
+        BloqueMovimiento bloqueAbajo = fabrica.crearBloqueMovimientoAbajo();
+        BloqueMovimiento bloqueIzquierda = fabrica.crearBloqueMovimientoIzquierda();
+        BloqueMovimiento bloqueDerecha = fabrica.crearBloqueMovimientoDerecha();
+
+        bloquePersonalizado.agregar(bloqueArriba);
+        bloquePersonalizado.agregar(bloqueAbajo);
+        bloquePersonalizado.agregar(bloqueIzquierda);
+        bloquePersonalizado.agregar(bloqueDerecha);
+
+        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
+
+        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+
+        algoritmo.agregar(bloqueInvertir);
+        algoritmo.ejecutar(sectorDibujoMock);
+
+        verify(sectorDibujoMock,times(1)).dibujar(bloqueArriba.obtenerMovimiento());
+        verify(sectorDibujoMock,times(1)).dibujar(bloqueAbajo.obtenerMovimiento());
+        verify(sectorDibujoMock,times(1)).dibujar(bloqueIzquierda.obtenerMovimiento());
+        verify(sectorDibujoMock,times(1)).dibujar(bloqueDerecha.obtenerMovimiento());
+
     }
 }
