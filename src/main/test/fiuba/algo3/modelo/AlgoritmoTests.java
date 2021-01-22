@@ -189,7 +189,6 @@ public class AlgoritmoTests {
         }
     }
 
-    // TODO: Kevin  los faltantes
     @Test
     public void test10SeEjecutaUnAlgoritmoConUnBloqueDeRepetirDobleQueTiene10BloqueArriba() {
         Algoritmo algoritmo = new Algoritmo();
