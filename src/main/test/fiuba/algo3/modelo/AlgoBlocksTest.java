@@ -1,16 +1,13 @@
 package fiuba.algo3.modelo;
 
 import fiuba.algo3.AlgoBlocks;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
-
 import fiuba.algo3.modelo.movimientos.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 public class AlgoBlocksTest {
     @Test
@@ -76,22 +73,58 @@ public class AlgoBlocksTest {
     @Test
     public void test05AgregarBloqueLevantarLapizCambiaDeFabricaANoDibuja(){
 
+        //Al cambiar la fabrica , los movimientos nuevos van a tener el estado de noDibuja
         AlgoBlocks algoBlocks = new AlgoBlocks();
-        FabricaConcretaBloqueQueNoDibuja fabricaNoDibuja = new FabricaConcretaBloqueQueNoDibuja();
+        Arriba arribaNoDibuja = new Arriba(new NoDibuja());
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
+        movimientos.add(arribaNoDibuja);
         algoBlocks.agregarBloqueLevantarLapiz();
+        algoBlocks.agregarBloqueMovimientoArriba();
+        algoBlocks.ejecutar(sectorDibujo);
 
-        assertEquals(algoBlocks.obtenerFabrica().getClass(), fabricaNoDibuja.getClass());
+        assertTrue(sectorDibujo.dibujoEsIgual(movimientos));
     }
 
     @Test
     public void test06AgregarBloqueBajarLapizCambiaDeFabricaDibuja(){
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
-        FabricaConcretaBloqueQueDibuja fabricaDibuja = new FabricaConcretaBloqueQueDibuja();
+        Arriba arribaDibuja = new Arriba(new Dibuja());
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
 
+        movimientos.add(arribaDibuja);
         algoBlocks.agregarBloqueBajarLapiz();
 
-        assertEquals(algoBlocks.obtenerFabrica().getClass(), fabricaDibuja.getClass());
+        algoBlocks.agregarBloqueMovimientoArriba();
+        algoBlocks.ejecutar(sectorDibujo);
+
+        assertTrue(sectorDibujo.dibujoEsIgual(movimientos));
+    }
+
+    @Test
+    public void test07AlCambiarDeFabricaConBloqueBajarLapizLosMovimientosTienenEstadoDibuja(){
+
+        AlgoBlocks algoBlocks = new AlgoBlocks();
+        Dibuja estadoDibuja = new Dibuja();
+        NoDibuja estadoNoDibuja = new NoDibuja();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        ArrayList<Movimiento> movimientos = new ArrayList<>();
+
+        movimientos.add(new Arriba(estadoNoDibuja));
+        movimientos.add(new Abajo(estadoNoDibuja));
+        movimientos.add(new Arriba(estadoDibuja));
+        movimientos.add(new Abajo(estadoDibuja));
+
+        algoBlocks.agregarBloqueMovimientoArriba();
+        algoBlocks.agregarBloqueMovimientoAbajo();
+        algoBlocks.agregarBloqueBajarLapiz();
+        algoBlocks.agregarBloqueMovimientoArriba();
+        algoBlocks.agregarBloqueMovimientoAbajo();
+        algoBlocks.ejecutar(sectorDibujo);
+
+        assertTrue(sectorDibujo.dibujoEsIgual(movimientos));
     }
 }
