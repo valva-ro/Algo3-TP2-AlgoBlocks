@@ -1,37 +1,27 @@
 package fiuba.algo3.modelo;
 
-import fiuba.algo3.modelo.movimientos.Movimiento;
-
-import java.util.ArrayList;
+import fiuba.algo3.modelo.dibujo.Dibujo;
+import fiuba.algo3.modelo.direcciones.Direccion;
 
 public class SectorDibujo {
 
-    private ArrayList<Movimiento> bloquesDibujados = new ArrayList<>();
+    private Dibujo dibujo = new Dibujo();
+    private boolean dibuja = false;
 
-    public ArrayList<Movimiento> obtenerMovimientos() {
-        return this.bloquesDibujados;
+    public void invertirDibuja() {
+        this.dibuja = !this.dibuja;
     }
 
-    public boolean dibujoEsIgual(ArrayList<Movimiento> movimientos) {
-        Movimiento movimiento;
-        boolean esIgual = true;
-        int i = 0;
-
-        if (bloquesDibujados.size() != movimientos.size()) {
-            esIgual = false;
-        }
-
-        while (i < bloquesDibujados.size() && esIgual) {
-            movimiento = bloquesDibujados.get(i);
-            if (!movimiento.esIgualA(movimientos.get(i))) {
-                esIgual = false;
-            }
-            i++;
-        }
-        return esIgual;
+    public void dibujar(Direccion direccion) {
+        if (dibuja)
+            dibujo.agregarTrazo(direccion, dibuja);
     }
 
-    public void dibujar (Movimiento unMovimiento) {
-        bloquesDibujados.add(unMovimiento);
+    public boolean dibuja() {
+        return this.dibuja;
+    }
+
+    public boolean existe(Posicion posicion) {
+        return dibujo.existe(posicion);
     }
 }

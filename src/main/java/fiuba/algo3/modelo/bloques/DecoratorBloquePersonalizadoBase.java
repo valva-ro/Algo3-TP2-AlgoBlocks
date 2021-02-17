@@ -17,6 +17,11 @@ public class DecoratorBloquePersonalizadoBase implements Bloques {
         bloqueAEnvolver.agregar(unBloque);
     }
 
+    @Override
+    public void sacar(Bloque unBloque) {
+        bloqueAEnvolver.sacar(unBloque);
+    }
+
     public void ejecutar(SectorDibujo sectorDibujo) {
         bloqueAEnvolver.ejecutar(sectorDibujo);
     }

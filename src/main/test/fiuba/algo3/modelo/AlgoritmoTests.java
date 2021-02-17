@@ -1,19 +1,13 @@
 package fiuba.algo3.modelo;
 
 import fiuba.algo3.modelo.bloques.*;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
-import fiuba.algo3.modelo.movimientos.Movimiento;
+import fiuba.algo3.modelo.direcciones.Este;
+import fiuba.algo3.modelo.direcciones.Norte;
+import fiuba.algo3.modelo.direcciones.Oeste;
+import fiuba.algo3.modelo.direcciones.Sur;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
-// TODO: actualizar estos tests al nuevo modelo
 
 public class AlgoritmoTests {
 
@@ -29,334 +23,216 @@ public class AlgoritmoTests {
     }
 
     @Test
-    public void test02AlCrearUnNuevoAlgoritmoNoDebeTenerBloques() {
+    public void test02SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElNorteYLapizLevantado() {
         Algoritmo algoritmo = new Algoritmo();
-        ArrayList <Bloque> Bloques = algoritmo.obtenerBloques();
-        Integer numero = 0;
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
 
-        assertEquals(Bloques.size(),numero);
+        algoritmo.agregar(bloqueNorte);
+        algoritmo.ejecutar(sectorDibujo);
+
+        assertFalse(sectorDibujo.existe(new Posicion(0, 1)));
     }
 
     @Test
-    public void test03SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoHaciaArriba() {
+    public void test03SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElNorteYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloqueMovimiento bloqueArriba = fabrica.crearBloqueMovimientoArriba();
-        SectorDibujo SecDib = new SectorDibujo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
 
-        for ( int i = 0; i < 5; i = i+1){
-            algoritmo.agregar(bloqueArriba);
-        }
-        algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
+        sectorDibujo.invertirDibuja();
+        algoritmo.agregar(bloqueNorte);
+        algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(SecDib.dibujoEsIgual(movimientos));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
     }
 
     @Test
-    public void test04SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoHaciaAbajo() {
+    public void test04SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElSurYLapizLevantado() {
         Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloqueMovimiento bloqueAbajo = fabrica.crearBloqueMovimientoAbajo();
-        SectorDibujo SecDib = new SectorDibujo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Sur());
 
-        for ( int i = 0; i < 5; i = i+1){
-            algoritmo.agregar(bloqueAbajo);
-        }
-        algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
+        algoritmo.agregar(bloqueNorte);
+        algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(SecDib.dibujoEsIgual(movimientos));
+        assertFalse(sectorDibujo.existe(new Posicion(0, -1)));
     }
 
     @Test
-    public void test05SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoHaciaLaDerecha() {
+    public void test05SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElSurYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloqueMovimiento bloqueDerecha = fabrica.crearBloqueMovimientoDerecha();
-        SectorDibujo SecDib = new SectorDibujo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Sur());
 
-        for ( int i = 0; i < 5; i = i+1){
-            algoritmo.agregar(bloqueDerecha);
-        }
-        algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
+        sectorDibujo.invertirDibuja();
+        algoritmo.agregar(bloqueSur);
+        algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(SecDib.dibujoEsIgual(movimientos));
+        assertTrue(sectorDibujo.existe(new Posicion(0, -1)));
     }
 
     @Test
-    public void test06SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoHaciaLaIzquierda() {
+    public void test06SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElEsteYLapizLevantado() {
         Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloqueMovimiento bloqueIzquierda = fabrica.crearBloqueMovimientoIzquierda();
-        SectorDibujo SecDib = new SectorDibujo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Norte());
 
-        for ( int i = 0; i < 5; i = i+1){
-            algoritmo.agregar(bloqueIzquierda);
-        }
-        algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
+        algoritmo.agregar(bloqueSur);
+        algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(SecDib.dibujoEsIgual(movimientos));
+        assertFalse(sectorDibujo.existe(new Posicion(1, 0)));
     }
 
     @Test
-    public void test07SeEjecutaUnAlgoritmoCon5BloquesDeMovimientoEnCadaDireccion() {
+    public void test07SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElEsteYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloqueMovimiento bloqueArriba = fabrica.crearBloqueMovimientoArriba();
-        BloqueMovimiento bloqueAbajo = fabrica.crearBloqueMovimientoAbajo();
-        BloqueMovimiento bloqueDerecha = fabrica.crearBloqueMovimientoDerecha();
-        BloqueMovimiento bloqueIzquierda = fabrica.crearBloqueMovimientoIzquierda();
-        SectorDibujo SecDib = new SectorDibujo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este());
 
-        for ( int i = 0; i < 5; i = i+1){
-            algoritmo.agregar(bloqueArriba);
-            algoritmo.agregar(bloqueAbajo);
-            algoritmo.agregar(bloqueDerecha);
-            algoritmo.agregar(bloqueIzquierda);
-        }
-        algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
+        sectorDibujo.invertirDibuja();
+        algoritmo.agregar(bloqueEste);
+        algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(SecDib.dibujoEsIgual(movimientos));
+        assertTrue(sectorDibujo.existe(new Posicion(1, 0)));
     }
 
     @Test
-    public void test08SeEjecutaUnAlgoritmoCon100BloquesDeMovimientoEnCadaDireccion() {
+    public void test06SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElOesteYLapizLevantado() {
         Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloqueMovimiento bloqueArriba = fabrica.crearBloqueMovimientoArriba();
-        BloqueMovimiento bloqueAbajo = fabrica.crearBloqueMovimientoAbajo();
-        BloqueMovimiento bloqueDerecha = fabrica.crearBloqueMovimientoDerecha();
-        BloqueMovimiento bloqueIzquierda = fabrica.crearBloqueMovimientoIzquierda();
-        SectorDibujo SecDib = new SectorDibujo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste());
 
-        for ( int i = 0; i < 100; i = i+1){
-            algoritmo.agregar(bloqueArriba);
-            algoritmo.agregar(bloqueAbajo);
-            algoritmo.agregar(bloqueDerecha);
-            algoritmo.agregar(bloqueIzquierda);
-        }
-        algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
+        algoritmo.agregar(bloqueOeste);
+        algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(SecDib.dibujoEsIgual(movimientos));
+        assertFalse(sectorDibujo.existe(new Posicion(-1, 0)));
     }
 
     @Test
-    public void test09SeEjecutaUnAlgoritmoConUnBloqueDeRepetirDobleQueTiene1BloqueArriba() {
+    public void test09SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElOesteYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloqueMovimiento bloqueArriba = fabrica.crearBloqueMovimientoArriba();
-        BloquePersonalizado BloqueP = new BloquePersonalizado();
-        BloqueP.agregar(bloqueArriba);
-        BloqueRepetirDosVeces BloqueDosV = new BloqueRepetirDosVeces(BloqueP);
-        SectorDibujo SecDib = new SectorDibujo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste());
 
-        algoritmo.agregar(BloqueDosV);
-        algoritmo.ejecutar(SecDib);
-        ArrayList <Movimiento> movimientos = SecDib.obtenerMovimientos();
+        sectorDibujo.invertirDibuja();
+        algoritmo.agregar(bloqueOeste);
+        algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(SecDib.dibujoEsIgual(movimientos));
+        assertTrue(sectorDibujo.existe(new Posicion(-1, 0)));
     }
 
     @Test
-    public void test10SeEjecutaUnAlgoritmoConUnBloqueDeRepetirDobleQueTiene10BloqueArriba() {
+    public void test10SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaCadaDireccionYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
+        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Sur());
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este());
+        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste());
 
-        BloqueMovimiento bloqueArriba;
+        sectorDibujo.invertirDibuja();
+        algoritmo.agregar(bloqueNorte);
+        algoritmo.agregar(bloqueEste);
+        algoritmo.agregar(bloqueSur);
+        algoritmo.agregar(bloqueOeste);
 
-        ArrayList <Movimiento> movimientos = new ArrayList<>();
+        algoritmo.ejecutar(sectorDibujo);
 
-        for(int i=0; i < 10; i = i + 1) {
-            bloqueArriba = fabrica.crearBloqueMovimientoArriba();
-            bloquePersonalizado.agregar(bloqueArriba);
-            movimientos.add(bloqueArriba.obtenerMovimiento());
-        }
-
-        BloqueRepetirDosVeces bloqueRepetir = new BloqueRepetirDosVeces(bloquePersonalizado);
-
-        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
-
-        algoritmo.agregar(bloqueRepetir);
-        algoritmo.ejecutar(sectorDibujoMock);
-
-        for(Movimiento movimiento: movimientos)
-            verify(sectorDibujoMock,times(2)).dibujar(movimiento);
+        assertTrue(sectorDibujo.existe(new Posicion(0, 1))); // Norte
+        assertTrue(sectorDibujo.existe(new Posicion(1, 1))); // Este
+        assertTrue(sectorDibujo.existe(new Posicion(1, 0))); // Sur
+        assertTrue(sectorDibujo.existe(new Posicion(0, 0))); // Oeste
     }
 
     @Test
-    public void test11SeEjecutaUnAlgoritmoConUnBloqueDeRepetirTripleQueTiene1BloqueArriba() {
+    public void test11SeEjecutaUnAlgoritmoConUnBloqueDeRepeticionDobleQueTieneDosBloquesHaciaElNorteYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
-        BloqueMovimiento bloqueMovimiento = fabrica.crearBloqueMovimientoArriba();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueRepetirDosVeces bloqueRepeticionDoble = new BloqueRepetirDosVeces();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
 
-        bloquePersonalizado.agregar(bloqueMovimiento);
+        sectorDibujo.invertirDibuja();
 
-        BloqueRepetirTresVeces bloqueRepetir = new BloqueRepetirTresVeces(bloquePersonalizado);
+        bloqueRepeticionDoble.agregar(bloqueNorte);
+        bloqueRepeticionDoble.agregar(bloqueNorte);
+        algoritmo.agregar(bloqueRepeticionDoble);
 
-        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+        algoritmo.ejecutar(sectorDibujo);
 
-        algoritmo.agregar(bloqueRepetir);
-        algoritmo.ejecutar(sectorDibujoMock);
-
-        verify(sectorDibujoMock,times(3)).dibujar(bloqueMovimiento.obtenerMovimiento());
-
+        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 2)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 3)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 4)));
     }
 
     @Test
-    public void test12SeEjecutaUnAlgoritmoConUnBloqueDeRepetirTripleQueTiene10BloqueArriba() {
+    public void test12SeEjecutaUnAlgoritmoConUnBloqueDeRepeticionDobleQueTieneDosBloquesHaciaElNorteDosHaciaElEsteYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueRepetirDosVeces bloqueRepeticionDoble = new BloqueRepetirDosVeces();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este());
 
-        BloqueMovimiento bloqueArriba;
+        sectorDibujo.invertirDibuja();
 
-        ArrayList <Movimiento> movimientos = new ArrayList<>();
+        bloqueRepeticionDoble.agregar(bloqueNorte);
+        bloqueRepeticionDoble.agregar(bloqueNorte);
+        bloqueRepeticionDoble.agregar(bloqueEste);
+        bloqueRepeticionDoble.agregar(bloqueEste);
+        algoritmo.agregar(bloqueRepeticionDoble);
 
-        for(int i=0; i < 10; i = i + 1) {
-            bloqueArriba = fabrica.crearBloqueMovimientoArriba();
-            bloquePersonalizado.agregar(bloqueArriba);
-            movimientos.add(bloqueArriba.obtenerMovimiento());
-        }
+        algoritmo.ejecutar(sectorDibujo);
 
-        BloqueRepetirTresVeces bloqueRepetir = new BloqueRepetirTresVeces(bloquePersonalizado);
-
-        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
-
-        algoritmo.agregar(bloqueRepetir);
-        algoritmo.ejecutar(sectorDibujoMock);
-
-        for(Movimiento movimiento: movimientos)
-            verify(sectorDibujoMock,times(3)).dibujar(movimiento);
+        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 2)));
+        assertTrue(sectorDibujo.existe(new Posicion(1, 2)));
+        assertTrue(sectorDibujo.existe(new Posicion(2, 2)));
+        assertTrue(sectorDibujo.existe(new Posicion(2, 3)));
+        assertTrue(sectorDibujo.existe(new Posicion(2, 4)));
+        assertTrue(sectorDibujo.existe(new Posicion(3, 4)));
+        assertTrue(sectorDibujo.existe(new Posicion(4, 4)));
     }
 
     @Test
-    public void test13SeEjecutaUnAlgoritmoConUnBloquePersonalizado() {
+    public void test13SeEjecutaUnAlgoritmoConUnBloqueDeRepeticionTripkeQueTieneUnBloqueHaciaElNorteYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
-        BloqueMovimiento bloqueMovimiento = fabrica.crearBloqueMovimientoArriba();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueRepetirTresVeces bloqueRepeticionTriple = new BloqueRepetirTresVeces();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
 
-        bloquePersonalizado.agregar(bloqueMovimiento);
+        sectorDibujo.invertirDibuja();
 
-        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+        bloqueRepeticionTriple.agregar(bloqueNorte);
+        algoritmo.agregar(bloqueRepeticionTriple);
 
-        algoritmo.agregar(bloquePersonalizado);
-        algoritmo.ejecutar(sectorDibujoMock);
+        algoritmo.ejecutar(sectorDibujo);
 
-        verify(sectorDibujoMock,times(1)).dibujar(bloqueMovimiento.obtenerMovimiento());
-
+        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 2)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 3)));
     }
 
     @Test
-    public void test14SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueArriba() {
+    public void test14SeEjecutaUnAlgoritmoConUnBloqueDeRepeticionTripkeQueTieneDosBloquesHaciaElNorteYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
-        BloqueMovimiento bloqueMovimiento = fabrica.crearBloqueMovimientoArriba();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueRepetirTresVeces bloqueRepeticionTriple = new BloqueRepetirTresVeces();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
 
-        bloquePersonalizado.agregar(bloqueMovimiento);
+        sectorDibujo.invertirDibuja();
 
-        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
+        bloqueRepeticionTriple.agregar(bloqueNorte);
+        bloqueRepeticionTriple.agregar(bloqueNorte);
+        algoritmo.agregar(bloqueRepeticionTriple);
 
-        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
+        algoritmo.ejecutar(sectorDibujo);
 
-        algoritmo.agregar(bloqueInvertir);
-        algoritmo.ejecutar(sectorDibujoMock);
-
-        verify(sectorDibujoMock,times(1)).dibujar(bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test15SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueAbajo() {
-        Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
-        BloqueMovimiento bloqueMovimiento = fabrica.crearBloqueMovimientoAbajo();
-
-        bloquePersonalizado.agregar(bloqueMovimiento);
-
-        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
-
-        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
-
-        algoritmo.agregar(bloqueInvertir);
-        algoritmo.ejecutar(sectorDibujoMock);
-
-        verify(sectorDibujoMock,times(1)).dibujar(bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test16SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueIzquierda() {
-        Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
-        BloqueMovimiento bloqueMovimiento = fabrica.crearBloqueMovimientoIzquierda();
-
-        bloquePersonalizado.agregar(bloqueMovimiento);
-
-        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
-
-        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
-
-        algoritmo.agregar(bloqueInvertir);
-        algoritmo.ejecutar(sectorDibujoMock);
-
-        verify(sectorDibujoMock,times(1)).dibujar(bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test17SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueDerecha() {
-        Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
-        BloqueMovimiento bloqueMovimiento = fabrica.crearBloqueMovimientoDerecha();
-
-        bloquePersonalizado.agregar(bloqueMovimiento);
-
-        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
-
-        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
-
-        algoritmo.agregar(bloqueInvertir);
-        algoritmo.ejecutar(sectorDibujoMock);
-
-        verify(sectorDibujoMock,times(1)).dibujar(bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test18SeEjecutaUnAlgoritmoConUnBloqueInvertirQueTiene1BloqueEnCadaDireccion() {
-        Algoritmo algoritmo = new Algoritmo();
-        FabricaConcretaBloqueQueDibuja fabrica = new FabricaConcretaBloqueQueDibuja();
-        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
-
-        BloqueMovimiento bloqueArriba = fabrica.crearBloqueMovimientoArriba();
-        BloqueMovimiento bloqueAbajo = fabrica.crearBloqueMovimientoAbajo();
-        BloqueMovimiento bloqueIzquierda = fabrica.crearBloqueMovimientoIzquierda();
-        BloqueMovimiento bloqueDerecha = fabrica.crearBloqueMovimientoDerecha();
-
-        bloquePersonalizado.agregar(bloqueArriba);
-        bloquePersonalizado.agregar(bloqueAbajo);
-        bloquePersonalizado.agregar(bloqueIzquierda);
-        bloquePersonalizado.agregar(bloqueDerecha);
-
-        BloqueInvertir bloqueInvertir = new BloqueInvertir(bloquePersonalizado);
-
-        SectorDibujo sectorDibujoMock = mock(SectorDibujo.class);
-
-        algoritmo.agregar(bloqueInvertir);
-        algoritmo.ejecutar(sectorDibujoMock);
-
-        verify(sectorDibujoMock,times(1)).dibujar(bloqueArriba.obtenerMovimiento());
-        verify(sectorDibujoMock,times(1)).dibujar(bloqueAbajo.obtenerMovimiento());
-        verify(sectorDibujoMock,times(1)).dibujar(bloqueIzquierda.obtenerMovimiento());
-        verify(sectorDibujoMock,times(1)).dibujar(bloqueDerecha.obtenerMovimiento());
-
+        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 2)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 3)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 4)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 5)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 6)));
     }
 }

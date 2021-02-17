@@ -8,12 +8,12 @@ public class Algoritmo {
 
     private ArrayList<Bloque> bloques = new ArrayList<>();
 
-    public ArrayList<Bloque> obtenerBloques() {
-        return bloques;
-    }
-
     public void agregar(Bloque bloque) {
         bloques.add(bloque);
+    }
+
+    public void sacar(Bloque bloque) {
+        bloques.remove(bloque);
     }
 
     public void ejecutar(SectorDibujo sectorDibujo) {

@@ -16,6 +16,10 @@ public class BloquePersonalizado implements Bloques {
         bloques.add(unBloque);
     }
 
+    public void sacar(Bloque unBloque) {
+        bloques.remove(unBloque);
+    }
+
     public void ejecutar(SectorDibujo sectorDibujo) {
 
         this.contieneBloques();

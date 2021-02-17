@@ -1,31 +1,28 @@
 package fiuba.algo3.modelo.bloques;
 
 import fiuba.algo3.modelo.SectorDibujo;
-import fiuba.algo3.modelo.movimientos.Movimiento;
+import fiuba.algo3.modelo.direcciones.Direccion;
+import fiuba.algo3.modelo.direcciones.Norte;
 
 public class BloqueMovimiento implements Bloque {
 
-    private Movimiento movimiento;
+    private Direccion direccion;
 
-    public BloqueMovimiento(Movimiento movimiento) {
-        this.movimiento = movimiento;
+    public BloqueMovimiento(Direccion direccion) {
+        this.direccion = direccion;
     }
 
     @Override
     public void ejecutar(SectorDibujo sectorDibujo) {
-        sectorDibujo.dibujar(this.movimiento);
+        sectorDibujo.dibujar(this.direccion);
     }
 
-    public Movimiento obtenerMovimiento() {
-        return movimiento;
-    }
-
-    public void invertirMovimiento() {
-        this.movimiento = movimiento.invertir();
+    public void invertirDireccion() {
+        this.direccion = direccion.invertir();
     }
 
     public void ejecutarInvertido(SectorDibujo sectorDibujo) {
-        this.invertirMovimiento();
+        this.invertirDireccion();
         this.ejecutar(sectorDibujo);
     }
 }

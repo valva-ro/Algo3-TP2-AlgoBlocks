@@ -18,65 +18,52 @@ skinparam note {
 
 title Diagrama de clase general
 
-class AlgoBlocks {
-    + agregarBloqueMovimientoArriba() : void
-    + agregarBloqueMovimientoAbajo() : void
-    + agregarBloqueMovimientoIzquierda() : void
-    + agregarBloqueMovimientoDerecha() : void
-    + agregarBloqueRepetirDoble() : void
-    + agregarBloqueRepetirTriple() : void
-    + agregarBloqueInvertir() : void
-    + agregarBloqueLevantarLapiz() : void
-    + agregarBloqueBajarLapiz() : void
-    + ejecutar() : void
-}
-
-interface FabricaAbstractaDeBloques {
-    + {abstract} crearBloqueMovimientoArriba() : BloqueMovimiento
-    + {abstract} crearBloqueMovimientoAbajo() : BloqueMovimiento
-    + {abstract} crearBloqueMovimientoIzquierda() : BloqueMovimiento
-    + {abstract} crearBloqueMovimientoDerecha() : BloqueMovimiento
-}
-class FabricaConcretaBloqueQueDibuja {
-    + crearBloqueMovimientoArriba() : BloqueMovimiento
-    + crearBloqueMovimientoAbajo() : BloqueMovimiento
-    + crearBloqueMovimientoIzquierda() : BloqueMovimiento
-    + crearBloqueMovimientoDerecha() : BloqueMovimiento
-}
-class FabricaConcretaBloqueQueNoDibuja {
-    + crearBloqueMovimientoArriba() : BloqueMovimiento
-    + crearBloqueMovimientoAbajo() : BloqueMovimiento
-    + crearBloqueMovimientoIzquierda() : BloqueMovimiento
-    + crearBloqueMovimientoDerecha() : BloqueMovimiento
-}
-
 interface Bloque {
     + {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
     + {abstract} invertir() : void
 }
 
 class SectorDibujo {
-    + dibujar(unMovimiento) : void
-    + esIgualA(movimientos) : boolean
-}
-
-interface Movimiento {
-    + {abstract} estaDibujado() : boolean
+    - dibuja : boolean
+    + invertirDibuja() : void
+    + dibujar(direccion : Direccion) : void
+    + existe(posicion : Posicion) : boolean
 }
 
 class Algoritmo {
-    + agregarBloque(unBloque : Bloque) : void
+    + agregar(unBloque : Bloque) : void
     + sacar(unBloque : Bloque) : void
     + ejecutar(unSectorDibujo : SectorDibujo) : void
 }
+
+class Dibujo {
+    + agregarTrazo(direccion : Direccion, dibuja : boolean) : void
+    + existe(posicion : Posicion) : boolean
+}
+
+class Arista {
+    + contiene(posicion : Posicion) : boolean
+}
+
+class Vertice {
+    + contiene(posicion : Posicion) : boolean
+    + actualizar(direccion : Direccion) : Vertice
+}
+
+class Posicion {
+    - coordenadaX : int
+    - coordenadaY : int
+    + actualizarCoordenadas(x : int, y : int) : Posicion
+    + esIgual(posicion : Posicion) : boolean
+}
+
 Algoritmo "1" o-- "0..*" Bloque
-Bloque ..> SectorDibujo
-SectorDibujo "1" o-- "1..*" Movimiento
-FabricaAbstractaDeBloques .> Bloque
-AlgoBlocks -> Algoritmo
-AlgoBlocks --> FabricaAbstractaDeBloques
-FabricaAbstractaDeBloques <|.. FabricaConcretaBloqueQueDibuja
-FabricaAbstractaDeBloques <|.. FabricaConcretaBloqueQueNoDibuja
+Algoritmo ..> SectorDibujo
+Bloque ..right> SectorDibujo
+SectorDibujo *--right Dibujo
+Dibujo "1" *-- "1..*" Arista
+Arista "1" *--left "2" Vertice
+Vertice *--left Posicion
 @enduml
 
 
@@ -106,56 +93,33 @@ interface Bloque {
 
 }
 class BloqueMovimiento {
-    + BloqueMovimiento(movimiento : Movimiento)
+    + BloqueMovimiento(direccion : Direccion)
     + ejecutar(unSectorDibujo : SectorDibujo) : void
     + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
 }
-abstract class Movimiento {
-    + Movimiento(estado : Estado)
-    + estaDibujado() : boolean
-    + {abstract} esIgualA(movimiento : Movimiento) : boolean
-    + {abstract} invertir() : Movimiento
+abstract class Direccion {
+    + actualizarPosicion(posicion : Posicion) : Posicion
+    + {abstract} invertir() : Direccion
 }
-class Arriba {
-    + estaDibujado() : boolean
-    + esIgualA(movimiento : Movimiento) : boolean
-    + invertir() : Movimiento
+class Norte {
+    + invertir() : Sur
 }
-class Abajo {
-    + estaDibujado() : boolean
-    + esIgualA(movimiento : Movimiento) : boolean
-    + invertir() : Movimiento
+class Sur {
+    + invertir() : Norte
 }
-class Derecha {
-    + estaDibujado() : boolean
-    + esIgualA(movimiento : Movimiento) : boolean
-    + invertir() : Movimiento
+class Este {
+    + invertir() : Oeste
 }
-class Izquierda {
-    + estaDibujado() : boolean
-    + esIgualA(movimiento : Movimiento) : boolean
-    + invertir() : Movimiento
-}
-interface Estado {
-    + {abstract} estaDibujado() : boolean
-}
-class Dibuja {
-    + estaDibujado() : boolean
-}
-class NoDibuja {
-    + estaDibujado() : boolean
+class Oeste {
+    + invertir() : Este
 }
 
-Movimiento *--right Estado
-Estado <|.. Dibuja
-Estado <|.. NoDibuja
 Bloque <|.. BloqueMovimiento
-
-BloqueMovimiento *-- Movimiento
-Movimiento <|... Arriba
-Movimiento <|.. Abajo
-Movimiento <|... Derecha
-Movimiento <|.. Izquierda
+BloqueMovimiento *--right Direccion
+Direccion <|.. Norte
+Direccion <|.. Sur
+Direccion <|.. Este
+Direccion <|.. Oeste
 @enduml
 
 
@@ -185,7 +149,7 @@ interface Bloque {
 
 }
 class BloqueMovimiento {
-    + BloqueMovimiento(movimiento : Movimiento)
+    + BloqueMovimiento(direccion : Direccion)
     + ejecutar(unSectorDibujo : SectorDibujo) : void
     + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
 }

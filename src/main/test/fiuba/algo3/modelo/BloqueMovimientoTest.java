@@ -1,179 +1,225 @@
 package fiuba.algo3.modelo;
 
 import fiuba.algo3.modelo.bloques.BloqueMovimiento;
-import fiuba.algo3.modelo.movimientos.Dibuja;
-import fiuba.algo3.modelo.movimientos.NoDibuja;
-import fiuba.algo3.modelo.movimientos.Arriba;
-import fiuba.algo3.modelo.movimientos.Abajo;
-import fiuba.algo3.modelo.movimientos.Izquierda;
-import fiuba.algo3.modelo.movimientos.Derecha;
 
+import fiuba.algo3.modelo.direcciones.Este;
+import fiuba.algo3.modelo.direcciones.Oeste;
+import fiuba.algo3.modelo.direcciones.Norte;
+import fiuba.algo3.modelo.direcciones.Sur;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BloqueMovimientoTest {
-    // TODO: Alejo corregir los get.Class() por el esIgual()
     @Test
-    public void test01BloqueMovimientoTieneMovimientoDerechaNoDibuja(){
-        NoDibuja estado = new NoDibuja();
-        Derecha derechaNoDibuja  = new Derecha(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(derechaNoDibuja);
-
-        assertEquals(derechaNoDibuja,bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test02BloqueMovimientoTieneMovimientoDerechaDibuja(){
-        Dibuja estado = new Dibuja();
-        Derecha derechaDibuja = new Derecha(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(derechaDibuja);
-
-        assertEquals(derechaDibuja,bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test03BloqueMovimientoTieneMovimientoIzquierdaNoDibuja(){
-        NoDibuja estado = new NoDibuja();
-        Izquierda izquierdaNoDibuja       = new Izquierda(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(izquierdaNoDibuja);
-
-        assertEquals(izquierdaNoDibuja,bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test04BloqueMovimientoTieneMovimientoIzquierdaDibuja(){
-        Dibuja estado = new Dibuja();
-        Izquierda izquierdaDibuja = new Izquierda(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(izquierdaDibuja);
-
-        assertEquals(izquierdaDibuja,bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test05BloqueMovimientoTieneMovimientoIzquierdaNoDibuja(){
-        NoDibuja estado = new NoDibuja();
-        Arriba arribaNoDibuja = new Arriba(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(arribaNoDibuja);
-
-        assertEquals(arribaNoDibuja,bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test06BloqueMovimientoTieneMovimientoArribaDibuja(){
-        Dibuja estado = new Dibuja();
-        Arriba arribaDibuja   = new Arriba(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(arribaDibuja);
-
-        assertEquals(arribaDibuja,bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test07BloqueMovimientoTieneMovimientoIzquierdaNoDibuja(){
-        NoDibuja estado = new NoDibuja();
-        Abajo abajoNoDibuja = new Abajo(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(abajoNoDibuja);
-
-        assertEquals(abajoNoDibuja,bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test08BloqueMovimientoTieneMovimientoArribaDibuja(){
-        Dibuja estado = new Dibuja();
-        Abajo abajoDibuja = new Abajo(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(abajoDibuja);
-
-        assertEquals(abajoDibuja,bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test09BloqueMovimientoTieneMovimientoDerechaDibujandoYSeInvierteAIzquierda(){
-        Dibuja estado = new Dibuja();
-        Derecha derechaDibuja = new Derecha(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(derechaDibuja);
-
-        bloqueMovimiento.invertirMovimiento();
-        assertNotEquals(derechaDibuja,bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test10BloqueMovimientoTieneMovimientoIzquierdaDibujandoYSeInvierteADerecha(){
-        Dibuja estado = new Dibuja();
-        Izquierda izquierdaDibuja = new Izquierda(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(izquierdaDibuja);
-
-        bloqueMovimiento.invertirMovimiento();
-        assertNotEquals(izquierdaDibuja,bloqueMovimiento.obtenerMovimiento());
-    }
-
-    @Test
-    public void test11BloqueMovimientoTieneMovimientoAbajoDibujandoYSeInvierteArriba(){
-        Dibuja estado = new Dibuja();
-        Abajo abajoDibuja = new Abajo(estado);
-        Arriba arribaDibuja = new Arriba(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(abajoDibuja);
-
-        bloqueMovimiento.invertirMovimiento();
-        assertTrue(arribaDibuja.esIgualA(bloqueMovimiento.obtenerMovimiento()));
-    }
-
-    @Test
-    public void test12BloqueMovimientoTieneMovimientoArribaDibujandoYSeInvierteAbajo(){
-        Dibuja estado = new Dibuja();
-        Arriba arribaDibuja = new Arriba(estado);
-        Abajo abajoDibuja = new Abajo(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(arribaDibuja);
-
-        bloqueMovimiento.invertirMovimiento();
-        assertTrue(abajoDibuja.esIgualA(bloqueMovimiento.obtenerMovimiento()));
-    }
-
-    @Test
-    public void test13SectorDibujoContieneArribaTrasEjecutarseBloqueMovimiento(){
-        Dibuja estado = new Dibuja();
-        Arriba arribaDibuja   = new Arriba(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(arribaDibuja);
+    public void test01EjecutarUnBloqueMovimientoHaciaElEste() {
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este());
         SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.invertirDibuja();
+        bloqueEste.ejecutar(sectorDibujo);
 
-        bloqueMovimiento.ejecutar(sectorDibujo);
-
-        assertTrue(sectorDibujo.obtenerMovimientos().contains(arribaDibuja));
+        assertTrue(sectorDibujo.existe(new Posicion(1, 0)));
     }
 
     @Test
-    public void test14SectorDibujoContieneAbajoTrasEjecutarseBloqueMovimiento(){
-        Dibuja estado = new Dibuja();
-        Abajo abajoDibuja = new Abajo(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(abajoDibuja);
+    public void test02EjecutarUnBloqueMovimientoHaciaElOeste() {
+        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste());
         SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.invertirDibuja();
+        bloqueOeste.ejecutar(sectorDibujo);
 
-        bloqueMovimiento.ejecutar(sectorDibujo);
-
-        assertTrue(sectorDibujo.obtenerMovimientos().contains(abajoDibuja));
+        assertTrue(sectorDibujo.existe(new Posicion(-1, 0)));
     }
 
     @Test
-    public void test15SectorDibujoContieneDerechaTrasEjecutarseBloqueMovimiento(){
-        Dibuja estado = new Dibuja();
-        Derecha derechaDibuja = new Derecha(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(derechaDibuja);
+    public void test03EjecutarUnBloqueMovimientoHaciaElNorte() {
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
         SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.invertirDibuja();
+        bloqueNorte.ejecutar(sectorDibujo);
 
-        bloqueMovimiento.ejecutar(sectorDibujo);
-
-        assertTrue(sectorDibujo.obtenerMovimientos().contains(derechaDibuja));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
     }
 
     @Test
-    public void test16SectorDibujoContieneIzquierdaTrasEjecutarseBloqueMovimiento(){
-        Dibuja estado = new Dibuja();
-        Izquierda izquierdaDibuja = new Izquierda(estado);
-        BloqueMovimiento bloqueMovimiento = new BloqueMovimiento(izquierdaDibuja);
+    public void test04EjecutarUnBloqueMovimientoHaciaElSur() {
+        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Sur());
         SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.invertirDibuja();
+        bloqueSur.ejecutar(sectorDibujo);
 
-        bloqueMovimiento.ejecutar(sectorDibujo);
+        assertTrue(sectorDibujo.existe(new Posicion(0, -1)));
+    }
 
-        assertTrue(sectorDibujo.obtenerMovimientos().contains(izquierdaDibuja));
+    @Test
+    public void test05EjecutarCincoBloquesMovimientoHaciaElEste() {
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este());
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.invertirDibuja();
+
+        bloqueEste.ejecutar(sectorDibujo);
+        bloqueEste.ejecutar(sectorDibujo);
+        bloqueEste.ejecutar(sectorDibujo);
+        bloqueEste.ejecutar(sectorDibujo);
+        bloqueEste.ejecutar(sectorDibujo);
+
+        assertTrue(sectorDibujo.existe(new Posicion(1, 0)));
+        assertTrue(sectorDibujo.existe(new Posicion(2, 0)));
+        assertTrue(sectorDibujo.existe(new Posicion(3, 0)));
+        assertTrue(sectorDibujo.existe(new Posicion(4, 0)));
+        assertTrue(sectorDibujo.existe(new Posicion(5, 0)));
+    }
+
+    @Test
+    public void test06EjecutarCincoBloqueMovimientoHaciaElOeste() {
+        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste());
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.invertirDibuja();
+
+        bloqueOeste.ejecutar(sectorDibujo);
+        bloqueOeste.ejecutar(sectorDibujo);
+        bloqueOeste.ejecutar(sectorDibujo);
+        bloqueOeste.ejecutar(sectorDibujo);
+        bloqueOeste.ejecutar(sectorDibujo);
+
+        assertTrue(sectorDibujo.existe(new Posicion(-1, 0)));
+        assertTrue(sectorDibujo.existe(new Posicion(-2, 0)));
+        assertTrue(sectorDibujo.existe(new Posicion(-3, 0)));
+        assertTrue(sectorDibujo.existe(new Posicion(-4, 0)));
+        assertTrue(sectorDibujo.existe(new Posicion(-5, 0)));
+    }
+
+    @Test
+    public void test07EjecutarCincoBloqueMovimientoHaciaElNorte() {
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.invertirDibuja();
+
+        bloqueNorte.ejecutar(sectorDibujo);
+        bloqueNorte.ejecutar(sectorDibujo);
+        bloqueNorte.ejecutar(sectorDibujo);
+        bloqueNorte.ejecutar(sectorDibujo);
+        bloqueNorte.ejecutar(sectorDibujo);
+
+        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 2)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 3)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 4)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 5)));
+    }
+
+    @Test
+    public void test08EjecutarCincoBloqueMovimientoHaciaElSur() {
+        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Sur());
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.invertirDibuja();
+
+        bloqueSur.ejecutar(sectorDibujo);
+        bloqueSur.ejecutar(sectorDibujo);
+        bloqueSur.ejecutar(sectorDibujo);
+        bloqueSur.ejecutar(sectorDibujo);
+        bloqueSur.ejecutar(sectorDibujo);
+
+        assertTrue(sectorDibujo.existe(new Posicion(0, -1)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, -2)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, -3)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, -4)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, -5)));
+    }
+
+    @Test
+    public void test09EjecutarCincoBloquesDeMovimientoHaciaCadaDireccion() {
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
+        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Sur());
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este());
+        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste());
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.invertirDibuja();
+
+        for (int i = 0; i < 5; i++) {
+            bloqueNorte.ejecutar(sectorDibujo);
+        }
+        for (int i = 0; i < 5; i++) {
+            bloqueEste.ejecutar(sectorDibujo);
+        }
+        for (int i = 0; i < 5; i++) {
+            bloqueSur.ejecutar(sectorDibujo);
+        }
+        for (int i = 0; i < 5; i++) {
+            bloqueOeste.ejecutar(sectorDibujo);
+        }
+
+        // 5 veces hacia el norte
+        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 2)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 3)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 4)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 5)));
+
+        // 5 veces hacia el este
+        assertTrue(sectorDibujo.existe(new Posicion(1, 5)));
+        assertTrue(sectorDibujo.existe(new Posicion(2, 5)));
+        assertTrue(sectorDibujo.existe(new Posicion(3, 5)));
+        assertTrue(sectorDibujo.existe(new Posicion(4, 5)));
+        assertTrue(sectorDibujo.existe(new Posicion(5, 5)));
+
+        // 5 veces hacia el sur
+        assertTrue(sectorDibujo.existe(new Posicion(5, 4)));
+        assertTrue(sectorDibujo.existe(new Posicion(5, 3)));
+        assertTrue(sectorDibujo.existe(new Posicion(5, 2)));
+        assertTrue(sectorDibujo.existe(new Posicion(5, 1)));
+        assertTrue(sectorDibujo.existe(new Posicion(5, 0)));
+
+        // 5 veces hacia el oeste
+        assertTrue(sectorDibujo.existe(new Posicion(4, 0)));
+        assertTrue(sectorDibujo.existe(new Posicion(3, 0)));
+        assertTrue(sectorDibujo.existe(new Posicion(2, 0)));
+        assertTrue(sectorDibujo.existe(new Posicion(1, 0)));
+        assertTrue(sectorDibujo.existe(new Posicion(0, 0)));
+    }
+
+    @Test
+    public void test10EjecutarUnBloqueDeMovimientoHaciaElNorteInvertido() {
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.invertirDibuja();
+        bloqueNorte.ejecutarInvertido(sectorDibujo);
+
+        assertTrue(sectorDibujo.existe(new Posicion(0, -1)));
+        assertFalse(sectorDibujo.existe(new Posicion(0, 1)));
+    }
+
+    @Test
+    public void test11EjecutarUnBloqueDeMovimientoHaciaElSurInvertido() {
+        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Sur());
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.invertirDibuja();
+        bloqueSur.ejecutarInvertido(sectorDibujo);
+
+        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
+        assertFalse(sectorDibujo.existe(new Posicion(0, -1)));
+    }
+
+    @Test
+    public void test12EjecutarUnBloqueDeMovimientoHaciaElEsteInvertido() {
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este());
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.invertirDibuja();
+        bloqueEste.ejecutarInvertido(sectorDibujo);
+
+        assertTrue(sectorDibujo.existe(new Posicion(-1, 0)));
+        assertFalse(sectorDibujo.existe(new Posicion(1, 0)));
+    }
+
+    @Test
+    public void test13EjecutarUnBloqueDeMovimientoHaciaElOesteInvertido() {
+        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste());
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.invertirDibuja();
+        bloqueOeste.ejecutarInvertido(sectorDibujo);
+
+        assertTrue(sectorDibujo.existe(new Posicion(1, 0)));
+        assertFalse(sectorDibujo.existe(new Posicion(-1, 0)));
     }
 }
