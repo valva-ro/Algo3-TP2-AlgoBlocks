@@ -1,9 +1,16 @@
 package fiuba.algo3;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -11,16 +18,40 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
-    @Override
-    public void start(Stage stage) {
-        var label = new Label("Construyendo AlgoBlocks...");
-        var scene = new Scene(new StackPane(label), 640, 480);
-        stage.setScene(scene);
-        stage.show();
-    }
+    private Stage escenario;
+    private static final String TITULO_VENTANA = "AlgoBlocks";
+    private static final int ANCHO = 800;
+    private static final int ALTO = 600;
 
     public static void main(String[] args) {
         launch();
+    }
+
+    @Override
+    public void start(Stage escenario) {
+        this.escenario = escenario;
+
+        BorderPane raiz = new BorderPane();
+
+        Button botonJugar = new Button("¡Jugar!");
+        botonJugar.setId("botonJugar");
+
+        Button botonAcercaDe = new Button("Acerca de...");
+        botonAcercaDe.setId("botonAcercaDe");
+
+        Button botonSalir = new Button("Salir");
+        botonSalir.setId("botonSalir");
+        botonSalir.setOnAction(actionEvent -> Platform.exit());
+
+        VBox botonera = new VBox(botonJugar, botonAcercaDe, botonSalir);
+        botonera.setAlignment(Pos.CENTER);
+        botonera.setSpacing(16);
+
+        raiz.setCenter(botonera);
+
+        Scene escenaInicial = new Scene(raiz, ANCHO, ALTO);
+        escenario.setScene(escenaInicial);
+        escenario.show();
     }
 
 }
