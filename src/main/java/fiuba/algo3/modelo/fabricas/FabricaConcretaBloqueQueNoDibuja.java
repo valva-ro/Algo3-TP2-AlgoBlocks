@@ -31,4 +31,3 @@ public class FabricaConcretaBloqueQueNoDibuja implements FabricaAbstractaDeBloqu
         return new BloqueMovimiento(new Este(), estado);
     }
 }
-
