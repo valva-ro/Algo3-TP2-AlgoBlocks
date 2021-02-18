@@ -37,4 +37,8 @@ public class Recorrido {
         }
         return existe;
     }
+
+    public Posicion obtenerUltimoVertice(){
+        return this.aristas.get(aristas.size() - 1).obtenerDestino();
+    }
 }
