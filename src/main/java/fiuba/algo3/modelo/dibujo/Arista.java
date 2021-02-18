@@ -18,8 +18,4 @@ public class Arista {
     public boolean contiene(Posicion origen, Posicion destino) {
         return (this.origen.esIgual(origen) && this.destino.esIgual(destino));
     }
-
-    public Posicion obtenerDestino() {
-        return destino;
-    }
 }
