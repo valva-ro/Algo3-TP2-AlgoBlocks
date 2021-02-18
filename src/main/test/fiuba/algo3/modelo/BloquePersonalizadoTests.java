@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BloquePersonalizadoTests {
@@ -104,5 +105,74 @@ public class BloquePersonalizadoTests {
         assert(sectorDibujo.existePosicion(new Posicion(4, 4)));
         assert(sectorDibujo.existePosicion(new Posicion(5, 4)));
         assert(sectorDibujo.existePosicion(new Posicion(5, 5)));
+    }
+
+    @Test
+    public void test07AlAgregarVariosBloquesABloquePersonalizadoYLuegoSacarlosTodosElBloqueNoPuedeEjecutarse() {
+
+        BloquePersonalizado bloque = new BloquePersonalizado();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este(), new Dibuja());
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
+
+        for (int i = 0; i < 5; i++) {
+            bloque.agregar(bloqueEste);
+            bloque.agregar(bloqueNorte);
+        }
+
+        for (int i = 0; i < 5; i++) {
+            bloque.sacar(bloqueEste);
+            bloque.sacar(bloqueNorte);
+        }
+
+        assertThrows(BloquePersonalizadoNoPuedeEjecutarseSinBloquesError.class,
+                () -> bloque.ejecutar(sectorDibujo));
+
+        assertFalse(sectorDibujo.existePosicion(new Posicion(1, 0)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(1, 1)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(2, 1)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(2, 2)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(3, 2)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(3, 3)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(4, 3)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(4, 4)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(5, 4)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(5, 5)));
+    }
+
+    @Test
+    public void test07AlAgregarVariosBloquesABloquePersonalizadoYLuegoSacarlosTodosExceptoUnoDeCadaElSectorDibujoQuedaConDosAristas() {
+
+        BloquePersonalizado bloque = new BloquePersonalizado();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este(), new Dibuja());
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
+
+        for (int i = 0; i < 5; i++) {
+            bloque.agregar(bloqueEste);
+            bloque.agregar(bloqueNorte);
+        }
+
+        for (int i = 0; i < 4; i++) {
+            bloque.sacar(bloqueEste);
+            bloque.sacar(bloqueNorte);
+        }
+
+        bloque.ejecutar(sectorDibujo);
+
+        assert(sectorDibujo.existeArista(new Posicion(0, 0), new Posicion(1, 0)));
+        assert(sectorDibujo.existeArista(new Posicion(1, 0), new Posicion(1, 1)));
+
+        assert(sectorDibujo.existePosicion(new Posicion(1, 0)));
+        assert(sectorDibujo.existePosicion(new Posicion(1, 1)));
+
+        assertFalse(sectorDibujo.existePosicion(new Posicion(2, 1)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(2, 2)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(3, 2)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(3, 3)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(4, 3)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(4, 4)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(5, 4)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(5, 5)));
     }
 }

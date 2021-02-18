@@ -17,9 +17,7 @@ public class AlgoritmoTests {
         SectorDibujo sectorDibujo = new SectorDibujo();
 
         assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
-                () -> {
-                    algoritmo.ejecutar(sectorDibujo);
-                });
+                () -> algoritmo.ejecutar(sectorDibujo));
     }
 
     @Test
@@ -231,9 +229,7 @@ public class AlgoritmoTests {
         algoritmo.sacar(bloqueNorte);
 
         assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
-                () -> {
-                    algoritmo.ejecutar(sectorDibujo);
-                });
+                () -> algoritmo.ejecutar(sectorDibujo));
 
         assertFalse(sectorDibujo.existeArista(origen, destino));
         assertFalse(sectorDibujo.existePosicion(destino));
@@ -281,9 +277,7 @@ public class AlgoritmoTests {
         algoritmo.sacar(bloqueNorte);
 
         assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
-                () -> {
-                    algoritmo.ejecutar(sectorDibujo);
-                });
+                () -> algoritmo.ejecutar(sectorDibujo));
 
         assertFalse(sectorDibujo.existeArista(origen, primerDestino));
         assertFalse(sectorDibujo.existeArista(primerDestino, segundoDestino));
@@ -331,5 +325,89 @@ public class AlgoritmoTests {
 
         assertFalse(sectorDibujo.existeArista(puntoIntermedioEsteSur, destinoSurOeste));
         assertFalse(sectorDibujo.existePosicion(puntoIntermedioEsteSur));
+    }
+
+    @Test
+    public void test19AlAgregarUnBloqueDeRepeticionTripleConUnBloqueDeMovimientoHaciaArribaYSacarElBloqueDeRepeticionElAlgoritmoNoPuedeEjecutarse() {
+        Algoritmo algoritmo = new Algoritmo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueRepetirTresVeces bloqueRepeticionTriple = new BloqueRepetirTresVeces();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
+        Posicion origen = new Posicion(0, 0);
+        Posicion primerDestino = new Posicion(0, 1);
+        Posicion segundoDestino = new Posicion(0, 2);
+        Posicion tercerDestino = new Posicion(0, 3);
+
+        bloqueRepeticionTriple.agregar(bloqueNorte);
+        algoritmo.agregar(bloqueRepeticionTriple);
+        algoritmo.sacar(bloqueRepeticionTriple);
+
+        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+                () -> algoritmo.ejecutar(sectorDibujo));
+
+        assertFalse(sectorDibujo.existeArista(origen, primerDestino));
+        assertFalse(sectorDibujo.existeArista(primerDestino, segundoDestino));
+        assertFalse(sectorDibujo.existeArista(segundoDestino, tercerDestino));
+        assertFalse(sectorDibujo.existeArista(origen, tercerDestino));
+    }
+
+    @Test
+    public void test20AlAgregarUnBloqueDeRepeticionDobleConUnBloqueDeMovimientoHaciaArribaYSacarElBloqueDeRepeticionElAlgoritmoNoPuedeEjecutarse() {
+        Algoritmo algoritmo = new Algoritmo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueRepetirDosVeces bloqueRepeticionDoble = new BloqueRepetirDosVeces();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
+        Posicion origen = new Posicion(0, 0);
+        Posicion primerDestino = new Posicion(0, 1);
+        Posicion segundoDestino = new Posicion(0, 2);
+
+        bloqueRepeticionDoble.agregar(bloqueNorte);
+        algoritmo.agregar(bloqueRepeticionDoble);
+        algoritmo.sacar(bloqueRepeticionDoble);
+
+        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+                () -> algoritmo.ejecutar(sectorDibujo));
+
+        assertFalse(sectorDibujo.existeArista(origen, primerDestino));
+        assertFalse(sectorDibujo.existeArista(primerDestino, segundoDestino));
+        assertFalse(sectorDibujo.existeArista(origen, segundoDestino));
+    }
+
+    @Test
+    public void test21AlAgregarUnBloquePersonalizadoConUnBloqueDeMovimientoHaciaArribaYSacarElBloquePersonalizadoElAlgoritmoNoPuedeEjecutarse() {
+        Algoritmo algoritmo = new Algoritmo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
+        Posicion origen = new Posicion(0, 0);
+        Posicion destino = new Posicion(0, 1);
+
+        bloquePersonalizado.agregar(bloqueNorte);
+        algoritmo.agregar(bloquePersonalizado);
+        algoritmo.sacar(bloquePersonalizado);
+
+        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+                () -> algoritmo.ejecutar(sectorDibujo));
+
+        assertFalse(sectorDibujo.existeArista(origen, destino));
+    }
+
+    @Test
+    public void test22AlAgregarUnBloqueInvertirConUnBloqueDeMovimientoHaciaArribaYSacarElBloqueDeInvertirElAlgoritmoNoPuedeEjecutarse() {
+        Algoritmo algoritmo = new Algoritmo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        BloqueInvertir bloqueInvertir = new BloqueInvertir();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
+        Posicion origen = new Posicion(0, 0);
+        Posicion destino = new Posicion(0, -1);
+
+        bloqueInvertir.agregar(bloqueNorte);
+        algoritmo.agregar(bloqueInvertir);
+        algoritmo.sacar(bloqueInvertir);
+
+        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+                () -> algoritmo.ejecutar(sectorDibujo));
+
+        assertFalse(sectorDibujo.existeArista(origen, destino));
     }
 }
