@@ -6,15 +6,15 @@ import fiuba.algo3.modelo.direcciones.Direccion;
 public class SectorDibujo {
 
     private Recorrido recorridoDibujado = new Recorrido();
-    private Recorrido recorridoTotal = new Recorrido();
+    private Posicion posicionFinal = new Posicion();
 
     public void dibujar(Direccion direccion) {
-        this.recorridoDibujado.agregarArista(direccion, this.recorridoTotal);
-        this.recorridoTotal.agregarArista(direccion, this.recorridoTotal);
+
+        posicionFinal = this.recorridoDibujado.agregarArista(direccion, posicionFinal);
     }
 
     public void noDibujar(Direccion direccion) {
-        this.recorridoTotal.agregarArista(direccion, this.recorridoTotal);
+        posicionFinal = direccion.actualizarPosicion(posicionFinal);
     }
 
     public boolean existePosicion(Posicion posicion) {

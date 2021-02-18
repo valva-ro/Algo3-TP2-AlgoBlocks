@@ -14,12 +14,12 @@ public class Recorrido {
         aristas.add(primerTrazo);
     }
 
-    public void agregarArista(Direccion direccion, Recorrido recorrido) {
-        int ultimaPosicion = aristas.size() - 1;
-        Posicion origen = recorrido.aristas.get(ultimaPosicion).obtenerDestino();
-        Posicion destino = direccion.actualizarPosicion(origen);
+    public Posicion agregarArista(Direccion direccion, Posicion posicionFinal) {
+        Posicion origen = posicionFinal;
+        Posicion destino = direccion.actualizarPosicion(posicionFinal);
         Arista arista = new Arista(origen, destino);
         aristas.add(arista);
+        return destino;
     }
 
     public boolean existeVertice(Posicion posicion) {
