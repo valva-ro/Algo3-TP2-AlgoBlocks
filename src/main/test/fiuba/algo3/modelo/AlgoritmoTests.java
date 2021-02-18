@@ -217,4 +217,119 @@ public class AlgoritmoTests {
         assertTrue(sectorDibujo.existePosicion(new Posicion(0, 5)));
         assertTrue(sectorDibujo.existePosicion(new Posicion(0, 6)));
     }
+
+    @Test
+    public void test15AlAgregarYSacarUnBloqueHaciaElNorteAntesDeEjecutaNoSeDibujaNada(){
+
+        Algoritmo algoritmo = new Algoritmo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        Posicion origen = new Posicion(0, 0);
+        Posicion destino = new Posicion(0, 1);
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
+
+        algoritmo.agregar(bloqueNorte);
+        algoritmo.sacar(bloqueNorte);
+
+        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+                () -> {
+                    algoritmo.ejecutar(sectorDibujo);
+                });
+
+        assertFalse(sectorDibujo.existeArista(origen, destino));
+        assertFalse(sectorDibujo.existePosicion(destino));
+        assertTrue(sectorDibujo.existePosicion(origen));
+    }
+
+    @Test
+    public void test16AlAgregarDosBloquesHaciaElNorteYSacarUnoSoloAntesDeEjecutaSeDibujaUnaSolaArista(){
+
+        Algoritmo algoritmo = new Algoritmo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        Posicion origen = new Posicion(0, 0);
+        Posicion primerDestino = new Posicion(0, 1);
+        Posicion segundoDestino = new Posicion(0, 2);
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
+
+        algoritmo.agregar(bloqueNorte);
+        algoritmo.agregar(bloqueNorte);
+        algoritmo.sacar(bloqueNorte);
+
+        algoritmo.ejecutar(sectorDibujo);
+
+        assertTrue(sectorDibujo.existeArista(origen, primerDestino));
+        assertTrue(sectorDibujo.existePosicion(primerDestino));
+        assertTrue(sectorDibujo.existePosicion(origen));
+
+        assertFalse(sectorDibujo.existeArista(origen, segundoDestino));
+        assertFalse(sectorDibujo.existeArista(primerDestino, segundoDestino));
+        assertFalse(sectorDibujo.existePosicion(segundoDestino));
+    }
+
+    @Test
+    public void test17AlAgregarDosBloquesHaciaElNorteYSacarUnoSoloAntesDeEjecutaSeDibujaUnaSolaArista(){
+
+        Algoritmo algoritmo = new Algoritmo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        Posicion origen = new Posicion(0, 0);
+        Posicion primerDestino = new Posicion(0, 1);
+        Posicion segundoDestino = new Posicion(0, 2);
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
+
+        algoritmo.agregar(bloqueNorte);
+        algoritmo.agregar(bloqueNorte);
+        algoritmo.sacar(bloqueNorte);
+        algoritmo.sacar(bloqueNorte);
+
+        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+                () -> {
+                    algoritmo.ejecutar(sectorDibujo);
+                });
+
+        assertFalse(sectorDibujo.existeArista(origen, primerDestino));
+        assertFalse(sectorDibujo.existeArista(primerDestino, segundoDestino));
+        assertFalse(sectorDibujo.existeArista(origen, segundoDestino));
+
+        assertTrue(sectorDibujo.existePosicion(origen));
+        assertFalse(sectorDibujo.existePosicion(primerDestino));
+        assertFalse(sectorDibujo.existePosicion(segundoDestino));
+    }
+
+    @Test
+    public void test18AlAgregarYSacarVariosBloquesMenosUnoAntesDeEjecutaNoSeDibujaNada(){
+
+        Algoritmo algoritmo = new Algoritmo();
+        SectorDibujo sectorDibujo = new SectorDibujo();
+
+        Posicion origen = new Posicion(0, 0);
+        Posicion puntoIntermedioOrigenNorte = new Posicion(0, 1);
+        Posicion puntoIntermedioNorteEste = new Posicion(1, 1);
+        Posicion puntoIntermedioEsteSur = new Posicion(1, 0);
+        Posicion destinoSurOeste = new Posicion(0, 0);
+
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
+        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Sur(), new Dibuja());
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este(), new Dibuja());
+        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste(), new Dibuja());
+
+        algoritmo.agregar(bloqueNorte);
+        algoritmo.agregar(bloqueEste);
+        algoritmo.agregar(bloqueSur);
+        algoritmo.agregar(bloqueOeste);
+
+        algoritmo.sacar(bloqueSur);
+        algoritmo.sacar(bloqueEste);
+        algoritmo.sacar(bloqueOeste);
+
+        algoritmo.ejecutar(sectorDibujo);
+
+        assertTrue(sectorDibujo.existeArista(origen, puntoIntermedioOrigenNorte));
+        assertTrue(sectorDibujo.existePosicion(puntoIntermedioOrigenNorte));
+        assertTrue(sectorDibujo.existePosicion(origen));
+
+        assertFalse(sectorDibujo.existeArista(puntoIntermedioNorteEste, puntoIntermedioEsteSur));
+        assertFalse(sectorDibujo.existePosicion(puntoIntermedioEsteSur));
+
+        assertFalse(sectorDibujo.existeArista(puntoIntermedioEsteSur, destinoSurOeste));
+        assertFalse(sectorDibujo.existePosicion(puntoIntermedioEsteSur));
+    }
 }
