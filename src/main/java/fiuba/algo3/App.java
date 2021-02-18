@@ -1,17 +1,9 @@
 package fiuba.algo3;
 
+import fiuba.algo3.vista.VistaInicio;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -31,25 +23,9 @@ public class App extends Application {
     @Override
     public void start(Stage escenario) {
 
-        BorderPane raiz = new BorderPane();
+        VistaInicio vistaInicio = new VistaInicio(escenario);
+        Scene escenaInicial = new Scene(vistaInicio, ANCHO, ALTO);
 
-        Button botonJugar = new Button("¡Jugar!");
-        botonJugar.setId("botonJugar");
-
-        Button botonAcercaDe = new Button("Acerca de...");
-        botonAcercaDe.setId("botonAcercaDe");
-
-        Button botonSalir = new Button("Salir");
-        botonSalir.setId("botonSalir");
-        botonSalir.setOnAction(actionEvent -> Platform.exit());
-
-        VBox botonera = new VBox(botonJugar, botonAcercaDe, botonSalir);
-        botonera.setAlignment(Pos.CENTER);
-        botonera.setSpacing(16);
-
-        raiz.setCenter(botonera);
-
-        Scene escenaInicial = new Scene(raiz, ANCHO, ALTO);
         escenario.setScene(escenaInicial);
         escenario.setTitle(TITULO_VENTANA);
         escenario.getIcons().add(new Image(RUTA_ICONO));
