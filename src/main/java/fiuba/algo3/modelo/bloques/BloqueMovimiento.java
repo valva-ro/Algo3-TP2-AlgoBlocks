@@ -2,7 +2,6 @@ package fiuba.algo3.modelo.bloques;
 
 import fiuba.algo3.modelo.SectorDibujo;
 import fiuba.algo3.modelo.direcciones.Direccion;
-import fiuba.algo3.modelo.direcciones.Norte;
 
 public class BloqueMovimiento implements Bloque {
 
