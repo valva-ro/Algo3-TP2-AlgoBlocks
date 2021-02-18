@@ -115,14 +115,12 @@ public class AlgoBlocksTest {
         algoBlocks.ejecutar(sectorDibujo);
 
         assertFalse(sectorDibujo.existeArista(origen, destino));
-        assertFalse(sectorDibujo.existeArista(origen, destino));
 
         algoBlocks.agregarBloqueBajarLapiz();
         algoBlocks.agregarBloqueMovimientoArriba();
         algoBlocks.agregarBloqueMovimientoAbajo();
         algoBlocks.ejecutar(sectorDibujo);
 
-        assertTrue(sectorDibujo.existeArista(origen, destino));
         assertTrue(sectorDibujo.existeArista(origen, destino));
     }
 }

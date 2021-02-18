@@ -40,12 +40,4 @@ public class AlgoBlocks {
     public void ejecutar(SectorDibujo sectorDibujo){
         algoritmo.ejecutar(sectorDibujo);
     }
-
-    public Algoritmo obtenerAlgoritmo(){
-        return this.algoritmo;
-    }
-
-    public FabricaAbstractaDeBloques obtenerFabrica(){
-        return this.fabricaDeBloques;
-    }
 }
