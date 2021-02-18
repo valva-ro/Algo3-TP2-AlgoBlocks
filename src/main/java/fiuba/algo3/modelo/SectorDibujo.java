@@ -9,12 +9,11 @@ public class SectorDibujo {
     private Posicion posicionFinal = new Posicion();
 
     public void dibujar(Direccion direccion) {
-
-        posicionFinal = this.recorridoDibujado.agregarArista(direccion, posicionFinal);
+        this.posicionFinal = this.recorridoDibujado.agregarArista(direccion, posicionFinal);
     }
 
     public void noDibujar(Direccion direccion) {
-        posicionFinal = direccion.actualizarPosicion(posicionFinal);
+        this.posicionFinal = direccion.actualizarPosicion(posicionFinal);
     }
 
     public boolean existePosicion(Posicion posicion) {
