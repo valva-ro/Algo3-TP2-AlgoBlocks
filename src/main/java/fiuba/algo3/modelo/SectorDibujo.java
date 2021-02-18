@@ -1,27 +1,27 @@
 package fiuba.algo3.modelo;
 
-import fiuba.algo3.modelo.dibujo.Dibujo;
+import fiuba.algo3.modelo.dibujo.Recorrido;
 import fiuba.algo3.modelo.direcciones.Direccion;
 
 public class SectorDibujo {
 
-    private Dibujo dibujo = new Dibujo();
-    private boolean dibuja = false;
-
-    public void invertirDibuja() {
-        this.dibuja = !this.dibuja;
-    }
+    private Recorrido recorridoDibujado = new Recorrido();
+    private Recorrido recorridoTotal = new Recorrido();
 
     public void dibujar(Direccion direccion) {
-        if (dibuja)
-            dibujo.agregarTrazo(direccion, dibuja);
+        this.recorridoDibujado.agregarArista(direccion, this.recorridoTotal);
+        this.recorridoTotal.agregarArista(direccion, this.recorridoTotal);
     }
 
-    public boolean dibuja() {
-        return this.dibuja;
+    public void noDibujar(Direccion direccion) {
+        this.recorridoTotal.agregarArista(direccion, this.recorridoTotal);
     }
 
-    public boolean existe(Posicion posicion) {
-        return dibujo.existe(posicion);
+    public boolean existePosicion(Posicion posicion) {
+        return this.recorridoDibujado.existeVertice(posicion);
+    }
+
+    public boolean existeArista(Posicion origen, Posicion destino) {
+        return this.recorridoDibujado.existeArista(origen, destino);
     }
 }

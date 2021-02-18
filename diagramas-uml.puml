@@ -18,16 +18,41 @@ skinparam note {
 
 title Diagrama de clase general
 
+class AlgoBlocks {
+    + agregarBloqueMovimientoArriba() : void
+    + agregarBloqueMovimientoAbajo() : void
+    + agregarBloqueMovimientoIzquierda() : void
+    + agregarBloqueMovimientoDerecha() : void
+    + agregarBloqueRepetirDoble() : void
+    + agregarBloqueRepetirTriple() : void
+    + agregarBloqueInvertir() : void
+    + agregarBloqueLevantarLapiz() : void
+    + agregarBloqueBajarLapiz() : void
+    + ejecutar() : void
+}
+
+interface FabricaAbstractaDeBloques {
+    + {abstract} crearBloqueMovimientoArriba() : BloqueMovimiento
+    + {abstract} crearBloqueMovimientoAbajo() : BloqueMovimiento
+    + {abstract} crearBloqueMovimientoIzquierda() : BloqueMovimiento
+    + {abstract} crearBloqueMovimientoDerecha() : BloqueMovimiento
+}
+class FabricaConcretaBloqueQueDibuja {
+    + crearBloqueMovimientoArriba() : BloqueMovimiento
+    + crearBloqueMovimientoAbajo() : BloqueMovimiento
+    + crearBloqueMovimientoIzquierda() : BloqueMovimiento
+    + crearBloqueMovimientoDerecha() : BloqueMovimiento
+}
+class FabricaConcretaBloqueQueNoDibuja {
+    + crearBloqueMovimientoArriba() : BloqueMovimiento
+    + crearBloqueMovimientoAbajo() : BloqueMovimiento
+    + crearBloqueMovimientoIzquierda() : BloqueMovimiento
+    + crearBloqueMovimientoDerecha() : BloqueMovimiento
+}
+
 interface Bloque {
     + {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
     + {abstract} invertir() : void
-}
-
-class SectorDibujo {
-    - dibuja : boolean
-    + invertirDibuja() : void
-    + dibujar(direccion : Direccion) : void
-    + existe(posicion : Posicion) : boolean
 }
 
 class Algoritmo {
@@ -36,9 +61,45 @@ class Algoritmo {
     + ejecutar(unSectorDibujo : SectorDibujo) : void
 }
 
-class Dibujo {
-    + agregarTrazo(direccion : Direccion, dibuja : boolean) : void
+Algoritmo "1" o-- "0..*" Bloque
+
+AlgoBlocks -> Algoritmo
+AlgoBlocks --> FabricaAbstractaDeBloques
+FabricaAbstractaDeBloques <|.. FabricaConcretaBloqueQueDibuja
+FabricaAbstractaDeBloques <|.. FabricaConcretaBloqueQueNoDibuja
+@enduml
+
+
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+
+skinparam class {
+    ArrowColor DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+skinparam note {
+    BackgroundColor LightYellow
+    BorderColor DarkBlue
+}
+
+title Diagrama de clase general
+
+
+class SectorDibujo {
+    + invertirDibuja() : void
+    + dibujar(direccion : Direccion) : void
     + existe(posicion : Posicion) : boolean
+}
+class Recorrido {
+    + agregarArista(direccion : Direccion, recorridoTotal : Recorrido) : void
+    + existeVertice(posicion : Posicion) : boolean
+    + existeArista(origen : Posicion, destino : Posicion) : boolean
 }
 
 class Arista {
@@ -52,15 +113,10 @@ class Posicion {
     + actualizar(direccion : Direccion) : Posicion
 }
 
-Algoritmo "1" o-- "0..*" Bloque
-Algoritmo ..> SectorDibujo
-Bloque ..right> SectorDibujo
-SectorDibujo *--right Dibujo
-Dibujo "1" *-- "1..*" Arista
-Arista "1" *--left "2" Posicion
+SectorDibujo "1" *-- "2" Recorrido
+Recorrido "1" *-- "1..*" Arista
+Arista "1" *-- "2" Posicion
 @enduml
-
-
 
 
 @startuml
@@ -92,14 +148,13 @@ class BloqueMovimiento {
     + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
 }
 interface Estado {
-    + {abstract} ejecutar(unSectorDibujo : SectorDibujo)
-    + {abstract} ejecutarInvertido(unSectorDibujo : SectorDibujo)
+    + {abstract} ejecutar(unSectorDibujo : SectorDibujo, direccion : Direccion)
 }
 class Dibuja {
-    + ejecutar(unSectorDibujo : SectorDibujo)
+    + ejecutar(unSectorDibujo : SectorDibujo, direccion : Direccion)
 }
 class NoDibuja {
-    + ejecutar(unSectorDibujo : SectorDibujo)
+    + ejecutar(unSectorDibujo : SectorDibujo, direccion : Direccion)
 }
 abstract class Direccion {
     + actualizarPosicion(posicion : Posicion) : Posicion

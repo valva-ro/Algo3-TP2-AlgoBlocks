@@ -6,7 +6,7 @@
 [![Issues][issues-shield]][issues-url]
 [![License][license-shield]][license-url]
 
-# TP2 Algoritmos 3: AlgoBlocks <img height="35" src="https://raw.githubusercontent.com/valva-ro/Algo3-TP2-AlgoBlocks/master/logo.png">
+# TP2 Algoritmos 3: AlgoBlocks <img height="35" src="https://raw.githubusercontent.com/valva-ro/Algo3-TP2-AlgoBlocks/master/resources/img/logo.png">
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 

@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -18,8 +19,8 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
-    private Stage escenario;
     private static final String TITULO_VENTANA = "AlgoBlocks";
+    private static final String RUTA_ICONO = "file:././././resources/img/logo.png";
     private static final int ANCHO = 800;
     private static final int ALTO = 600;
 
@@ -29,7 +30,6 @@ public class App extends Application {
 
     @Override
     public void start(Stage escenario) {
-        this.escenario = escenario;
 
         BorderPane raiz = new BorderPane();
 
@@ -51,6 +51,8 @@ public class App extends Application {
 
         Scene escenaInicial = new Scene(raiz, ANCHO, ALTO);
         escenario.setScene(escenaInicial);
+        escenario.setTitle(TITULO_VENTANA);
+        escenario.getIcons().add(new Image(RUTA_ICONO));
         escenario.show();
     }
 

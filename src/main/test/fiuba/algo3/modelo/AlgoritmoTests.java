@@ -26,112 +26,102 @@ public class AlgoritmoTests {
     public void test02SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElNorteYLapizLevantado() {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new NoDibuja());
 
         algoritmo.agregar(bloqueNorte);
         algoritmo.ejecutar(sectorDibujo);
 
-        assertFalse(sectorDibujo.existe(new Posicion(0, 1)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(0, 1)));
     }
 
     @Test
     public void test03SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElNorteYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
-
-        sectorDibujo.invertirDibuja();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
         algoritmo.agregar(bloqueNorte);
         algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 1)));
     }
 
     @Test
     public void test04SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElSurYLapizLevantado() {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Sur());
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Sur(), new NoDibuja());
 
         algoritmo.agregar(bloqueNorte);
         algoritmo.ejecutar(sectorDibujo);
 
-        assertFalse(sectorDibujo.existe(new Posicion(0, -1)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(0, -1)));
     }
 
     @Test
     public void test05SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElSurYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Sur());
-
-        sectorDibujo.invertirDibuja();
+        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Sur(), new Dibuja());
         algoritmo.agregar(bloqueSur);
         algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(sectorDibujo.existe(new Posicion(0, -1)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, -1)));
     }
 
     @Test
     public void test06SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElEsteYLapizLevantado() {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Norte());
+        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Norte(), new Dibuja());
 
         algoritmo.agregar(bloqueSur);
         algoritmo.ejecutar(sectorDibujo);
 
-        assertFalse(sectorDibujo.existe(new Posicion(1, 0)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(1, 0)));
     }
 
     @Test
     public void test07SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElEsteYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este());
-
-        sectorDibujo.invertirDibuja();
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este(), new Dibuja());
         algoritmo.agregar(bloqueEste);
         algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(sectorDibujo.existe(new Posicion(1, 0)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(1, 0)));
     }
 
     @Test
     public void test06SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElOesteYLapizLevantado() {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste());
+        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste(), new NoDibuja());
 
         algoritmo.agregar(bloqueOeste);
         algoritmo.ejecutar(sectorDibujo);
 
-        assertFalse(sectorDibujo.existe(new Posicion(-1, 0)));
+        assertFalse(sectorDibujo.existePosicion(new Posicion(-1, 0)));
     }
 
     @Test
     public void test09SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaElOesteYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste());
-
-        sectorDibujo.invertirDibuja();
+        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste(), new Dibuja());
         algoritmo.agregar(bloqueOeste);
         algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(sectorDibujo.existe(new Posicion(-1, 0)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(-1, 0)));
     }
 
     @Test
     public void test10SeEjecutaUnAlgoritmoCon1BloquesDeMovimientoHaciaCadaDireccionYLapizAbajo() {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
-        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Sur());
-        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este());
-        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste());
-
-        sectorDibujo.invertirDibuja();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
+        BloqueMovimiento bloqueSur = new BloqueMovimiento(new Sur(), new Dibuja());
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este(), new Dibuja());
+        BloqueMovimiento bloqueOeste = new BloqueMovimiento(new Oeste(), new Dibuja());
         algoritmo.agregar(bloqueNorte);
         algoritmo.agregar(bloqueEste);
         algoritmo.agregar(bloqueSur);
@@ -139,10 +129,10 @@ public class AlgoritmoTests {
 
         algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(sectorDibujo.existe(new Posicion(0, 1))); // Norte
-        assertTrue(sectorDibujo.existe(new Posicion(1, 1))); // Este
-        assertTrue(sectorDibujo.existe(new Posicion(1, 0))); // Sur
-        assertTrue(sectorDibujo.existe(new Posicion(0, 0))); // Oeste
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 1))); // Norte
+        assertTrue(sectorDibujo.existePosicion(new Posicion(1, 1))); // Este
+        assertTrue(sectorDibujo.existePosicion(new Posicion(1, 0))); // Sur
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 0))); // Oeste
     }
 
     @Test
@@ -150,9 +140,7 @@ public class AlgoritmoTests {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
         BloqueRepetirDosVeces bloqueRepeticionDoble = new BloqueRepetirDosVeces();
-        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
-
-        sectorDibujo.invertirDibuja();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
 
         bloqueRepeticionDoble.agregar(bloqueNorte);
         bloqueRepeticionDoble.agregar(bloqueNorte);
@@ -160,10 +148,10 @@ public class AlgoritmoTests {
 
         algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
-        assertTrue(sectorDibujo.existe(new Posicion(0, 2)));
-        assertTrue(sectorDibujo.existe(new Posicion(0, 3)));
-        assertTrue(sectorDibujo.existe(new Posicion(0, 4)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 1)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 2)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 3)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 4)));
     }
 
     @Test
@@ -171,10 +159,8 @@ public class AlgoritmoTests {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
         BloqueRepetirDosVeces bloqueRepeticionDoble = new BloqueRepetirDosVeces();
-        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
-        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este());
-
-        sectorDibujo.invertirDibuja();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este(), new Dibuja());
 
         bloqueRepeticionDoble.agregar(bloqueNorte);
         bloqueRepeticionDoble.agregar(bloqueNorte);
@@ -184,14 +170,14 @@ public class AlgoritmoTests {
 
         algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
-        assertTrue(sectorDibujo.existe(new Posicion(0, 2)));
-        assertTrue(sectorDibujo.existe(new Posicion(1, 2)));
-        assertTrue(sectorDibujo.existe(new Posicion(2, 2)));
-        assertTrue(sectorDibujo.existe(new Posicion(2, 3)));
-        assertTrue(sectorDibujo.existe(new Posicion(2, 4)));
-        assertTrue(sectorDibujo.existe(new Posicion(3, 4)));
-        assertTrue(sectorDibujo.existe(new Posicion(4, 4)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 1)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 2)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(1, 2)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(2, 2)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(2, 3)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(2, 4)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(3, 4)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(4, 4)));
     }
 
     @Test
@@ -199,18 +185,16 @@ public class AlgoritmoTests {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
         BloqueRepetirTresVeces bloqueRepeticionTriple = new BloqueRepetirTresVeces();
-        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
-
-        sectorDibujo.invertirDibuja();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
 
         bloqueRepeticionTriple.agregar(bloqueNorte);
         algoritmo.agregar(bloqueRepeticionTriple);
 
         algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
-        assertTrue(sectorDibujo.existe(new Posicion(0, 2)));
-        assertTrue(sectorDibujo.existe(new Posicion(0, 3)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 1)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 2)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 3)));
     }
 
     @Test
@@ -218,9 +202,7 @@ public class AlgoritmoTests {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
         BloqueRepetirTresVeces bloqueRepeticionTriple = new BloqueRepetirTresVeces();
-        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte());
-
-        sectorDibujo.invertirDibuja();
+        BloqueMovimiento bloqueNorte = new BloqueMovimiento(new Norte(), new Dibuja());
 
         bloqueRepeticionTriple.agregar(bloqueNorte);
         bloqueRepeticionTriple.agregar(bloqueNorte);
@@ -228,11 +210,11 @@ public class AlgoritmoTests {
 
         algoritmo.ejecutar(sectorDibujo);
 
-        assertTrue(sectorDibujo.existe(new Posicion(0, 1)));
-        assertTrue(sectorDibujo.existe(new Posicion(0, 2)));
-        assertTrue(sectorDibujo.existe(new Posicion(0, 3)));
-        assertTrue(sectorDibujo.existe(new Posicion(0, 4)));
-        assertTrue(sectorDibujo.existe(new Posicion(0, 5)));
-        assertTrue(sectorDibujo.existe(new Posicion(0, 6)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 1)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 2)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 3)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 4)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 5)));
+        assertTrue(sectorDibujo.existePosicion(new Posicion(0, 6)));
     }
 }

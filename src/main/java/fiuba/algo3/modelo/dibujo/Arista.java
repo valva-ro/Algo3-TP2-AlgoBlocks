@@ -4,30 +4,22 @@ import fiuba.algo3.modelo.Posicion;
 
 public class Arista {
 
-    private Vertice origen, destino;
-    private boolean dibuja;
+    private Posicion origen, destino;
 
-    public Arista(Vertice origen, Vertice destino) {
+    public Arista(Posicion origen, Posicion destino) {
         this.origen = origen;
         this.destino = destino;
-        this.dibuja = true;
-    }
-
-    public Arista(Vertice origen, Vertice destino, boolean dibuja) {
-        this.origen = origen;
-        this.destino = destino;
-        this.dibuja = dibuja;
     }
 
     public boolean contiene(Posicion posicion) {
-        return (origen.contiene(posicion) || destino.contiene(posicion));
+        return (this.origen.esIgual(posicion) || this.destino.esIgual(posicion));
     }
 
-    public boolean dibuja() {
-        return dibuja;
+    public boolean contiene(Posicion origen, Posicion destino) {
+        return (this.origen.esIgual(origen) && this.destino.esIgual(destino));
     }
 
-    public Vertice obtenerDestino() {
+    public Posicion obtenerDestino() {
         return destino;
     }
 }

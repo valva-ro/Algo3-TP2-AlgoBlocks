@@ -1,13 +1,9 @@
 package fiuba.algo3.modelo;
 
-import fiuba.algo3.modelo.bloques.BloqueMovimiento;
-import fiuba.algo3.modelo.bloques.BloquePersonalizado;
-import fiuba.algo3.modelo.bloques.DecoratorBloquePersonalizadoBase;
-import fiuba.algo3.modelo.bloques.BloquePersonalizadoNoPuedeEjecutarseSinBloquesError;
+import fiuba.algo3.modelo.bloques.*;
 
 import fiuba.algo3.modelo.direcciones.Este;
 import fiuba.algo3.modelo.direcciones.Norte;
-import fiuba.algo3.modelo.direcciones.Oeste;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -21,13 +17,12 @@ public class BloquePersonalizadoTests {
 
         BloquePersonalizado bloque = new BloquePersonalizado();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este());
-        sectorDibujo.invertirDibuja();
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este(), new Dibuja());
 
         bloque.agregar(bloqueEste);
         bloque.ejecutar(sectorDibujo);
 
-        assert(sectorDibujo.existe(new Posicion(1, 0)));
+        assert(sectorDibujo.existePosicion(new Posicion(1, 0)));
     }
 
     @Test
@@ -35,8 +30,7 @@ public class BloquePersonalizadoTests {
 
         BloquePersonalizado bloque = new BloquePersonalizado();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este());
-        sectorDibujo.invertirDibuja();
+        BloqueMovimiento bloqueEste = new BloqueMovimiento(new Este(), new Dibuja());
 
         bloque.agregar(bloqueEste);
 
@@ -44,7 +38,7 @@ public class BloquePersonalizadoTests {
 
         decorator.ejecutar(sectorDibujo);
 
-        assert(sectorDibujo.existe(new Posicion(1, 0)));
+        assert(sectorDibujo.existePosicion(new Posicion(1, 0)));
     }
 
     @Test
@@ -52,19 +46,18 @@ public class BloquePersonalizadoTests {
 
         BloquePersonalizado bloque = new BloquePersonalizado();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        sectorDibujo.invertirDibuja();
 
         for (int i = 0; i < 5; i++) {
-            bloque.agregar(new BloqueMovimiento(new Este()));
+            bloque.agregar(new BloqueMovimiento(new Este(), new Dibuja()));
         }
 
         bloque.ejecutar(sectorDibujo);
 
-        assert(sectorDibujo.existe(new Posicion(1, 0)));
-        assert(sectorDibujo.existe(new Posicion(2, 0)));
-        assert(sectorDibujo.existe(new Posicion(3, 0)));
-        assert(sectorDibujo.existe(new Posicion(4, 0)));
-        assert(sectorDibujo.existe(new Posicion(5, 0)));
+        assert(sectorDibujo.existePosicion(new Posicion(1, 0)));
+        assert(sectorDibujo.existePosicion(new Posicion(2, 0)));
+        assert(sectorDibujo.existePosicion(new Posicion(3, 0)));
+        assert(sectorDibujo.existePosicion(new Posicion(4, 0)));
+        assert(sectorDibujo.existePosicion(new Posicion(5, 0)));
     }
 
     @Test
@@ -72,7 +65,6 @@ public class BloquePersonalizadoTests {
 
         BloquePersonalizado bloque = new BloquePersonalizado();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        sectorDibujo.invertirDibuja();
 
         assertThrows(BloquePersonalizadoNoPuedeEjecutarseSinBloquesError.class,
                 () -> bloque.ejecutar(sectorDibujo));
@@ -84,7 +76,6 @@ public class BloquePersonalizadoTests {
         BloquePersonalizado bloque = new BloquePersonalizado();
         DecoratorBloquePersonalizadoBase decoratorBase = new DecoratorBloquePersonalizadoBase(bloque);
         SectorDibujo sectorDibujo = new SectorDibujo();
-        sectorDibujo.invertirDibuja();
 
         assertThrows(BloquePersonalizadoNoPuedeEjecutarseSinBloquesError.class,
                 () -> decoratorBase.ejecutar(sectorDibujo));
@@ -95,24 +86,23 @@ public class BloquePersonalizadoTests {
 
         BloquePersonalizado bloque = new BloquePersonalizado();
         SectorDibujo sectorDibujo = new SectorDibujo();
-        sectorDibujo.invertirDibuja();
 
         for (int i = 0; i < 5; i++) {
-            bloque.agregar(new BloqueMovimiento(new Este()));
-            bloque.agregar(new BloqueMovimiento(new Norte()));
+            bloque.agregar(new BloqueMovimiento(new Este(), new Dibuja()));
+            bloque.agregar(new BloqueMovimiento(new Norte(), new Dibuja()));
         }
 
         bloque.ejecutar(sectorDibujo);
 
-        assert(sectorDibujo.existe(new Posicion(1, 0)));
-        assert(sectorDibujo.existe(new Posicion(1, 1)));
-        assert(sectorDibujo.existe(new Posicion(2, 1)));
-        assert(sectorDibujo.existe(new Posicion(2, 2)));
-        assert(sectorDibujo.existe(new Posicion(3, 2)));
-        assert(sectorDibujo.existe(new Posicion(3, 3)));
-        assert(sectorDibujo.existe(new Posicion(4, 3)));
-        assert(sectorDibujo.existe(new Posicion(4, 4)));
-        assert(sectorDibujo.existe(new Posicion(5, 4)));
-        assert(sectorDibujo.existe(new Posicion(5, 5)));
+        assert(sectorDibujo.existePosicion(new Posicion(1, 0)));
+        assert(sectorDibujo.existePosicion(new Posicion(1, 1)));
+        assert(sectorDibujo.existePosicion(new Posicion(2, 1)));
+        assert(sectorDibujo.existePosicion(new Posicion(2, 2)));
+        assert(sectorDibujo.existePosicion(new Posicion(3, 2)));
+        assert(sectorDibujo.existePosicion(new Posicion(3, 3)));
+        assert(sectorDibujo.existePosicion(new Posicion(4, 3)));
+        assert(sectorDibujo.existePosicion(new Posicion(4, 4)));
+        assert(sectorDibujo.existePosicion(new Posicion(5, 4)));
+        assert(sectorDibujo.existePosicion(new Posicion(5, 5)));
     }
 }
