@@ -88,32 +88,33 @@ skinparam note {
     BorderColor DarkBlue
 }
 
-title Diagrama de clase general
-
+title Diagrama de SectorDibujo
 
 class SectorDibujo {
-    + invertirDibuja() : void
+    - ultimaPosicion : Posicion
     + dibujar(direccion : Direccion) : void
     + existe(posicion : Posicion) : boolean
 }
+
 class Recorrido {
-    + agregarArista(direccion : Direccion, recorridoTotal : Recorrido) : void
+    + agregarArista(direccion : Direccion, ultimaPosicion : Posicion) : void
     + existeVertice(posicion : Posicion) : boolean
     + existeArista(origen : Posicion, destino : Posicion) : boolean
 }
 
 class Arista {
     + contiene(posicion : Posicion) : boolean
+    + contiene(origen : Posicion, destino : Posicion) : boolean
 }
 
 class Posicion {
     - coordenadaX : int
     - coordenadaY : int
-    + contiene(posicion : Posicion) : boolean
+    + esIgual(posicion : Posicion) : boolean
     + actualizar(direccion : Direccion) : Posicion
 }
 
-SectorDibujo "1" *-- "2" Recorrido
+SectorDibujo *-- Recorrido
 Recorrido "1" *-- "1..*" Arista
 Arista "1" *-- "2" Posicion
 @enduml
