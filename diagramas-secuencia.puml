@@ -1,0 +1,273 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+skinparam ArrowColor DarkBlue
+skinparam SequenceLifeLineBorderColor DarkBlue
+skinparam SequenceLoopBackgroundColor DarkBlue
+
+skinparam actor {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+skinparam participant {
+    Bound DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+title Ejecución de un algoritmo con bloques de movimiento que dibujan
+
+participant ":Algoritmo" as Algoritmo
+participant ":BloqueMovimiento" as Bloque
+participant ":Dibuja" as Estado
+participant ":SectorDibujo" as SectorDibujo
+participant ":Recorrido" as Recorrido
+participant ":Direccion" as unaDireccion
+participant "aristas:Aristas" as Aristas
+
+Algoritmo -> Algoritmo : ejecutar(sectorDibujo)
+activate Algoritmo
+loop para cada bloque
+    Algoritmo -> Bloque : ejecutar(sectorDibujo)
+    activate Bloque
+    Bloque -> Estado : ejecutar(sectorDibujo, unaDireccion)
+    activate Estado
+    Estado -> SectorDibujo : dibujar(unaDireccion)
+    activate SectorDibujo
+    SectorDibujo -> Recorrido : agregarArista(unaDireccion, posicionFinal)
+    activate Recorrido
+    Recorrido -> unaDireccion : actualizarPosicion(posicionFinal)
+    unaDireccion --> Recorrido : ultimaPosicion
+    create "unaArista:Arista" as unaArista
+    Recorrido --> unaArista : << create >>
+    Recorrido -> Aristas: add(unaArista)
+    Recorrido --> SectorDibujo : ultimaPosicion
+    deactivate Recorrido
+    deactivate SectorDibujo
+    deactivate Estado
+    deactivate Bloque
+end
+deactivate Algoritmo
+@enduml
+
+----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----
+@startuml
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+skinparam ArrowColor DarkBlue
+skinparam SequenceLifeLineBorderColor DarkBlue
+skinparam SequenceLoopBackgroundColor DarkBlue
+
+skinparam actor {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+skinparam participant {
+    Bound DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+title Ejecución de un algoritmo con bloques de movimiento que no dibujan
+
+participant ":Algoritmo" as Algoritmo
+participant ":BloqueMovimiento" as Bloque
+participant ":NoDibuja" as Estado
+participant ":SectorDibujo" as SectorDibujo
+participant ":Direccion" as unaDireccion
+
+Algoritmo -> Algoritmo : ejecutar(sectorDibujo)
+activate Algoritmo
+loop para cada bloque
+    Algoritmo -> Bloque : ejecutar(sectorDibujo)
+    activate Bloque
+    Bloque -> Estado : ejecutar(sectorDibujo, unaDireccion)
+    activate Estado
+    Estado -> SectorDibujo : noDibujar(unaDireccion)
+    activate SectorDibujo
+    SectorDibujo -> unaDireccion : actualizarPosicion(posicionFinal)
+    activate unaDireccion
+    unaDireccion --> SectorDibujo : posicionUltima
+    deactivate unaDireccion
+    deactivate SectorDibujo
+    deactivate Estado
+    deactivate Bloque
+end
+deactivate Algoritmo
+@enduml
+
+----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----
+
+@startuml
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+skinparam ArrowColor DarkBlue
+skinparam SequenceLifeLineBorderColor DarkBlue
+skinparam SequenceLoopBackgroundColor DarkBlue
+
+skinparam actor {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+skinparam participant {
+    Bound DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+title Ejecución de un algoritmo con un solo bloque de repetición doble que tiene bloques de movimiento
+
+participant ":Algoritmo" as Algoritmo
+participant ":BloqueRepeticionDoble" as BloqueRepetirDoble
+participant ":DecoratorBloquePersonalizadoBase" as DecoratorBloquePersonalizadoBase
+participant ":BloquePersonalizado" as BloquePersonalizado
+participant ":BloqueMovimiento" as BloqueMovimiento
+participant "Estado" as Estado
+
+Algoritmo -> Algoritmo : ejecutar(unSectorDibujo)
+activate Algoritmo
+Algoritmo -> BloqueRepetirDoble : ejecutar(unSectorDibujo)
+activate BloqueRepetirDoble
+loop x2
+    BloqueRepetirDoble -> DecoratorBloquePersonalizadoBase : ejecutar(sectorDibujo)
+    activate DecoratorBloquePersonalizadoBase
+    DecoratorBloquePersonalizadoBase ->  BloquePersonalizado : ejecutar(sectorDibujo)
+    loop para cada bloque dentro de BloquePersonalizado
+        activate BloquePersonalizado
+        BloquePersonalizado -> BloqueMovimiento : ejecutar(sectorDibujo)
+        activate BloqueMovimiento
+        BloqueMovimiento -> Estado : ejecutar(sectorDibujo,unaDireccion)
+        deactivate BloqueMovimiento
+        deactivate BloquePersonalizado
+    end loop
+    deactivate DecoratorBloquePersonalizadoBase
+end loop
+deactivate BloqueRepetirDoble
+deactivate Algoritmo
+@enduml
+
+----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----
+
+@startuml
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+skinparam ArrowColor DarkBlue
+skinparam SequenceLifeLineBorderColor DarkBlue
+skinparam SequenceLoopBackgroundColor DarkBlue
+
+skinparam actor {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+skinparam participant {
+    Bound DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+title Ejecución de un algoritmo con un bloque invertir que tiene bloques de movimiento
+
+participant ":Algoritmo" as Algoritmo
+participant ":BloqueInvertir" as BloqueInvertir
+participant ":DecoratorBloquePersonalizadoBase" as DecoratorBloquePersonalizadoBase
+participant ":BloquePersonalizado" as BloquePersonalizado
+participant ":BloqueMovimiento" as BloqueMovimiento
+participant ":Direccion" as Direccion
+participant "Estado" as Estado
+
+Algoritmo -> Algoritmo : ejecutar(unSectorDibujo)
+activate Algoritmo
+Algoritmo -> BloqueInvertir : ejecutar(unSectorDibujo)
+activate BloqueInvertir
+BloqueInvertir -> DecoratorBloquePersonalizadoBase : ejecutarInvertido(unSectorDibujo)
+activate DecoratorBloquePersonalizadoBase
+DecoratorBloquePersonalizadoBase ->  BloquePersonalizado : ejecutarInvertido(unSectorDibujo)
+loop para cada bloque dentro de BloquePersonalizado
+    activate BloquePersonalizado
+    BloquePersonalizado -> BloqueMovimiento : ejecutarInvertido(unSectorDibujo)
+    activate BloqueMovimiento
+    BloqueMovimiento -> BloqueMovimiento : invertirMovimiento()
+    activate BloqueMovimiento
+    BloqueMovimiento -> Direccion : invertir()
+    deactivate BloqueMovimiento
+    Direccion --> BloqueMovimiento : direccionInvertida
+    BloqueMovimiento -> Estado : ejecutar(sectorDibujo, direccionInvertida)
+end loop
+deactivate BloqueMovimiento
+deactivate BloquePersonalizado
+deactivate DecoratorBloquePersonalizadoBase
+deactivate BloqueInvertir
+deactivate Algoritmo
+@enduml
+
+----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----
+
+@startuml
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+skinparam ArrowColor DarkBlue
+skinparam SequenceLifeLineBorderColor DarkBlue
+skinparam SequenceLoopBackgroundColor DarkBlue
+
+skinparam actor {
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+skinparam participant {
+    Bound DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+title Ejecución de un algoritmo con un bloque invertir que tiene un bloque de movimiento con direccion norte
+
+participant ":Algoritmo" as Algoritmo
+participant ":BloqueInvertir" as BloqueInvertir
+participant ":DecoratorBloquePersonalizadoBase" as DecoratorBloquePersonalizadoBase
+participant ":BloquePersonalizado" as BloquePersonalizado
+participant ":BloqueMovimiento" as BloqueMovimiento
+participant ":Norte" as Norte
+
+Algoritmo -> Algoritmo : ejecutar(unSectorDibujo)
+activate Algoritmo
+Algoritmo -> BloqueInvertir : ejecutar(unSectorDibujo)
+activate BloqueInvertir
+BloqueInvertir -> DecoratorBloquePersonalizadoBase : ejecutarInvertido(unSectorDibujo)
+activate DecoratorBloquePersonalizadoBase
+DecoratorBloquePersonalizadoBase ->  BloquePersonalizado : ejecutarInvertido(unSectorDibujo)
+activate BloquePersonalizado
+loop para cada bloque dentro de BloquePersonalizado
+    BloquePersonalizado -> BloqueMovimiento : ejecutarInvertido(unSectorDibujo)
+    activate BloqueMovimiento
+    BloqueMovimiento -> BloqueMovimiento : invertirMovimiento()
+    activate BloqueMovimiento
+    BloqueMovimiento -> Norte : invertir()
+    deactivate BloqueMovimiento
+    activate Norte
+    create "unSur:Sur" as Sur
+    Norte -> Sur : <<create>>
+    Norte --> BloqueMovimiento : unSur
+    BloqueMovimiento -> Estado : .                                       ejecutar (sectorDibujo,unSur)
+    deactivate Norte
+    deactivate BloqueMovimiento
+end loop
+deactivate BloquePersonalizado
+deactivate DecoratorBloquePersonalizadoBase
+deactivate BloqueInvertir
+deactivate Algoritmo
+@enduml
