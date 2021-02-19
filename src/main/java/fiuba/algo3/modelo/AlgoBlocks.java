@@ -9,35 +9,35 @@ public class AlgoBlocks {
     private Algoritmo algoritmo = new Algoritmo();
     private FabricaAbstractaDeBloques fabricaDeBloques;
 
-    public AlgoBlocks(){
+    public AlgoBlocks() {
         fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
     }
 
-    public void agregarBloqueMovimientoArriba(){
+    public void agregarBloqueMovimientoArriba() {
         algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
     }
 
-    public void agregarBloqueMovimientoAbajo(){
+    public void agregarBloqueMovimientoAbajo() {
         algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
     }
 
-    public void agregarBloqueMovimientoDerecha(){
+    public void agregarBloqueMovimientoDerecha() {
         algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
     }
 
-    public void agregarBloqueMovimientoIzquierda(){
+    public void agregarBloqueMovimientoIzquierda() {
         algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
     }
 
-    public void agregarBloqueLevantarLapiz(){
+    public void agregarBloqueLevantarLapiz() {
         this.fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
     }
 
-    public void agregarBloqueBajarLapiz(){
+    public void agregarBloqueBajarLapiz() {
         this.fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
     }
 
-    public void ejecutar(SectorDibujo sectorDibujo){
+    public void ejecutar(SectorDibujo sectorDibujo) {
         algoritmo.ejecutar(sectorDibujo);
     }
 }

@@ -99,7 +99,7 @@ public class AlgoBlocksTest {
     }
 
     @Test
-    public void test07AlCambiarDeFabricaConBloqueBajarLapizLosMovimientosTienenEstadoDibuja(){
+    public void test07AlCambiarDeFabricaConBloqueBajarLapizLosMovimientosTienenEstadoDibuja() {
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
         SectorDibujo sectorDibujo = new SectorDibujo();

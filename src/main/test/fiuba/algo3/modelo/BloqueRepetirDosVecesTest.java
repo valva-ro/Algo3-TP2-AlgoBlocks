@@ -3,6 +3,7 @@ package fiuba.algo3.modelo;
 import fiuba.algo3.modelo.direcciones.Este;
 import fiuba.algo3.modelo.direcciones.Norte;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import static org.mockito.Mockito.mock;
@@ -33,7 +34,7 @@ public class BloqueRepetirDosVecesTest {
 
         bloqueRepetir.ejecutar(sectorDibujoMock);
 
-        verify(bloqueMovimientoMock,times(2)).ejecutar(sectorDibujoMock);
+        verify(bloqueMovimientoMock, times(2)).ejecutar(sectorDibujoMock);
     }
 
 
@@ -49,7 +50,7 @@ public class BloqueRepetirDosVecesTest {
         bloqueRepetir.ejecutar(sectorDibujoMock);
         bloqueRepetir.ejecutar(sectorDibujoMock);
 
-        verify(bloqueMovimientoMock,times(4)).ejecutar(sectorDibujoMock);
+        verify(bloqueMovimientoMock, times(4)).ejecutar(sectorDibujoMock);
     }
 
     @Test
@@ -65,8 +66,8 @@ public class BloqueRepetirDosVecesTest {
 
         bloqueRepetir.ejecutar(sectorDibujoMock);
 
-        verify(bloqueMovimientoMock,times(2)).ejecutar(sectorDibujoMock);
-        verify(otroMovimientoMock,times(2)).ejecutar(sectorDibujoMock);
+        verify(bloqueMovimientoMock, times(2)).ejecutar(sectorDibujoMock);
+        verify(otroMovimientoMock, times(2)).ejecutar(sectorDibujoMock);
     }
 
     @Test
@@ -83,8 +84,8 @@ public class BloqueRepetirDosVecesTest {
         bloqueRepetir.ejecutar(sectorDibujoMock);
         bloqueRepetir.ejecutar(sectorDibujoMock);
 
-        verify(bloqueMovimientoMock,times(4)).ejecutar(sectorDibujoMock);
-        verify(otroMovimientoMock,times(4)).ejecutar(sectorDibujoMock);
+        verify(bloqueMovimientoMock, times(4)).ejecutar(sectorDibujoMock);
+        verify(otroMovimientoMock, times(4)).ejecutar(sectorDibujoMock);
     }
 
     @Test
@@ -102,7 +103,7 @@ public class BloqueRepetirDosVecesTest {
 
         otroBloqueRepetir.ejecutar(sectorDibujoMock);
 
-        verify(bloqueMovimientoMock,times(4)).ejecutar(sectorDibujoMock);
+        verify(bloqueMovimientoMock, times(4)).ejecutar(sectorDibujoMock);
     }
 
     @Test
@@ -117,7 +118,7 @@ public class BloqueRepetirDosVecesTest {
 
         bloqueRepetirDosVeces.ejecutar(sectorDibujoMock);
 
-        verify(bloqueMovimientoMock,times(6)).ejecutar(sectorDibujoMock);
+        verify(bloqueMovimientoMock, times(6)).ejecutar(sectorDibujoMock);
     }
 
     @Test
@@ -131,7 +132,7 @@ public class BloqueRepetirDosVecesTest {
 
         bloqueRepetirDosVeces.ejecutarInvertido(sectorDibujoMock);
 
-        verify(bloqueMovimientoMock,times(2)).ejecutarInvertido(sectorDibujoMock);
+        verify(bloqueMovimientoMock, times(2)).ejecutarInvertido(sectorDibujoMock);
     }
 
 
@@ -146,7 +147,7 @@ public class BloqueRepetirDosVecesTest {
 
         bloqueRepetirDosVeces.ejecutarInvertido(sectorDibujoMock);
 
-        verify(bloqueMovimientoMock,times(0)).ejecutar(sectorDibujoMock);
+        verify(bloqueMovimientoMock, times(0)).ejecutar(sectorDibujoMock);
     }
 
     @Test
@@ -163,8 +164,8 @@ public class BloqueRepetirDosVecesTest {
 
         bloqueRepetir.ejecutar(sectorDibujoMock);
 
-        verify(bloqueMovimientoMock,times(2)).ejecutar(sectorDibujoMock);
-        verify(otroMovimientoMock,times(2)).ejecutar(sectorDibujoMock);
+        verify(bloqueMovimientoMock, times(2)).ejecutar(sectorDibujoMock);
+        verify(otroMovimientoMock, times(2)).ejecutar(sectorDibujoMock);
     }
 
     @Test
@@ -182,8 +183,8 @@ public class BloqueRepetirDosVecesTest {
 
         bloqueRepetir.ejecutarInvertido(sectorDibujoMock);
 
-        verify(bloqueMovimientoMock,times(2)).ejecutarInvertido(sectorDibujoMock);
-        verify(otroMovimientoMock,times(2)).ejecutarInvertido(sectorDibujoMock);
+        verify(bloqueMovimientoMock, times(2)).ejecutarInvertido(sectorDibujoMock);
+        verify(otroMovimientoMock, times(2)).ejecutarInvertido(sectorDibujoMock);
     }
 
     @Test

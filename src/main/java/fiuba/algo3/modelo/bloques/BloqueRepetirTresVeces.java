@@ -13,15 +13,15 @@ public class BloqueRepetirTresVeces extends DecoratorBloquePersonalizadoBase {
     }
 
     @Override
-    public void ejecutar(SectorDibujo sectorDibujo){
-        for(int i = 0; i < 3; i++){
+    public void ejecutar(SectorDibujo sectorDibujo) {
+        for (int i = 0; i < 3; i++) {
             super.ejecutar(sectorDibujo);
         }
     }
 
     @Override
-    public void ejecutarInvertido(SectorDibujo sectorDibujo){
-        for(int i = 0; i < 3; i++){
+    public void ejecutarInvertido(SectorDibujo sectorDibujo) {
+        for (int i = 0; i < 3; i++) {
             super.ejecutarInvertido(sectorDibujo);
         }
     }

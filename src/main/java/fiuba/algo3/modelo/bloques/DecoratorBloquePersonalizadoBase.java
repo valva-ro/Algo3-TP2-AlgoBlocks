@@ -5,6 +5,7 @@ import fiuba.algo3.modelo.SectorDibujo;
 public class DecoratorBloquePersonalizadoBase implements Bloques {
 
     private Bloques bloqueAEnvolver;
+
     public DecoratorBloquePersonalizadoBase() {
         this.bloqueAEnvolver = new BloquePersonalizado();
     }
@@ -26,7 +27,7 @@ public class DecoratorBloquePersonalizadoBase implements Bloques {
         bloqueAEnvolver.ejecutar(sectorDibujo);
     }
 
-    public void ejecutarInvertido(SectorDibujo sectorDibujo){
+    public void ejecutarInvertido(SectorDibujo sectorDibujo) {
         bloqueAEnvolver.ejecutarInvertido(sectorDibujo);
     }
 }

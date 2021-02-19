@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class VistaTablero extends VBox {
     Stage escenario;
 
-    public VistaTablero(Stage escenario){
+    public VistaTablero(Stage escenario) {
         this.escenario = escenario;
         this.setStyle("-fx-background-color: #FFFFFF");
 
@@ -24,7 +24,7 @@ public class VistaTablero extends VBox {
         Button botonDerecha = new Button("Movimiento Derecha");
         Button botonIzquierda = new Button("Movimiento Izquierda");
 
-        VBox contenedorDeBloques  = new VBox(encabezadoBotonera,
+        VBox contenedorDeBloques = new VBox(encabezadoBotonera,
                 botonArriba,
                 botonAbajo,
                 botonDerecha,
@@ -42,9 +42,9 @@ public class VistaTablero extends VBox {
         botonSalir.setId("botonSalir");
         botonSalir.setOnAction(actionEvent -> Platform.exit());
 
-        VBox contenedorCentral = new VBox(zonaDeDibujo,botonSalir);
+        VBox contenedorCentral = new VBox(zonaDeDibujo, botonSalir);
         contenedorCentral.setStyle("-fx-border-color: #6495ed");
-        contenedorCentral.setMaxSize(500,500);
+        contenedorCentral.setMaxSize(500, 500);
 
         layout.setLeft(contenedorDeBloques);
         layout.setCenter(contenedorCentral);

@@ -1,110 +1,93 @@
 package fiuba.algo3.modelo;
 
-import fiuba.algo3.modelo.Posicion;
 import fiuba.algo3.modelo.dibujo.Arista;
-import fiuba.algo3.modelo.direcciones.Direccion;
-import fiuba.algo3.modelo.direcciones.Norte;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class AristaTest {
     @Test
     public void test01AristaContieneOrigen() {
-        Posicion Origen = new Posicion();
-        Posicion Destino = new Posicion(0,1);
-        Arista Arista = new Arista (Origen,Destino);
+        Posicion origen = new Posicion();
+        Posicion destino = new Posicion(0, 1);
+        Arista arista = new Arista(origen, destino);
 
-
-        assertTrue(Arista.contiene(Origen));
-
+        assertTrue(arista.contiene(origen));
     }
 
     @Test
     public void test02AristaContieneDestino() {
-        Posicion Origen = new Posicion();
-        Posicion Destino = new Posicion(0,1);
-        Arista Arista = new Arista (Origen,Destino);
+        Posicion origen = new Posicion();
+        Posicion destino = new Posicion(0, 1);
+        Arista arista = new Arista(origen, destino);
 
-
-        assertTrue(Arista.contiene(Destino));
-
+        assertTrue(arista.contiene(destino));
     }
 
     @Test
     public void test03AristaContieneDestinoYOrigen() {
-        Posicion Origen = new Posicion();
-        Posicion Destino = new Posicion(0,1);
-        Arista Arista = new Arista (Origen,Destino);
+        Posicion origen = new Posicion();
+        Posicion destino = new Posicion(0, 1);
+        Arista arista = new Arista(origen, destino);
 
-
-        assertTrue(Arista.contiene(Origen,Destino));
-
+        assertTrue(arista.contiene(origen, destino));
     }
 
     @Test
     public void test04ObtenerElDestinoFuncionaCorrectamente() {
-        Posicion Origen = new Posicion();
-        Posicion Destino = new Posicion(0,1);
-        Arista Arista = new Arista (Origen,Destino);
+        Posicion origen = new Posicion();
+        Posicion destino = new Posicion(0, 1);
+        Arista arista = new Arista(origen, destino);
 
-        Posicion DestinoDeLaArista = Arista.obtenerDestino();
+        Posicion destinoDeLaArista = arista.obtenerDestino();
 
-        assertTrue(Destino.esIgual(DestinoDeLaArista));
-
+        assertTrue(destino.esIgual(destinoDeLaArista));
     }
 
     @Test
     public void test01NegativoAristaContieneOrigen() {
-        Posicion Origen = new Posicion();
-        Posicion Destino = new Posicion(0,1);
-        Arista Arista = new Arista (Origen,Destino);
+        Posicion origen = new Posicion();
+        Posicion destino = new Posicion(0, 1);
+        Arista arista = new Arista(origen, destino);
 
-        Origen = new Posicion(0,2);
+        origen = new Posicion(0, 2);
 
-        assertFalse(Arista.contiene(Origen));
-
+        assertFalse(arista.contiene(origen));
     }
 
     @Test
     public void test02NegativoAristaContieneDestino() {
-        Posicion Origen = new Posicion();
-        Posicion Destino = new Posicion(0,1);
-        Arista Arista = new Arista (Origen,Destino);
+        Posicion origen = new Posicion();
+        Posicion destino = new Posicion(0, 1);
+        Arista arista = new Arista(origen, destino);
 
-        Destino = new Posicion(0,2);
+        destino = new Posicion(0, 2);
 
-        assertFalse(Arista.contiene(Destino));
-
+        assertFalse(arista.contiene(destino));
     }
 
     @Test
     public void test03NegativoAristaContieneDestinoYOrigen() {
-        Posicion Origen = new Posicion();
-        Posicion Destino = new Posicion(0,1);
-        Arista Arista = new Arista (Origen,Destino);
+        Posicion origen = new Posicion();
+        Posicion destino = new Posicion(0, 1);
+        Arista arista = new Arista(origen, destino);
 
-        Origen = new Posicion(0,4);
-        Destino = new Posicion(0,2);
+        origen = new Posicion(0, 4);
+        destino = new Posicion(0, 2);
 
-        assertFalse(Arista.contiene(Origen,Destino));
-
+        assertFalse(arista.contiene(origen, destino));
     }
 
     @Test
     public void test04NegativoObtenerElDestinoFuncionaCorrectamente() {
-        Posicion Origen = new Posicion();
-        Posicion Destino = new Posicion(0,1);
-        Arista Arista = new Arista (Origen,Destino);
+        Posicion origen = new Posicion();
+        Posicion destino = new Posicion(0, 1);
+        Arista arista = new Arista(origen, destino);
 
-        Posicion DestinoDeLaArista = Arista.obtenerDestino();
-        Destino = new Posicion(0,2);
+        Posicion destinoDeLaArista = arista.obtenerDestino();
+        destino = new Posicion(0, 2);
 
-        assertFalse(Destino.esIgual(DestinoDeLaArista));
-
+        assertFalse(destino.esIgual(destinoDeLaArista));
     }
-
-
 }

@@ -36,7 +36,7 @@ public class BloquePersonalizado implements Bloques {
         }
     }
 
-    private void contieneBloques(){
+    private void contieneBloques() {
         if (bloques.size() < 1) {
             throw new BloquePersonalizadoNoPuedeEjecutarseSinBloquesError();
         }

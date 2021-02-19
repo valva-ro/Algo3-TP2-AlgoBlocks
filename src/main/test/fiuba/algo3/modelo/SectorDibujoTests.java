@@ -53,8 +53,8 @@ public class SectorDibujoTests {
 
         Posicion posicionFinal = direccionEste.actualizarPosicion(posicionIntermedia);
 
-        assertTrue(sectorDibujo.existeArista(posicionInicial,posicionIntermedia));
-        assertTrue(sectorDibujo.existeArista(posicionIntermedia,posicionFinal));
+        assertTrue(sectorDibujo.existeArista(posicionInicial, posicionIntermedia));
+        assertTrue(sectorDibujo.existeArista(posicionIntermedia, posicionFinal));
 
     }
 
@@ -79,15 +79,15 @@ public class SectorDibujoTests {
         Posicion tercerDesplazamiento = direccionNorte.actualizarPosicion(segundoDesplazamiento);
         Posicion cuartoDesplazamiento = direccionOeste.actualizarPosicion(tercerDesplazamiento);
 
-        assertTrue(sectorDibujo.existeArista(posicionInicial,primerDesplazamiento));
-        assertTrue(sectorDibujo.existeArista(primerDesplazamiento,segundoDesplazamiento));
-        assertTrue(sectorDibujo.existeArista(segundoDesplazamiento,tercerDesplazamiento));
-        assertTrue(sectorDibujo.existeArista(tercerDesplazamiento,cuartoDesplazamiento));
+        assertTrue(sectorDibujo.existeArista(posicionInicial, primerDesplazamiento));
+        assertTrue(sectorDibujo.existeArista(primerDesplazamiento, segundoDesplazamiento));
+        assertTrue(sectorDibujo.existeArista(segundoDesplazamiento, tercerDesplazamiento));
+        assertTrue(sectorDibujo.existeArista(tercerDesplazamiento, cuartoDesplazamiento));
 
     }
 
     @Test
-    public void test05SeEjecutaElSectorDibujoConUnaDireccionParaQueNoDibujeEntoncesNoGuardaLaArista(){
+    public void test05SeEjecutaElSectorDibujoConUnaDireccionParaQueNoDibujeEntoncesNoGuardaLaArista() {
 
         Norte direccionNorte = new Norte();
 
@@ -98,12 +98,12 @@ public class SectorDibujoTests {
         Posicion posicionInicial = new Posicion();
         Posicion posicionFinal = direccionNorte.actualizarPosicion(posicionInicial);
 
-        assertFalse(sectorDibujo.existeArista(posicionInicial,posicionFinal));
+        assertFalse(sectorDibujo.existeArista(posicionInicial, posicionFinal));
 
     }
 
     @Test
-    public void test06SeEjecutaElSectorDibujoConTodasLasDireccionesPosiblesParaQueNoDibujeEntoncesNoGuardaNingua(){
+    public void test06SeEjecutaElSectorDibujoConTodasLasDireccionesPosiblesParaQueNoDibujeEntoncesNoGuardaNingua() {
 
         Norte direccionNorte = new Norte();
         Sur direccionSur = new Sur();
@@ -123,15 +123,15 @@ public class SectorDibujoTests {
         Posicion tercerDesplazamiento = direccionNorte.actualizarPosicion(segundoDesplazamiento);
         Posicion cuartoDesplazamiento = direccionOeste.actualizarPosicion(tercerDesplazamiento);
 
-        assertFalse(sectorDibujo.existeArista(posicionInicial,primerDesplazamiento));
-        assertFalse(sectorDibujo.existeArista(primerDesplazamiento,segundoDesplazamiento));
-        assertFalse(sectorDibujo.existeArista(segundoDesplazamiento,tercerDesplazamiento));
-        assertFalse(sectorDibujo.existeArista(tercerDesplazamiento,cuartoDesplazamiento));
+        assertFalse(sectorDibujo.existeArista(posicionInicial, primerDesplazamiento));
+        assertFalse(sectorDibujo.existeArista(primerDesplazamiento, segundoDesplazamiento));
+        assertFalse(sectorDibujo.existeArista(segundoDesplazamiento, tercerDesplazamiento));
+        assertFalse(sectorDibujo.existeArista(tercerDesplazamiento, cuartoDesplazamiento));
 
     }
 
     @Test
-    public void test07SeEjecutanLasDireccionesDeFormaAlternadasEnDibujarYNoDibujarYElDibujoEsElCorrecto(){
+    public void test07SeEjecutanLasDireccionesDeFormaAlternadasEnDibujarYNoDibujarYElDibujoEsElCorrecto() {
 
         Norte direccionNorte = new Norte();
         Sur direccionSur = new Sur();
@@ -151,17 +151,17 @@ public class SectorDibujoTests {
         Posicion tercerDesplazamiento = direccionNorte.actualizarPosicion(segundoDesplazamiento);
         Posicion cuartoDesplazamiento = direccionOeste.actualizarPosicion(tercerDesplazamiento);
 
-        assertFalse(sectorDibujo.existeArista(posicionInicial,primerDesplazamiento));
+        assertFalse(sectorDibujo.existeArista(posicionInicial, primerDesplazamiento));
 
-        assertTrue(sectorDibujo.existeArista(primerDesplazamiento,segundoDesplazamiento));
+        assertTrue(sectorDibujo.existeArista(primerDesplazamiento, segundoDesplazamiento));
 
-        assertFalse(sectorDibujo.existeArista(segundoDesplazamiento,tercerDesplazamiento));
+        assertFalse(sectorDibujo.existeArista(segundoDesplazamiento, tercerDesplazamiento));
 
         assertTrue(sectorDibujo.existeArista(tercerDesplazamiento, cuartoDesplazamiento));
     }
 
     @Test
-    public void test08SeEjecutaElSectorDibujoConUnaDireccionEnDibujarEntreOtrasTresQueNoDibujanYElDibujoQuedaBienGuardado(){
+    public void test08SeEjecutaElSectorDibujoConUnaDireccionEnDibujarEntreOtrasTresQueNoDibujanYElDibujoQuedaBienGuardado() {
 
         Norte direccionNorte = new Norte();
         Sur direccionSur = new Sur();
@@ -181,18 +181,18 @@ public class SectorDibujoTests {
         Posicion tercerDesplazamiento = direccionNorte.actualizarPosicion(segundoDesplazamiento);
         Posicion cuartoDesplazamiento = direccionOeste.actualizarPosicion(tercerDesplazamiento);
 
-        assertFalse(sectorDibujo.existeArista(posicionInicial,primerDesplazamiento));
+        assertFalse(sectorDibujo.existeArista(posicionInicial, primerDesplazamiento));
 
-        assertFalse(sectorDibujo.existeArista(primerDesplazamiento,segundoDesplazamiento));
+        assertFalse(sectorDibujo.existeArista(primerDesplazamiento, segundoDesplazamiento));
 
-        assertTrue(sectorDibujo.existeArista(segundoDesplazamiento,tercerDesplazamiento));
+        assertTrue(sectorDibujo.existeArista(segundoDesplazamiento, tercerDesplazamiento));
 
         assertFalse(sectorDibujo.existeArista(tercerDesplazamiento, cuartoDesplazamiento));
 
     }
 
     @Test
-    public void test09SeEjecutaElSectorDibujoConUnaDireccionEnNoDibujarEntreOtrasTresQueDibujanYElDibujoQuedaBienGuardado(){
+    public void test09SeEjecutaElSectorDibujoConUnaDireccionEnNoDibujarEntreOtrasTresQueDibujanYElDibujoQuedaBienGuardado() {
 
         Norte direccionNorte = new Norte();
         Sur direccionSur = new Sur();
@@ -212,11 +212,11 @@ public class SectorDibujoTests {
         Posicion tercerDesplazamiento = direccionNorte.actualizarPosicion(segundoDesplazamiento);
         Posicion cuartoDesplazamiento = direccionOeste.actualizarPosicion(tercerDesplazamiento);
 
-        assertTrue(sectorDibujo.existeArista(posicionInicial,primerDesplazamiento));
+        assertTrue(sectorDibujo.existeArista(posicionInicial, primerDesplazamiento));
 
-        assertTrue(sectorDibujo.existeArista(primerDesplazamiento,segundoDesplazamiento));
+        assertTrue(sectorDibujo.existeArista(primerDesplazamiento, segundoDesplazamiento));
 
-        assertFalse(sectorDibujo.existeArista(segundoDesplazamiento,tercerDesplazamiento));
+        assertFalse(sectorDibujo.existeArista(segundoDesplazamiento, tercerDesplazamiento));
 
         assertTrue(sectorDibujo.existeArista(tercerDesplazamiento, cuartoDesplazamiento));
 

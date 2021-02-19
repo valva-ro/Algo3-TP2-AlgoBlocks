@@ -11,5 +11,4 @@ public interface FabricaAbstractaDeBloques {
     BloqueMovimiento crearBloqueMovimientoIzquierda();
 
     BloqueMovimiento crearBloqueMovimientoDerecha();
-
 }

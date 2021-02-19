@@ -6,6 +6,7 @@ import fiuba.algo3.modelo.direcciones.Norte;
 import fiuba.algo3.modelo.direcciones.Oeste;
 import fiuba.algo3.modelo.direcciones.Sur;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -217,7 +218,7 @@ public class AlgoritmoTests {
     }
 
     @Test
-    public void test15AlAgregarYSacarUnBloqueHaciaElNorteAntesDeEjecutaNoSeDibujaNada(){
+    public void test15AlAgregarYSacarUnBloqueHaciaElNorteAntesDeEjecutaNoSeDibujaNada() {
 
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
@@ -237,7 +238,7 @@ public class AlgoritmoTests {
     }
 
     @Test
-    public void test16AlAgregarDosBloquesHaciaElNorteYSacarUnoSoloAntesDeEjecutaSeDibujaUnaSolaArista(){
+    public void test16AlAgregarDosBloquesHaciaElNorteYSacarUnoSoloAntesDeEjecutaSeDibujaUnaSolaArista() {
 
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
@@ -262,7 +263,7 @@ public class AlgoritmoTests {
     }
 
     @Test
-    public void test17AlAgregarDosBloquesHaciaElNorteYSacarUnoSoloAntesDeEjecutaSeDibujaUnaSolaArista(){
+    public void test17AlAgregarDosBloquesHaciaElNorteYSacarUnoSoloAntesDeEjecutaSeDibujaUnaSolaArista() {
 
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
@@ -289,7 +290,7 @@ public class AlgoritmoTests {
     }
 
     @Test
-    public void test18AlAgregarYSacarVariosBloquesMenosUnoAntesDeEjecutaNoSeDibujaNada(){
+    public void test18AlAgregarYSacarVariosBloquesMenosUnoAntesDeEjecutaNoSeDibujaNada() {
 
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();

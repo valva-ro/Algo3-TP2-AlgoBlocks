@@ -1,4 +1,5 @@
 package fiuba.algo3.modelo.direcciones;
+
 import fiuba.algo3.modelo.Posicion;
 
 public class Este extends Direccion {

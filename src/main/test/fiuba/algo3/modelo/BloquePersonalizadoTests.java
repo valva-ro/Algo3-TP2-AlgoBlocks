@@ -23,11 +23,11 @@ public class BloquePersonalizadoTests {
         bloque.agregar(bloqueEste);
         bloque.ejecutar(sectorDibujo);
 
-        assert(sectorDibujo.existePosicion(new Posicion(1, 0)));
+        assert (sectorDibujo.existePosicion(new Posicion(1, 0)));
     }
 
     @Test
-    public void test02DecoratorDeBloquePersonalizadoBaseNoAlteraElComportamientoDelBloquePersonalizado () {
+    public void test02DecoratorDeBloquePersonalizadoBaseNoAlteraElComportamientoDelBloquePersonalizado() {
 
         BloquePersonalizado bloque = new BloquePersonalizado();
         SectorDibujo sectorDibujo = new SectorDibujo();
@@ -39,7 +39,7 @@ public class BloquePersonalizadoTests {
 
         decorator.ejecutar(sectorDibujo);
 
-        assert(sectorDibujo.existePosicion(new Posicion(1, 0)));
+        assert (sectorDibujo.existePosicion(new Posicion(1, 0)));
     }
 
     @Test
@@ -54,11 +54,11 @@ public class BloquePersonalizadoTests {
 
         bloque.ejecutar(sectorDibujo);
 
-        assert(sectorDibujo.existePosicion(new Posicion(1, 0)));
-        assert(sectorDibujo.existePosicion(new Posicion(2, 0)));
-        assert(sectorDibujo.existePosicion(new Posicion(3, 0)));
-        assert(sectorDibujo.existePosicion(new Posicion(4, 0)));
-        assert(sectorDibujo.existePosicion(new Posicion(5, 0)));
+        assert (sectorDibujo.existePosicion(new Posicion(1, 0)));
+        assert (sectorDibujo.existePosicion(new Posicion(2, 0)));
+        assert (sectorDibujo.existePosicion(new Posicion(3, 0)));
+        assert (sectorDibujo.existePosicion(new Posicion(4, 0)));
+        assert (sectorDibujo.existePosicion(new Posicion(5, 0)));
     }
 
     @Test
@@ -95,16 +95,16 @@ public class BloquePersonalizadoTests {
 
         bloque.ejecutar(sectorDibujo);
 
-        assert(sectorDibujo.existePosicion(new Posicion(1, 0)));
-        assert(sectorDibujo.existePosicion(new Posicion(1, 1)));
-        assert(sectorDibujo.existePosicion(new Posicion(2, 1)));
-        assert(sectorDibujo.existePosicion(new Posicion(2, 2)));
-        assert(sectorDibujo.existePosicion(new Posicion(3, 2)));
-        assert(sectorDibujo.existePosicion(new Posicion(3, 3)));
-        assert(sectorDibujo.existePosicion(new Posicion(4, 3)));
-        assert(sectorDibujo.existePosicion(new Posicion(4, 4)));
-        assert(sectorDibujo.existePosicion(new Posicion(5, 4)));
-        assert(sectorDibujo.existePosicion(new Posicion(5, 5)));
+        assert (sectorDibujo.existePosicion(new Posicion(1, 0)));
+        assert (sectorDibujo.existePosicion(new Posicion(1, 1)));
+        assert (sectorDibujo.existePosicion(new Posicion(2, 1)));
+        assert (sectorDibujo.existePosicion(new Posicion(2, 2)));
+        assert (sectorDibujo.existePosicion(new Posicion(3, 2)));
+        assert (sectorDibujo.existePosicion(new Posicion(3, 3)));
+        assert (sectorDibujo.existePosicion(new Posicion(4, 3)));
+        assert (sectorDibujo.existePosicion(new Posicion(4, 4)));
+        assert (sectorDibujo.existePosicion(new Posicion(5, 4)));
+        assert (sectorDibujo.existePosicion(new Posicion(5, 5)));
     }
 
     @Test
@@ -160,11 +160,11 @@ public class BloquePersonalizadoTests {
 
         bloque.ejecutar(sectorDibujo);
 
-        assert(sectorDibujo.existeArista(new Posicion(0, 0), new Posicion(1, 0)));
-        assert(sectorDibujo.existeArista(new Posicion(1, 0), new Posicion(1, 1)));
+        assert (sectorDibujo.existeArista(new Posicion(0, 0), new Posicion(1, 0)));
+        assert (sectorDibujo.existeArista(new Posicion(1, 0), new Posicion(1, 1)));
 
-        assert(sectorDibujo.existePosicion(new Posicion(1, 0)));
-        assert(sectorDibujo.existePosicion(new Posicion(1, 1)));
+        assert (sectorDibujo.existePosicion(new Posicion(1, 0)));
+        assert (sectorDibujo.existePosicion(new Posicion(1, 1)));
 
         assertFalse(sectorDibujo.existePosicion(new Posicion(2, 1)));
         assertFalse(sectorDibujo.existePosicion(new Posicion(2, 2)));
