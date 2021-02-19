@@ -52,7 +52,7 @@ class FabricaConcretaBloqueQueNoDibuja {
 
 interface Bloque {
     + {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
-    + {abstract} invertir() : void
+    + {abstract} ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
 }
 
 class Algoritmo {
@@ -219,31 +219,37 @@ class BloqueMovimiento {
 }
 interface Bloques {
     + {abstract} agregar(unBloque : bloque) : void
+    + {abstract} sacar(unBloque : bloque) : void
 }
 class BloquePersonalizado {
     + ejecutar(unSectorDibujo : SectorDibujo) : void
     + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
     + agregar(unBloque : bloque) : void
+    + sacar(unBloque : bloque) : void
 }
 class RepetirDoble {
     + ejecutar(unSectorDibujo : SectorDibujo) : void
     + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
     + agregar(unBloque : bloque) : void
+    + sacar(unBloque : bloque) : void
 }
 class RepetirTriple {
     + ejecutar(unSectorDibujo : SectorDibujo) : void
     + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
     + agregar(unBloque : bloque) : void
+    + sacar(unBloque : bloque) : void
 }
 class Invertir {
     + ejecutar(unSectorDibujo : SectorDibujo) : void
     + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
     + agregar(unBloque : bloque) : void
+    + sacar(unBloque : bloque) : void
 }
 class DecoratorBloquePersonalizadoBase {
     + ejecutar(unSectorDibujo : SectorDibujo) : void
     + ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
     + agregar(unBloque : bloque) : void
+    + sacar(unBloque : bloque) : void
 }
 
 Bloque <|.. Bloques
