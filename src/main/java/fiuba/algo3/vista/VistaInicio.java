@@ -1,20 +1,19 @@
 package fiuba.algo3.vista;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class VistaInicio extends VBox {
-    private static final String RUTA_ICONO = "file:././././resources/img/logo.png";
+    private static final String RUTA_ICONO = "logo.png";
     private static final int ANCHO = 250;
     private static final int ALTO = 250;
     Stage escenario;

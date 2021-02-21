@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     private static final String TITULO_VENTANA = "AlgoBlocks";
-    private static final String RUTA_ICONO = "file:././././resources/img/logo.png";
+    private static final String RUTA_ICONO = "logo.png";
     private static final int ANCHO = 800;
     private static final int ALTO = 600;
 
