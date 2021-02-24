@@ -1,6 +1,6 @@
 package fiuba.algo3.vista;
 
-import fiuba.algo3.controllers.BotonMoverHandler;
+import fiuba.algo3.controladores.BotonMoverHandler;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
