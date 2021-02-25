@@ -18,10 +18,11 @@ public class BotonJugarHandler implements EventHandler {
     @Override
     public void handle(Event event) {
         ContenedorPrincipal  vistaPrincipal = new ContenedorPrincipal(escenario);
-        Scene nuevaScena = new Scene(vistaPrincipal, 800, 600);
+        Scene nuevaScena = new Scene(vistaPrincipal);
 
         escenario.setScene(nuevaScena);
         escenario.setFullScreen(true);
+        escenario.setFullScreenExitHint("");
         escenario.setMinHeight(1000);
         escenario.setMinWidth(1000);
     }

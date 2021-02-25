@@ -39,8 +39,8 @@ public class ContenedorPrincipal extends BorderPane {
 
         contenedorVerticalBotones.setSpacing(30);
         contenedorVerticalBotones.setAlignment(Pos.TOP_CENTER);
-        contenedorVerticalBotones.setStyle("-fx-padding: 20px");
-        contenedorVerticalBotones.setStyle("-fx-border-color: #e90d0d;");
+
+        contenedorVerticalBotones.setStyle("-fx-padding: 20px;");
 
         contenedorVerticalBotones.getChildren().addAll(etiqueta,botonMovimietoAbajo,botonMovimietoArriba,botonMovimietoDerecha,botonMovimietoIzquierda);
         this.setLeft(contenedorVerticalBotones);
@@ -52,9 +52,8 @@ public class ContenedorPrincipal extends BorderPane {
         this.vistaTablero.dibujar();
 
         this.contenedorCentral = new VBox();
-        this.contenedorCentral.setMinSize(500,500);
         this.contenedorCentral.getChildren().add(this.canvasCentral);
-        this.contenedorCentral.setStyle("-fx-border-color: #000000;");
+
         this.contenedorCentral.setAlignment(Pos.CENTER);
 
         this.setCenter(this.contenedorCentral);
@@ -65,8 +64,7 @@ public class ContenedorPrincipal extends BorderPane {
 
         contenedorVerticalAlgoritmo.setSpacing(30);
         contenedorVerticalAlgoritmo.setAlignment(Pos.TOP_CENTER);
-        contenedorVerticalAlgoritmo.setStyle("-fx-padding: 20px");
-        contenedorVerticalAlgoritmo.setStyle("-fx-border-color: #c48b29;");;
+        contenedorVerticalAlgoritmo.setStyle("-fx-padding: 20px;");;
 
         this.setRight(contenedorVerticalAlgoritmo);
     }
