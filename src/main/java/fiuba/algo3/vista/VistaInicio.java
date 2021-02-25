@@ -1,6 +1,5 @@
 package fiuba.algo3.vista;
 
-import fiuba.algo3.controlador.BotonAcercaDeHandler;
 import fiuba.algo3.controlador.BotonJugarHandler;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -34,8 +33,8 @@ public class VistaInicio extends VBox {
         Button botonAcercaDe = new Button("Acerca de");
         botonAcercaDe.setId("botonAcercaDe");
         botonAcercaDe.setStyle("-fx-padding: 10px");
-        BotonAcercaDeHandler botonAcercaDeHandler = new BotonAcercaDeHandler(escenario);
-        botonAcercaDe.setOnAction(botonAcercaDeHandler);
+        //BotonAcercaDeHandler botonAcercaDeHandler = new BotonAcercaDeHandler(escenario);
+        //botonAcercaDe.setOnAction(botonAcercaDeHandler);
 
         Button botonSalir = new Button("Salir");
         botonSalir.setStyle("-fx-background-color: #FF6347; -fx-padding: 10px");
@@ -52,7 +51,7 @@ public class VistaInicio extends VBox {
         vistaDeImagen.setFitWidth(ANCHO);
         vistaDeImagen.setFitHeight(ALTO);
 
-        this.setStyle("-fx-background-color: #FFFFFF");
+        this.setStyle("-fx-background-color: #abe389");
         Label etiqueta = new Label("Bienvenidos a AlgoBlocks!");
         etiqueta.setFont(Font.font(30));
         etiqueta.setStyle("-fx-padding: 30px");
