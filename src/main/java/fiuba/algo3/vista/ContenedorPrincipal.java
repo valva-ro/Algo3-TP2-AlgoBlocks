@@ -56,7 +56,7 @@ public class ContenedorPrincipal extends BorderPane {
 
         this.contenedorCentral.setAlignment(Pos.CENTER);
 
-        this.setCenter(this.contenedorCentral);
+        this.setRight(this.contenedorCentral);
     }
 
     private void setAlgoritmoEnPantalla(){
@@ -66,7 +66,7 @@ public class ContenedorPrincipal extends BorderPane {
         contenedorVerticalAlgoritmo.setAlignment(Pos.TOP_CENTER);
         contenedorVerticalAlgoritmo.setStyle("-fx-padding: 20px;");;
 
-        this.setRight(contenedorVerticalAlgoritmo);
+        this.setCenter(contenedorVerticalAlgoritmo);
     }
 
 
