@@ -47,12 +47,11 @@ public class ContenedorPrincipal extends BorderPane {
     }
 
     private  void setVistaTablero(){
-        this.canvasCentral = new Canvas(500,500);
-        this.vistaTablero = new Tablero(this.canvasCentral);
+        this.vistaTablero = new Tablero(500,500);
         this.vistaTablero.dibujar();
 
         this.contenedorCentral = new VBox();
-        this.contenedorCentral.getChildren().add(this.canvasCentral);
+        this.contenedorCentral.getChildren().add(this.vistaTablero);
 
         this.contenedorCentral.setAlignment(Pos.CENTER);
 
