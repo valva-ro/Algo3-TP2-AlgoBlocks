@@ -1,6 +1,6 @@
 package fiuba.algo3.controladores;
 
-import fiuba.algo3.vista.VistaPrincipal;
+import fiuba.algo3.vista.ContenedorPrincipal;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -17,11 +17,13 @@ public class BotonJugarHandler implements EventHandler {
 
     @Override
     public void handle(Event event) {
-        VistaPrincipal vistaPrincipal = new VistaPrincipal(escenario);
-        Scene nuevaScena = new Scene(vistaPrincipal, 800, 600);
+        ContenedorPrincipal  vistaPrincipal = new ContenedorPrincipal(escenario);
+        Scene nuevaScena = new Scene(vistaPrincipal);
 
         escenario.setScene(nuevaScena);
-        escenario.setMaxHeight(600);
-        escenario.setMaxWidth(800);
+        escenario.setFullScreen(true);
+        escenario.setFullScreenExitHint("");
+        escenario.setMinHeight(1000);
+        escenario.setMinWidth(1000);
     }
 }

@@ -1,6 +1,6 @@
 package fiuba.algo3.controladores;
 
-import fiuba.algo3.vista.VistaPrincipal;
+import fiuba.algo3.vista.ContenedorPrincipal;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -16,7 +16,7 @@ public class BotonMoverHandler implements EventHandler {
 
     @Override
     public void handle(Event event) {
-        VistaPrincipal vistaPrincipal = new VistaPrincipal(escenario,40,0);
+        ContenedorPrincipal vistaPrincipal = new ContenedorPrincipal(this.escenario);
         Scene nuevaScena = new Scene(vistaPrincipal, 800, 600);
 
         escenario.setScene(nuevaScena);
