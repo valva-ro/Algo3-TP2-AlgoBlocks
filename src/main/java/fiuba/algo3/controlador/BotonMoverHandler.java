@@ -1,4 +1,4 @@
-package fiuba.algo3.controladores;
+package fiuba.algo3.controlador;
 
 import fiuba.algo3.vista.ContenedorPrincipal;
 import javafx.event.Event;
@@ -20,7 +20,5 @@ public class BotonMoverHandler implements EventHandler {
         Scene nuevaScena = new Scene(vistaPrincipal, 800, 600);
 
         escenario.setScene(nuevaScena);
-        escenario.setMaxHeight(600);
-        escenario.setMaxWidth(800);
     }
 }

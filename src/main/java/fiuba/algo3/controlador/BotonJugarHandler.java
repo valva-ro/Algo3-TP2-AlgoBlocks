@@ -1,4 +1,4 @@
-package fiuba.algo3.controladores;
+package fiuba.algo3.controlador;
 
 import fiuba.algo3.vista.ContenedorPrincipal;
 import javafx.event.Event;
@@ -11,13 +11,13 @@ public class BotonJugarHandler implements EventHandler {
     private Stage escenario;
     //Proximamente -> private AlgoBlocks modelo.
 
-    public BotonJugarHandler( Stage escenario) {
+    public BotonJugarHandler(Stage escenario) {
         this.escenario = escenario;
     }
 
     @Override
     public void handle(Event event) {
-        ContenedorPrincipal  vistaPrincipal = new ContenedorPrincipal(escenario);
+        ContenedorPrincipal vistaPrincipal = new ContenedorPrincipal(escenario);
         Scene nuevaScena = new Scene(vistaPrincipal);
 
         escenario.setScene(nuevaScena);

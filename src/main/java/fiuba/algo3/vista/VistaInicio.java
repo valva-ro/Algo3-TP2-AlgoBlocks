@@ -1,6 +1,7 @@
 package fiuba.algo3.vista;
 
-import fiuba.algo3.controladores.BotonJugarHandler;
+import fiuba.algo3.controlador.BotonAcercaDeHandler;
+import fiuba.algo3.controlador.BotonJugarHandler;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -30,9 +31,11 @@ public class VistaInicio extends VBox {
         BotonJugarHandler botonJugarHander = new BotonJugarHandler(escenario);
         botonJugar.setOnAction(botonJugarHander);
 
-        Button botonAcercaDe = new Button("Nosotros");
+        Button botonAcercaDe = new Button("Acerca de");
         botonAcercaDe.setId("botonAcercaDe");
         botonAcercaDe.setStyle("-fx-padding: 10px");
+        BotonAcercaDeHandler botonAcercaDeHandler = new BotonAcercaDeHandler(escenario);
+        botonAcercaDe.setOnAction(botonAcercaDeHandler);
 
         Button botonSalir = new Button("Salir");
         botonSalir.setStyle("-fx-background-color: #FF6347; -fx-padding: 10px");
