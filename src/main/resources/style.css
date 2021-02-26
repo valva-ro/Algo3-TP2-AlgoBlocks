@@ -1,0 +1,121 @@
+.boton {
+    -fx-background-insets: 6px;
+    -fx-border-insets: 6px;
+    -fx-padding: 8px;
+    -fx-border: 6px;
+    -fx-border-radius: 6px;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 14px;
+}
+
+.bloque {
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-min-width: 120;
+    -fx-min-height: 60;
+    -fx-border-radius: 6px;
+    -fx-background-size: 35 35;
+ }
+
+.bloqueMovimiento {
+    -fx-background-color: #3c73ff;
+}
+
+.bloqueRepeticion {
+    -fx-background-color: #ffdf3c;
+}
+
+.titulo {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 30px;
+    -fx-padding: 20px;
+}
+
+.subtitulo {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 22px;
+    -fx-padding: 20px;
+}
+
+#informacion {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 18px;
+    -fx-padding: 20px;
+}
+
+#bloqueMovimientoArriba {
+    -fx-background-image: url("flecha-arriba.png");
+}
+
+#bloqueMovimientoAbajo{
+    -fx-background-image: url("flecha-abajo.png");
+}
+
+#bloqueMovimientoDerecha {
+    -fx-background-image: url("flecha-derecha.png");
+}
+
+#bloqueMovimientoIzquierda {
+    -fx-background-image: url("flecha-izquierda.png");
+}
+
+#bloqueRepeticionDoble {
+    -fx-background-image: url("repeticion-doble.png");
+}
+
+#bloqueRepeticionTriple {
+    -fx-background-image: url("repeticion-triple.png");
+}
+
+#bloqueInvertir {
+    -fx-background-color: #ff9a3c;
+    -fx-background-image: url("invertir.png");
+}
+
+#bloqueLapizDibuja {
+    -fx-background-color: #60ff3c;
+    -fx-background-image: url("lapiz-dibuja.png");
+}
+
+#bloqueLapizNoDibuja {
+    -fx-background-color: #fb4c4c;
+    -fx-background-image: url("lapiz-no-dibuja.png");
+}
+
+#botonGuardarAlgoritmoEnPersonalizado {
+    -fx-background-image: url("guardar-algoritmo.png");
+}
+
+#botonSalir {
+    -fx-background-color: #fb4c4c;
+}
+
+#botonJugar {
+    -fx-background-color: #ffef94;
+}
+
+#botonAcercaDe {
+    -fx-background-color: #ffef94;
+}
+
+#botonAtras {
+    -fx-background-color: #ff8c20;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("volver.png");
+}
+
+#botonEjecutar {
+    -fx-background-color: #ff8c20;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("ejecutar.png");
+}
+
+#sectorBloquesDisponibles {
+
+}
+
+#sectorAlgoritmo {
+
+}

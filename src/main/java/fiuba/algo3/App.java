@@ -23,15 +23,15 @@ public class App extends Application {
     @Override
     public void start(Stage escenario) {
 
-        VistaInicio vistaInicio = new VistaInicio(escenario);
+        VistaInicio vistaInicio = new VistaInicio(this, escenario);
         Scene escenaInicial = new Scene(vistaInicio, ANCHO, ALTO);
+
+        escenaInicial.getStylesheets().clear();
+        escenaInicial.getStylesheets().add("style.css");
 
         escenario.setScene(escenaInicial);
         escenario.setTitle(TITULO_VENTANA);
         escenario.getIcons().add(new Image(RUTA_ICONO));
         escenario.show();
     }
-
-
-
 }
