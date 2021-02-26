@@ -6,117 +6,75 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AlgoBlocksTest {
+    // TODO: mockear y verificar cantidad de ejecuciones
     @Test
     public void test01AgregarBloqueMovimientoArribaNoDibujaEnSectorDibujo() {
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
-        SectorDibujo sectorDibujo = new SectorDibujo();
+        Algoritmo algoritmo = new Algoritmo();
 
-        algoBlocks.agregarBloqueMovimientoArriba();
-        algoBlocks.ejecutar(sectorDibujo);
-
-        Posicion origen = new Posicion(0, 0);
-        Posicion destino = new Posicion(0, 1);
-
-        assertFalse(sectorDibujo.existeArista(origen, destino));
+        algoBlocks.agregarBloqueMovimientoArriba(algoritmo);
     }
 
     @Test
     public void test02AgregarBloqueMovimientoAbajoNoDibujaEnSectorDibujo() {
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
-        SectorDibujo sectorDibujo = new SectorDibujo();
+        Algoritmo algoritmo = new Algoritmo();
 
-        algoBlocks.agregarBloqueMovimientoAbajo();
-        algoBlocks.ejecutar(sectorDibujo);
-
-        Posicion origen = new Posicion(0, 0);
-        Posicion destino = new Posicion(0, -1);
-
-        assertFalse(sectorDibujo.existeArista(origen, destino));
+        algoBlocks.agregarBloqueMovimientoAbajo(algoritmo);
     }
 
     @Test
     public void test03AgregarBloqueMovimientoDerechaNoDibujaEnSectorDibujo() {
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
-        SectorDibujo sectorDibujo = new SectorDibujo();
+        Algoritmo algoritmo = new Algoritmo();
 
-        algoBlocks.agregarBloqueMovimientoDerecha();
-        algoBlocks.ejecutar(sectorDibujo);
-
-        Posicion origen = new Posicion(0, 0);
-        Posicion destino = new Posicion(1, 0);
-
-        assertFalse(sectorDibujo.existeArista(origen, destino));
+        algoBlocks.agregarBloqueMovimientoDerecha(algoritmo);
     }
 
     @Test
     public void test04AgregarBloqueMovimientoIzquierdaNoDibujaEnSectorDibujo() {
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
-        SectorDibujo sectorDibujo = new SectorDibujo();
+        Algoritmo algoritmo = new Algoritmo();
 
-        algoBlocks.agregarBloqueMovimientoIzquierda();
-        algoBlocks.ejecutar(sectorDibujo);
+        algoBlocks.agregarBloqueMovimientoIzquierda(algoritmo);
 
-        Posicion origen = new Posicion(0, 0);
-        Posicion destino = new Posicion(-1, 0);
-
-        assertFalse(sectorDibujo.existeArista(origen, destino));
     }
 
     @Test
     public void test05AgregarBloqueLevantarLapizCambiaDeFabricaANoDibuja() {
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
-        SectorDibujo sectorDibujo = new SectorDibujo();
+        Algoritmo algoritmo = new Algoritmo();
 
         algoBlocks.agregarBloqueLevantarLapiz();
-        algoBlocks.agregarBloqueMovimientoArriba();
-        algoBlocks.ejecutar(sectorDibujo);
-
-        Posicion origen = new Posicion(0, 0);
-        Posicion destino = new Posicion(0, 1);
-
-        assertFalse(sectorDibujo.existeArista(origen, destino));
+        algoBlocks.agregarBloqueMovimientoArriba(algoritmo);
     }
 
     @Test
     public void test06AgregarBloqueBajarLapizCambiaDeFabricaDibuja() {
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
-        SectorDibujo sectorDibujo = new SectorDibujo();
+        Algoritmo algoritmo = new Algoritmo();
 
         algoBlocks.agregarBloqueBajarLapiz();
-        algoBlocks.agregarBloqueMovimientoArriba();
-        algoBlocks.ejecutar(sectorDibujo);
-
-        Posicion origen = new Posicion(0, 0);
-        Posicion destino = new Posicion(0, 1);
-
-        assertTrue(sectorDibujo.existeArista(origen, destino));
+        algoBlocks.agregarBloqueMovimientoArriba(algoritmo);
     }
 
     @Test
     public void test07AlCambiarDeFabricaConBloqueBajarLapizLosMovimientosTienenEstadoDibuja() {
 
         AlgoBlocks algoBlocks = new AlgoBlocks();
-        SectorDibujo sectorDibujo = new SectorDibujo();
-        Posicion origen = new Posicion(0, 0);
-        Posicion destino = new Posicion(0, 1);
+        Algoritmo algoritmo = new Algoritmo();
 
-        algoBlocks.agregarBloqueMovimientoArriba();
-        algoBlocks.agregarBloqueMovimientoAbajo();
-        algoBlocks.ejecutar(sectorDibujo);
-
-        assertFalse(sectorDibujo.existeArista(origen, destino));
+        algoBlocks.agregarBloqueMovimientoArriba(algoritmo);
+        algoBlocks.agregarBloqueMovimientoAbajo(algoritmo);
 
         algoBlocks.agregarBloqueBajarLapiz();
-        algoBlocks.agregarBloqueMovimientoArriba();
-        algoBlocks.agregarBloqueMovimientoAbajo();
-        algoBlocks.ejecutar(sectorDibujo);
-
-        assertTrue(sectorDibujo.existeArista(origen, destino));
+        algoBlocks.agregarBloqueMovimientoArriba(algoritmo);
+        algoBlocks.agregarBloqueMovimientoAbajo(algoritmo);
     }
 }

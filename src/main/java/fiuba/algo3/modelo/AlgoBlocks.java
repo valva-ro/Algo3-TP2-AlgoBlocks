@@ -6,26 +6,25 @@ import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
 
 public class AlgoBlocks {
 
-    private Algoritmo algoritmo = new Algoritmo();
     private FabricaAbstractaDeBloques fabricaDeBloques;
 
     public AlgoBlocks() {
         fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
     }
 
-    public void agregarBloqueMovimientoArriba() {
+    public void agregarBloqueMovimientoArriba(Algoritmo algoritmo) {
         algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
     }
 
-    public void agregarBloqueMovimientoAbajo() {
+    public void agregarBloqueMovimientoAbajo(Algoritmo algoritmo) {
         algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
     }
 
-    public void agregarBloqueMovimientoDerecha() {
+    public void agregarBloqueMovimientoDerecha(Algoritmo algoritmo) {
         algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
     }
 
-    public void agregarBloqueMovimientoIzquierda() {
+    public void agregarBloqueMovimientoIzquierda(Algoritmo algoritmo) {
         algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
     }
 
@@ -35,9 +34,5 @@ public class AlgoBlocks {
 
     public void agregarBloqueBajarLapiz() {
         this.fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
-    }
-
-    public void ejecutar(SectorDibujo sectorDibujo) {
-        algoritmo.ejecutar(sectorDibujo);
     }
 }
