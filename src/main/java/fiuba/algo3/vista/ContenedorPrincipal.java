@@ -4,6 +4,8 @@ import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -43,17 +45,19 @@ public class ContenedorPrincipal extends BorderPane {
     }
 
     private HBox setBotoneraAbajo(){
-        Button botonGuardar = new Button("Guardar   ");
-        botonGuardar.setMinSize(200,20);
-        Button botonEjectuar = new Button("Ejecutar    ");
-        botonEjectuar.setMinSize(200,20);
+
+        Button botonGuardar = new Button();
+        botonGuardar.setGraphic(new ImageView(new Image("guardar-algoritmo.png",30,30,false,false)));
+        Button botonEjectuar = new Button();
+        botonEjectuar.setGraphic(new ImageView(new Image("ejecutar.png",30,30,false,false)));
+
         Button botonSalir = new Button("Derecha ");
-        botonSalir.setMinSize(200,20);
+        botonSalir.setGraphic(new ImageView(new Image("volver.png",30,30,false,false)));
 
         HBox botonera = new HBox();
         botonera.setAlignment(Pos.CENTER);
-        botonera.setSpacing(10);
-        botonera.setStyle("-fx-padding: 10px");
+        botonera.setSpacing(20);
+        botonera.setStyle("-fx-padding: 30px");
         botonera.getChildren().addAll(botonEjectuar,botonGuardar,botonSalir);
 
         return botonera;
