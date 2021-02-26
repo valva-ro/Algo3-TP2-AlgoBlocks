@@ -8,6 +8,7 @@
     -fx-font-size: 14px;
 }
 
+
 .bloque {
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
@@ -15,14 +16,22 @@
     -fx-min-height: 60;
     -fx-border-radius: 6px;
     -fx-background-size: 35 35;
- }
+}
 
 .bloqueMovimiento {
     -fx-background-color: #3c73ff;
 }
 
+.bloqueMovimiento:hover {
+    -fx-background-color: #264db7;
+}
+
 .bloqueRepeticion {
     -fx-background-color: #ffdf3c;
+}
+
+.bloqueRepeticion:hover {
+    -fx-background-color: #ddc238;
 }
 
 .titulo {
@@ -68,18 +77,29 @@
 }
 
 #bloqueInvertir {
-    -fx-background-color: #ff9a3c;
+    -fx-background-color: #ff8c20;
     -fx-background-image: url("invertir.png");
+}
+
+#bloqueInvertir:hover {
+    -fx-background-color: #da771a;
 }
 
 #bloqueLapizDibuja {
     -fx-background-color: #60ff3c;
     -fx-background-image: url("lapiz-dibuja.png");
 }
+#bloqueLapizDibuja:hover {
+    -fx-background-color: #50ec2e;
+
+}
 
 #bloqueLapizNoDibuja {
     -fx-background-color: #fb4c4c;
     -fx-background-image: url("lapiz-no-dibuja.png");
+}
+#bloqueLapizNoDibuja:hover {
+    -fx-background-color: #fa6161;
 }
 
 #botonGuardarAlgoritmoEnPersonalizado {
@@ -89,13 +109,24 @@
 #botonSalir {
     -fx-background-color: #fb4c4c;
 }
+#botonSalir:hover {
+    -fx-background-color: #f52e2e;
+}
 
 #botonJugar {
     -fx-background-color: #ffef94;
 }
 
+#botonJugar:hover {
+    -fx-background-color: #c9bc75;
+}
+
 #botonAcercaDe {
     -fx-background-color: #ffef94;
+}
+
+#botonAcercaDe:hover {
+    -fx-background-color: #c9bc75;
 }
 
 #botonAtras {
@@ -105,11 +136,19 @@
     -fx-background-image: url("volver.png");
 }
 
+#botonAtras:hover {
+    -fx-background-color: #da771a;
+}
+
 #botonEjecutar {
     -fx-background-color: #ff8c20;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-image: url("ejecutar.png");
+}
+
+#botonEjecutar:hover {
+    -fx-background-color: #da771a;
 }
 
 #sectorBloquesDisponibles {
