@@ -9,22 +9,19 @@ public class Tablero extends Canvas {
     private int yFinal;
 
     public Tablero(double ancho, double alto) {
-        super(ancho,alto);
+        super(ancho, alto);
         this.setStyle("-fx-border-color: blue");
         this.xFinal = (int) ((this.getHeight()) / 2);
         this.yFinal = (int) ((this.getHeight()) / 2);
     }
 
-    private void dibujarMovimientos(){
+    private void dibujarMovimientos() {
         GraphicsContext graphicadorContext = this.getGraphicsContext2D();
-        graphicadorContext.strokeLine(0,10,0,10);
-        System.out.println("Se ejecuto");
+        graphicadorContext.setLineWidth(15);
+        graphicadorContext.strokeLine(0, 0, 200, 0);
     }
-    public void dibujar(){
+
+    public void dibujar() {
         this.dibujarMovimientos();
     }
-
-
-
-
 }
