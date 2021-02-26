@@ -5,6 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -17,8 +18,6 @@ public class ContenedorPrincipal extends BorderPane {
     public ContenedorPrincipal(Stage stage) {
         this.setBotoneraVerticalPrincipal();
         this.setVistaTablero();
-        this.setAlgoritmoEnPantalla();
-
     }
 
     private void setBotoneraVerticalPrincipal(){
@@ -36,38 +35,45 @@ public class ContenedorPrincipal extends BorderPane {
 
 
         VBox contenedorVerticalBotones = new VBox();
-
         contenedorVerticalBotones.setSpacing(30);
         contenedorVerticalBotones.setAlignment(Pos.TOP_CENTER);
-
         contenedorVerticalBotones.setStyle("-fx-padding: 20px;");
-
         contenedorVerticalBotones.getChildren().addAll(etiqueta,botonMovimietoAbajo,botonMovimietoArriba,botonMovimietoDerecha,botonMovimietoIzquierda);
         this.setLeft(contenedorVerticalBotones);
     }
 
+    private HBox setBotoneraAbajo(){
+        Button botonGuardar = new Button("Guardar   ");
+        botonGuardar.setMinSize(200,20);
+        Button botonEjectuar = new Button("Ejecutar    ");
+        botonEjectuar.setMinSize(200,20);
+        Button botonSalir = new Button("Derecha ");
+        botonSalir.setMinSize(200,20);
+
+        HBox botonera = new HBox();
+        botonera.setAlignment(Pos.CENTER);
+        botonera.setSpacing(10);
+        botonera.setStyle("-fx-padding: 10px");
+        botonera.getChildren().addAll(botonEjectuar,botonGuardar,botonSalir);
+
+        return botonera;
+    }
+
     private  void setVistaTablero(){
-        this.vistaTablero = new Tablero(500,500);
+        this.vistaTablero = new Tablero(800,600);
         this.vistaTablero.dibujar();
+        VistaAlgoritmo contenedorVerticalAlgoritmo = new VistaAlgoritmo();
+        HBox contenedorTableroAlgoritmo = new HBox();
+        contenedorTableroAlgoritmo.getChildren().addAll(contenedorVerticalAlgoritmo,this.vistaTablero);
+        contenedorTableroAlgoritmo.setAlignment(Pos.TOP_CENTER);
 
         this.contenedorCentral = new VBox();
-        this.contenedorCentral.getChildren().add(this.vistaTablero);
-
-        this.contenedorCentral.setAlignment(Pos.CENTER);
+        this.contenedorCentral.setMinSize(1000,1000);
+        this.contenedorCentral.getChildren().addAll(contenedorTableroAlgoritmo,this.setBotoneraAbajo());
+        this.contenedorCentral.setStyle("-fx-border-color: #5959d0");
+        this.contenedorCentral.setAlignment(Pos.TOP_CENTER);
 
         this.setRight(this.contenedorCentral);
     }
-
-    private void setAlgoritmoEnPantalla(){
-        VistaAlgoritmo contenedorVerticalAlgoritmo = new VistaAlgoritmo();
-
-        contenedorVerticalAlgoritmo.setSpacing(30);
-        contenedorVerticalAlgoritmo.setAlignment(Pos.TOP_CENTER);
-        contenedorVerticalAlgoritmo.setStyle("-fx-padding: 20px;");;
-
-        this.setCenter(contenedorVerticalAlgoritmo);
-    }
-
-
 
 }

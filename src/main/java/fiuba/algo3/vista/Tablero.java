@@ -10,19 +10,20 @@ public class Tablero extends Canvas {
 
     public Tablero(double ancho, double alto) {
         super(ancho,alto);
-        this.setStyle("-fx-border-color: blue");
-        this.xFinal = (int) ((this.getHeight()) / 2);
+        this.xFinal = (int) ((this.getWidth()) / 2);
         this.yFinal = (int) ((this.getHeight()) / 2);
     }
 
     private void dibujarMovimientos(){
         GraphicsContext graphicadorContext = this.getGraphicsContext2D();
-        graphicadorContext.strokeLine(0,10,0,10);
+        graphicadorContext.strokeLine(this.xFinal,this.yFinal,this.xFinal+30,this.yFinal);
         System.out.println("Se ejecuto");
     }
     public void dibujar(){
         this.dibujarMovimientos();
     }
+
+
 
 
 
