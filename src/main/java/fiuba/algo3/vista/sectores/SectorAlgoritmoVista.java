@@ -14,7 +14,6 @@ import fiuba.algo3.vista.botones.Boton;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -56,17 +55,15 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
         this.bloquesDelAlgoritmo.setMaxWidth(350);
         this.setMinWidth(400);
         this.setOnDragOver(new SeccionAlgoritmoDragOverHandler(this.bloquesDelAlgoritmo));
-        this.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(algoritmo));
+        this.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(this.algoritmo, this.bloquesDelAlgoritmo));
         this.configurarContenidoDeVentana();
     }
 
     private void configurarContenidoDeVentana() {
         Label etiqueta = new Label("Algoritmo");
         etiqueta.getStyleClass().add("subtitulo");
-        this.getChildren().addAll(etiqueta, this.bloquesDelAlgoritmo, this.botonera);
-        // TODO: nueva vista de ventana que setee el contenido de los bloques del algoritmo
+        this.getChildren().addAll(etiqueta, this.botonera, this.bloquesDelAlgoritmo);
     }
-
 
     private HBox botoneraAccionesDisponibles(App aplicacion, Stage escenario) {
 
@@ -75,7 +72,7 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
         Boton botonAtras = new Boton("botonAtras", "");
         Boton botonSalir = new Boton("botonSalir", "Salir");
 
-        botonLimpiarDibujo.setOnAction(new LimpiadorDeAlgoritmoHandler(this.algoritmo));
+        botonLimpiarDibujo.setOnAction(new LimpiadorDeAlgoritmoHandler(this.algoritmo, this.bloquesDelAlgoritmo));
         botonEjectuar.setOnAction(new BotonEjecutarAlgoritmoHandler(this.sectorDibujo, this.algoritmo));
         botonAtras.setOnAction(new BotonAtrasHandler(aplicacion, escenario));
         botonSalir.setOnAction(actionEvent -> Platform.exit());

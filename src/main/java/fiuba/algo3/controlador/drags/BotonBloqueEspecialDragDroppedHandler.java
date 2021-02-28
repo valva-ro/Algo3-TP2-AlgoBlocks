@@ -21,7 +21,7 @@ public class BotonBloqueEspecialDragDroppedHandler extends BotonDragHandler {
         this.contenedorDeBloquesVertical = contenedorDeBloquesVertical;
         this.bloqueEspecial = bloqueEspecial;
         this.fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
-        this.seccionAlgoritmoDragDropped = new SeccionAlgoritmoDragDroppedEventHandler(algoritmo);
+        this.seccionAlgoritmoDragDropped = new SeccionAlgoritmoDragDroppedEventHandler(algoritmo, contenedorDeBloquesVertical);
     }
 
     @Override

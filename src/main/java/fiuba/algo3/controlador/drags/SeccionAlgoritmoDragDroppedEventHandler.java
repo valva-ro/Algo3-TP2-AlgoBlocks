@@ -5,16 +5,22 @@ import fiuba.algo3.modelo.bloques.*;
 import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
 import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
+import fiuba.algo3.vista.botones.Boton;
+import fiuba.algo3.vista.botones.BotonBloqueEspecial;
+import fiuba.algo3.vista.botones.BotonBloqueSimple;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.layout.VBox;
 
 public class SeccionAlgoritmoDragDroppedEventHandler extends BotonDragHandler {
 
     private Algoritmo algoritmo;
+    private VBox algoritmoVista;
     private FabricaAbstractaDeBloques fabricaDeBloques;
 
-    public SeccionAlgoritmoDragDroppedEventHandler(Algoritmo algoritmo){
+    public SeccionAlgoritmoDragDroppedEventHandler(Algoritmo algoritmo, VBox algoritmoVista) {
         this.algoritmo = algoritmo;
+        this.algoritmoVista = algoritmoVista;
         this.fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
     }
 
@@ -24,41 +30,82 @@ public class SeccionAlgoritmoDragDroppedEventHandler extends BotonDragHandler {
         boolean success = false;
         if (db.hasString()) {
             this.agregarUnBloqueAlAlgoritmo(db.getString());
-            // TODO falta agregar en la vista
             success = true;
         }
         dragEvent.setDropCompleted(success);
     }
 
-    public void agregarUnBloqueAlAlgoritmo(String bloqueId){
+    public void agregarUnBloqueAlAlgoritmo(String bloqueId) {
         System.out.println(bloqueId);
-        if (bloqueId == "bloqueMovimientoArriba"){
-            System.out.println("bloqueMovimientoArriba");
+        Boton bloque;
+        if (bloqueId == "bloqueMovimientoArriba") {
             this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
-        } else if (bloqueId == "bloqueMovimientoAbajo"){
-            System.out.println("bloqueMovimientoAbajo");
+            bloque = new BotonBloqueSimple(bloqueId, "");
+            bloque.getStyleClass().add("bloqueMovimiento");
+            bloque.setDisable(true);
+            this.algoritmoVista.getChildren().add(bloque);
+        }
+
+        else if (bloqueId == "bloqueMovimientoAbajo") {
             this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
-        } else if (bloqueId == "bloqueMovimientoIzquierda"){
-            System.out.println("bloqueMovimientoIzquierda");
+            bloque = new BotonBloqueSimple(bloqueId, "");
+            bloque.getStyleClass().add("bloqueMovimiento");
+            bloque.setDisable(true);
+            this.algoritmoVista.getChildren().add(bloque);
+        }
+
+        else if (bloqueId == "bloqueMovimientoIzquierda") {
             this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
-        } else if (bloqueId == "bloqueMovimientoDerecha"){
-            System.out.println("bloqueMovimientoDerecha");
+            bloque = new BotonBloqueSimple(bloqueId, "");
+            bloque.getStyleClass().add("bloqueMovimiento");
+            bloque.setDisable(true);
+            this.algoritmoVista.getChildren().add(bloque);
+        }
+
+        else if (bloqueId == "bloqueMovimientoDerecha") {
             this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
-        } else if (bloqueId == "bloqueLapizNoDibuja"){
-            System.out.println("bloqueLapizNoDibuja");
+            bloque = new BotonBloqueSimple(bloqueId, "");
+            bloque.getStyleClass().add("bloqueMovimiento");
+            bloque.setDisable(true);
+            this.algoritmoVista.getChildren().add(bloque);
+        }
+
+        else if (bloqueId == "bloqueLapizNoDibuja") {
             this.fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
-        } else if (bloqueId == "bloqueLapizDibuja"){
-            System.out.println("bloqueLapizDibuja");
+            bloque = new BotonBloqueSimple(bloqueId, "");
+            bloque.setDisable(true);
+            this.algoritmoVista.getChildren().add(bloque);
+        }
+
+        else if (bloqueId == "bloqueLapizDibuja") {
             this.fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
-        } else if (bloqueId == "bloqueInvertir"){
-            System.out.println("bloqueInvertir");
+            bloque = new BotonBloqueSimple(bloqueId, "");
+            bloque.setDisable(true);
+            this.algoritmoVista.getChildren().add(bloque);
+        }
+
+        else if (bloqueId == "bloqueInvertir"){
             this.algoritmo.agregar(new BloqueInvertir());
-        } else if (bloqueId == "bloqueRepeticionDoble"){
-            System.out.println("bloqueRepeticionDoble");
+            bloque = new BotonBloqueEspecial(bloqueId, "", this.algoritmo);
+            bloque.getStyleClass().add("bloqueInvertir");
+            //bloque.setDisable(true);
+            this.algoritmoVista.getChildren().add(bloque);
+        }
+
+        else if (bloqueId == "bloqueRepeticionDoble"){
             this.algoritmo.agregar(new BloqueRepetirDosVeces());
-        } else if (bloqueId == "bloqueRepeticionTriple"){
-            System.out.println("bloqueRepeticionTriple");
+            bloque = new BotonBloqueEspecial(bloqueId, "", this.algoritmo);
+            bloque.getStyleClass().add("bloqueRepeticion");
+            //bloque.setDisable(true);
+            this.algoritmoVista.getChildren().add(bloque);
+        }
+
+        else if (bloqueId == "bloqueRepeticionTriple"){
             this.algoritmo.agregar(new BloqueRepetirTresVeces());
+            bloque = new BotonBloqueEspecial(bloqueId, "", this.algoritmo);
+            bloque.getStyleClass().add("bloqueRepeticion");
+            //bloque.setDisable(true);
+            this.algoritmoVista.getChildren().add(bloque);
         }
     }
 }

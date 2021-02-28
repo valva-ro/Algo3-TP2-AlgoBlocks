@@ -102,6 +102,7 @@
 }
 
 #botonGuardarAlgoritmoEnPersonalizado {
+    -fx-background-color: #fb4c4c;
     -fx-background-image: url("guardar-algoritmo.png");
 }
 
