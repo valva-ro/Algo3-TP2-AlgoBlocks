@@ -1,9 +1,7 @@
-package fiuba.algo3.controlador;
+package fiuba.algo3.controlador.clicks;
 
 import fiuba.algo3.App;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
 public class BotonAtrasHandler extends BotonClickHandler {
@@ -18,7 +16,7 @@ public class BotonAtrasHandler extends BotonClickHandler {
     }
 
     @Override
-    public void handle(Event actionEvent) {
+    public void handle(ActionEvent actionEvent) {
         super.handle(actionEvent);
         this.aplicacion.start(this.escenario);
     }

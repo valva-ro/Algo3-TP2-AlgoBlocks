@@ -91,7 +91,6 @@
 }
 #bloqueLapizDibuja:hover {
     -fx-background-color: #50ec2e;
-
 }
 
 #bloqueLapizNoDibuja {
@@ -149,6 +148,33 @@
 
 #botonEjecutar:hover {
     -fx-background-color: #da771a;
+}
+
+#botonAceptar {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 14px;
+    -fx-background-color: #60ff3c;
+}
+#botonAceptar:hover {
+    -fx-background-color: #50ec2e;
+}
+
+#botonCancelar {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 14px;
+    -fx-background-color: #fb4c4c;
+}
+#botonCancelar:hover {
+    -fx-background-color: #f52e2e;
+}
+
+#botonLimpiarDibujo {
+    -fx-background-color: #fb4c4c;
+    -fx-background-image: url("eliminar-bloque.png");
+}
+
+#botonLimpiarDibujo:hover {
+    -fx-background-color: #f52e2e;
 }
 
 #sectorBloquesDisponibles {

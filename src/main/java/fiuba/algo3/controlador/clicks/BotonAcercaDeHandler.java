@@ -1,10 +1,11 @@
-package fiuba.algo3.controlador;
+package fiuba.algo3.controlador.clicks;
 
 import fiuba.algo3.App;
-import fiuba.algo3.vista.ContenedorPrincipal;
-import javafx.application.Platform;
-import javafx.event.Event;
-import javafx.event.EventHandler;
+import fiuba.algo3.modelo.Algoritmo;
+import fiuba.algo3.modelo.SectorBloques;
+import fiuba.algo3.modelo.SectorDibujo;
+import fiuba.algo3.vista.ventanas.VistaPrincipal;
+import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,11 +18,13 @@ public class BotonAcercaDeHandler extends BotonClickHandler {
     private Stage escenario;
     private App aplicacion;
     private Button botonAtras;
+    private VistaPrincipal vistaPrincipal;
 
-    public BotonAcercaDeHandler(App aplicacion, Stage escenario) {
+    public BotonAcercaDeHandler(App aplicacion, Stage escenario, SectorDibujo sectorDibujo, SectorBloques sectorBloques, Algoritmo algoritmo) {
         super();
         this.escenario = escenario;
         this.aplicacion = aplicacion;
+        this.vistaPrincipal = new VistaPrincipal(aplicacion, escenario, sectorDibujo, sectorBloques, algoritmo);
 
         this.botonAtras = new Button();
         this.botonAtras.getStyleClass().addAll("boton", "bloque");
@@ -30,10 +33,9 @@ public class BotonAcercaDeHandler extends BotonClickHandler {
     }
 
     @Override
-    public void handle(Event event) {
+    public void handle(ActionEvent event) {
         super.handle(event);
-        ContenedorPrincipal vistaPrincipal = new ContenedorPrincipal(this.aplicacion, this.escenario);
-        Scene nuevaEscena = new Scene(vistaPrincipal, 800, 600);
+        Scene nuevaEscena = new Scene(this.vistaPrincipal, 800, 600);
         nuevaEscena.getStylesheets().add("style.css");
 
         Label texto = new Label("\nBla bla bla\nBla bla bla\nBla bla bla\nBla bla bla");
@@ -43,6 +45,6 @@ public class BotonAcercaDeHandler extends BotonClickHandler {
         contenedor.setAlignment(Pos.CENTER);
         nuevaEscena.setRoot(contenedor);
 
-        escenario.setScene(nuevaEscena);
+        this.escenario.setScene(nuevaEscena);
     }
 }

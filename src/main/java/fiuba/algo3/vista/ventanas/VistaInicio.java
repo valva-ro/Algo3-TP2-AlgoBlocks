@@ -1,8 +1,12 @@
-package fiuba.algo3.vista;
+package fiuba.algo3.vista.ventanas;
 
 import fiuba.algo3.App;
-import fiuba.algo3.controlador.BotonAcercaDeHandler;
-import fiuba.algo3.controlador.BotonJugarHandler;
+import fiuba.algo3.controlador.clicks.BotonAcercaDeHandler;
+import fiuba.algo3.controlador.clicks.BotonJugarHandler;
+import fiuba.algo3.modelo.Algoritmo;
+import fiuba.algo3.modelo.SectorBloques;
+import fiuba.algo3.modelo.SectorDibujo;
+import fiuba.algo3.vista.botones.Boton;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -19,7 +23,7 @@ public class VistaInicio extends VBox {
     private static final int ALTO = 250;
     Stage escenario;
 
-    public VistaInicio(App aplicacion, Stage escenario) {
+    public VistaInicio(App aplicacion, Stage escenario, SectorDibujo sectorDibujo, SectorBloques sectorBloques, Algoritmo algoritmo) {
         super();
 
         this.escenario = escenario;
@@ -29,10 +33,10 @@ public class VistaInicio extends VBox {
         Boton botonAcercaDe = new Boton("botonAcercaDe", "Acerca de");
         Boton botonSalir = new Boton("botonSalir", "Salir");
 
-        BotonJugarHandler botonJugarHandler = new BotonJugarHandler(aplicacion, escenario);
+        BotonJugarHandler botonJugarHandler = new BotonJugarHandler(aplicacion, escenario, sectorDibujo, sectorBloques, algoritmo);
         botonJugar.setOnAction(botonJugarHandler);
 
-        BotonAcercaDeHandler botonAcercaDeHandler = new BotonAcercaDeHandler(aplicacion, escenario);
+        BotonAcercaDeHandler botonAcercaDeHandler = new BotonAcercaDeHandler(aplicacion, escenario, sectorDibujo, sectorBloques, algoritmo);
         botonAcercaDe.setOnAction(botonAcercaDeHandler);
 
         botonSalir.setOnAction(actionEvent -> Platform.exit());
@@ -49,7 +53,7 @@ public class VistaInicio extends VBox {
         vistaDeImagen.setFitHeight(ALTO);
 
         this.setStyle("-fx-background-color: #abe389");
-        Label etiqueta = new Label("Bienvenidos a AlgoBlocks!");
+        Label etiqueta = new Label("Bienvenide a AlgoBlocks!");
         etiqueta.getStyleClass().add("titulo");
 
         this.getChildren().addAll(etiqueta, vistaDeImagen, botonera);

@@ -17,7 +17,7 @@ public class AlgoritmoTests {
         Algoritmo algoritmo = new Algoritmo();
         SectorDibujo sectorDibujo = new SectorDibujo();
 
-        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+        assertThrows(AlgoritmoNoTieneBloquesError.class,
                 () -> algoritmo.ejecutar(sectorDibujo));
     }
 
@@ -229,7 +229,7 @@ public class AlgoritmoTests {
         algoritmo.agregar(bloqueNorte);
         algoritmo.sacar(bloqueNorte);
 
-        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+        assertThrows(AlgoritmoNoTieneBloquesError.class,
                 () -> algoritmo.ejecutar(sectorDibujo));
 
         assertFalse(sectorDibujo.existeArista(origen, destino));
@@ -277,7 +277,7 @@ public class AlgoritmoTests {
         algoritmo.sacar(bloqueNorte);
         algoritmo.sacar(bloqueNorte);
 
-        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+        assertThrows(AlgoritmoNoTieneBloquesError.class,
                 () -> algoritmo.ejecutar(sectorDibujo));
 
         assertFalse(sectorDibujo.existeArista(origen, primerDestino));
@@ -343,7 +343,7 @@ public class AlgoritmoTests {
         algoritmo.agregar(bloqueRepeticionTriple);
         algoritmo.sacar(bloqueRepeticionTriple);
 
-        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+        assertThrows(AlgoritmoNoTieneBloquesError.class,
                 () -> algoritmo.ejecutar(sectorDibujo));
 
         assertFalse(sectorDibujo.existeArista(origen, primerDestino));
@@ -366,7 +366,7 @@ public class AlgoritmoTests {
         algoritmo.agregar(bloqueRepeticionDoble);
         algoritmo.sacar(bloqueRepeticionDoble);
 
-        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+        assertThrows(AlgoritmoNoTieneBloquesError.class,
                 () -> algoritmo.ejecutar(sectorDibujo));
 
         assertFalse(sectorDibujo.existeArista(origen, primerDestino));
@@ -387,7 +387,7 @@ public class AlgoritmoTests {
         algoritmo.agregar(bloquePersonalizado);
         algoritmo.sacar(bloquePersonalizado);
 
-        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+        assertThrows(AlgoritmoNoTieneBloquesError.class,
                 () -> algoritmo.ejecutar(sectorDibujo));
 
         assertFalse(sectorDibujo.existeArista(origen, destino));
@@ -406,7 +406,7 @@ public class AlgoritmoTests {
         algoritmo.agregar(bloqueInvertir);
         algoritmo.sacar(bloqueInvertir);
 
-        assertThrows(AlgoritmoNoPuedeSerEjecutadoSiNoTieneBloquesError.class,
+        assertThrows(AlgoritmoNoTieneBloquesError.class,
                 () -> algoritmo.ejecutar(sectorDibujo));
 
         assertFalse(sectorDibujo.existeArista(origen, destino));
