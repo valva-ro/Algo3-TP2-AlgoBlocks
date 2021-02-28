@@ -8,7 +8,6 @@
     -fx-font-size: 14px;
 }
 
-
 .bloque {
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
@@ -176,12 +175,4 @@
 
 #botonLimpiarDibujo:hover {
     -fx-background-color: #f52e2e;
-}
-
-#sectorBloquesDisponibles {
-
-}
-
-#sectorAlgoritmo {
-
 }

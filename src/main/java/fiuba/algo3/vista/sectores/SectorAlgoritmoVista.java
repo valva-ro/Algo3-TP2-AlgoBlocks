@@ -7,7 +7,6 @@ import fiuba.algo3.controlador.clicks.LimpiadorDeAlgoritmoHandler;
 import fiuba.algo3.controlador.drags.SeccionAlgoritmoDragDroppedEventHandler;
 import fiuba.algo3.controlador.drags.SeccionAlgoritmoDragOverHandler;
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.Observador;
 import fiuba.algo3.modelo.SectorBloques;
 import fiuba.algo3.modelo.SectorDibujo;
 import fiuba.algo3.vista.botones.Boton;
@@ -18,7 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class SectorAlgoritmoVista extends VBox implements Observador {
+public class SectorAlgoritmoVista extends VBox {
 
     private final Algoritmo algoritmo;
     private final SectorDibujo sectorDibujo;
@@ -33,21 +32,11 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
         this.sectorDibujo = sectorDibujo;
         this.bloquesDelAlgoritmo = new VBox();
 
-        this.algoritmo.addObserver(this);
-        this.sectorBloques.addObserver(this);
-
         this.getStylesheets().add("style.css");
         this.setAlignment(Pos.TOP_CENTER);
 
         this.botonera = this.botoneraAccionesDisponibles(aplicacion, escenario);
         this.configurarVentana();
-    }
-
-    @Override
-    public void update() {
-        if (algoritmo.estaVacio()) {
-            this.configurarContenidoDeVentana();
-        }
     }
 
     private void configurarVentana() {
@@ -56,10 +45,6 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
         this.setMinWidth(400);
         this.setOnDragOver(new SeccionAlgoritmoDragOverHandler(this.bloquesDelAlgoritmo));
         this.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(this.algoritmo, this.bloquesDelAlgoritmo));
-        this.configurarContenidoDeVentana();
-    }
-
-    private void configurarContenidoDeVentana() {
         Label etiqueta = new Label("Algoritmo");
         etiqueta.getStyleClass().add("subtitulo");
         this.getChildren().addAll(etiqueta, this.botonera, this.bloquesDelAlgoritmo);
