@@ -1,5 +1,6 @@
-package fiuba.algo3.controlador.clicks;
+package fiuba.algo3.vista.ventanas;
 
+import fiuba.algo3.controlador.clicks.GuardarAlgoritmoHandler;
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.modelo.SectorBloques;
 import fiuba.algo3.vista.botones.Boton;
@@ -20,14 +21,16 @@ public class VentanaGuardarAlgoritmoPersonalizado {
         ventana.setResizable(false);
         ventana.initModality(Modality.APPLICATION_MODAL);
         ventana.setTitle(titulo);
-        ventana.setMinWidth(400);
+        ventana.setMinWidth(500);
 
         Label label = new Label();
         label.setText(mensaje);
+        label.setId("informacion");
 
         TextField campoDeTexto = new TextField();
+        campoDeTexto.setMaxWidth(200);
         campoDeTexto.setOnAction(new GuardarAlgoritmoHandler(contenedorBloques, campoDeTexto, algoritmo, sectorBloques, ventana));
-        campoDeTexto.getStyleClass().add("informacion");
+        campoDeTexto.setId("informacion");
 
         Boton botonAceptar = new Boton("botonAceptar", "Aceptar");
         botonAceptar.setOnAction(new GuardarAlgoritmoHandler(contenedorBloques, campoDeTexto, algoritmo, sectorBloques, ventana));
@@ -40,10 +43,11 @@ public class VentanaGuardarAlgoritmoPersonalizado {
         contenedorHorizontal.setAlignment(Pos.CENTER);
 
         VBox contenedorVertical = new VBox(10);
+        contenedorVertical.setStyle("-fx-background-color: #e0fee0");
         contenedorVertical.getChildren().addAll(label, campoDeTexto, contenedorHorizontal);
         contenedorVertical.setAlignment(Pos.CENTER);
 
-        Scene escena = new Scene(contenedorVertical, 325, 125);
+        Scene escena = new Scene(contenedorVertical, 500, 300);
         escena.getStylesheets().add("style.css");
         ventana.setScene(escena);
         ventana.showAndWait();

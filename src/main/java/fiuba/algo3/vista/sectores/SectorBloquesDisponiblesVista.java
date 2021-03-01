@@ -31,7 +31,6 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
 
         this.botonGuardarBloquePersonalizado = new Boton("botonGuardarAlgoritmoEnPersonalizado", "");
         this.botonGuardarBloquePersonalizado.setDisable(true);
-        this.botonGuardarBloquePersonalizado.setDisable(true);
         this.botonGuardarBloquePersonalizado.setOnAction(new BotonGuardarAlgoritmoHandler(contenedorVerticalBotones, sectorBloques, this.algoritmo));
 
         this.setLeft(new ScrollPane(this.bloquesDisponibles()));

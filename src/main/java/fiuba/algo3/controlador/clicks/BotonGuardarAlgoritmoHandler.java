@@ -2,6 +2,7 @@ package fiuba.algo3.controlador.clicks;
 
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.modelo.SectorBloques;
+import fiuba.algo3.vista.ventanas.VentanaGuardarAlgoritmoPersonalizado;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.VBox;
 
