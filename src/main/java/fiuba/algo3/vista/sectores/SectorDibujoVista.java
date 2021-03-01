@@ -5,7 +5,7 @@ import javafx.scene.layout.BorderPane;
 
 public class SectorDibujoVista extends BorderPane {
 
-    private DibujoVista dibujo;
+    private final DibujoVista dibujo;
 
     public SectorDibujoVista() {
 

@@ -15,21 +15,19 @@ import javafx.stage.Stage;
 
 public class BotonAcercaDeHandler extends BotonClickHandler {
 
-    private Stage escenario;
-    private App aplicacion;
-    private Button botonAtras;
-    private VistaPrincipal vistaPrincipal;
+    private final Stage escenario;
+    private final Button botonAtras;
+    private final VistaPrincipal vistaPrincipal;
 
     public BotonAcercaDeHandler(App aplicacion, Stage escenario, SectorDibujo sectorDibujo, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         super();
         this.escenario = escenario;
-        this.aplicacion = aplicacion;
         this.vistaPrincipal = new VistaPrincipal(aplicacion, escenario, sectorDibujo, algoritmo, fabricaDeBloques);
 
         this.botonAtras = new Button();
         this.botonAtras.getStyleClass().addAll("boton", "bloque");
         this.botonAtras.setId("botonAtras");
-        this.botonAtras.setOnAction(new BotonAtrasHandler(this.aplicacion, this.escenario));
+        this.botonAtras.setOnAction(new BotonAtrasHandler(aplicacion, this.escenario));
     }
 
     @Override

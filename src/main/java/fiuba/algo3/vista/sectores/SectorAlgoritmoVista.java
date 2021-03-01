@@ -23,9 +23,9 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
 
     private final Algoritmo algoritmo;
     private final SectorDibujo sectorDibujo;
-    private FabricaAbstractaDeBloques fabricaDeBloques;
-    private VBox bloquesDelAlgoritmo;
-    private HBox botonera;
+    private final FabricaAbstractaDeBloques fabricaDeBloques;
+    private final VBox bloquesDelAlgoritmo;
+    private final HBox botonera;
     private Boton botonLimpiarDibujo;
     private Boton botonEjectuar;
 

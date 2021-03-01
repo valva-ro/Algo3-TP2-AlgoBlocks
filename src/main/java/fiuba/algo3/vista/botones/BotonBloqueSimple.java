@@ -1,6 +1,5 @@
 package fiuba.algo3.vista.botones;
 
-import javafx.scene.control.Button;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;

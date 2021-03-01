@@ -15,8 +15,8 @@ import javafx.scene.layout.VBox;
 
 public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<DragEvent> {
 
-    private Algoritmo algoritmo;
-    private VBox algoritmoVista;
+    private final Algoritmo algoritmo;
+    private final VBox algoritmoVista;
     private FabricaAbstractaDeBloques fabricaDeBloques;
 
     public SeccionAlgoritmoDragDroppedEventHandler(Algoritmo algoritmo, VBox algoritmoVista, FabricaAbstractaDeBloques fabricaDeBloques) {

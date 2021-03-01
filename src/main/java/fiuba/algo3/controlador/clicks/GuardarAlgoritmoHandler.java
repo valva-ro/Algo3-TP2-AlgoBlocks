@@ -10,10 +10,10 @@ import javafx.stage.Stage;
 
 public class GuardarAlgoritmoHandler implements EventHandler<ActionEvent> {
 
-    private VBox contenedorBloques;
+    private final VBox contenedorBloques;
     private Algoritmo algoritmo;
-    private TextField campoDeTexto;
-    private Stage ventana;
+    private final TextField campoDeTexto;
+    private final Stage ventana;
 
     public GuardarAlgoritmoHandler(VBox contenedorBloques, TextField campoDeTexto, Algoritmo algoritmo, Stage ventana) {
         this.contenedorBloques = contenedorBloques;

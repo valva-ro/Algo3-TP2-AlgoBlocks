@@ -15,10 +15,10 @@ import javafx.scene.layout.VBox;
 
 public class SectorBloquesDisponiblesVista extends BorderPane implements Observador {
 
-    private VBox contenedorVerticalBotones;
-    private Algoritmo algoritmo;
-    private Boton botonGuardarBloquePersonalizado;
-    private FabricaAbstractaDeBloques fabricaDeBloques;
+    private final VBox contenedorVerticalBotones;
+    private final Algoritmo algoritmo;
+    private final Boton botonGuardarBloquePersonalizado;
+    private final FabricaAbstractaDeBloques fabricaDeBloques;
 
     public SectorBloquesDisponiblesVista(Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         super();

@@ -5,7 +5,7 @@ import javafx.event.ActionEvent;
 
 public class LimpiadorDeAlgoritmoHandler extends BotonClickHandler {
 
-    private Algoritmo algoritmo;
+    private final Algoritmo algoritmo;
 
     public LimpiadorDeAlgoritmoHandler(Algoritmo algoritmo){
         this.algoritmo = algoritmo;

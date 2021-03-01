@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 
 public class BotonJugarHandler extends BotonClickHandler {
 
-    private Stage escenario;
-    VistaPrincipal vistaPrincipal;
+    private final Stage escenario;
+    private final VistaPrincipal vistaPrincipal;
 
     public BotonJugarHandler(App aplicacion, Stage escenario, SectorDibujo sectorDibujo, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         super();

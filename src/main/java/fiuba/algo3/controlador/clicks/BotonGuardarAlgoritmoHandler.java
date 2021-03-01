@@ -7,8 +7,8 @@ import javafx.scene.layout.VBox;
 
 public class BotonGuardarAlgoritmoHandler extends BotonClickHandler {
 
-    VBox contenedorBloques;
-    Algoritmo algoritmo;
+    private final VBox contenedorBloques;
+    private final Algoritmo algoritmo;
 
     public BotonGuardarAlgoritmoHandler(VBox contenedorBloques, Algoritmo algoritmo) {
         this.contenedorBloques = contenedorBloques;
