@@ -6,15 +6,13 @@
     -fx-border-radius: 6px;
     -fx-font-family: "Comic Sans MS";
     -fx-font-size: 14px;
-}
-
-.bloque {
-    -fx-background-position: center;
-    -fx-background-repeat: no-repeat;
     -fx-min-width: 120;
     -fx-min-height: 60;
-    -fx-border-radius: 6px;
+    -fx-max-width: 120;
+    -fx-max-height: 60;
     -fx-background-size: 35 35;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
 }
 
 .bloqueMovimiento {
@@ -25,12 +23,17 @@
     -fx-background-color: #264db7;
 }
 
-.bloqueRepeticion {
-    -fx-background-color: #ffdf3c;
+.contenidoDeBloquePersonalizado {
+    -fx-background-color: #636363;
+    -fx-border-color: #000000;
+    -fx-border-width: 2px;
 }
 
-.bloqueRepeticion:hover {
-    -fx-background-color: #ddc238;
+.bloquePersonalizado {
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-alignment: center;
+    -fx-font-size: 14px;
+    -fx-background-color: #f886ff;
 }
 
 .titulo {
@@ -43,6 +46,13 @@
     -fx-font-family: "Comic Sans MS";
     -fx-font-size: 22px;
     -fx-padding: 20px;
+}
+
+.bloqueEspecial {
+    -fx-min-width: 120;
+    -fx-min-height: 60;
+    -fx-max-width: 240;
+    -fx-max-height: 360;
 }
 
 #informacion {
@@ -68,20 +78,39 @@
 }
 
 #bloqueRepeticionDoble {
+    -fx-background-color: #ffdf3c;
+    -fx-border-color: #a59433;
+    -fx-border-width: 4px;
     -fx-background-image: url("repeticion-doble.png");
+}
+
+#bloqueRepeticionDoble:hover {
+    -fx-background-color: #ddc238;
+    -fx-border-color: #807328;
 }
 
 #bloqueRepeticionTriple {
     -fx-background-image: url("repeticion-triple.png");
+    -fx-background-color: #28B463;
+    -fx-border-color: #2b8d76;
+    -fx-border-width: 4px;
+}
+
+#bloqueRepeticionTriple:hover {
+    -fx-background-color: #229d55;
+    -fx-border-color: #1f6655;
 }
 
 #bloqueInvertir {
     -fx-background-color: #ff8c20;
     -fx-background-image: url("invertir.png");
+    -fx-border-color: #9a4b00;
+    -fx-border-width: 4px;
 }
 
 #bloqueInvertir:hover {
     -fx-background-color: #da771a;
+    -fx-border-color: #6d3601;
 }
 
 #bloqueLapizDibuja {
@@ -152,6 +181,7 @@
 
 #botonAceptar {
     -fx-font-family: "Comic Sans MS";
+    -fx-text-alignment: center;
     -fx-font-size: 14px;
     -fx-background-color: #60ff3c;
 }
@@ -161,6 +191,7 @@
 
 #botonCancelar {
     -fx-font-family: "Comic Sans MS";
+    -fx-text-alignment: center;
     -fx-font-size: 14px;
     -fx-background-color: #fb4c4c;
 }
