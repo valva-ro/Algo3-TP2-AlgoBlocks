@@ -1,7 +1,6 @@
 package fiuba.algo3;
 
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.SectorBloques;
 import fiuba.algo3.modelo.SectorDibujo;
 import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
@@ -27,11 +26,10 @@ public class App extends Application {
     public void start(Stage escenario) {
 
         SectorDibujo sectorDibujo = new SectorDibujo();
-        SectorBloques sectorBloques = new SectorBloques();
         Algoritmo algoritmo = new Algoritmo();
         FabricaAbstractaDeBloques fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
 
-        VistaInicio vistaInicio = new VistaInicio(this, escenario, sectorDibujo, sectorBloques, algoritmo, fabricaDeBloques);
+        VistaInicio vistaInicio = new VistaInicio(this, escenario, sectorDibujo, algoritmo, fabricaDeBloques);
         Scene escenaInicial = new Scene(vistaInicio, ANCHO, ALTO);
 
         escenaInicial.getStylesheets().clear();

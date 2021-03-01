@@ -2,7 +2,6 @@ package fiuba.algo3.vista.ventanas;
 
 import fiuba.algo3.controlador.clicks.GuardarAlgoritmoHandler;
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.SectorBloques;
 import fiuba.algo3.vista.botones.Boton;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,7 +14,7 @@ import javafx.stage.Stage;
 
 public class VentanaGuardarAlgoritmoPersonalizado {
 
-    public static void display(VBox contenedorBloques, String titulo, String mensaje, Algoritmo algoritmo, SectorBloques sectorBloques){
+    public static void display(VBox contenedorBloques, String titulo, String mensaje, Algoritmo algoritmo){
 
         Stage ventana = new Stage();
         ventana.setResizable(false);
@@ -29,11 +28,11 @@ public class VentanaGuardarAlgoritmoPersonalizado {
 
         TextField campoDeTexto = new TextField();
         campoDeTexto.setMaxWidth(200);
-        campoDeTexto.setOnAction(new GuardarAlgoritmoHandler(contenedorBloques, campoDeTexto, algoritmo, sectorBloques, ventana));
+        campoDeTexto.setOnAction(new GuardarAlgoritmoHandler(contenedorBloques, campoDeTexto, algoritmo, ventana));
         campoDeTexto.setId("informacion");
 
         Boton botonAceptar = new Boton("botonAceptar", "Aceptar");
-        botonAceptar.setOnAction(new GuardarAlgoritmoHandler(contenedorBloques, campoDeTexto, algoritmo, sectorBloques, ventana));
+        botonAceptar.setOnAction(new GuardarAlgoritmoHandler(contenedorBloques, campoDeTexto, algoritmo, ventana));
 
         Boton botonCancelar = new Boton("botonCancelar", "Cancelar");
         botonCancelar.setOnAction(e -> ventana.close());

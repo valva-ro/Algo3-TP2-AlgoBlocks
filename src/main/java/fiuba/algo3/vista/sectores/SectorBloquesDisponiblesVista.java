@@ -3,7 +3,6 @@ package fiuba.algo3.vista.sectores;
 import fiuba.algo3.controlador.clicks.BotonGuardarAlgoritmoHandler;
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.modelo.Observador;
-import fiuba.algo3.modelo.SectorBloques;
 import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.vista.botones.Boton;
 import fiuba.algo3.vista.botones.BotonBloqueEspecial;
@@ -21,7 +20,7 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
     private Boton botonGuardarBloquePersonalizado;
     private FabricaAbstractaDeBloques fabricaDeBloques;
 
-    public SectorBloquesDisponiblesVista(SectorBloques sectorBloques, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
+    public SectorBloquesDisponiblesVista(Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         super();
 
         this.algoritmo = algoritmo;
@@ -32,7 +31,7 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
 
         this.botonGuardarBloquePersonalizado = new Boton("botonGuardarAlgoritmoEnPersonalizado", "");
         this.botonGuardarBloquePersonalizado.setDisable(true);
-        this.botonGuardarBloquePersonalizado.setOnAction(new BotonGuardarAlgoritmoHandler(contenedorVerticalBotones, sectorBloques, this.algoritmo));
+        this.botonGuardarBloquePersonalizado.setOnAction(new BotonGuardarAlgoritmoHandler(contenedorVerticalBotones, this.algoritmo));
 
         ScrollPane contenedorScrolleable = new ScrollPane(this.bloquesDisponibles());
         contenedorScrolleable.setFitToWidth(true);

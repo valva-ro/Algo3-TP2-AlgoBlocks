@@ -2,7 +2,6 @@ package fiuba.algo3.controlador.clicks;
 
 import fiuba.algo3.App;
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.SectorBloques;
 import fiuba.algo3.modelo.SectorDibujo;
 import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.vista.ventanas.VistaPrincipal;
@@ -15,10 +14,10 @@ public class BotonJugarHandler extends BotonClickHandler {
     private Stage escenario;
     VistaPrincipal vistaPrincipal;
 
-    public BotonJugarHandler(App aplicacion, Stage escenario, SectorDibujo sectorDibujo, SectorBloques sectorBloques, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
+    public BotonJugarHandler(App aplicacion, Stage escenario, SectorDibujo sectorDibujo, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         super();
         this.escenario = escenario;
-        this.vistaPrincipal = new VistaPrincipal(aplicacion, escenario, sectorDibujo, sectorBloques, algoritmo, fabricaDeBloques);
+        this.vistaPrincipal = new VistaPrincipal(aplicacion, escenario, sectorDibujo, algoritmo, fabricaDeBloques);
     }
 
     @Override
