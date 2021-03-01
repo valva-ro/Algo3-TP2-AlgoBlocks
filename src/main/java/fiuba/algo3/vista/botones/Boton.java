@@ -7,7 +7,7 @@ public class Boton extends Button {
     public Boton(String bloqueID, String texto) {
         super(texto);
         this.setId(bloqueID);
-        this.getStyleClass().addAll("boton", "bloque");
+        this.getStyleClass().add("boton");
     }
 
     public String obtenerID() {

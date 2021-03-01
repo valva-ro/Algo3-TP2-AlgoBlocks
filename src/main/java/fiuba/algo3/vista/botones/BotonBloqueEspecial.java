@@ -1,6 +1,7 @@
 package fiuba.algo3.vista.botones;
 
 import fiuba.algo3.controlador.drags.BotonBloqueEspecialDragDroppedHandler;
+import fiuba.algo3.controlador.drags.BotonBloqueEspecialDragOverHandler;
 import fiuba.algo3.controlador.drags.BotonBloqueOnDragDetectedHandler;
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.modelo.bloques.BloquePersonalizado;
@@ -13,7 +14,9 @@ public class BotonBloqueEspecial extends Boton {
 
     public BotonBloqueEspecial(String bloqueID, String texto, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         super(bloqueID, texto);
+        this.getStyleClass().addAll("bloque");
         this.setOnDragDetected(new BotonBloqueOnDragDetectedHandler(this));
+        this.setOnDragOver(new BotonBloqueEspecialDragOverHandler(bloquesContenidos));
         this.setOnDragDropped(new BotonBloqueEspecialDragDroppedHandler(bloquesContenidos, new BloquePersonalizado(), algoritmo, fabricaDeBloques));
     }
 }
