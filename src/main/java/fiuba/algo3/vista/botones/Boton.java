@@ -9,8 +9,4 @@ public class Boton extends Button {
         this.setId(bloqueID);
         this.getStyleClass().add("boton");
     }
-
-    public String obtenerID() {
-        return this.getId();
-    }
 }

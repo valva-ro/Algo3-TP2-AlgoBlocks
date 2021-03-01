@@ -1,6 +1,6 @@
 package fiuba.algo3.modelo.bloques;
 
-interface Bloques extends Bloque {
+public interface Bloques extends Bloque {
 
     void agregar(Bloque bloque);
 

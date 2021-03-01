@@ -5,14 +5,15 @@ import fiuba.algo3.modelo.bloques.*;
 import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
 import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
-import fiuba.algo3.vista.botones.Boton;
 import fiuba.algo3.vista.botones.BotonBloqueEspecial;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.layout.VBox;
 
-public class SeccionAlgoritmoDragDroppedEventHandler extends BotonDragHandler {
+public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<DragEvent> {
 
     private Algoritmo algoritmo;
     private VBox algoritmoVista;
@@ -33,11 +34,11 @@ public class SeccionAlgoritmoDragDroppedEventHandler extends BotonDragHandler {
             success = true;
         }
         dragEvent.setDropCompleted(success);
+        dragEvent.consume();
     }
 
-    public void agregarUnBloqueAlAlgoritmo(String bloqueId) {
-        System.out.println(bloqueId);
-        Boton bloque;
+    private void agregarUnBloqueAlAlgoritmo(String bloqueId) {
+        Button bloque;
         switch (bloqueId) {
             case "bloqueMovimientoArriba":
                 this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
@@ -81,21 +82,21 @@ public class SeccionAlgoritmoDragDroppedEventHandler extends BotonDragHandler {
                 break;
             case "bloqueInvertir":
                 this.algoritmo.agregar(new BloqueInvertir());
-                bloque = new BotonBloqueEspecial(bloqueId, "", this.algoritmo, this.fabricaDeBloques);
-                bloque.getStyleClass().add("bloqueInvertir");
-                this.algoritmoVista.getChildren().add(bloque);
+                BotonBloqueEspecial bloqueEspecial = new BotonBloqueEspecial(bloqueId, this.algoritmo, this.fabricaDeBloques);
+                bloqueEspecial.getStyleClass().add("bloqueInvertir");
+                this.algoritmoVista.getChildren().add(bloqueEspecial);
                 break;
             case "bloqueRepeticionDoble":
                 this.algoritmo.agregar(new BloqueRepetirDosVeces());
-                bloque = new BotonBloqueEspecial(bloqueId, "", this.algoritmo, this.fabricaDeBloques);
-                bloque.getStyleClass().add("bloqueRepeticion");
-                this.algoritmoVista.getChildren().add(bloque);
+                BotonBloqueEspecial bloqueEspecialDoble = new BotonBloqueEspecial(bloqueId, this.algoritmo, this.fabricaDeBloques);
+                bloqueEspecialDoble.getStyleClass().add("bloqueRepeticion");
+                this.algoritmoVista.getChildren().add(bloqueEspecialDoble);
                 break;
             case "bloqueRepeticionTriple":
                 this.algoritmo.agregar(new BloqueRepetirTresVeces());
-                bloque = new BotonBloqueEspecial(bloqueId, "", this.algoritmo, this.fabricaDeBloques);
-                bloque.getStyleClass().add("bloqueRepeticion");
-                this.algoritmoVista.getChildren().add(bloque);
+                BotonBloqueEspecial bloqueEspecialTriple = new BotonBloqueEspecial(bloqueId, this.algoritmo, this.fabricaDeBloques);
+                bloqueEspecialTriple.getStyleClass().add("bloqueRepeticion");
+                this.algoritmoVista.getChildren().add(bloqueEspecialTriple);
                 break;
         }
     }

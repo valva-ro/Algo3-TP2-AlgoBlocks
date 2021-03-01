@@ -1,22 +1,53 @@
 package fiuba.algo3.vista.botones;
 
 import fiuba.algo3.controlador.drags.BotonBloqueEspecialDragDroppedHandler;
-import fiuba.algo3.controlador.drags.BotonBloqueEspecialDragOverHandler;
-import fiuba.algo3.controlador.drags.BotonBloqueOnDragDetectedHandler;
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.bloques.BloquePersonalizado;
+import fiuba.algo3.modelo.bloques.BloqueInvertir;
+import fiuba.algo3.modelo.bloques.BloqueRepetirDosVeces;
+import fiuba.algo3.modelo.bloques.BloqueRepetirTresVeces;
+import fiuba.algo3.modelo.bloques.Bloques;
 import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
+import javafx.geometry.Pos;
+import javafx.scene.input.*;
 import javafx.scene.layout.VBox;
 
-public class BotonBloqueEspecial extends Boton {
+public class BotonBloqueEspecial extends VBox {
 
-    private VBox bloquesContenidos = new VBox();
+    private Bloques bloquePersonalizado;
 
-    public BotonBloqueEspecial(String bloqueID, String texto, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
-        super(bloqueID, texto);
-        this.getStyleClass().addAll("bloque");
-        this.setOnDragDetected(new BotonBloqueOnDragDetectedHandler(this));
-        this.setOnDragOver(new BotonBloqueEspecialDragOverHandler(bloquesContenidos));
-        this.setOnDragDropped(new BotonBloqueEspecialDragDroppedHandler(bloquesContenidos, new BloquePersonalizado(), algoritmo, fabricaDeBloques));
+    public BotonBloqueEspecial(String bloqueID, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
+
+        this.setId(bloqueID);
+        this.getStyleClass().addAll("boton", "bloqueEspecial");
+        this.setAlignment(Pos.BOTTOM_RIGHT);
+
+        switch (bloqueID) {
+            case "bloqueInvertir":
+                this.bloquePersonalizado = new BloqueInvertir();
+                break;
+            case "bloqueRepeticionDoble":
+                this.bloquePersonalizado = new BloqueRepetirDosVeces();
+                break;
+            case "bloqueRepeticionTriple":
+                this.bloquePersonalizado = new BloqueRepetirTresVeces();
+                break;
+        }
+
+        this.setOnDragOver((DragEvent dragEvent) -> {
+            if (dragEvent.getGestureSource() != this && dragEvent.getDragboard().hasString()) {
+                dragEvent.acceptTransferModes(TransferMode.COPY);
+            }
+            dragEvent.consume();
+        });
+
+        this.setOnDragDetected((MouseEvent mouseEvent) -> {
+            Dragboard db = this.startDragAndDrop(TransferMode.COPY);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(this.getId());
+            db.setContent(content);
+            mouseEvent.consume();
+        });
+
+        this.setOnDragDropped(new BotonBloqueEspecialDragDroppedHandler(this, this.bloquePersonalizado, algoritmo, fabricaDeBloques));
     }
 }
