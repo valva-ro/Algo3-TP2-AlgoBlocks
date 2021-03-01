@@ -4,6 +4,7 @@ import fiuba.algo3.controlador.clicks.BotonGuardarAlgoritmoHandler;
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.modelo.Observador;
 import fiuba.algo3.modelo.SectorBloques;
+import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.vista.botones.Boton;
 import fiuba.algo3.vista.botones.BotonBloqueEspecial;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
@@ -18,15 +19,21 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
     private VBox contenedorVerticalBotones;
     private Algoritmo algoritmo;
     private Boton botonGuardarBloquePersonalizado;
+    private FabricaAbstractaDeBloques fabricaDeBloques;
 
-    public SectorBloquesDisponiblesVista(SectorBloques sectorBloques, Algoritmo algoritmo) {
+    public SectorBloquesDisponiblesVista(SectorBloques sectorBloques, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         super();
+
         this.algoritmo = algoritmo;
         this.algoritmo.addObserver(this);
+
+        this.fabricaDeBloques = fabricaDeBloques;
+
         this.botonGuardarBloquePersonalizado = new Boton("botonGuardarAlgoritmoEnPersonalizado", "");
         this.botonGuardarBloquePersonalizado.setDisable(true);
         this.botonGuardarBloquePersonalizado.setDisable(true);
         this.botonGuardarBloquePersonalizado.setOnAction(new BotonGuardarAlgoritmoHandler(contenedorVerticalBotones, sectorBloques, this.algoritmo));
+
         this.setLeft(new ScrollPane(this.bloquesDisponibles()));
     }
 
@@ -39,9 +46,9 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
         BotonBloqueSimple bloqueAbajo = new BotonBloqueSimple("bloqueMovimientoAbajo", "");
         BotonBloqueSimple bloqueIzquierda = new BotonBloqueSimple("bloqueMovimientoIzquierda", "");
         BotonBloqueSimple bloqueDerecha = new BotonBloqueSimple("bloqueMovimientoDerecha", "");
-        BotonBloqueEspecial bloqueRepeticionDoble = new BotonBloqueEspecial("bloqueRepeticionDoble", "", algoritmo);
-        BotonBloqueEspecial bloqueRepeticionTriple = new BotonBloqueEspecial("bloqueRepeticionTriple", "", algoritmo);
-        BotonBloqueEspecial bloqueInvertir = new BotonBloqueEspecial("bloqueInvertir", "", algoritmo);
+        BotonBloqueEspecial bloqueRepeticionDoble = new BotonBloqueEspecial("bloqueRepeticionDoble", "", algoritmo, fabricaDeBloques);
+        BotonBloqueEspecial bloqueRepeticionTriple = new BotonBloqueEspecial("bloqueRepeticionTriple", "", algoritmo, fabricaDeBloques);
+        BotonBloqueEspecial bloqueInvertir = new BotonBloqueEspecial("bloqueInvertir", "", algoritmo, fabricaDeBloques);
         BotonBloqueSimple bloqueLapizDibuja = new BotonBloqueSimple("bloqueLapizDibuja", "");
         BotonBloqueSimple bloqueLapizNoDibuja = new BotonBloqueSimple("bloqueLapizNoDibuja", "");
 

@@ -17,11 +17,11 @@ public class BotonBloqueEspecialDragDroppedHandler extends BotonDragHandler {
     private FabricaAbstractaDeBloques fabricaDeBloques;
     private SeccionAlgoritmoDragDroppedEventHandler seccionAlgoritmoDragDropped;
 
-    public BotonBloqueEspecialDragDroppedHandler(VBox contenedorDeBloquesVertical, BloquePersonalizado bloqueEspecial, Algoritmo algoritmo){
+    public BotonBloqueEspecialDragDroppedHandler(VBox contenedorDeBloquesVertical, BloquePersonalizado bloqueEspecial, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         this.contenedorDeBloquesVertical = contenedorDeBloquesVertical;
         this.bloqueEspecial = bloqueEspecial;
-        this.fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
-        this.seccionAlgoritmoDragDropped = new SeccionAlgoritmoDragDroppedEventHandler(algoritmo, contenedorDeBloquesVertical);
+        this.fabricaDeBloques = fabricaDeBloques;
+        this.seccionAlgoritmoDragDropped = new SeccionAlgoritmoDragDroppedEventHandler(algoritmo, contenedorDeBloquesVertical, this.fabricaDeBloques);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class BotonBloqueEspecialDragDroppedHandler extends BotonDragHandler {
         Dragboard db = dragEvent.getDragboard();
         boolean success = false;
 
-        if (db.hasString() && db.getString() != "bloqueInvertir" && db.getString() != "bloqueRepeticionDoble" && db.getString() != "bloqueRepeticionTriple") {
+        if (db.hasString() && !db.getString().equals("bloqueInvertir") && !db.getString().equals("bloqueRepeticionDoble") && !db.getString().equals("bloqueRepeticionTriple")) {
 
             ImageView imageView = new ImageView(db.getImage());
             this.contenedorDeBloquesVertical.getChildren().add(imageView);
@@ -42,25 +42,25 @@ public class BotonBloqueEspecialDragDroppedHandler extends BotonDragHandler {
         dragEvent.setDropCompleted(success);
     }
 
-    public void agregarUnBloqueAlBloqueContenedor(String bloqueId){
+    public void agregarUnBloqueAlBloqueContenedor(String bloqueId) {
 
-        if (bloqueId == "bloqueMovimientoArriba"){
+        if (bloqueId.equals("bloqueMovimientoArriba")) {
             this.bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
-        } else if (bloqueId == "bloqueMovimientoAbajo"){
+        } else if (bloqueId.equals("bloqueMovimientoAbajo")) {
             this.bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
-        } else if (bloqueId == "bloqueMovimientoIzquierda"){
+        } else if (bloqueId.equals("bloqueMovimientoIzquierda")) {
             this.bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
-        } else if (bloqueId == "bloqueMovimientoDerecha"){
+        } else if (bloqueId.equals("bloqueMovimientoDerecha")) {
             this.bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
-        } else if (bloqueId == "bloqueLapizNoDibuja"){
+        } else if (bloqueId.equals("bloqueLapizNoDibuja")) {
             this.fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
-        } else if (bloqueId == "bloqueLapizDibuja"){
+        } else if (bloqueId.equals("bloqueLapizDibuja")) {
             this.fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
-        } else if (bloqueId == "bloqueInvertir"){
+        } else if (bloqueId.equals("bloqueInvertir")) {
             this.bloqueEspecial.agregar(new BloqueInvertir());
-        } else if (bloqueId == "bloqueRepeticionDoble"){
+        } else if (bloqueId.equals("bloqueRepeticionDoble")) {
             this.bloqueEspecial.agregar(new BloqueRepetirDosVeces());
-        } else if (bloqueId == "bloqueRepeticionTriple"){
+        } else if (bloqueId.equals("bloqueRepeticionTriple")) {
             this.bloqueEspecial.agregar(new BloqueRepetirTresVeces());
         }
         this.seccionAlgoritmoDragDropped.agregarUnBloqueAlAlgoritmo(bloqueId);

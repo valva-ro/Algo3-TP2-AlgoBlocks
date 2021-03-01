@@ -9,6 +9,7 @@ import fiuba.algo3.controlador.drags.SeccionAlgoritmoDragOverHandler;
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.modelo.SectorBloques;
 import fiuba.algo3.modelo.SectorDibujo;
+import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.vista.botones.Boton;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -21,15 +22,15 @@ public class SectorAlgoritmoVista extends VBox {
 
     private final Algoritmo algoritmo;
     private final SectorDibujo sectorDibujo;
-    private final SectorBloques sectorBloques;
+    private FabricaAbstractaDeBloques fabricaDeBloques;
     private VBox bloquesDelAlgoritmo;
     private HBox botonera;
 
-    public SectorAlgoritmoVista(Algoritmo algoritmo, SectorDibujo sectorDibujo, SectorBloques sectorBloques, App aplicacion, Stage escenario) {
+    public SectorAlgoritmoVista(Algoritmo algoritmo, SectorDibujo sectorDibujo, App aplicacion, Stage escenario, FabricaAbstractaDeBloques fabricaDeBloques) {
         super();
         this.algoritmo = algoritmo;
-        this.sectorBloques = sectorBloques;
         this.sectorDibujo = sectorDibujo;
+        this.fabricaDeBloques = fabricaDeBloques;
         this.bloquesDelAlgoritmo = new VBox();
 
         this.getStylesheets().add("style.css");
@@ -44,7 +45,7 @@ public class SectorAlgoritmoVista extends VBox {
         this.bloquesDelAlgoritmo.setMaxWidth(350);
         this.setMinWidth(400);
         this.setOnDragOver(new SeccionAlgoritmoDragOverHandler(this.bloquesDelAlgoritmo));
-        this.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(this.algoritmo, this.bloquesDelAlgoritmo));
+        this.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(this.algoritmo, this.bloquesDelAlgoritmo, this.fabricaDeBloques));
         Label etiqueta = new Label("Algoritmo");
         etiqueta.getStyleClass().add("subtitulo");
         this.getChildren().addAll(etiqueta, this.botonera, this.bloquesDelAlgoritmo);

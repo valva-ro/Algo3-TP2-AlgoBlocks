@@ -4,6 +4,7 @@ import fiuba.algo3.App;
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.modelo.SectorBloques;
 import fiuba.algo3.modelo.SectorDibujo;
+import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.vista.ventanas.VistaPrincipal;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -20,11 +21,11 @@ public class BotonAcercaDeHandler extends BotonClickHandler {
     private Button botonAtras;
     private VistaPrincipal vistaPrincipal;
 
-    public BotonAcercaDeHandler(App aplicacion, Stage escenario, SectorDibujo sectorDibujo, SectorBloques sectorBloques, Algoritmo algoritmo) {
+    public BotonAcercaDeHandler(App aplicacion, Stage escenario, SectorDibujo sectorDibujo, SectorBloques sectorBloques, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         super();
         this.escenario = escenario;
         this.aplicacion = aplicacion;
-        this.vistaPrincipal = new VistaPrincipal(aplicacion, escenario, sectorDibujo, sectorBloques, algoritmo);
+        this.vistaPrincipal = new VistaPrincipal(aplicacion, escenario, sectorDibujo, sectorBloques, algoritmo, fabricaDeBloques);
 
         this.botonAtras = new Button();
         this.botonAtras.getStyleClass().addAll("boton", "bloque");

@@ -6,6 +6,7 @@ import fiuba.algo3.controlador.clicks.BotonJugarHandler;
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.modelo.SectorBloques;
 import fiuba.algo3.modelo.SectorDibujo;
+import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.vista.botones.Boton;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -23,7 +24,7 @@ public class VistaInicio extends VBox {
     private static final int ALTO = 250;
     Stage escenario;
 
-    public VistaInicio(App aplicacion, Stage escenario, SectorDibujo sectorDibujo, SectorBloques sectorBloques, Algoritmo algoritmo) {
+    public VistaInicio(App aplicacion, Stage escenario, SectorDibujo sectorDibujo, SectorBloques sectorBloques, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         super();
 
         this.escenario = escenario;
@@ -33,10 +34,10 @@ public class VistaInicio extends VBox {
         Boton botonAcercaDe = new Boton("botonAcercaDe", "Acerca de");
         Boton botonSalir = new Boton("botonSalir", "Salir");
 
-        BotonJugarHandler botonJugarHandler = new BotonJugarHandler(aplicacion, escenario, sectorDibujo, sectorBloques, algoritmo);
+        BotonJugarHandler botonJugarHandler = new BotonJugarHandler(aplicacion, escenario, sectorDibujo, sectorBloques, algoritmo, fabricaDeBloques);
         botonJugar.setOnAction(botonJugarHandler);
 
-        BotonAcercaDeHandler botonAcercaDeHandler = new BotonAcercaDeHandler(aplicacion, escenario, sectorDibujo, sectorBloques, algoritmo);
+        BotonAcercaDeHandler botonAcercaDeHandler = new BotonAcercaDeHandler(aplicacion, escenario, sectorDibujo, sectorBloques, algoritmo, fabricaDeBloques);
         botonAcercaDe.setOnAction(botonAcercaDeHandler);
 
         botonSalir.setOnAction(actionEvent -> Platform.exit());

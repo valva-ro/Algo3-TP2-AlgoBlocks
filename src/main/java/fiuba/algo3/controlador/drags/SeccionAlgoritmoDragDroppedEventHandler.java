@@ -18,10 +18,10 @@ public class SeccionAlgoritmoDragDroppedEventHandler extends BotonDragHandler {
     private VBox algoritmoVista;
     private FabricaAbstractaDeBloques fabricaDeBloques;
 
-    public SeccionAlgoritmoDragDroppedEventHandler(Algoritmo algoritmo, VBox algoritmoVista) {
+    public SeccionAlgoritmoDragDroppedEventHandler(Algoritmo algoritmo, VBox algoritmoVista, FabricaAbstractaDeBloques fabricaDeBloques) {
         this.algoritmo = algoritmo;
         this.algoritmoVista = algoritmoVista;
-        this.fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
+        this.fabricaDeBloques = fabricaDeBloques;
     }
 
     @Override
@@ -38,74 +38,65 @@ public class SeccionAlgoritmoDragDroppedEventHandler extends BotonDragHandler {
     public void agregarUnBloqueAlAlgoritmo(String bloqueId) {
         System.out.println(bloqueId);
         Boton bloque;
-        if (bloqueId == "bloqueMovimientoArriba") {
-            this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
-            bloque = new BotonBloqueSimple(bloqueId, "");
-            bloque.getStyleClass().add("bloqueMovimiento");
-            bloque.setDisable(true);
-            this.algoritmoVista.getChildren().add(bloque);
-        }
-
-        else if (bloqueId == "bloqueMovimientoAbajo") {
-            this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
-            bloque = new BotonBloqueSimple(bloqueId, "");
-            bloque.getStyleClass().add("bloqueMovimiento");
-            bloque.setDisable(true);
-            this.algoritmoVista.getChildren().add(bloque);
-        }
-
-        else if (bloqueId == "bloqueMovimientoIzquierda") {
-            this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
-            bloque = new BotonBloqueSimple(bloqueId, "");
-            bloque.getStyleClass().add("bloqueMovimiento");
-            bloque.setDisable(true);
-            this.algoritmoVista.getChildren().add(bloque);
-        }
-
-        else if (bloqueId == "bloqueMovimientoDerecha") {
-            this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
-            bloque = new BotonBloqueSimple(bloqueId, "");
-            bloque.getStyleClass().add("bloqueMovimiento");
-            bloque.setDisable(true);
-            this.algoritmoVista.getChildren().add(bloque);
-        }
-
-        else if (bloqueId == "bloqueLapizNoDibuja") {
-            this.fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
-            bloque = new BotonBloqueSimple(bloqueId, "");
-            bloque.setDisable(true);
-            this.algoritmoVista.getChildren().add(bloque);
-        }
-
-        else if (bloqueId == "bloqueLapizDibuja") {
-            this.fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
-            bloque = new BotonBloqueSimple(bloqueId, "");
-            bloque.setDisable(true);
-            this.algoritmoVista.getChildren().add(bloque);
-        }
-
-        else if (bloqueId == "bloqueInvertir"){
-            this.algoritmo.agregar(new BloqueInvertir());
-            bloque = new BotonBloqueEspecial(bloqueId, "", this.algoritmo);
-            bloque.getStyleClass().add("bloqueInvertir");
-            //bloque.setDisable(true);
-            this.algoritmoVista.getChildren().add(bloque);
-        }
-
-        else if (bloqueId == "bloqueRepeticionDoble"){
-            this.algoritmo.agregar(new BloqueRepetirDosVeces());
-            bloque = new BotonBloqueEspecial(bloqueId, "", this.algoritmo);
-            bloque.getStyleClass().add("bloqueRepeticion");
-            //bloque.setDisable(true);
-            this.algoritmoVista.getChildren().add(bloque);
-        }
-
-        else if (bloqueId == "bloqueRepeticionTriple"){
-            this.algoritmo.agregar(new BloqueRepetirTresVeces());
-            bloque = new BotonBloqueEspecial(bloqueId, "", this.algoritmo);
-            bloque.getStyleClass().add("bloqueRepeticion");
-            //bloque.setDisable(true);
-            this.algoritmoVista.getChildren().add(bloque);
+        switch (bloqueId) {
+            case "bloqueMovimientoArriba":
+                this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
+                bloque = new BotonBloqueSimple(bloqueId, "");
+                bloque.getStyleClass().add("bloqueMovimiento");
+                bloque.setDisable(true);
+                this.algoritmoVista.getChildren().add(bloque);
+                break;
+            case "bloqueMovimientoAbajo":
+                this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
+                bloque = new BotonBloqueSimple(bloqueId, "");
+                bloque.getStyleClass().add("bloqueMovimiento");
+                bloque.setDisable(true);
+                this.algoritmoVista.getChildren().add(bloque);
+                break;
+            case "bloqueMovimientoIzquierda":
+                this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
+                bloque = new BotonBloqueSimple(bloqueId, "");
+                bloque.getStyleClass().add("bloqueMovimiento");
+                bloque.setDisable(true);
+                this.algoritmoVista.getChildren().add(bloque);
+                break;
+            case "bloqueMovimientoDerecha":
+                this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
+                bloque = new BotonBloqueSimple(bloqueId, "");
+                bloque.getStyleClass().add("bloqueMovimiento");
+                bloque.setDisable(true);
+                this.algoritmoVista.getChildren().add(bloque);
+                break;
+            case "bloqueLapizNoDibuja":
+                this.fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
+                bloque = new BotonBloqueSimple(bloqueId, "");
+                bloque.setDisable(true);
+                this.algoritmoVista.getChildren().add(bloque);
+                break;
+            case "bloqueLapizDibuja":
+                this.fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
+                bloque = new BotonBloqueSimple(bloqueId, "");
+                bloque.setDisable(true);
+                this.algoritmoVista.getChildren().add(bloque);
+                break;
+            case "bloqueInvertir":
+                this.algoritmo.agregar(new BloqueInvertir());
+                bloque = new BotonBloqueEspecial(bloqueId, "", this.algoritmo, this.fabricaDeBloques);
+                bloque.getStyleClass().add("bloqueInvertir");
+                this.algoritmoVista.getChildren().add(bloque);
+                break;
+            case "bloqueRepeticionDoble":
+                this.algoritmo.agregar(new BloqueRepetirDosVeces());
+                bloque = new BotonBloqueEspecial(bloqueId, "", this.algoritmo, this.fabricaDeBloques);
+                bloque.getStyleClass().add("bloqueRepeticion");
+                this.algoritmoVista.getChildren().add(bloque);
+                break;
+            case "bloqueRepeticionTriple":
+                this.algoritmo.agregar(new BloqueRepetirTresVeces());
+                bloque = new BotonBloqueEspecial(bloqueId, "", this.algoritmo, this.fabricaDeBloques);
+                bloque.getStyleClass().add("bloqueRepeticion");
+                this.algoritmoVista.getChildren().add(bloque);
+                break;
         }
     }
 }
