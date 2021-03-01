@@ -1,9 +1,7 @@
 package fiuba.algo3.controlador.clicks;
 
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.AlgoritmoNoTieneBloquesError;
 import fiuba.algo3.modelo.SectorBloques;
-import fiuba.algo3.modelo.bloques.Bloque;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,7 +11,7 @@ import javafx.stage.Stage;
 
 public class GuardarAlgoritmoHandler implements EventHandler<ActionEvent> {
 
-    VBox contenedorBloques;
+    private VBox contenedorBloques;
     private Algoritmo algoritmo;
     private SectorBloques sectorBloques;
     private TextField campoDeTexto;
@@ -29,14 +27,11 @@ public class GuardarAlgoritmoHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        try {
-            Bloque[] bloques = algoritmo.obtenerBloques();
-            sectorBloques.guardarBloqueAlgoritmoPersonalizado(campoDeTexto.getText(), bloques);
-            BotonBloqueSimple bloquePersonalizado = new BotonBloqueSimple("bloquePersonalizado", campoDeTexto.getText());
-            contenedorBloques.getChildren().add(bloquePersonalizado);
-            ventana.close();
-        } catch (AlgoritmoNoTieneBloquesError e) {
-            System.out.println("ERROR");
-        }
+        // TODO: falta que al hacer el drop en el algoritmo se agregue a la vista y al modelo
+        this.sectorBloques.guardarBloqueAlgoritmoPersonalizado(campoDeTexto.getText(), algoritmo.obtenerBloques());
+        BotonBloqueSimple bloquePersonalizado = new BotonBloqueSimple("bloquePersonalizado", campoDeTexto.getText());
+        bloquePersonalizado.getStyleClass().add("bloquePersonalizado");
+        this.contenedorBloques.getChildren().add(bloquePersonalizado);
+        this.ventana.close();
     }
 }

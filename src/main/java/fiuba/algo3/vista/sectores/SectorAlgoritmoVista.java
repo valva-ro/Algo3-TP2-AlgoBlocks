@@ -52,20 +52,17 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
         this.bloquesDelAlgoritmo.setOnDragOver(new SeccionAlgoritmoDragOverHandler(this.bloquesDelAlgoritmo));
         this.bloquesDelAlgoritmo.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(this.algoritmo, this.bloquesDelAlgoritmo, this.fabricaDeBloques));
 
-        ScrollPane scrolleable = new ScrollPane(this.bloquesDelAlgoritmo);
-        scrolleable.setFitToWidth(true);
-        scrolleable.setFitToHeight(true);
-        scrolleable.setMinHeight(500);
-        scrolleable.setMaxHeight(500);
-        scrolleable.setMaxWidth(350);
-        this.getChildren().addAll(etiqueta, this.botonera, scrolleable);
+        ScrollPane sectorScrolleable = new ScrollPane(this.bloquesDelAlgoritmo);
+        sectorScrolleable.setFitToHeight(true);
+        sectorScrolleable.setMinHeight(550);
+        sectorScrolleable.setMaxHeight(550);
+        sectorScrolleable.setMaxWidth(350);
+        this.getChildren().addAll(etiqueta, this.botonera, sectorScrolleable);
     }
 
     private void configurarContenidoVentana() {
         this.bloquesDelAlgoritmo.getChildren().clear();
         this.bloquesDelAlgoritmo.setAlignment(Pos.CENTER);
-        this.bloquesDelAlgoritmo.setMinWidth(250);
-        this.bloquesDelAlgoritmo.setMaxWidth(350);
 
         this.botonLimpiarDibujo.setDisable(this.algoritmo.estaVacio());
     }

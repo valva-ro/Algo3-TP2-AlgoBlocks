@@ -28,26 +28,31 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
         this.algoritmo.agregarObservador(this);
 
         this.fabricaDeBloques = fabricaDeBloques;
+        this.contenedorVerticalBotones = new VBox(10);
 
         this.botonGuardarBloquePersonalizado = new Boton("botonGuardarAlgoritmoEnPersonalizado", "");
         this.botonGuardarBloquePersonalizado.setDisable(true);
         this.botonGuardarBloquePersonalizado.setOnAction(new BotonGuardarAlgoritmoHandler(contenedorVerticalBotones, sectorBloques, this.algoritmo));
 
-        this.setLeft(new ScrollPane(this.bloquesDisponibles()));
+        ScrollPane contenedorScrolleable = new ScrollPane(this.bloquesDisponibles());
+        contenedorScrolleable.setFitToWidth(true);
+        this.setCenter(contenedorScrolleable);
     }
 
     private VBox bloquesDisponibles() {
 
         Label etiqueta = new Label("Bloques disponibles");
         etiqueta.getStyleClass().add("subtitulo");
+        this.getStylesheets().add("style.css");
+        this.setTop(etiqueta);
 
         BotonBloqueSimple bloqueArriba = new BotonBloqueSimple("bloqueMovimientoArriba", "");
         BotonBloqueSimple bloqueAbajo = new BotonBloqueSimple("bloqueMovimientoAbajo", "");
         BotonBloqueSimple bloqueIzquierda = new BotonBloqueSimple("bloqueMovimientoIzquierda", "");
         BotonBloqueSimple bloqueDerecha = new BotonBloqueSimple("bloqueMovimientoDerecha", "");
-        BotonBloqueEspecial bloqueRepeticionDoble = new BotonBloqueEspecial("bloqueRepeticionDoble", "", algoritmo, fabricaDeBloques);
-        BotonBloqueEspecial bloqueRepeticionTriple = new BotonBloqueEspecial("bloqueRepeticionTriple", "", algoritmo, fabricaDeBloques);
-        BotonBloqueEspecial bloqueInvertir = new BotonBloqueEspecial("bloqueInvertir", "", algoritmo, fabricaDeBloques);
+        BotonBloqueEspecial bloqueRepeticionDoble = new BotonBloqueEspecial("bloqueRepeticionDoble", algoritmo, fabricaDeBloques);
+        BotonBloqueEspecial bloqueRepeticionTriple = new BotonBloqueEspecial("bloqueRepeticionTriple", algoritmo, fabricaDeBloques);
+        BotonBloqueEspecial bloqueInvertir = new BotonBloqueEspecial("bloqueInvertir", algoritmo, fabricaDeBloques);
         BotonBloqueSimple bloqueLapizDibuja = new BotonBloqueSimple("bloqueLapizDibuja", "");
         BotonBloqueSimple bloqueLapizNoDibuja = new BotonBloqueSimple("bloqueLapizNoDibuja", "");
 
@@ -58,12 +63,10 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
         bloqueRepeticionDoble.getStyleClass().add("bloqueRepeticion");
         bloqueRepeticionTriple.getStyleClass().add("bloqueRepeticion");
 
-        this.contenedorVerticalBotones = new VBox(10);
-        this.contenedorVerticalBotones.minWidth(50);
-        this.contenedorVerticalBotones.setAlignment(Pos.TOP_CENTER);
         this.contenedorVerticalBotones.getStylesheets().add("style.css");
-        this.contenedorVerticalBotones.getChildren().addAll(etiqueta,
-                bloqueArriba,
+        this.contenedorVerticalBotones.setPrefWidth(60);
+        this.contenedorVerticalBotones.setAlignment(Pos.CENTER);
+        this.contenedorVerticalBotones.getChildren().addAll(bloqueArriba,
                 bloqueAbajo,
                 bloqueDerecha,
                 bloqueIzquierda,
