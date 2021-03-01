@@ -25,7 +25,7 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
         super();
 
         this.algoritmo = algoritmo;
-        this.algoritmo.addObserver(this);
+        this.algoritmo.agregarObservador(this);
 
         this.fabricaDeBloques = fabricaDeBloques;
 
@@ -78,7 +78,7 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
     }
 
     @Override
-    public void update() {
+    public void actualizar() {
         this.botonGuardarBloquePersonalizado.setDisable(this.algoritmo.estaVacio());
     }
 }

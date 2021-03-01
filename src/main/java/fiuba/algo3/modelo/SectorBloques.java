@@ -32,24 +32,24 @@ public class SectorBloques implements Observable {
 
     public void guardarBloqueAlgoritmoPersonalizado(String nombreBloque, Bloque[] bloques){
         BloquePersonalizado bloquePersonalizado = new BloquePersonalizado();
-        for (int i = 0; i < bloques.length; i++) {
-            bloquePersonalizado.agregar(bloques[i]);
+        for (Bloque bloque : bloques) {
+            bloquePersonalizado.agregar(bloque);
         }
         this.bloquesDisponibles.put(nombreBloque, bloquePersonalizado);
     }
 
     @Override
-    public void addObserver(Observador obs) {
+    public void agregarObservador(Observador obs) {
         observadores.add(obs);
     }
 
     @Override
-    public void removeObserver(Observador obs) {
+    public void sacarObservador(Observador obs) {
         observadores.remove(obs);
     }
 
     @Override
-    public void notifyObservers() {
-        for (Observador obs : observadores) obs.update();
+    public void notificarObservadores() {
+        for (Observador obs : observadores) obs.actualizar();
     }
 }

@@ -11,12 +11,12 @@ public class Algoritmo implements Observable {
 
     public void agregar(Bloque bloque) {
         bloques.add(bloque);
-        this.notifyObservers();
+        this.notificarObservadores();
     }
 
     public void sacar(Bloque bloque) {
         bloques.remove(bloque);
-        this.notifyObservers();
+        this.notificarObservadores();
     }
 
     public void ejecutar(SectorDibujo sectorDibujo) {
@@ -26,17 +26,18 @@ public class Algoritmo implements Observable {
         for (Bloque bloque : bloques) {
             bloque.ejecutar(sectorDibujo);
         }
-        this.notifyObservers();
+        this.notificarObservadores();
     }
 
     public Bloque[] obtenerBloques() throws AlgoritmoNoTieneBloquesError {
-        if (bloques.isEmpty()) throw new AlgoritmoNoTieneBloquesError();
+        if (bloques.isEmpty())
+            throw new AlgoritmoNoTieneBloquesError();
         return bloques.toArray(new Bloque[0]);
     }
 
     public void vaciar() {
         this.bloques = new ArrayList<>();
-        this.notifyObservers();
+        this.notificarObservadores();
     }
 
     public boolean estaVacio() {
@@ -44,17 +45,17 @@ public class Algoritmo implements Observable {
     }
 
     @Override
-    public void addObserver(Observador obs) {
+    public void agregarObservador(Observador obs) {
         observadores.add(obs);
     }
 
     @Override
-    public void removeObserver(Observador obs) {
+    public void sacarObservador(Observador obs) {
         observadores.remove(obs);
     }
 
     @Override
-    public void notifyObservers() {
-        for (Observador obs : observadores) obs.update();
+    public void notificarObservadores() {
+        for (Observador obs : observadores) obs.actualizar();
     }
 }
