@@ -49,8 +49,8 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
         this.getStylesheets().add("style.css");
         this.setAlignment(Pos.TOP_CENTER);
         this.setMinWidth(400);
-        this.setOnDragOver(new SeccionAlgoritmoDragOverHandler(this.bloquesDelAlgoritmo));
-        this.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(this.algoritmo, this.bloquesDelAlgoritmo, this.fabricaDeBloques));
+        this.bloquesDelAlgoritmo.setOnDragOver(new SeccionAlgoritmoDragOverHandler(this.bloquesDelAlgoritmo));
+        this.bloquesDelAlgoritmo.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(this.algoritmo, this.bloquesDelAlgoritmo, this.fabricaDeBloques));
 
         ScrollPane scrolleable = new ScrollPane(this.bloquesDelAlgoritmo);
         scrolleable.setFitToWidth(true);
