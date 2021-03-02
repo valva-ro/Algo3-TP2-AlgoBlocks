@@ -29,6 +29,7 @@ public class DibujoVista extends Canvas {
 
     public void dibujar(Posicion posicionInicial, Posicion posicionFinal){
         this.graficador.setStroke(BLACK);
+        this.graficador.setLineWidth(5);
         this.dibujarMovimientos(posicionInicial, posicionFinal);
     }
 
