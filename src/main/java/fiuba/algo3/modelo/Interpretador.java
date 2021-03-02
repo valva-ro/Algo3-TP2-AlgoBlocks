@@ -75,7 +75,7 @@ public class Interpretador {
             case "bloqueLapizDibuja":
                 fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
             case "bloqueLapizNoDibuja":
-                fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
+                fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
         }
         return botonBloqueSimple;
     }
