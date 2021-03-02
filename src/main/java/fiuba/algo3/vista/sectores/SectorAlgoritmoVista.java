@@ -22,17 +22,17 @@ import javafx.stage.Stage;
 public class SectorAlgoritmoVista extends VBox implements Observador {
 
     private final Algoritmo algoritmo;
-    private final SectorDibujo sectorDibujo;
+    private final SectorDibujoVista sectorDibujoVista;
     private final FabricaAbstractaDeBloques fabricaDeBloques;
     private final VBox bloquesDelAlgoritmo;
     private final HBox botonera;
     private Boton botonLimpiarDibujo;
     private Boton botonEjectuar;
 
-    public SectorAlgoritmoVista(Algoritmo algoritmo, SectorDibujo sectorDibujo, App aplicacion, Stage escenario, FabricaAbstractaDeBloques fabricaDeBloques) {
+    public SectorAlgoritmoVista(Algoritmo algoritmo, App aplicacion, Stage escenario, FabricaAbstractaDeBloques fabricaDeBloques, SectorDibujoVista sectorDibujoVista) {
         super();
         this.algoritmo = algoritmo;
-        this.sectorDibujo = sectorDibujo;
+        this.sectorDibujoVista = sectorDibujoVista;
         this.fabricaDeBloques = fabricaDeBloques;
         this.algoritmo.agregarObservador(this);
         this.botonera = this.botoneraAccionesDisponibles(aplicacion, escenario);
@@ -73,8 +73,8 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
 
         this.botonLimpiarDibujo = new Boton("botonLimpiarDibujo", "");
         this.botonEjectuar = new Boton("botonEjecutar", "");
-        this.botonLimpiarDibujo.setOnAction(new LimpiadorDeAlgoritmoHandler(this.algoritmo));
-        this.botonEjectuar.setOnAction(new BotonEjecutarAlgoritmoHandler(this.sectorDibujo, this.algoritmo));
+        this.botonLimpiarDibujo.setOnAction(new LimpiadorDeAlgoritmoHandler(this.algoritmo, this.sectorDibujoVista));
+        this.botonEjectuar.setOnAction(new BotonEjecutarAlgoritmoHandler(this.algoritmo, this.sectorDibujoVista));
         this.botonLimpiarDibujo.setDisable(true);
         this.botonEjectuar.setDisable(true);
 

@@ -21,4 +21,12 @@ public class Posicion {
     public boolean esIgual(Posicion posicion) {
         return (this.x == posicion.x && this.y == posicion.y);
     }
+
+    public int obtenerX() {
+        return x;
+    }
+
+    public int obtenerY() {
+        return y;
+    }
 }

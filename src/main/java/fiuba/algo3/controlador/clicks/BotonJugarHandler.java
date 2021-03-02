@@ -14,10 +14,10 @@ public class BotonJugarHandler extends BotonClickHandler {
     private final Stage escenario;
     private final VistaPrincipal vistaPrincipal;
 
-    public BotonJugarHandler(App aplicacion, Stage escenario, SectorDibujo sectorDibujo, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
+    public BotonJugarHandler(App aplicacion, Stage escenario, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         super();
         this.escenario = escenario;
-        this.vistaPrincipal = new VistaPrincipal(aplicacion, escenario, sectorDibujo, algoritmo, fabricaDeBloques);
+        this.vistaPrincipal = new VistaPrincipal(aplicacion, escenario, algoritmo, fabricaDeBloques);
     }
 
     @Override

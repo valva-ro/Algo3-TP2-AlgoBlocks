@@ -23,7 +23,7 @@ public class VistaInicio extends VBox {
     private static final int ALTO = 250;
     Stage escenario;
 
-    public VistaInicio(App aplicacion, Stage escenario, SectorDibujo sectorDibujo, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
+    public VistaInicio(App aplicacion, Stage escenario, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         super();
 
         this.escenario = escenario;
@@ -33,10 +33,10 @@ public class VistaInicio extends VBox {
         Boton botonAcercaDe = new Boton("botonAcercaDe", "Acerca de");
         Boton botonSalir = new Boton("botonSalir", "Salir");
 
-        BotonJugarHandler botonJugarHandler = new BotonJugarHandler(aplicacion, escenario, sectorDibujo, algoritmo, fabricaDeBloques);
+        BotonJugarHandler botonJugarHandler = new BotonJugarHandler(aplicacion, escenario, algoritmo, fabricaDeBloques);
         botonJugar.setOnAction(botonJugarHandler);
 
-        BotonAcercaDeHandler botonAcercaDeHandler = new BotonAcercaDeHandler(aplicacion, escenario, sectorDibujo, algoritmo, fabricaDeBloques);
+        BotonAcercaDeHandler botonAcercaDeHandler = new BotonAcercaDeHandler(aplicacion, escenario, algoritmo, fabricaDeBloques);
         botonAcercaDe.setOnAction(botonAcercaDeHandler);
 
         botonSalir.setOnAction(actionEvent -> Platform.exit());

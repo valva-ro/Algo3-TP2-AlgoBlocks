@@ -1,9 +1,11 @@
 package fiuba.algo3.vista.sectores;
 
+import fiuba.algo3.modelo.ObservadorDibujo;
+import fiuba.algo3.modelo.Posicion;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
-public class SectorDibujoVista extends BorderPane {
+public class SectorDibujoVista extends BorderPane implements ObservadorDibujo{
 
     private final DibujoVista dibujo;
 
@@ -20,7 +22,17 @@ public class SectorDibujoVista extends BorderPane {
         this.setCenter(this.dibujo);
     }
 
-    public void dibujar() {
-        this.dibujo.dibujar();
+    @Override
+    public void actualizar(Boolean bool, Posicion posicionInicial, Posicion posicionFinal) {
+        if(bool){
+            this.dibujo.dibujar(posicionInicial,posicionFinal);
+        }
+        else{
+            this.dibujo.noDibujar(posicionInicial,posicionFinal);
+        }
+    }
+
+    public void borrarDibujo(){
+        this.dibujo.borrar();
     }
 }
