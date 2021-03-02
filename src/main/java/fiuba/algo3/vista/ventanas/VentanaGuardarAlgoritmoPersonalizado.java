@@ -29,7 +29,7 @@ public class VentanaGuardarAlgoritmoPersonalizado {
 
         TextField campoDeTexto = new TextField();
         campoDeTexto.setMaxWidth(200);
-        campoDeTexto.setOnAction(new GuardarAlgoritmoHandler(contenedorBloques, campoDeTexto, algoritmo, ventana));
+        //campoDeTexto.setOnAction(new GuardarAlgoritmoHandler(contenedorBloques, campoDeTexto, algoritmo, ventana));
         campoDeTexto.setId("informacion");
 
         Boton botonAceptar = new Boton("botonAceptar", "Aceptar");
