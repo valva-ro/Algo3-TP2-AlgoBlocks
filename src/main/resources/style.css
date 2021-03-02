@@ -29,13 +29,6 @@
     -fx-border-width: 2px;
 }
 
-.bloquePersonalizado {
-    -fx-font-family: "Comic Sans MS";
-    -fx-text-alignment: center;
-    -fx-font-size: 14px;
-    -fx-background-color: #f886ff;
-}
-
 .titulo {
     -fx-font-family: "Comic Sans MS";
     -fx-font-size: 30px;
@@ -127,6 +120,17 @@
 }
 #bloqueLapizNoDibuja:hover {
     -fx-background-color: #fa6161;
+}
+
+#bloquePersonalizado {
+    -fx-font-family: "Comic Sans MS";
+    -fx-text-alignment: center;
+    -fx-font-size: 14px;
+    -fx-background-color: #f886ff;
+}
+
+#bloquePersonalizado:hover {
+    -fx-background-color: #bf6ac5;
 }
 
 #botonGuardarAlgoritmoEnPersonalizado {
