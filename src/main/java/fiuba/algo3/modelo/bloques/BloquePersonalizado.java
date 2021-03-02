@@ -41,4 +41,10 @@ public class BloquePersonalizado implements Bloques {
             throw new BloquePersonalizadoNoPuedeEjecutarseSinBloquesError();
         }
     }
+
+    public void agregar(Bloque[] bloquesEnAlgoritmo) {
+        for (Bloque bloque : bloquesEnAlgoritmo){
+            this.agregar(bloque);
+        }
+    }
 }

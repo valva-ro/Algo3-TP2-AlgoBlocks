@@ -24,6 +24,9 @@ public class Interpretador {
             case "bloqueRepeticionTriple":
                 bloquePersonalizado = new BloqueRepetirTresVeces();
                 break;
+            case "bloquePersonalizado":
+                ;
+
             default:
                 throw new IllegalStateException("Unexpected value: " + bloqueID);
         }
@@ -32,7 +35,7 @@ public class Interpretador {
     }
 
     public boolean esBloqueEspecial(String bloqueId) {
-        return (bloqueId.equals("bloqueInvertir") || bloqueId.equals("bloqueRepeticionDoble") || bloqueId.equals("bloqueRepeticionTriple"));
+        return (bloqueId.equals("bloqueInvertir") || bloqueId.equals("bloqueRepeticionDoble") || bloqueId.equals("bloqueRepeticionTriple") || bloqueId.equals("bloquePersonalizado"));
     }
 
     public BotonBloqueEspecial obtenerBotonEspecialPorId(String bloqueId, Algoritmo algoritmo, FabricaAbstractaDeBloques fabrica) {

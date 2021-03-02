@@ -49,5 +49,4 @@ public class BotonBloqueEspecialDragDroppedHandler implements EventHandler<DragE
             this.bloqueEspecialVista.getChildren().add(nuevoBoton);
         }
     }
-
 }
