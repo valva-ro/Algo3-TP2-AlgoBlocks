@@ -47,7 +47,7 @@ public class Interpretador {
             default:
                 throw new IllegalStateException("Unexpected value: " + bloqueId);
         }
-
+        botonBloqueEspecial.setModoAlgoritmo();
         return botonBloqueEspecial;
     }
 

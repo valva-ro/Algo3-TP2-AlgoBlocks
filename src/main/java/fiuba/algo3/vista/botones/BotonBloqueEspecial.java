@@ -13,6 +13,8 @@ public class BotonBloqueEspecial extends VBox {
 
     private Bloques bloquePersonalizado;
     private Interpretador interpretador;
+    private Algoritmo algoritmo;
+    private FabricaAbstractaDeBloques fabricaAbstractaDeBloques;
 
     public BotonBloqueEspecial(String bloqueID, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
 
@@ -21,13 +23,8 @@ public class BotonBloqueEspecial extends VBox {
         this.setAlignment(Pos.BOTTOM_RIGHT);
         this.interpretador = new Interpretador();
         this.bloquePersonalizado = this.interpretador.obtenerBloqueEspecialPorId(bloqueID);
-
-        this.setOnDragOver((DragEvent dragEvent) -> {
-            if (dragEvent.getGestureSource() != this && dragEvent.getDragboard().hasString()) {
-                dragEvent.acceptTransferModes(TransferMode.COPY);
-            }
-            dragEvent.consume();
-        });
+        this.algoritmo = algoritmo;
+        this.fabricaAbstractaDeBloques = fabricaDeBloques;
 
         this.setOnDragDetected((MouseEvent mouseEvent) -> {
             Dragboard db = this.startDragAndDrop(TransferMode.COPY);
@@ -37,16 +34,22 @@ public class BotonBloqueEspecial extends VBox {
             mouseEvent.consume();
         });
 
-        this.setOnDragDropped(new BotonBloqueEspecialDragDroppedHandler(this, this.bloquePersonalizado, algoritmo, fabricaDeBloques));
+
     }
 
     public Bloques obtenerBloque() {
         return this.bloquePersonalizado;
     }
 
-   /* @Override
+
     public void setModoAlgoritmo() {
-        super.setModoAlgoritmo();
-        //TODO: IMPLEMENTAR EL HANDLER DEL DROP
-    }*/
+        this.setOnDragOver((DragEvent dragEvent) -> {
+            if (dragEvent.getGestureSource() != this && dragEvent.getDragboard().hasString()) {
+                dragEvent.acceptTransferModes(TransferMode.COPY);
+            }
+            dragEvent.consume();
+        });
+
+        this.setOnDragDropped(new BotonBloqueEspecialDragDroppedHandler(this, this.bloquePersonalizado, algoritmo, fabricaAbstractaDeBloques));
+    }
 }
