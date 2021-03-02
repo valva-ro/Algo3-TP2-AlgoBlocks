@@ -21,4 +21,6 @@ state CrearNuevoBotonPersonalizado{
 state Dibujar{
 
 }
+
+VistaInicial --> [*] : salir
 @enduml
