@@ -67,16 +67,20 @@ public class Interpretador {
         switch (bloqueId){
             case "bloqueMovimientoArriba":
                 algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
+                break;
             case "bloqueMovimientoAbajo":
                 algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
+                break;
             case "bloqueMovimientoDerecha":
                 algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
+                break;
             case "bloqueMovimientoIzquierda":
                 algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
+                break;
             case "bloqueLapizDibuja":
-                fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
             case "bloqueLapizNoDibuja":
-                fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
+                fabricaDeBloques.cambiarDeFabrica();
+                break;
         }
         return botonBloqueSimple;
     }
@@ -90,19 +94,20 @@ public class Interpretador {
         switch (bloqueId){
             case "bloqueMovimientoArriba":
                 bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
+                break;
             case "bloqueMovimientoAbajo":
                 bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
+                break;
             case "bloqueMovimientoDerecha":
                 bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
+                break;
             case "bloqueMovimientoIzquierda":
                 bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
-            case "bloqueLapizDibuja":
-                fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
-            case "bloqueLapizNoDibuja":
-                fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
                 break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + bloqueId);
+            case "bloqueLapizDibuja":
+            case "bloqueLapizNoDibuja":
+                fabricaDeBloques.cambiarDeFabrica();
+                break;
         }
         return botonBloqueSimple;
     }

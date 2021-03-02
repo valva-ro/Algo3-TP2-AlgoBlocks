@@ -43,18 +43,16 @@ public class BotonBloqueEspecialDragDroppedHandler implements EventHandler<DragE
         dragEvent.consume();
     }
 
-    private void agregarUnBloqueAlBloqueContenedor(String bloqueId){
-        if (this.interpretador.esBloqueEspecial(bloqueId)){
-            BotonBloqueEspecial nuevoBoton = this.interpretador.obtenerBotonEspecialPorId(bloqueId,this.algoritmo,this.fabricaDeBloques,this.sectorBloquesDisponiblesVista);
+    private void agregarUnBloqueAlBloqueContenedor(String bloqueId) {
+        if (this.interpretador.esBloqueEspecial(bloqueId)) {
+            BotonBloqueEspecial nuevoBoton = this.interpretador.obtenerBotonEspecialPorId(bloqueId, this.algoritmo, this.fabricaDeBloques, this.sectorBloquesDisponiblesVista);
             this.bloqueEspecialVista.getChildren().add(nuevoBoton);
-        }
-        else if(this.sectorBloquesDisponiblesVista.obtenerGuardadorPorId(bloqueId) != null){
+        } else if (this.sectorBloquesDisponiblesVista.obtenerGuardadorPorId(bloqueId) != null) {
             BotonBloquePersonalizados nuevoBoton = sectorBloquesDisponiblesVista.obtenerGuardadorPorId(bloqueId);
             this.algoritmo.agregar(nuevoBoton.obtenerPerzonalizado());
             this.bloqueEspecialVista.getChildren().add(nuevoBoton);
-        }
-        else{
-            BotonBloqueSimple nuevoBoton = this.interpretador.agregarBloqueSiempleAlBloqueEspecial(bloqueId,this.bloqueEspecial,this.fabricaDeBloques);
+        } else {
+            BotonBloqueSimple nuevoBoton = this.interpretador.agregarBloqueSiempleAlBloqueEspecial(bloqueId, this.bloqueEspecial, this.fabricaDeBloques);
             this.bloqueEspecialVista.getChildren().add(nuevoBoton);
         }
     }

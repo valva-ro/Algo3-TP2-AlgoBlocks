@@ -33,7 +33,7 @@ public class FabricaConcretaBloqueQueNoDibuja implements FabricaAbstractaDeBloqu
     }
 
     @Override
-    public void cambiarDeFabrica(){
+    public void cambiarDeFabrica() {
         this.estado = estado.cambiarEstado();
     }
 }

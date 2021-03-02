@@ -14,12 +14,12 @@ public class GuardarAlgoritmoHandler implements EventHandler<ActionEvent> {
 
     private final SectorBloquesDisponiblesVista contenedorBloques;
     private Algoritmo algoritmo;
-    private final TextField etiquetaEspecial;
+    private final String etiquetaEspecial;
     private final Stage ventana;
 
     public GuardarAlgoritmoHandler(SectorBloquesDisponiblesVista contenedorBloques, TextField campoDeTexto, Algoritmo algoritmo, Stage ventana) {
         this.contenedorBloques = contenedorBloques;
-        this.etiquetaEspecial = campoDeTexto;
+        this.etiquetaEspecial = campoDeTexto.getText();
         this.algoritmo = algoritmo;
         this.ventana = ventana;
     }
@@ -28,7 +28,7 @@ public class GuardarAlgoritmoHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
         BloquePersonalizado bloquePersonalizado = this.agregarAlgoritmoAlBloquePersonalizado();
-        BotonBloquePersonalizados botonBloquePersonalizado = new BotonBloquePersonalizados(this.etiquetaEspecial.getText(),this.etiquetaEspecial.getText(),bloquePersonalizado);
+        BotonBloquePersonalizados botonBloquePersonalizado = new BotonBloquePersonalizados("bloquePersonalizado", this.etiquetaEspecial, bloquePersonalizado);
         this.contenedorBloques.agregarBotonPersonalizado(botonBloquePersonalizado);
         this.ventana.close();
     }

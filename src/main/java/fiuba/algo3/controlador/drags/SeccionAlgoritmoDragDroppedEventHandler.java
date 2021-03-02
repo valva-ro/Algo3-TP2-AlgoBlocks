@@ -41,19 +41,18 @@ public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<Dra
         dragEvent.consume();
     }
 
-    private void agregarUnBloqueAlAlgoritmo(String bloqueId){
-        if (this.interpretador.esBloqueEspecial(bloqueId)){
-            BotonBloqueEspecial bloqueEspecial = this.interpretador.obtenerBotonEspecialPorId(bloqueId,this.algoritmo,this.fabricaDeBloques,this.sectorBloquesDisponiblesVista);
+    private void agregarUnBloqueAlAlgoritmo(String bloqueId) {
+        if (this.interpretador.esBloqueEspecial(bloqueId)) {
+            BotonBloqueEspecial bloqueEspecial = this.interpretador.obtenerBotonEspecialPorId(bloqueId, this.algoritmo, this.fabricaDeBloques, this.sectorBloquesDisponiblesVista);
             this.algoritmo.agregar(bloqueEspecial.obtenerBloque());
             this.algoritmoVista.getChildren().add(bloqueEspecial);
-        }
-        else if (this.sectorBloquesDisponiblesVista.obtenerGuardadorPorId(bloqueId) != null){
+        } else if (this.sectorBloquesDisponiblesVista.obtenerGuardadorPorId(bloqueId) != null) {
             BotonBloquePersonalizados botonBloquePersonalizados = this.sectorBloquesDisponiblesVista.obtenerGuardadorPorId(bloqueId);
             this.algoritmo.agregar(botonBloquePersonalizados.obtenerPerzonalizado());
             this.algoritmoVista.getChildren().add(botonBloquePersonalizados);
 
-        } else{
-            BotonBloqueSimple bloqueSimple = this.interpretador.agregarBloqueSimpleAlAlgoritmo(bloqueId,this.algoritmo,this.fabricaDeBloques);
+        } else {
+            BotonBloqueSimple bloqueSimple = this.interpretador.agregarBloqueSimpleAlAlgoritmo(bloqueId, this.algoritmo, this.fabricaDeBloques);
             this.algoritmoVista.getChildren().add(bloqueSimple);
         }
     }
