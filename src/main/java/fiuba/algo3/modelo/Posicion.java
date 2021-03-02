@@ -22,9 +22,7 @@ public class Posicion {
         return (this.x == posicion.x && this.y == posicion.y);
     }
 
-    public int obtenerX() {
-        return x;
-    }
+    public int obtenerX() { return x; }
 
     public int obtenerY() {
         return y;

@@ -26,10 +26,8 @@ public class SectorDibujoVista extends BorderPane implements ObservadorDibujo {
     public void actualizar(Boolean bool, Posicion posicionInicial, Posicion posicionFinal) {
         if (bool) {
             this.dibujo.dibujar(posicionInicial, posicionFinal);
-            System.out.println("Dibuja");
         } else {
             this.dibujo.noDibujar(posicionInicial, posicionFinal);
-            System.out.println("No Dibuja");
         }
     }
 

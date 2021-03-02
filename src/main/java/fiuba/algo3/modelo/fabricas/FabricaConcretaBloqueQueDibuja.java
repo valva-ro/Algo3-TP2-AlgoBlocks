@@ -1,6 +1,7 @@
 package fiuba.algo3.modelo.fabricas;
 
 import fiuba.algo3.modelo.bloques.BloqueMovimiento;
+import fiuba.algo3.modelo.bloques.Estado;
 import fiuba.algo3.modelo.bloques.Dibuja;
 import fiuba.algo3.modelo.direcciones.Este;
 import fiuba.algo3.modelo.direcciones.Norte;
@@ -9,7 +10,7 @@ import fiuba.algo3.modelo.direcciones.Sur;
 
 public class FabricaConcretaBloqueQueDibuja implements FabricaAbstractaDeBloques {
 
-    private Dibuja estado = new Dibuja();
+    private Estado estado = new Dibuja();
 
     @Override
     public BloqueMovimiento crearBloqueMovimientoArriba() {
@@ -29,5 +30,10 @@ public class FabricaConcretaBloqueQueDibuja implements FabricaAbstractaDeBloques
     @Override
     public BloqueMovimiento crearBloqueMovimientoDerecha() {
         return new BloqueMovimiento(new Este(), estado);
+    }
+
+    @Override
+    public void cambiarDeFabrica(){
+        this.estado = estado.cambiarEstado();
     }
 }

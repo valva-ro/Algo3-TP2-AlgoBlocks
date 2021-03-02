@@ -7,4 +7,8 @@ public class Dibuja implements Estado {
     public void ejecutar(SectorDibujo sectorDibujo, Direccion direccion) {
         sectorDibujo.dibujar(direccion);
     }
+
+    public Estado cambiarEstado(){
+        return new NoDibuja();
+    }
 }

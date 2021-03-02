@@ -17,15 +17,15 @@ public class SectorDibujo implements DibujoObservable {
 
     public void dibujar(Direccion direccion) {
         Posicion unaPosicion = this.recorrido.agregarArista(direccion, posicionFinal);
-        notificarObservadores(true, posicionFinal, unaPosicion);
-        posicionFinal = unaPosicion;
+        notificarObservadores(true, this.posicionFinal, unaPosicion);
+        this.posicionFinal = unaPosicion;
 
     }
 
     public void noDibujar(Direccion direccion) {
         Posicion unaPosicion = direccion.actualizarPosicion(posicionFinal);
-        notificarObservadores(false, posicionFinal, unaPosicion);
-        posicionFinal = unaPosicion;
+        notificarObservadores(false, this.posicionFinal, unaPosicion);
+        this.posicionFinal = unaPosicion;
     }
 
     public boolean existePosicion(Posicion posicion) {
@@ -39,7 +39,7 @@ public class SectorDibujo implements DibujoObservable {
     @Override
     public void notificarObservadores(Boolean bool, Posicion posicionInicial, Posicion posicionFinal) {
         for (ObservadorDibujo obs : observadores)
-            obs.actualizar(bool, posicionInicial, posicionInicial);
+            obs.actualizar(bool, posicionInicial, posicionFinal);
     }
 
     @Override

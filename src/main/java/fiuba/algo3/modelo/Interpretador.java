@@ -5,8 +5,6 @@ import fiuba.algo3.modelo.bloques.BloqueRepetirDosVeces;
 import fiuba.algo3.modelo.bloques.BloqueRepetirTresVeces;
 import fiuba.algo3.modelo.bloques.Bloques;
 import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
 import fiuba.algo3.vista.botones.BotonBloqueEspecial;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
 
@@ -66,16 +64,22 @@ public class Interpretador {
         switch (bloqueId){
             case "bloqueMovimientoArriba":
                 algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
+                break;
             case "bloqueMovimientoAbajo":
                 algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
+                break;
             case "bloqueMovimientoDerecha":
                 algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
+                break;
             case "bloqueMovimientoIzquierda":
                 algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
+                break;
             case "bloqueLapizDibuja":
-                fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
+                fabricaDeBloques.cambiarDeFabrica();
+                break;
             case "bloqueLapizNoDibuja":
-                fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
+                fabricaDeBloques.cambiarDeFabrica();
+                break;
         }
         return botonBloqueSimple;
     }
@@ -89,16 +93,21 @@ public class Interpretador {
         switch (bloqueId){
             case "bloqueMovimientoArriba":
                 bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
+                break;
             case "bloqueMovimientoAbajo":
                 bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
+                break;
             case "bloqueMovimientoDerecha":
                 bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
+                break;
             case "bloqueMovimientoIzquierda":
                 bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
+                break;
             case "bloqueLapizDibuja":
-                fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
+                fabricaDeBloques.cambiarDeFabrica();
+                break;
             case "bloqueLapizNoDibuja":
-                fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
+                fabricaDeBloques.cambiarDeFabrica();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + bloqueId);
