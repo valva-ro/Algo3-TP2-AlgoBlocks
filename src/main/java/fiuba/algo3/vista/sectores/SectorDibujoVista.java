@@ -5,7 +5,7 @@ import fiuba.algo3.modelo.Posicion;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
-public class SectorDibujoVista extends BorderPane implements ObservadorDibujo{
+public class SectorDibujoVista extends BorderPane implements ObservadorDibujo {
 
     private final DibujoVista dibujo;
 
@@ -24,15 +24,16 @@ public class SectorDibujoVista extends BorderPane implements ObservadorDibujo{
 
     @Override
     public void actualizar(Boolean bool, Posicion posicionInicial, Posicion posicionFinal) {
-        if(bool){
-            this.dibujo.dibujar(posicionInicial,posicionFinal);
-        }
-        else{
-            this.dibujo.noDibujar(posicionInicial,posicionFinal);
+        if (bool) {
+            this.dibujo.dibujar(posicionInicial, posicionFinal);
+            System.out.println("Dibuja");
+        } else {
+            this.dibujo.noDibujar(posicionInicial, posicionFinal);
+            System.out.println("No Dibuja");
         }
     }
 
-    public void borrarDibujo(){
+    public void borrarDibujo() {
         this.dibujo.borrar();
     }
 }

@@ -3,22 +3,28 @@ package fiuba.algo3.modelo;
 import fiuba.algo3.modelo.dibujo.Recorrido;
 import fiuba.algo3.modelo.direcciones.Direccion;
 
-public class SectorDibujo implements DibujoObservable{
+import java.util.ArrayList;
+
+public class SectorDibujo implements DibujoObservable {
 
     private Recorrido recorrido = new Recorrido();
     private Posicion posicionFinal = new Posicion();
-    private ObservadorDibujo observador;
+    private ArrayList<ObservadorDibujo> observadores;
+
+    public SectorDibujo() {
+        this.observadores = new ArrayList<>();
+    }
 
     public void dibujar(Direccion direccion) {
         Posicion unaPosicion = this.recorrido.agregarArista(direccion, posicionFinal);
-        observador.actualizar(true,posicionFinal,unaPosicion);
+        notificarObservadores(true, posicionFinal, unaPosicion);
         posicionFinal = unaPosicion;
 
     }
 
     public void noDibujar(Direccion direccion) {
         Posicion unaPosicion = direccion.actualizarPosicion(posicionFinal);
-        observador.actualizar(false, posicionFinal, unaPosicion);
+        notificarObservadores(false, posicionFinal, unaPosicion);
         posicionFinal = unaPosicion;
     }
 
@@ -31,12 +37,13 @@ public class SectorDibujo implements DibujoObservable{
     }
 
     @Override
-    public void notificarObservador(Boolean bool, Posicion posicionInicial, Posicion posicionFinal) {
-        observador.actualizar(bool, posicionInicial, posicionInicial);
+    public void notificarObservadores(Boolean bool, Posicion posicionInicial, Posicion posicionFinal) {
+        for (ObservadorDibujo obs : observadores)
+            obs.actualizar(bool, posicionInicial, posicionInicial);
     }
 
     @Override
     public void agregarObservador(ObservadorDibujo obs) {
-        this.observador = obs;
+        this.observadores.add(obs);
     }
 }
