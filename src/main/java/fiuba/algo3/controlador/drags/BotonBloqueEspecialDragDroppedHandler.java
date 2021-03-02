@@ -1,9 +1,9 @@
 package fiuba.algo3.controlador.drags;
 
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.FabricaDeBloques;
 import fiuba.algo3.modelo.Interpretador;
 import fiuba.algo3.modelo.bloques.Bloques;
+import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.vista.botones.BotonBloqueEspecial;
 import fiuba.algo3.vista.botones.BotonBloquePersonalizados;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
@@ -18,14 +18,16 @@ public class BotonBloqueEspecialDragDroppedHandler implements EventHandler<DragE
     private final VBox bloqueEspecialVista;
     private final Bloques bloqueEspecial;
     private final Algoritmo algoritmo;
+    private FabricaAbstractaDeBloques fabricaDeBloques;
     private Interpretador interpretador;
     private SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista;
 
-    public BotonBloqueEspecialDragDroppedHandler(VBox bloqueEspecialVista, Bloques bloqueEspecial, Algoritmo algoritmo, Interpretador interpretador, SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista) {
+    public BotonBloqueEspecialDragDroppedHandler(VBox bloqueEspecialVista, Bloques bloqueEspecial, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques, SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista) {
         this.bloqueEspecialVista = bloqueEspecialVista;
         this.bloqueEspecial = bloqueEspecial;
+        this.fabricaDeBloques = fabricaDeBloques;
         this.algoritmo = algoritmo;
-        this.interpretador = interpretador;
+        this.interpretador = new Interpretador();
         this.sectorBloquesDisponiblesVista = sectorBloquesDisponiblesVista;
     }
 
@@ -41,16 +43,19 @@ public class BotonBloqueEspecialDragDroppedHandler implements EventHandler<DragE
         dragEvent.consume();
     }
 
-    private void agregarUnBloqueAlBloqueContenedor(String bloqueId) {
-        if (this.interpretador.esBloqueEspecial(bloqueId)) {
-            BotonBloqueEspecial nuevoBoton = this.interpretador.obtenerBotonEspecialPorId(bloqueId, this.algoritmo, this.sectorBloquesDisponiblesVista);
+    private void agregarUnBloqueAlBloqueContenedor(String bloqueId){
+        if (this.interpretador.esBloqueEspecial(bloqueId)){
+            BotonBloqueEspecial nuevoBoton = this.interpretador.obtenerBotonEspecialPorId(bloqueId,this.algoritmo,this.fabricaDeBloques,this.sectorBloquesDisponiblesVista);
             this.bloqueEspecialVista.getChildren().add(nuevoBoton);
-        } else if (this.sectorBloquesDisponiblesVista.obtenerGuardadorPorId(bloqueId) != null) {
-            BotonBloquePersonalizados nuevoBoton = sectorBloquesDisponiblesVista.obtenerGuardadorPorId(bloqueId);
+        }
+        else if(this.sectorBloquesDisponiblesVista.exiteGuardadoConId(bloqueId)){
+            BotonBloquePersonalizados nuevoBoton = sectorBloquesDisponiblesVista.obtenerCopiaPorId(bloqueId);
+            nuevoBoton.setDisable(true);
             this.algoritmo.agregar(nuevoBoton.obtenerPerzonalizado());
             this.bloqueEspecialVista.getChildren().add(nuevoBoton);
-        } else {
-            BotonBloqueSimple nuevoBoton = this.interpretador.agregarBloqueSiempleAlBloqueEspecial(bloqueId, this.bloqueEspecial);
+        }
+        else{
+            BotonBloqueSimple nuevoBoton = this.interpretador.agregarBloqueSiempleAlBloqueEspecial(bloqueId,this.bloqueEspecial,this.fabricaDeBloques);
             this.bloqueEspecialVista.getChildren().add(nuevoBoton);
         }
     }
