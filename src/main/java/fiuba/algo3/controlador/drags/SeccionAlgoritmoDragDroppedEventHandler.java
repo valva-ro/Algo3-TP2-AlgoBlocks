@@ -42,7 +42,7 @@ public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<Dra
             this.algoritmoVista.getChildren().add(bloqueEspecial);
         }
         else{
-            BotonBloqueSimple bloqueSimple = this.interpretador.agregarBloqueSiempleAlAlgoritmo(bloqueId,this.algoritmo,this.fabricaDeBloques);
+            BotonBloqueSimple bloqueSimple = this.interpretador.agregarBloqueSiempleAlBloqueEspecial(bloqueId,this.algoritmo,this.fabricaDeBloques);
             this.algoritmoVista.getChildren().add(bloqueSimple);
         }
     }

@@ -51,7 +51,7 @@ public class Interpretador {
         return botonBloqueEspecial;
     }
 
-    public BotonBloqueSimple agregarBloqueSiempleAlAlgoritmo(String bloqueId, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
+    public BotonBloqueSimple agregarBloqueSiempleAlBloqueEspecial(String bloqueId, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         BotonBloqueSimple botonBloqueSimple = new BotonBloqueSimple("error","error");
 
         switch (bloqueId){
@@ -79,6 +79,42 @@ public class Interpretador {
                 fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
                 botonBloqueSimple = new BotonBloqueSimple(bloqueId,"");
                 botonBloqueSimple.setDisable(true);
+        }
+        botonBloqueSimple.getStyleClass().add("bloqueMovimiento");
+        return botonBloqueSimple;
+    }
+
+    public BotonBloqueSimple agregarBloqueSiempleAlBloqueEspecial(String bloqueId, Bloques bloqueEspecial, FabricaAbstractaDeBloques fabricaDeBloques) {
+        BotonBloqueSimple botonBloqueSimple;
+
+        switch (bloqueId){
+            case "bloqueMovimientoArriba":
+                bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
+                botonBloqueSimple = new BotonBloqueSimple(bloqueId,"");
+                botonBloqueSimple.setDisable(true);
+            case "bloqueMovimientoAbajo":
+                bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
+                botonBloqueSimple = new BotonBloqueSimple(bloqueId,"");
+                botonBloqueSimple.setDisable(true);
+            case "bloqueMovimientoDerecha":
+                bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
+                botonBloqueSimple = new BotonBloqueSimple(bloqueId,"");
+                botonBloqueSimple.setDisable(true);
+            case "bloqueMovimientoIzquierda":
+                bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
+                botonBloqueSimple = new BotonBloqueSimple(bloqueId,"");
+                botonBloqueSimple.setDisable(true);
+            case "bloqueLapizDibuja":
+                fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
+                botonBloqueSimple = new BotonBloqueSimple(bloqueId,"");
+                botonBloqueSimple.setDisable(true);
+            case "bloqueLapizNoDibuja":
+                fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
+                botonBloqueSimple = new BotonBloqueSimple(bloqueId,"");
+                botonBloqueSimple.setDisable(true);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + bloqueId);
         }
         botonBloqueSimple.getStyleClass().add("bloqueMovimiento");
         return botonBloqueSimple;

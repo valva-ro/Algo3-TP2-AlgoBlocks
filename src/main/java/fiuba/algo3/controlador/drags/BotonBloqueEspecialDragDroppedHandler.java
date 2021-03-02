@@ -2,13 +2,8 @@ package fiuba.algo3.controlador.drags;
 
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.modelo.Interpretador;
-import fiuba.algo3.modelo.bloques.BloqueInvertir;
-import fiuba.algo3.modelo.bloques.BloqueRepetirDosVeces;
-import fiuba.algo3.modelo.bloques.BloqueRepetirTresVeces;
 import fiuba.algo3.modelo.bloques.Bloques;
 import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
 import fiuba.algo3.vista.botones.BotonBloqueEspecial;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
 import javafx.event.EventHandler;
@@ -44,59 +39,15 @@ public class BotonBloqueEspecialDragDroppedHandler implements EventHandler<DragE
         dragEvent.consume();
     }
 
-    /*private void agregarUnBloqueAlBloqueContenedor(String bloqueId){
+    private void agregarUnBloqueAlBloqueContenedor(String bloqueId){
         if (this.interpretador.esBloqueEspecial(bloqueId)){
-            // TODO: reordenar el metodo de abajo con el interpretador
+            BotonBloqueEspecial nuevoBoton = this.interpretador.obtenerBotonEspecialPorId(bloqueId,this.algoritmo,this.fabricaDeBloques);
+            this.bloqueEspecialVista.getChildren().add(nuevoBoton);
         }
-
-    }*/
-
-    private void agregarUnBloqueAlBloqueContenedor(String bloqueId) {
-
-        BotonBloqueSimple bloque = new BotonBloqueSimple(bloqueId, "");
-        bloque.setDisable(true);
-        bloque.getStyleClass().add("contenidoDeBloquePersonalizado");
-
-        switch (bloqueId) {
-            case "bloqueMovimientoArriba":
-                this.bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
-                this.bloqueEspecialVista.getChildren().add(bloque);
-                break;
-            case "bloqueMovimientoAbajo":
-                this.bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
-                this.bloqueEspecialVista.getChildren().add(bloque);
-                break;
-            case "bloqueMovimientoIzquierda":
-                this.bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
-                this.bloqueEspecialVista.getChildren().add(bloque);
-                break;
-            case "bloqueMovimientoDerecha":
-                this.bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
-                this.bloqueEspecialVista.getChildren().add(bloque);
-                break;
-            case "bloqueLapizNoDibuja":
-                this.fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
-                this.bloqueEspecialVista.getChildren().add(bloque);
-                break;
-            case "bloqueLapizDibuja":
-                this.fabricaDeBloques = new FabricaConcretaBloqueQueDibuja();
-                this.bloqueEspecialVista.getChildren().add(bloque);
-                break;
-            case "bloqueInvertir":
-                this.bloqueEspecial.agregar(new BloqueInvertir());
-                BotonBloqueEspecial bloqueEspecial1 = new BotonBloqueEspecial(bloqueId, this.algoritmo, this.fabricaDeBloques);
-                this.bloqueEspecialVista.getChildren().add(bloqueEspecial1);
-                break;
-            case "bloqueRepeticionDoble":
-                this.bloqueEspecial.agregar(new BloqueRepetirDosVeces());
-                BotonBloqueEspecial bloqueEspecial2 = new BotonBloqueEspecial(bloqueId, this.algoritmo, this.fabricaDeBloques);
-                this.bloqueEspecialVista.getChildren().add(bloqueEspecial2);
-                break;
-            case "bloqueRepeticionTriple":
-                this.bloqueEspecial.agregar(new BloqueRepetirTresVeces());
-                BotonBloqueEspecial bloqueEspecial3 = new BotonBloqueEspecial(bloqueId, this.algoritmo, this.fabricaDeBloques);
-                this.bloqueEspecialVista.getChildren().add(bloqueEspecial3);
-                break;
+        else{
+            BotonBloqueSimple nuevoBoton = this.interpretador.agregarBloqueSiempleAlBloqueEspecial(bloqueId,this.bloqueEspecial,this.fabricaDeBloques);
+            this.bloqueEspecialVista.getChildren().add(nuevoBoton);
         }
     }
+
 }
