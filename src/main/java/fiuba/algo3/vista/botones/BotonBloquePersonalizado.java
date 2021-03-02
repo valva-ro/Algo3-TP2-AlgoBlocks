@@ -6,11 +6,11 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 
-public class BotonBloquePersonalizados extends BotonBloqueSimple{
+public class BotonBloquePersonalizado extends BotonBloqueSimple {
 
     private BloquePersonalizado bloquePersonalizado;
 
-    public BotonBloquePersonalizados(String bloqueID, String texto, BloquePersonalizado bloquePersonalizado) {
+    public BotonBloquePersonalizado(String bloqueID, String texto, BloquePersonalizado bloquePersonalizado) {
         super(bloqueID, texto);
 
         this.setOnDragDetected((MouseEvent mouseEvent) -> {
@@ -26,11 +26,11 @@ public class BotonBloquePersonalizados extends BotonBloqueSimple{
         this.bloquePersonalizado = bloquePersonalizado;
     }
 
-    public BloquePersonalizado obtenerPerzonalizado() {
+    public BloquePersonalizado obtenerPersonalizado() {
         return this.bloquePersonalizado;
     }
 
-    public BotonBloquePersonalizados crearCopia(){
-        return  new BotonBloquePersonalizados(this.getId(),this.getText(),this.obtenerPerzonalizado());
+    public BotonBloquePersonalizado crearCopia() {
+        return new BotonBloquePersonalizado(this.getId(), this.getText(), this.obtenerPersonalizado());
     }
 }

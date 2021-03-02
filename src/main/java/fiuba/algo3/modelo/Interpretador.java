@@ -32,7 +32,6 @@ public class Interpretador {
                 break;
             case "bloquePersonalizado":
                 // TODO
-
             default:
                 throw new IllegalStateException("Unexpected value: " + bloqueID);
         }

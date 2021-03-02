@@ -9,7 +9,7 @@ public class SeccionAlgoritmoDragOverHandler implements EventHandler<DragEvent> 
 
     private VBox contenedorDeBloquesVertical;
 
-    public SeccionAlgoritmoDragOverHandler(VBox contenedorDeBloquesVertical){
+    public SeccionAlgoritmoDragOverHandler(VBox contenedorDeBloquesVertical) {
         this.contenedorDeBloquesVertical = contenedorDeBloquesVertical;
     }
 

@@ -2,7 +2,6 @@ package fiuba.algo3.vista.botones;
 
 import fiuba.algo3.controlador.drags.BotonBloqueEspecialDragDroppedHandler;
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.FabricaDeBloques;
 import fiuba.algo3.modelo.Interpretador;
 import fiuba.algo3.modelo.bloques.Bloques;
 import fiuba.algo3.vista.sectores.SectorBloquesDisponiblesVista;
@@ -49,6 +48,6 @@ public class BotonBloqueEspecial extends VBox {
             dragEvent.consume();
         });
 
-        this.setOnDragDropped(new BotonBloqueEspecialDragDroppedHandler(this, this.bloquePersonalizado, algoritmo, this.interpretador, this.sectorBloquesDisponiblesVista));
+        this.setOnDragDropped(new BotonBloqueEspecialDragDroppedHandler(this, this.bloquePersonalizado, this.algoritmo, this.interpretador, this.sectorBloquesDisponiblesVista));
     }
 }

@@ -3,7 +3,7 @@ package fiuba.algo3.controlador.clicks;
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.modelo.bloques.Bloque;
 import fiuba.algo3.modelo.bloques.BloquePersonalizado;
-import fiuba.algo3.vista.botones.BotonBloquePersonalizados;
+import fiuba.algo3.vista.botones.BotonBloquePersonalizado;
 import fiuba.algo3.vista.sectores.SectorBloquesDisponiblesVista;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,12 +14,12 @@ public class GuardarAlgoritmoHandler implements EventHandler<ActionEvent> {
 
     private final SectorBloquesDisponiblesVista contenedorBloques;
     private Algoritmo algoritmo;
-    private final String etiquetaEspecial;
+    private final TextField etiquetaEspecial;
     private final Stage ventana;
 
     public GuardarAlgoritmoHandler(SectorBloquesDisponiblesVista contenedorBloques, TextField campoDeTexto, Algoritmo algoritmo, Stage ventana) {
         this.contenedorBloques = contenedorBloques;
-        this.etiquetaEspecial = campoDeTexto.getText();
+        this.etiquetaEspecial = campoDeTexto;
         this.algoritmo = algoritmo;
         this.ventana = ventana;
     }
@@ -28,7 +28,7 @@ public class GuardarAlgoritmoHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
         BloquePersonalizado bloquePersonalizado = this.agregarAlgoritmoAlBloquePersonalizado();
-        BotonBloquePersonalizados botonBloquePersonalizado = new BotonBloquePersonalizados("bloquePersonalizado", this.etiquetaEspecial, bloquePersonalizado);
+        BotonBloquePersonalizado botonBloquePersonalizado = new BotonBloquePersonalizado("bloquePersonalizado", this.etiquetaEspecial.getText(), bloquePersonalizado);
         this.contenedorBloques.agregarBotonPersonalizado(botonBloquePersonalizado);
         this.ventana.close();
     }

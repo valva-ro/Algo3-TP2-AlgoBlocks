@@ -2,12 +2,12 @@ package fiuba.algo3.vista.sectores;
 
 import fiuba.algo3.controlador.clicks.BotonGuardarAlgoritmoHandler;
 import fiuba.algo3.modelo.Algoritmo;
+import fiuba.algo3.modelo.Interpretador;
 import fiuba.algo3.modelo.Observador;
-import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.vista.botones.Boton;
 import fiuba.algo3.vista.botones.BotonBloqueEspecial;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
-import fiuba.algo3.vista.botones.BotonBloquePersonalizados;
+import fiuba.algo3.vista.botones.BotonBloquePersonalizado;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -21,17 +21,17 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
     private final VBox contenedorVerticalBotones;
     private final Algoritmo algoritmo;
     private final Boton botonGuardarBloquePersonalizado;
-    private final FabricaAbstractaDeBloques fabricaDeBloques;
-    private final ArrayList<BotonBloquePersonalizados> botonesGuardados;
+    private final ArrayList<BotonBloquePersonalizado> botonesGuardados;
+    private final Interpretador interpretador;
 
-    public SectorBloquesDisponiblesVista(Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
+    public SectorBloquesDisponiblesVista(Algoritmo algoritmo, Interpretador interpretador) {
         super();
         this.botonesGuardados = new ArrayList<>();
 
         this.algoritmo = algoritmo;
         this.algoritmo.agregarObservador(this);
 
-        this.fabricaDeBloques = fabricaDeBloques;
+        this.interpretador = interpretador;
         this.contenedorVerticalBotones = new VBox(10);
 
         this.botonGuardarBloquePersonalizado = new Boton("botonGuardarAlgoritmoEnPersonalizado", "");
@@ -54,9 +54,9 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
         BotonBloqueSimple bloqueAbajo = new BotonBloqueSimple("bloqueMovimientoAbajo", "");
         BotonBloqueSimple bloqueIzquierda = new BotonBloqueSimple("bloqueMovimientoIzquierda", "");
         BotonBloqueSimple bloqueDerecha = new BotonBloqueSimple("bloqueMovimientoDerecha", "");
-        BotonBloqueEspecial bloqueRepeticionDoble = new BotonBloqueEspecial("bloqueRepeticionDoble", algoritmo, fabricaDeBloques,this);
-        BotonBloqueEspecial bloqueRepeticionTriple = new BotonBloqueEspecial("bloqueRepeticionTriple", algoritmo, fabricaDeBloques,this);
-        BotonBloqueEspecial bloqueInvertir = new BotonBloqueEspecial("bloqueInvertir", algoritmo, fabricaDeBloques,this);
+        BotonBloqueEspecial bloqueRepeticionDoble = new BotonBloqueEspecial("bloqueRepeticionDoble", this.algoritmo, this.interpretador, this);
+        BotonBloqueEspecial bloqueRepeticionTriple = new BotonBloqueEspecial("bloqueRepeticionTriple", this.algoritmo, this.interpretador, this);
+        BotonBloqueEspecial bloqueInvertir = new BotonBloqueEspecial("bloqueInvertir", this.algoritmo, this.interpretador, this);
         BotonBloqueSimple bloqueLapizDibuja = new BotonBloqueSimple("bloqueLapizDibuja", "");
         BotonBloqueSimple bloqueLapizNoDibuja = new BotonBloqueSimple("bloqueLapizNoDibuja", "");
 
@@ -84,7 +84,7 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
         return contenedorVerticalBotones;
     }
 
-    public void agregarBotonPersonalizado(BotonBloquePersonalizados botonPersonalizado){
+    public void agregarBotonPersonalizado(BotonBloquePersonalizado botonPersonalizado) {
         this.botonesGuardados.add(botonPersonalizado);
 
         if (!this.botonesGuardados.isEmpty()) {
@@ -97,22 +97,22 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
         this.botonGuardarBloquePersonalizado.setDisable(this.algoritmo.estaVacio());
     }
 
-    public boolean exiteGuardadoConId(String bloqueId) {
+    public boolean existeGuardadoConId(String bloqueId) {
         boolean botonEcontrado = false;
-        
-        for (BotonBloquePersonalizados boton : botonesGuardados){
-            if (boton.getId().equals(bloqueId)){
+
+        for (BotonBloquePersonalizado boton : botonesGuardados) {
+            if (boton.getId().equals(bloqueId)) {
                 botonEcontrado = true;
             }
         }
         return botonEcontrado;
     }
 
-    public BotonBloquePersonalizados obtenerCopiaPorId(String bloqueId){
-        BotonBloquePersonalizados botonCopia = null;
+    public BotonBloquePersonalizado obtenerCopiaPorId(String bloqueId) {
+        BotonBloquePersonalizado botonCopia = null;
 
-        for (BotonBloquePersonalizados boton : botonesGuardados){
-            if (boton.getId().equals(bloqueId)){
+        for (BotonBloquePersonalizado boton : botonesGuardados) {
+            if (boton.getId().equals(bloqueId)) {
                 botonCopia = boton.crearCopia();
             }
         }
