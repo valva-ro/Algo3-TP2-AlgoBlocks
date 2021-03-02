@@ -122,7 +122,7 @@
     -fx-background-color: #fa6161;
 }
 
-#bloquePersonalizado {
+.bloquePersonalizado {
     -fx-font-family: "Comic Sans MS";
     -fx-text-alignment: center;
     -fx-font-size: 14px;

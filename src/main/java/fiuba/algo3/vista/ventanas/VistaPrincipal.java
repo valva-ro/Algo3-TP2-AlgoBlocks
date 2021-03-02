@@ -2,7 +2,6 @@ package fiuba.algo3.vista.ventanas;
 
 import fiuba.algo3.App;
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.SectorDibujo;
 import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.vista.sectores.SectorAlgoritmoVista;
 import fiuba.algo3.vista.sectores.SectorBloquesDisponiblesVista;
@@ -17,7 +16,7 @@ public class VistaPrincipal extends BorderPane {
 
         SectorBloquesDisponiblesVista bloquesDisponiblesVista = new SectorBloquesDisponiblesVista(algoritmo, fabricaDeBloques);
         SectorDibujoVista sectorDibujoVista = new SectorDibujoVista();
-        SectorAlgoritmoVista sectorAlgoritmoVista = new SectorAlgoritmoVista(algoritmo, aplicacion, escenario, fabricaDeBloques, sectorDibujoVista);
+        SectorAlgoritmoVista sectorAlgoritmoVista = new SectorAlgoritmoVista(algoritmo, aplicacion, escenario, sectorDibujoVista,bloquesDisponiblesVista);
 
         this.setLeft(bloquesDisponiblesVista);
         this.setCenter(sectorAlgoritmoVista);

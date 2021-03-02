@@ -54,9 +54,9 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
         BotonBloqueSimple bloqueAbajo = new BotonBloqueSimple("bloqueMovimientoAbajo", "");
         BotonBloqueSimple bloqueIzquierda = new BotonBloqueSimple("bloqueMovimientoIzquierda", "");
         BotonBloqueSimple bloqueDerecha = new BotonBloqueSimple("bloqueMovimientoDerecha", "");
-        BotonBloqueEspecial bloqueRepeticionDoble = new BotonBloqueEspecial("bloqueRepeticionDoble", algoritmo, fabricaDeBloques);
-        BotonBloqueEspecial bloqueRepeticionTriple = new BotonBloqueEspecial("bloqueRepeticionTriple", algoritmo, fabricaDeBloques);
-        BotonBloqueEspecial bloqueInvertir = new BotonBloqueEspecial("bloqueInvertir", algoritmo, fabricaDeBloques);
+        BotonBloqueEspecial bloqueRepeticionDoble = new BotonBloqueEspecial("bloqueRepeticionDoble", algoritmo, fabricaDeBloques,this);
+        BotonBloqueEspecial bloqueRepeticionTriple = new BotonBloqueEspecial("bloqueRepeticionTriple", algoritmo, fabricaDeBloques,this);
+        BotonBloqueEspecial bloqueInvertir = new BotonBloqueEspecial("bloqueInvertir", algoritmo, fabricaDeBloques,this);
         BotonBloqueSimple bloqueLapizDibuja = new BotonBloqueSimple("bloqueLapizDibuja", "");
         BotonBloqueSimple bloqueLapizNoDibuja = new BotonBloqueSimple("bloqueLapizNoDibuja", "");
 
@@ -86,15 +86,25 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
 
     public void agregarBotonPersonalizado(BotonBloquePersonalizados botonPersonalizado){
         this.botonesGuardados.add(botonPersonalizado);
-        this.actualizar();
+
+        if (!this.botonesGuardados.isEmpty()) {
+            this.contenedorVerticalBotones.getChildren().add(this.botonesGuardados.get(this.botonesGuardados.size() - 1));
+        }
     }
 
     @Override
     public void actualizar() {
         this.botonGuardarBloquePersonalizado.setDisable(this.algoritmo.estaVacio());
+    }
 
-        if (!this.botonesGuardados.isEmpty()) {
-            this.contenedorVerticalBotones.getChildren().add(this.botonesGuardados.get(this.botonesGuardados.size() - 1));
+    public BotonBloquePersonalizados obtenerGuardadorPorId(String bloqueId) {
+        BotonBloquePersonalizados botonEcontrado = null;
+        
+        for (BotonBloquePersonalizados boton : botonesGuardados){
+            if (boton.getId().equals(bloqueId)){
+                botonEcontrado = boton;
+            }
         }
+        return botonEcontrado;
     }
 }
