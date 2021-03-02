@@ -2,8 +2,15 @@ package fiuba.algo3.controlador.drags;
 
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.modelo.Interpretador;
+import fiuba.algo3.modelo.bloques.BloqueInvertir;
+import fiuba.algo3.modelo.bloques.BloqueRepetirDosVeces;
+import fiuba.algo3.modelo.bloques.BloqueRepetirTresVeces;
 import fiuba.algo3.modelo.bloques.Bloques;
 import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
+import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
+import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
+import fiuba.algo3.vista.botones.BotonBloqueEspecial;
+import fiuba.algo3.vista.botones.BotonBloqueSimple;
 import javafx.event.EventHandler;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -46,7 +53,7 @@ public class BotonBloqueEspecialDragDroppedHandler implements EventHandler<DragE
 
     private void agregarUnBloqueAlBloqueContenedor(String bloqueId) {
 
-        Button bloque = new BotonBloqueSimple(bloqueId, "");
+        BotonBloqueSimple bloque = new BotonBloqueSimple(bloqueId, "");
         bloque.setDisable(true);
         bloque.getStyleClass().add("contenidoDeBloquePersonalizado");
 
@@ -78,19 +85,16 @@ public class BotonBloqueEspecialDragDroppedHandler implements EventHandler<DragE
             case "bloqueInvertir":
                 this.bloqueEspecial.agregar(new BloqueInvertir());
                 BotonBloqueEspecial bloqueEspecial1 = new BotonBloqueEspecial(bloqueId, this.algoritmo, this.fabricaDeBloques);
-                //bloqueEspecial1.getStyleClass().add("bloqueContenido");
                 this.bloqueEspecialVista.getChildren().add(bloqueEspecial1);
                 break;
             case "bloqueRepeticionDoble":
                 this.bloqueEspecial.agregar(new BloqueRepetirDosVeces());
                 BotonBloqueEspecial bloqueEspecial2 = new BotonBloqueEspecial(bloqueId, this.algoritmo, this.fabricaDeBloques);
-                //bloqueEspecial2.getStyleClass().add("bloqueContenido");
                 this.bloqueEspecialVista.getChildren().add(bloqueEspecial2);
                 break;
             case "bloqueRepeticionTriple":
                 this.bloqueEspecial.agregar(new BloqueRepetirTresVeces());
                 BotonBloqueEspecial bloqueEspecial3 = new BotonBloqueEspecial(bloqueId, this.algoritmo, this.fabricaDeBloques);
-                //bloqueEspecial3.getStyleClass().add("bloqueContenido");
                 this.bloqueEspecialVista.getChildren().add(bloqueEspecial3);
                 break;
         }
