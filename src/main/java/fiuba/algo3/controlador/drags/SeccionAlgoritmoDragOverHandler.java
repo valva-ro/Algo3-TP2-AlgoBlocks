@@ -16,7 +16,7 @@ public class SeccionAlgoritmoDragOverHandler implements EventHandler<DragEvent> 
     @Override
     public void handle(DragEvent dragEvent) {
         if (dragEvent.getGestureSource() != this.contenedorDeBloquesVertical && dragEvent.getDragboard().hasString()) {
-            dragEvent.acceptTransferModes(TransferMode.COPY);
+            dragEvent.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
         dragEvent.consume();
     }

@@ -9,10 +9,11 @@ public class BotonBloqueSimple extends Boton {
 
     public BotonBloqueSimple(String bloqueID, String texto) {
         super(bloqueID, texto);
+
         this.setOnDragDetected((MouseEvent mouseEvent) -> {
-            Dragboard db = this.startDragAndDrop(TransferMode.COPY_OR_MOVE);
+            Dragboard db = this.startDragAndDrop(TransferMode.COPY);
             ClipboardContent content = new ClipboardContent();
-            content.putString(this.getId());
+            content.putString(bloqueID);
             db.setContent(content);
             mouseEvent.consume();
         });

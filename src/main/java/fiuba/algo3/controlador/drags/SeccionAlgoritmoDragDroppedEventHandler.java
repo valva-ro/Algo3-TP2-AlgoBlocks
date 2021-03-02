@@ -1,14 +1,11 @@
 package fiuba.algo3.controlador.drags;
 
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.bloques.*;
+import fiuba.algo3.modelo.Interpretador;
 import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
 import fiuba.algo3.vista.botones.BotonBloqueEspecial;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.layout.VBox;
@@ -18,11 +15,13 @@ public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<Dra
     private final Algoritmo algoritmo;
     private final VBox algoritmoVista;
     private FabricaAbstractaDeBloques fabricaDeBloques;
+    private Interpretador interpretador;
 
     public SeccionAlgoritmoDragDroppedEventHandler(Algoritmo algoritmo, VBox algoritmoVista, FabricaAbstractaDeBloques fabricaDeBloques) {
         this.algoritmo = algoritmo;
         this.algoritmoVista = algoritmoVista;
         this.fabricaDeBloques = fabricaDeBloques;
+        this.interpretador = new Interpretador();
     }
 
     @Override
@@ -36,9 +35,21 @@ public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<Dra
         dragEvent.setDropCompleted(success);
         dragEvent.consume();
     }
+    private void agregarUnBloqueAlAlgoritmo(String bloqueId){
+        if (this.interpretador.esBloqueEspecial(bloqueId)){
+            BotonBloqueEspecial bloqueEspecial = this.interpretador.obtenerBotonEspecialPorId(bloqueId,this.algoritmo,this.fabricaDeBloques );
+            this.algoritmo.agregar(bloqueEspecial.obtenerBloque());
+            this.algoritmoVista.getChildren().add(bloqueEspecial);
 
-    private void agregarUnBloqueAlAlgoritmo(String bloqueId) {
-        Button bloque;
+            this.algoritmoVista.getChildren().add(bloqueEspecial);
+        }
+        else{
+            BotonBloqueSimple bloqueSimple = this.interpretador.agregarBloqueSiempleAlAlgoritmo(bloqueId,this.algoritmo,this.fabricaDeBloques);
+            this.algoritmoVista.getChildren().add(bloqueSimple);
+        }
+    }
+    /*private void agregarUnBloqueAlAlgoritmo(String bloqueId) {
+        Boton bloque;
         switch (bloqueId) {
             case "bloqueMovimientoArriba":
                 this.algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
@@ -99,5 +110,5 @@ public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<Dra
                 this.algoritmoVista.getChildren().add(bloqueEspecialTriple);
                 break;
         }
-    }
+    }*/
 }
