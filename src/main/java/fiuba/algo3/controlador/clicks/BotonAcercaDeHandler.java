@@ -64,6 +64,8 @@ public class BotonAcercaDeHandler extends BotonClickHandler {
         bloqueRepeticionDoble.setDisable(true);
         bloqueRepeticionTriple.getStyleClass().add("bloqueRepeticion");
         bloqueRepeticionTriple.setDisable(true);
+        bloquePersonalizado.setDisable(true);
+        bloqueInvertir.setDisable(true);
 
         HBox contenedorMovimientos1 = new HBox();
         contenedorMovimientos1.getChildren().addAll(bloqueArriba,
