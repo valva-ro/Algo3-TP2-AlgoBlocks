@@ -2,9 +2,9 @@ package fiuba.algo3.vista.botones;
 
 import fiuba.algo3.controlador.drags.BotonBloqueEspecialDragDroppedHandler;
 import fiuba.algo3.modelo.Algoritmo;
+import fiuba.algo3.modelo.FabricaDeBloques;
 import fiuba.algo3.modelo.Interpretador;
 import fiuba.algo3.modelo.bloques.Bloques;
-import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.vista.sectores.SectorBloquesDisponiblesVista;
 import javafx.geometry.Pos;
 import javafx.scene.input.*;
@@ -15,18 +15,16 @@ public class BotonBloqueEspecial extends VBox {
     private Bloques bloquePersonalizado;
     private Interpretador interpretador;
     private Algoritmo algoritmo;
-    private FabricaAbstractaDeBloques fabricaAbstractaDeBloques;
     private SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista;
 
-    public BotonBloqueEspecial(String bloqueID, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques, SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista) {
+    public BotonBloqueEspecial(String bloqueID, Algoritmo algoritmo, Interpretador interpretador, SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista) {
 
         this.setId(bloqueID);
         this.getStyleClass().addAll("boton", "bloqueEspecial");
         this.setAlignment(Pos.BOTTOM_RIGHT);
-        this.interpretador = new Interpretador();
+        this.interpretador = interpretador;
         this.bloquePersonalizado = this.interpretador.obtenerBloqueEspecialPorId(bloqueID);
         this.algoritmo = algoritmo;
-        this.fabricaAbstractaDeBloques = fabricaDeBloques;
         this.sectorBloquesDisponiblesVista = sectorBloquesDisponiblesVista;
 
         this.setOnDragDetected((MouseEvent mouseEvent) -> {
@@ -39,11 +37,9 @@ public class BotonBloqueEspecial extends VBox {
 
     }
 
-
     public Bloques obtenerBloque() {
         return this.bloquePersonalizado;
     }
-
 
     public void setModoAlgoritmo() {
         this.setOnDragOver((DragEvent dragEvent) -> {
@@ -53,6 +49,6 @@ public class BotonBloqueEspecial extends VBox {
             dragEvent.consume();
         });
 
-        this.setOnDragDropped(new BotonBloqueEspecialDragDroppedHandler(this, this.bloquePersonalizado, algoritmo, fabricaAbstractaDeBloques,this.sectorBloquesDisponiblesVista));
+        this.setOnDragDropped(new BotonBloqueEspecialDragDroppedHandler(this, this.bloquePersonalizado, algoritmo, this.interpretador, this.sectorBloquesDisponiblesVista));
     }
 }

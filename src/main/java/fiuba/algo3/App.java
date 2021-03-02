@@ -1,8 +1,7 @@
 package fiuba.algo3;
 
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
+import fiuba.algo3.modelo.Interpretador;
 import fiuba.algo3.vista.ventanas.VistaInicio;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -25,9 +24,8 @@ public class App extends Application {
     public void start(Stage escenario) {
 
         Algoritmo algoritmo = new Algoritmo();
-        FabricaAbstractaDeBloques fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
-
-        VistaInicio vistaInicio = new VistaInicio(this, escenario, algoritmo, fabricaDeBloques);
+        Interpretador interpretador = new Interpretador();
+        VistaInicio vistaInicio = new VistaInicio(this, escenario, algoritmo, interpretador);
         Scene escenaInicial = new Scene(vistaInicio, ANCHO, ALTO);
 
         escenaInicial.getStylesheets().clear();

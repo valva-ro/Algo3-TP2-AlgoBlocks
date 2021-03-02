@@ -4,14 +4,17 @@ import fiuba.algo3.modelo.bloques.BloqueInvertir;
 import fiuba.algo3.modelo.bloques.BloqueRepetirDosVeces;
 import fiuba.algo3.modelo.bloques.BloqueRepetirTresVeces;
 import fiuba.algo3.modelo.bloques.Bloques;
-import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
 import fiuba.algo3.vista.botones.BotonBloqueEspecial;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
 import fiuba.algo3.vista.sectores.SectorBloquesDisponiblesVista;
 
 public class Interpretador {
+
+    private FabricaDeBloques fabrica;
+
+    public Interpretador() {
+        this.fabrica = new FabricaDeBloques();
+    }
 
     public Bloques obtenerBloqueEspecialPorId(String bloqueID) {
 
@@ -41,7 +44,7 @@ public class Interpretador {
         return (bloqueId.equals("bloqueInvertir") || bloqueId.equals("bloqueRepeticionDoble") || bloqueId.equals("bloqueRepeticionTriple") || bloqueId.equals("bloquePersonalizado"));
     }
 
-    public BotonBloqueEspecial obtenerBotonEspecialPorId(String bloqueId, Algoritmo algoritmo, FabricaAbstractaDeBloques fabrica, SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista) {
+    public BotonBloqueEspecial obtenerBotonEspecialPorId(String bloqueId, Algoritmo algoritmo, SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista) {
 
         BotonBloqueEspecial botonBloqueEspecial;
 
@@ -49,7 +52,7 @@ public class Interpretador {
             case "bloqueInvertir":
             case "bloqueRepeticionDoble":
             case "bloqueRepeticionTriple":
-                botonBloqueEspecial = new BotonBloqueEspecial(bloqueId,algoritmo,fabrica,sectorBloquesDisponiblesVista);
+                botonBloqueEspecial = new BotonBloqueEspecial(bloqueId, algoritmo, this, sectorBloquesDisponiblesVista);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + bloqueId);
@@ -58,55 +61,59 @@ public class Interpretador {
         return botonBloqueEspecial;
     }
 
-    public BotonBloqueSimple agregarBloqueSimpleAlAlgoritmo(String bloqueId, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
+    public BotonBloqueSimple agregarBloqueSimpleAlAlgoritmo(String bloqueId, Algoritmo algoritmo) {
 
-        BotonBloqueSimple botonBloqueSimple = new BotonBloqueSimple(bloqueId,"");
+        BotonBloqueSimple botonBloqueSimple = new BotonBloqueSimple(bloqueId, "");
         botonBloqueSimple.setDisable(true);
         botonBloqueSimple.getStyleClass().add("bloqueMovimiento");
 
-        switch (bloqueId){
+        switch (bloqueId) {
             case "bloqueMovimientoArriba":
-                algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
+                algoritmo.agregar(this.fabrica.crearBloqueMovimientoArriba());
                 break;
             case "bloqueMovimientoAbajo":
-                algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
+                algoritmo.agregar(this.fabrica.crearBloqueMovimientoAbajo());
                 break;
             case "bloqueMovimientoDerecha":
-                algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
+                algoritmo.agregar(this.fabrica.crearBloqueMovimientoDerecha());
                 break;
             case "bloqueMovimientoIzquierda":
-                algoritmo.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
+                algoritmo.agregar(this.fabrica.crearBloqueMovimientoIzquierda());
                 break;
             case "bloqueLapizDibuja":
+                this.fabrica.fabricaDibuja();
+                break;
             case "bloqueLapizNoDibuja":
-                fabricaDeBloques.cambiarDeFabrica();
+                this.fabrica.fabricaNoDibuja();
                 break;
         }
         return botonBloqueSimple;
     }
 
-    public BotonBloqueSimple agregarBloqueSiempleAlBloqueEspecial(String bloqueId, Bloques bloqueEspecial, FabricaAbstractaDeBloques fabricaDeBloques) {
+    public BotonBloqueSimple agregarBloqueSiempleAlBloqueEspecial(String bloqueId, Bloques bloqueEspecial) {
 
-        BotonBloqueSimple botonBloqueSimple = new BotonBloqueSimple(bloqueId,"");
+        BotonBloqueSimple botonBloqueSimple = new BotonBloqueSimple(bloqueId, "");
         botonBloqueSimple.setDisable(true);
         botonBloqueSimple.getStyleClass().add("bloqueMovimiento");
 
-        switch (bloqueId){
+        switch (bloqueId) {
             case "bloqueMovimientoArriba":
-                bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoArriba());
+                bloqueEspecial.agregar(this.fabrica.crearBloqueMovimientoArriba());
                 break;
             case "bloqueMovimientoAbajo":
-                bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoAbajo());
+                bloqueEspecial.agregar(this.fabrica.crearBloqueMovimientoAbajo());
                 break;
             case "bloqueMovimientoDerecha":
-                bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoDerecha());
+                bloqueEspecial.agregar(this.fabrica.crearBloqueMovimientoDerecha());
                 break;
             case "bloqueMovimientoIzquierda":
-                bloqueEspecial.agregar(fabricaDeBloques.crearBloqueMovimientoIzquierda());
+                bloqueEspecial.agregar(this.fabrica.crearBloqueMovimientoIzquierda());
                 break;
             case "bloqueLapizDibuja":
+                this.fabrica.fabricaDibuja();
+                break;
             case "bloqueLapizNoDibuja":
-                fabricaDeBloques.cambiarDeFabrica();
+                this.fabrica.fabricaNoDibuja();
                 break;
         }
         return botonBloqueSimple;

@@ -1,9 +1,8 @@
 package fiuba.algo3.controlador.drags;
 
 import fiuba.algo3.modelo.Algoritmo;
+import fiuba.algo3.modelo.FabricaDeBloques;
 import fiuba.algo3.modelo.Interpretador;
-import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
 import fiuba.algo3.vista.botones.BotonBloqueEspecial;
 import fiuba.algo3.vista.botones.BotonBloquePersonalizados;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
@@ -17,15 +16,13 @@ public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<Dra
 
     private final Algoritmo algoritmo;
     private final VBox algoritmoVista;
-    private FabricaAbstractaDeBloques fabricaDeBloques;
     private Interpretador interpretador;
     private final SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista;
 
-    public SeccionAlgoritmoDragDroppedEventHandler(Algoritmo algoritmo, VBox algoritmoVista, SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista) {
+    public SeccionAlgoritmoDragDroppedEventHandler(Algoritmo algoritmo, Interpretador interpretador, VBox algoritmoVista, SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista) {
         this.algoritmo = algoritmo;
         this.algoritmoVista = algoritmoVista;
-        this.fabricaDeBloques = new FabricaConcretaBloqueQueNoDibuja();
-        this.interpretador = new Interpretador();
+        this.interpretador = interpretador;
         this.sectorBloquesDisponiblesVista = sectorBloquesDisponiblesVista;
     }
 
@@ -43,7 +40,7 @@ public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<Dra
 
     private void agregarUnBloqueAlAlgoritmo(String bloqueId) {
         if (this.interpretador.esBloqueEspecial(bloqueId)) {
-            BotonBloqueEspecial bloqueEspecial = this.interpretador.obtenerBotonEspecialPorId(bloqueId, this.algoritmo, this.fabricaDeBloques, this.sectorBloquesDisponiblesVista);
+            BotonBloqueEspecial bloqueEspecial = this.interpretador.obtenerBotonEspecialPorId(bloqueId, this.algoritmo, this.sectorBloquesDisponiblesVista);
             this.algoritmo.agregar(bloqueEspecial.obtenerBloque());
             this.algoritmoVista.getChildren().add(bloqueEspecial);
         } else if (this.sectorBloquesDisponiblesVista.obtenerGuardadorPorId(bloqueId) != null) {
@@ -52,7 +49,7 @@ public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<Dra
             this.algoritmoVista.getChildren().add(botonBloquePersonalizados);
 
         } else {
-            BotonBloqueSimple bloqueSimple = this.interpretador.agregarBloqueSimpleAlAlgoritmo(bloqueId, this.algoritmo, this.fabricaDeBloques);
+            BotonBloqueSimple bloqueSimple = this.interpretador.agregarBloqueSimpleAlAlgoritmo(bloqueId, this.algoritmo);
             this.algoritmoVista.getChildren().add(bloqueSimple);
         }
     }

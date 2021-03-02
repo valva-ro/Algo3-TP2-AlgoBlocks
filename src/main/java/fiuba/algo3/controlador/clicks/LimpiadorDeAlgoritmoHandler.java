@@ -16,7 +16,6 @@ public class LimpiadorDeAlgoritmoHandler extends BotonClickHandler {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-
         this.algoritmo.vaciar();
         this.sectorDibujoVista.borrarDibujo();
     }

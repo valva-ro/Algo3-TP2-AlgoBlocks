@@ -7,6 +7,8 @@ import fiuba.algo3.controlador.clicks.LimpiadorDeAlgoritmoHandler;
 import fiuba.algo3.controlador.drags.SeccionAlgoritmoDragDroppedEventHandler;
 import fiuba.algo3.controlador.drags.SeccionAlgoritmoDragOverHandler;
 import fiuba.algo3.modelo.Algoritmo;
+import fiuba.algo3.modelo.FabricaDeBloques;
+import fiuba.algo3.modelo.Interpretador;
 import fiuba.algo3.modelo.Observador;
 import fiuba.algo3.vista.botones.Boton;
 import javafx.application.Platform;
@@ -24,10 +26,11 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
     private final SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista;
     private final VBox bloquesDelAlgoritmo;
     private final HBox botonera;
+    private Interpretador interpretador;
     private Boton botonLimpiarDibujo;
     private Boton botonEjectuar;
 
-    public SectorAlgoritmoVista(Algoritmo algoritmo, App aplicacion, Stage escenario, SectorDibujoVista sectorDibujoVista,SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista) {
+    public SectorAlgoritmoVista(Algoritmo algoritmo, App aplicacion, Stage escenario, Interpretador interpretador, SectorDibujoVista sectorDibujoVista, SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista) {
         super();
         this.algoritmo = algoritmo;
         this.sectorDibujoVista = sectorDibujoVista;
@@ -35,6 +38,7 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
         this.algoritmo.agregarObservador(this);
         this.botonera = this.botoneraAccionesDisponibles(aplicacion, escenario);
         this.bloquesDelAlgoritmo = new VBox();
+        this.interpretador = interpretador;
         this.configurarVentana();
     }
 
@@ -55,7 +59,7 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
         sectorScrolleable.setMaxHeight(550);
         sectorScrolleable.setMaxWidth(350);
         sectorScrolleable.setOnDragOver(new SeccionAlgoritmoDragOverHandler(this.bloquesDelAlgoritmo));
-        sectorScrolleable.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(this.algoritmo, this.bloquesDelAlgoritmo,this.sectorBloquesDisponiblesVista));
+        sectorScrolleable.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(this.algoritmo, this.interpretador, this.bloquesDelAlgoritmo, this.sectorBloquesDisponiblesVista));
 
         this.getChildren().addAll(etiqueta, this.botonera, sectorScrolleable);
     }
