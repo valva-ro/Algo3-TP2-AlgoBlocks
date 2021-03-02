@@ -1,15 +1,10 @@
 package fiuba.algo3.controlador.drags;
 
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.bloques.*;
+import fiuba.algo3.modelo.Interpretador;
+import fiuba.algo3.modelo.bloques.Bloques;
 import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueDibuja;
-import fiuba.algo3.modelo.fabricas.FabricaConcretaBloqueQueNoDibuja;
-import fiuba.algo3.vista.botones.Boton;
-import fiuba.algo3.vista.botones.BotonBloqueEspecial;
-import fiuba.algo3.vista.botones.BotonBloqueSimple;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.layout.VBox;
@@ -20,12 +15,14 @@ public class BotonBloqueEspecialDragDroppedHandler implements EventHandler<DragE
     private final Bloques bloqueEspecial;
     private final Algoritmo algoritmo;
     private FabricaAbstractaDeBloques fabricaDeBloques;
+    private Interpretador interpretador;
 
     public BotonBloqueEspecialDragDroppedHandler(VBox bloqueEspecialVista, Bloques bloqueEspecial, Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         this.bloqueEspecialVista = bloqueEspecialVista;
         this.bloqueEspecial = bloqueEspecial;
         this.fabricaDeBloques = fabricaDeBloques;
         this.algoritmo = algoritmo;
+        this.interpretador = new Interpretador();
     }
 
     @Override
@@ -39,6 +36,13 @@ public class BotonBloqueEspecialDragDroppedHandler implements EventHandler<DragE
         dragEvent.setDropCompleted(success);
         dragEvent.consume();
     }
+
+    /*private void agregarUnBloqueAlBloqueContenedor(String bloqueId){
+        if (this.interpretador.esBloqueEspecial(bloqueId)){
+            // TODO: reordenar el metodo de abajo con el interpretador
+        }
+
+    }*/
 
     private void agregarUnBloqueAlBloqueContenedor(String bloqueId) {
 
