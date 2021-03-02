@@ -4,9 +4,9 @@ import javafx.scene.control.Button;
 
 public class Boton extends Button {
 
-    public Boton(String bloqueID, String texto) {
+    public Boton(String botonID, String texto) {
         super(texto);
-        this.setId(bloqueID);
+        this.setId(botonID);
         this.getStyleClass().add("boton");
     }
 
