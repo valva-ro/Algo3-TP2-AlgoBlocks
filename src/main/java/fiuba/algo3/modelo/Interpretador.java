@@ -38,7 +38,7 @@ public class Interpretador {
     }
 
     public boolean esBloqueEspecial(String bloqueId) {
-        return (bloqueId.equals("bloqueInvertir") || bloqueId.equals("bloqueRepeticionDoble") || bloqueId.equals("bloqueRepeticionTriple") || bloqueId.equals("bloquePersonalizado"));
+        return (bloqueId.equals("bloqueInvertir") || bloqueId.equals("bloqueRepeticionDoble") || bloqueId.equals("bloqueRepeticionTriple"));
     }
 
     public BotonBloqueEspecial obtenerBotonEspecialPorId(String bloqueId, Algoritmo algoritmo, SectorBloquesDisponiblesVista sectorBloquesDisponiblesVista) {
