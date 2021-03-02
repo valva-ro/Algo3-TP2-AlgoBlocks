@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+scale 350 width
+[*] --> VistaInicial
+
+state VistaInicial {
+    VistaInicial --> SetearAlgoritmo : drag&drop
+}
+
+state SetearAlgoritmo {
+    SetearAlgoritmo --> Dibujar : ejecutar
+    SetearAlgoritmo --> CrearNuevoBotonPersonalizado : guardar
+    SetearAlgoritmo --> VistaInicial : cancelar
+}
+
+state CrearNuevoBotonPersonalizado{
+    CrearNuevoBotonPersonalizado --> Dibujar : Ejecutar
+}
+
+state Dibujar{
+
+}
+@enduml
