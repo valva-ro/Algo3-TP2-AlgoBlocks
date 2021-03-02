@@ -40,8 +40,6 @@ public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<Dra
             BotonBloqueEspecial bloqueEspecial = this.interpretador.obtenerBotonEspecialPorId(bloqueId,this.algoritmo,this.fabricaDeBloques );
             this.algoritmo.agregar(bloqueEspecial.obtenerBloque());
             this.algoritmoVista.getChildren().add(bloqueEspecial);
-
-            this.algoritmoVista.getChildren().add(bloqueEspecial);
         }
         else{
             BotonBloqueSimple bloqueSimple = this.interpretador.agregarBloqueSiempleAlAlgoritmo(bloqueId,this.algoritmo,this.fabricaDeBloques);
