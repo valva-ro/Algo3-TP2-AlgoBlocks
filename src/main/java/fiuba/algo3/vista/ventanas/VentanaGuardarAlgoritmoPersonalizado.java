@@ -3,6 +3,7 @@ package fiuba.algo3.vista.ventanas;
 import fiuba.algo3.controlador.clicks.GuardarAlgoritmoHandler;
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.vista.botones.Boton;
+import fiuba.algo3.vista.sectores.SectorBloquesDisponiblesVista;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -14,7 +15,7 @@ import javafx.stage.Stage;
 
 public class VentanaGuardarAlgoritmoPersonalizado {
 
-    public static void display(VBox contenedorBloques, String titulo, String mensaje, Algoritmo algoritmo){
+    public static void display(SectorBloquesDisponiblesVista contenedorBloques, String titulo, String mensaje, Algoritmo algoritmo){
 
         Stage ventana = new Stage();
         ventana.setResizable(false);

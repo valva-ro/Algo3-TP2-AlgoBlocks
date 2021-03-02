@@ -7,11 +7,14 @@ import fiuba.algo3.modelo.fabricas.FabricaAbstractaDeBloques;
 import fiuba.algo3.vista.botones.Boton;
 import fiuba.algo3.vista.botones.BotonBloqueEspecial;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
+import fiuba.algo3.vista.botones.BotonBloquePersonalizados;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
 
 public class SectorBloquesDisponiblesVista extends BorderPane implements Observador {
 
@@ -19,9 +22,11 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
     private final Algoritmo algoritmo;
     private final Boton botonGuardarBloquePersonalizado;
     private final FabricaAbstractaDeBloques fabricaDeBloques;
+    private final ArrayList<BotonBloquePersonalizados> botonesGuardados;
 
     public SectorBloquesDisponiblesVista(Algoritmo algoritmo, FabricaAbstractaDeBloques fabricaDeBloques) {
         super();
+        this.botonesGuardados = new ArrayList<>();
 
         this.algoritmo = algoritmo;
         this.algoritmo.agregarObservador(this);
@@ -31,7 +36,7 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
 
         this.botonGuardarBloquePersonalizado = new Boton("botonGuardarAlgoritmoEnPersonalizado", "");
         this.botonGuardarBloquePersonalizado.setDisable(true);
-        this.botonGuardarBloquePersonalizado.setOnAction(new BotonGuardarAlgoritmoHandler(contenedorVerticalBotones, this.algoritmo));
+        this.botonGuardarBloquePersonalizado.setOnAction(new BotonGuardarAlgoritmoHandler(this, this.algoritmo));
 
         ScrollPane contenedorScrolleable = new ScrollPane(this.bloquesDisponibles());
         contenedorScrolleable.setFitToWidth(true);
@@ -79,8 +84,17 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
         return contenedorVerticalBotones;
     }
 
+    public void agregarBotonPersonalizado(BotonBloquePersonalizados botonPersonalizado){
+        this.botonesGuardados.add(botonPersonalizado);
+        this.actualizar();
+    }
+
     @Override
     public void actualizar() {
         this.botonGuardarBloquePersonalizado.setDisable(this.algoritmo.estaVacio());
+
+        if (!this.botonesGuardados.isEmpty()) {
+            this.contenedorVerticalBotones.getChildren().add(this.botonesGuardados.get(this.botonesGuardados.size() - 1));
+        }
     }
 }

@@ -1,16 +1,16 @@
 package fiuba.algo3.controlador.clicks;
 
 import fiuba.algo3.modelo.Algoritmo;
+import fiuba.algo3.vista.sectores.SectorBloquesDisponiblesVista;
 import fiuba.algo3.vista.ventanas.VentanaGuardarAlgoritmoPersonalizado;
 import javafx.event.ActionEvent;
-import javafx.scene.layout.VBox;
 
 public class BotonGuardarAlgoritmoHandler extends BotonClickHandler {
 
-    private final VBox contenedorBloques;
+    private final SectorBloquesDisponiblesVista contenedorBloques;
     private final Algoritmo algoritmo;
 
-    public BotonGuardarAlgoritmoHandler(VBox contenedorBloques, Algoritmo algoritmo) {
+    public BotonGuardarAlgoritmoHandler(SectorBloquesDisponiblesVista contenedorBloques, Algoritmo algoritmo) {
         this.contenedorBloques = contenedorBloques;
         this.algoritmo = algoritmo;
     }
