@@ -48,7 +48,7 @@ public class BotonBloqueEspecialDragDroppedHandler implements EventHandler<DragE
             BotonBloqueEspecial nuevoBoton = this.interpretador.obtenerBotonEspecialPorId(bloqueId,this.algoritmo,this.fabricaDeBloques,this.sectorBloquesDisponiblesVista);
             this.bloqueEspecialVista.getChildren().add(nuevoBoton);
         }
-        else if(this.sectorBloquesDisponiblesVista.obtenerGuardadorPorId(bloqueId)){
+        else if(this.sectorBloquesDisponiblesVista.exiteGuardadoConId(bloqueId)){
             BotonBloquePersonalizados nuevoBoton = sectorBloquesDisponiblesVista.obtenerCopiaPorId(bloqueId);
             nuevoBoton.setDisable(true);
             this.algoritmo.agregar(nuevoBoton.obtenerPerzonalizado());

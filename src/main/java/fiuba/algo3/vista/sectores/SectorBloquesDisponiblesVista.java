@@ -97,7 +97,7 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
         this.botonGuardarBloquePersonalizado.setDisable(this.algoritmo.estaVacio());
     }
 
-    public boolean obtenerGuardadorPorId(String bloqueId) {
+    public boolean exiteGuardadoConId(String bloqueId) {
         boolean botonEcontrado = false;
         
         for (BotonBloquePersonalizados boton : botonesGuardados){
