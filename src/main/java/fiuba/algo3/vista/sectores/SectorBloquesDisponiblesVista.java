@@ -97,14 +97,26 @@ public class SectorBloquesDisponiblesVista extends BorderPane implements Observa
         this.botonGuardarBloquePersonalizado.setDisable(this.algoritmo.estaVacio());
     }
 
-    public BotonBloquePersonalizados obtenerGuardadorPorId(String bloqueId) {
-        BotonBloquePersonalizados botonEcontrado = null;
+    public boolean obtenerGuardadorPorId(String bloqueId) {
+        boolean botonEcontrado = false;
         
         for (BotonBloquePersonalizados boton : botonesGuardados){
             if (boton.getId().equals(bloqueId)){
-                botonEcontrado = boton;
+                botonEcontrado = true;
             }
         }
         return botonEcontrado;
+    }
+
+    public BotonBloquePersonalizados obtenerCopiaPorId(String bloqueId){
+        BotonBloquePersonalizados botonCopia = null;
+
+        for (BotonBloquePersonalizados boton : botonesGuardados){
+            if (boton.getId().equals(bloqueId)){
+                botonCopia = boton.crearCopia();
+            }
+        }
+        return botonCopia;
+
     }
 }

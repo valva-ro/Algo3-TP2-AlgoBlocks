@@ -47,8 +47,9 @@ public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<Dra
             this.algoritmo.agregar(bloqueEspecial.obtenerBloque());
             this.algoritmoVista.getChildren().add(bloqueEspecial);
         }
-        else if (this.sectorBloquesDisponiblesVista.obtenerGuardadorPorId(bloqueId) != null){
-            BotonBloquePersonalizados botonBloquePersonalizados = this.sectorBloquesDisponiblesVista.obtenerGuardadorPorId(bloqueId);
+        else if (this.sectorBloquesDisponiblesVista.obtenerGuardadorPorId(bloqueId)){
+            BotonBloquePersonalizados botonBloquePersonalizados = this.sectorBloquesDisponiblesVista.obtenerCopiaPorId(bloqueId);
+            botonBloquePersonalizados.setDisable(true);
             this.algoritmo.agregar(botonBloquePersonalizados.obtenerPerzonalizado());
             this.algoritmoVista.getChildren().add(botonBloquePersonalizados);
 
