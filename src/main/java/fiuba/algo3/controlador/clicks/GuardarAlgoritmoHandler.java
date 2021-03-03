@@ -28,7 +28,7 @@ public class GuardarAlgoritmoHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
         BloquePersonalizado bloquePersonalizado = this.agregarAlgoritmoAlBloquePersonalizado();
-        BotonBloquePersonalizado botonBloquePersonalizado = new BotonBloquePersonalizado("bloquePersonalizado", this.etiquetaEspecial.getText(), bloquePersonalizado);
+        BotonBloquePersonalizado botonBloquePersonalizado = new BotonBloquePersonalizado( this.etiquetaEspecial.getText(), this.etiquetaEspecial.getText(), bloquePersonalizado);
         this.contenedorBloques.agregarBotonPersonalizado(botonBloquePersonalizado);
         this.ventana.close();
     }

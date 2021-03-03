@@ -22,6 +22,7 @@ public class VentanaGuardarAlgoritmoPersonalizado {
         ventana.initModality(Modality.APPLICATION_MODAL);
         ventana.setTitle(titulo);
         ventana.setMinWidth(500);
+        ventana.setMinHeight(300);
 
         Label label = new Label();
         label.setText(mensaje);
