@@ -50,7 +50,7 @@ public class BotonBloqueEspecialDragDroppedHandler extends BotonDragHandler {
         else if (this.sectorBloquesDisponiblesVista.existeGuardadoConId(bloqueId)) {
             BotonBloquePersonalizado nuevoBoton = sectorBloquesDisponiblesVista.obtenerCopiaPorId(bloqueId);
             nuevoBoton.setDisable(true);
-            this.algoritmo.agregar(nuevoBoton.obtenerPersonalizado());
+            this.bloqueEspecial.agregar(nuevoBoton.obtenerPersonalizado());
             this.bloqueEspecialVista.getChildren().add(nuevoBoton);
         }
 
