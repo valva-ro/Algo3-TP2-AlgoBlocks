@@ -43,6 +43,7 @@ public class BotonBloqueEspecialDragDroppedHandler extends BotonDragHandler {
     private void agregarUnBloqueAlBloqueContenedor(String bloqueId) {
         if (this.interpretador.esBloqueEspecial(bloqueId)) {
             BotonBloqueEspecial nuevoBoton = this.interpretador.obtenerBotonEspecialPorId(bloqueId, this.algoritmo, this.sectorBloquesDisponiblesVista);
+            this.bloqueEspecial.agregar(nuevoBoton.obtenerBloque());
             this.bloqueEspecialVista.getChildren().add(nuevoBoton);
         }
 
