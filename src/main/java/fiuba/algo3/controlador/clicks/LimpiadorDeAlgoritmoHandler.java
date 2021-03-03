@@ -21,6 +21,7 @@ public class LimpiadorDeAlgoritmoHandler extends BotonClickHandler {
     public void handle(ActionEvent actionEvent) {
         this.algoritmo.vaciar();
         this.sectorDibujoVista.borrarDibujo();
+
         this.interpretador.resetearFabrica();
     }
 }

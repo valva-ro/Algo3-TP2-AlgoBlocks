@@ -53,7 +53,7 @@ public class SectorPersonaje extends Canvas {
             }
         }
 
-        private void reiniciarPersonaje() {
+        public void reiniciarPersonaje() {
             this.personaje = new Image(this.RUTA_IMAGEN_INICIAL, ANCHO_IMAGEN, ALTO_IMAGEN, true, true);
             this.moverPersonaje(this.xCentro, this.yCentro);
         }

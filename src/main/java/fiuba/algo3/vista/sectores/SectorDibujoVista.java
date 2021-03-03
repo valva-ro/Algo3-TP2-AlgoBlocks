@@ -40,5 +40,6 @@ public class SectorDibujoVista extends StackPane implements ObservadorDibujo {
 
     public void borrarDibujo() {
         this.dibujo.borrar();
+        this.personaje.reiniciarPersonaje();
     }
 }
