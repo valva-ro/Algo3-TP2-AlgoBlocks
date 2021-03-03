@@ -4,10 +4,14 @@ import fiuba.algo3.modelo.ObservadorDibujo;
 import fiuba.algo3.modelo.Posicion;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 public class SectorDibujoVista extends BorderPane implements ObservadorDibujo {
 
     private final DibujoVista dibujo;
+    private SectorPersonaje sectorPersonaje;
+    private final int ANCHO = 480,
+                      ALTO = 640;
 
     public SectorDibujoVista() {
 
@@ -17,9 +21,14 @@ public class SectorDibujoVista extends BorderPane implements ObservadorDibujo {
         Label etiqueta = new Label("Dibujo");
         etiqueta.getStyleClass().add("subtitulo");
 
-        this.dibujo = new DibujoVista(450, 600);
+        this.dibujo = new DibujoVista(ANCHO, ALTO);
+        this.sectorPersonaje = new SectorPersonaje("personaje_abajo_sin_lapiz.png", ANCHO, ALTO);
+
+        Pane panel = new Pane();
+        panel.getChildren().addAll(dibujo, sectorPersonaje);
+
         this.setTop(etiqueta);
-        this.setCenter(this.dibujo);
+        this.setCenter(panel);
     }
 
     @Override
@@ -31,5 +40,7 @@ public class SectorDibujoVista extends BorderPane implements ObservadorDibujo {
         }
     }
 
-    public void borrarDibujo() { this.dibujo.borrar(); }
+    public void borrarDibujo() {
+        this.dibujo.borrar();
+    }
 }
