@@ -2,10 +2,8 @@ package fiuba.algo3.vista.sectores;
 
 import fiuba.algo3.modelo.ObservadorDibujo;
 import fiuba.algo3.modelo.Posicion;
-import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-import javafx.util.Duration;
 
 public class SectorDibujoVista extends StackPane implements ObservadorDibujo {
 

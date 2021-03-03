@@ -7,28 +7,28 @@ import javafx.scene.image.Image;
 
 public class SectorPersonaje extends Canvas {
 
-    private int xCentro;
-    private int yCentro;
-    private GraphicsContext graficador;
-    private Image personaje;
+        private int xCentro;
+        private int yCentro;
+        private GraphicsContext graficador;
+        private Image personaje;
 
-    private final double ANCHO_CANVAS;
-    private final double ALTO_CANVAS;
-    private final String RUTA_IMAGEN_INICIAL = "personaje_abajo_sin_lapiz.png";
-    private final int ALTO_IMAGEN = 50;
-    private final int ANCHO_IMAGEN = 50;
-    private final int LONGITUD_TRAZO = 40;
+        private final double ANCHO_CANVAS;
+        private final double ALTO_CANVAS;
+        private final String RUTA_IMAGEN_INICIAL = "personaje_abajo_sin_lapiz.png";
+        private final int ALTO_IMAGEN = 50;
+        private final int ANCHO_IMAGEN = 50;
+        private final int LONGITUD_TRAZO = 40;
 
-    public SectorPersonaje(double ancho, double alto) {
-        super(ancho, alto);
-        this.ANCHO_CANVAS = ancho;
-        this.ALTO_CANVAS = alto;
-        this.xCentro = (int) ((this.getWidth()) / 2);
-        this.yCentro = (int) ((this.getHeight()) / 2);
-        this.graficador = this.getGraphicsContext2D();
-        this.setStyle("-fx-background-color: rgba(0, 0, 0, 0)");
-        this.reiniciarPersonaje();
-    }
+        public SectorPersonaje(double ancho, double alto) {
+            super(ancho, alto);
+            this.ANCHO_CANVAS = ancho;
+            this.ALTO_CANVAS = alto;
+            this.xCentro = (int) ((this.getWidth()) / 2);
+            this.yCentro = (int) ((this.getHeight()) / 2);
+            this.graficador = this.getGraphicsContext2D();
+            this.setStyle("-fx-background-color: rgba(0, 0, 0, 0)");
+            this.reiniciarPersonaje();
+        }
 
     public void moverse(Boolean dibuja, Posicion posicionInicial, Posicion posicionFinal) {
         String rutaImagen = this.seleccionarImagenDelPersonaje(dibuja, posicionInicial, posicionFinal);
