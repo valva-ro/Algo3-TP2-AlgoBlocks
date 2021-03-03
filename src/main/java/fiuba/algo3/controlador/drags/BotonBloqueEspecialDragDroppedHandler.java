@@ -24,6 +24,7 @@ public class BotonBloqueEspecialDragDroppedHandler extends BotonDragDroppedHandl
     void agregarUnBloque(String bloqueID) {
         if (this.interpretador.esBloqueEspecial(bloqueID)) {
             BotonBloqueEspecial nuevoBoton = this.interpretador.obtenerBotonEspecialPorId(bloqueID, this.algoritmo, this.sectorBloquesDisponiblesVista);
+            this.bloqueEspecial.agregar(nuevoBoton.obtenerBloque());
             this.vistaBloques.getChildren().add(nuevoBoton);
         } else if (this.sectorBloquesDisponiblesVista.existeGuardadoConId(bloqueID)) {
             BotonBloquePersonalizado nuevoBoton = sectorBloquesDisponiblesVista.obtenerCopiaPorId(bloqueID);
