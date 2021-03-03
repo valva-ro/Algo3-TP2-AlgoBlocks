@@ -1,6 +1,7 @@
 package fiuba.algo3.vista.botones;
 
 import fiuba.algo3.controlador.drags.BotonBloqueEspecialDragDroppedHandler;
+import fiuba.algo3.controlador.drags.DragOverHandler;
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.modelo.Interpretador;
 import fiuba.algo3.modelo.bloques.Bloques;
@@ -41,13 +42,7 @@ public class BotonBloqueEspecial extends VBox {
     }
 
     public void setModoAlgoritmo() {
-        this.setOnDragOver((DragEvent dragEvent) -> {
-            if (dragEvent.getGestureSource() != this && dragEvent.getDragboard().hasString()) {
-                dragEvent.acceptTransferModes(TransferMode.COPY);
-            }
-            dragEvent.consume();
-        });
-
+        this.setOnDragOver(new DragOverHandler(this));
         this.setOnDragDropped(new BotonBloqueEspecialDragDroppedHandler(this, this.bloquePersonalizado, this.algoritmo, this.interpretador, this.sectorBloquesDisponiblesVista));
     }
 }
