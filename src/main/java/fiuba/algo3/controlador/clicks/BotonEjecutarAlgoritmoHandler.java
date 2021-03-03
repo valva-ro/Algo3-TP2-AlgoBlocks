@@ -10,9 +10,11 @@ public class BotonEjecutarAlgoritmoHandler extends BotonClickHandler {
     private final Algoritmo algoritmo;
     private final SectorDibujoVista sectorDibujoVista;
 
-    public BotonEjecutarAlgoritmoHandler(Algoritmo algoritmo, SectorDibujoVista sectorDibujoVista) {
+
+    public BotonEjecutarAlgoritmoHandler(Algoritmo algoritmo ,SectorDibujoVista sectorDibujoVista) {
         this.algoritmo = algoritmo;
         this.sectorDibujoVista = sectorDibujoVista;
+
     }
 
     @Override
