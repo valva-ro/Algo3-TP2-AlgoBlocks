@@ -58,7 +58,7 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
         sectorScrolleable.setMaxHeight(550);
         sectorScrolleable.setMaxWidth(350);
         sectorScrolleable.setOnDragOver(new DragOverHandler(this.bloquesDelAlgoritmo));
-        sectorScrolleable.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(this.algoritmo, this.interpretador, this.bloquesDelAlgoritmo, this.sectorBloquesDisponiblesVista));
+        sectorScrolleable.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(this.bloquesDelAlgoritmo, this.algoritmo, this.interpretador, this.sectorBloquesDisponiblesVista));
 
         this.getChildren().addAll(etiqueta, this.botonera, sectorScrolleable);
     }
