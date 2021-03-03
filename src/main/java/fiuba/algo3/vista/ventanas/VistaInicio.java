@@ -5,7 +5,6 @@ import fiuba.algo3.controlador.clicks.BotonAcercaDeHandler;
 import fiuba.algo3.controlador.clicks.BotonComoJugarHandler;
 import fiuba.algo3.controlador.clicks.BotonJugarHandler;
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.FabricaDeBloques;
 import fiuba.algo3.modelo.Interpretador;
 import fiuba.algo3.vista.botones.Boton;
 import javafx.application.Platform;

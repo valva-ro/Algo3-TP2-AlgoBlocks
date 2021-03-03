@@ -1,8 +1,5 @@
 package fiuba.algo3.vista.ventanas;
 
-import fiuba.algo3.App;
-import fiuba.algo3.controlador.clicks.BotonAtrasHandler;
-import fiuba.algo3.vista.botones.Boton;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
