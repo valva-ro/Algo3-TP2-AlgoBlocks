@@ -36,8 +36,4 @@ public class FabricaDeBloques {
     public void fabricaNoDibuja() {
         this.estado = new NoDibuja();
     }
-
-    /*public void cambiarDeFabrica(){
-        this.estado = estado.cambiarEstado();
-    }*/
 }

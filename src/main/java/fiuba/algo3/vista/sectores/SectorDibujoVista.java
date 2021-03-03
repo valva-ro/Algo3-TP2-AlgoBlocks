@@ -31,7 +31,5 @@ public class SectorDibujoVista extends BorderPane implements ObservadorDibujo {
         }
     }
 
-    public void borrarDibujo() {
-        this.dibujo.borrar();
-    }
+    public void borrarDibujo() { this.dibujo.borrar(); }
 }

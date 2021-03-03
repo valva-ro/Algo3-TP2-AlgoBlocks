@@ -36,9 +36,9 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
         this.sectorDibujoVista = sectorDibujoVista;
         this.sectorBloquesDisponiblesVista = sectorBloquesDisponiblesVista;
         this.algoritmo.agregarObservador(this);
-        this.botonera = this.botoneraAccionesDisponibles(aplicacion, escenario);
         this.bloquesDelAlgoritmo = new VBox();
         this.interpretador = interpretador;
+        this.botonera = this.botoneraAccionesDisponibles(aplicacion, escenario);
         this.configurarVentana();
     }
 
@@ -75,7 +75,7 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
 
         this.botonLimpiarDibujo = new Boton("botonLimpiarDibujo", "");
         this.botonEjectuar = new Boton("botonEjecutar", "");
-        this.botonLimpiarDibujo.setOnAction(new LimpiadorDeAlgoritmoHandler(this.algoritmo, this.sectorDibujoVista));
+        this.botonLimpiarDibujo.setOnAction(new LimpiadorDeAlgoritmoHandler(this.algoritmo, this.sectorDibujoVista,this.interpretador));
         this.botonEjectuar.setOnAction(new BotonEjecutarAlgoritmoHandler(this.algoritmo, this.sectorDibujoVista));
         this.botonLimpiarDibujo.setDisable(true);
         this.botonEjectuar.setDisable(true);

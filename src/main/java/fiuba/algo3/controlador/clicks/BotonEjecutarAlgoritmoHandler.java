@@ -7,19 +7,18 @@ import javafx.event.ActionEvent;
 
 public class BotonEjecutarAlgoritmoHandler extends BotonClickHandler {
 
-    private final SectorDibujo sectorDibujo;
     private final Algoritmo algoritmo;
     private final SectorDibujoVista sectorDibujoVista;
 
     public BotonEjecutarAlgoritmoHandler(Algoritmo algoritmo, SectorDibujoVista sectorDibujoVista) {
         this.algoritmo = algoritmo;
         this.sectorDibujoVista = sectorDibujoVista;
-        this.sectorDibujo = new SectorDibujo();
-        this.sectorDibujo.agregarObservador(this.sectorDibujoVista);
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
+        SectorDibujo sectorDibujo = new SectorDibujo();
+        sectorDibujo.agregarObservador(this.sectorDibujoVista);
         this.sectorDibujoVista.borrarDibujo();
         algoritmo.ejecutar(sectorDibujo);
     }
