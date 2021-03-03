@@ -162,6 +162,14 @@
     -fx-background-color: #c9bc75;
 }
 
+#botonComoJugar {
+    -fx-background-color: #ffef94;
+}
+
+#botonComoJugar:hover {
+    -fx-background-color: #c9bc75;
+}
+
 #botonAtras {
     -fx-background-color: #ff8c20;
     -fx-background-position: center;

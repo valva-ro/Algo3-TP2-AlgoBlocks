@@ -25,10 +25,11 @@ public class VistaAcercaDe {
         javafxVersion.setId("informacion");
         integrantes.setId("informacion");
 
-        VBox contenedor = new VBox(javaVersion, javafxVersion, integrantes, botonAtras);
-        contenedor.setAlignment(Pos.CENTER);
+        VBox contenedorVertical = new VBox(javaVersion, javafxVersion, integrantes, botonAtras);
+        contenedorVertical.setStyle("-fx-background-color: #abe389");
+        contenedorVertical.setAlignment(Pos.CENTER);
 
-        nuevaEscena.setRoot(contenedor);
+        nuevaEscena.setRoot(contenedorVertical);
 
         escenario.setScene(nuevaEscena);
     }

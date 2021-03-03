@@ -2,6 +2,7 @@ package fiuba.algo3.vista.ventanas;
 
 import fiuba.algo3.App;
 import fiuba.algo3.controlador.clicks.BotonAcercaDeHandler;
+import fiuba.algo3.controlador.clicks.BotonComoJugarHandler;
 import fiuba.algo3.controlador.clicks.BotonJugarHandler;
 import fiuba.algo3.modelo.Algoritmo;
 import fiuba.algo3.modelo.FabricaDeBloques;
@@ -30,6 +31,7 @@ public class VistaInicio extends VBox {
         this.setAlignment(Pos.CENTER);
 
         Boton botonJugar = new Boton("botonJugar", "Jugar");
+        Boton botonComoJugar = new Boton("botonComoJugar", "Como jugar");
         Boton botonAcercaDe = new Boton("botonAcercaDe", "Acerca de");
         Boton botonSalir = new Boton("botonSalir", "Salir");
 
@@ -39,9 +41,12 @@ public class VistaInicio extends VBox {
         BotonAcercaDeHandler botonAcercaDeHandler = new BotonAcercaDeHandler(aplicacion, escenario, algoritmo, interpretador);
         botonAcercaDe.setOnAction(botonAcercaDeHandler);
 
+        BotonComoJugarHandler botonComoJugarHandler = new BotonComoJugarHandler(aplicacion, escenario, algoritmo, interpretador);
+        botonComoJugar.setOnAction(botonComoJugarHandler);
+
         botonSalir.setOnAction(actionEvent -> Platform.exit());
 
-        HBox botonera = new HBox(botonJugar, botonAcercaDe, botonSalir);
+        HBox botonera = new HBox(botonJugar, botonComoJugar, botonAcercaDe, botonSalir);
         botonera.setAlignment(Pos.CENTER);
 
         botonera.getStylesheets().clear();
