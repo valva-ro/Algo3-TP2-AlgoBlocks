@@ -5,9 +5,8 @@ import fiuba.algo3.controlador.clicks.BotonAtrasHandler;
 import fiuba.algo3.controlador.clicks.BotonEjecutarAlgoritmoHandler;
 import fiuba.algo3.controlador.clicks.LimpiadorDeAlgoritmoHandler;
 import fiuba.algo3.controlador.drags.SeccionAlgoritmoDragDroppedEventHandler;
-import fiuba.algo3.controlador.drags.SeccionAlgoritmoDragOverHandler;
+import fiuba.algo3.controlador.drags.DragOverHandler;
 import fiuba.algo3.modelo.Algoritmo;
-import fiuba.algo3.modelo.FabricaDeBloques;
 import fiuba.algo3.modelo.Interpretador;
 import fiuba.algo3.modelo.Observador;
 import fiuba.algo3.vista.botones.Boton;
@@ -58,8 +57,8 @@ public class SectorAlgoritmoVista extends VBox implements Observador {
         sectorScrolleable.setMinHeight(550);
         sectorScrolleable.setMaxHeight(550);
         sectorScrolleable.setMaxWidth(350);
-        sectorScrolleable.setOnDragOver(new SeccionAlgoritmoDragOverHandler(this.bloquesDelAlgoritmo));
-        sectorScrolleable.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(this.algoritmo, this.interpretador, this.bloquesDelAlgoritmo, this.sectorBloquesDisponiblesVista));
+        sectorScrolleable.setOnDragOver(new DragOverHandler(this.bloquesDelAlgoritmo));
+        sectorScrolleable.setOnDragDropped(new SeccionAlgoritmoDragDroppedEventHandler(this.bloquesDelAlgoritmo, this.algoritmo, this.interpretador, this.sectorBloquesDisponiblesVista));
 
         this.getChildren().addAll(etiqueta, this.botonera, sectorScrolleable);
     }

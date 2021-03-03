@@ -18,12 +18,7 @@ public class BloqueMovimiento implements Bloque {
         this.estado.ejecutar(sectorDibujo, this.direccion);
     }
 
-    public void invertirDireccion() {
-        this.direccion = direccion.invertir();
-    }
-
     public void ejecutarInvertido(SectorDibujo sectorDibujo) {
-        this.invertirDireccion();
-        this.estado.ejecutar(sectorDibujo, this.direccion);
+        this.estado.ejecutar(sectorDibujo, this.direccion.invertir());
     }
 }

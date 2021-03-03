@@ -116,5 +116,7 @@ public class Interpretador {
         return botonBloqueSimple;
     }
 
-    public void resetearFabrica(){ this.fabrica.fabricaNoDibuja(); }
+    public void resetearFabrica() {
+        this.fabrica.fabricaNoDibuja();
+    }
 }
