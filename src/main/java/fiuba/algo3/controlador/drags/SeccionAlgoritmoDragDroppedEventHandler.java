@@ -6,8 +6,7 @@ import fiuba.algo3.vista.botones.BotonBloqueEspecial;
 import fiuba.algo3.vista.botones.BotonBloquePersonalizado;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
 import fiuba.algo3.vista.sectores.SectorBloquesDisponiblesVista;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
+import javafx.scene.input.*;
 import javafx.scene.layout.VBox;
 
 public class SeccionAlgoritmoDragDroppedEventHandler extends BotonDragHandler {
@@ -41,6 +40,10 @@ public class SeccionAlgoritmoDragDroppedEventHandler extends BotonDragHandler {
 
         if (this.interpretador.esBloqueEspecial(bloqueId)) {
             BotonBloqueEspecial bloqueEspecial = this.interpretador.obtenerBotonEspecialPorId(bloqueId, this.algoritmo, this.sectorBloquesDisponiblesVista);
+            bloqueEspecial.setOnDragDetected((MouseEvent mouseEvent) -> {
+                Dragboard db = bloqueEspecial.startDragAndDrop(TransferMode.NONE);
+                mouseEvent.consume();
+            });
             this.algoritmo.agregar(bloqueEspecial.obtenerBloque());
             this.algoritmoVista.getChildren().add(bloqueEspecial);
         }

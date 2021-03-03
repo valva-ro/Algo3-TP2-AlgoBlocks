@@ -18,37 +18,35 @@ skinparam note {
 
 title Diagrama de clase general
 
-class AlgoBlocks {
-    + agregarBloqueMovimientoArriba() : void
-    + agregarBloqueMovimientoAbajo() : void
-    + agregarBloqueMovimientoIzquierda() : void
-    + agregarBloqueMovimientoDerecha() : void
-    + agregarBloqueRepetirDoble() : void
-    + agregarBloqueRepetirTriple() : void
-    + agregarBloqueInvertir() : void
-    + agregarBloqueLevantarLapiz() : void
-    + agregarBloqueBajarLapiz() : void
-    + ejecutar() : void
+interface Observable{
+    +agregarObservador(Observador : obs) : void
+    +sacarObservador((Observador : obs) : void
+    +notificarObservadores(): void
 }
 
-interface FabricaAbstractaDeBloques {
-    + {abstract} crearBloqueMovimientoArriba() : BloqueMovimiento
-    + {abstract} crearBloqueMovimientoAbajo() : BloqueMovimiento
-    + {abstract} crearBloqueMovimientoIzquierda() : BloqueMovimiento
-    + {abstract} crearBloqueMovimientoDerecha() : BloqueMovimiento
+interface Observador{
+    +actualizar() : void
 }
-class FabricaConcretaBloqueQueDibuja {
+
+class Interpretador {
+    + obtenerBloqueEspecialPorId(String : bloqueID) : Bloques
+    + esBloqueEspecial(String : bloqueId) :  boolean
+    + obtenerBotonEspecialPorId(String : bloqueId, Algoritmo : algoritmo, SectorBloquesDisponiblesVisata sectorBloques) : BotonBloqueEspecial
+    + agregarBloqueSimpleAlAlgoritmo(String : bloqueId, Algoritmo : algoritmo) : BotonBloqueSimple
+    + agregarBloqueSimpleAlBloqueEspecial(String : bloqueId, Bloques : esBloqueEspecial) : BotonBloqueSimple
+
+}
+
+class FabricaDeBloques {
+    - Estado : estado
     + crearBloqueMovimientoArriba() : BloqueMovimiento
     + crearBloqueMovimientoAbajo() : BloqueMovimiento
     + crearBloqueMovimientoIzquierda() : BloqueMovimiento
     + crearBloqueMovimientoDerecha() : BloqueMovimiento
+    + fabricaNoDibuja() : void
+    + fabricaDibuja() : void
 }
-class FabricaConcretaBloqueQueNoDibuja {
-    + crearBloqueMovimientoArriba() : BloqueMovimiento
-    + crearBloqueMovimientoAbajo() : BloqueMovimiento
-    + crearBloqueMovimientoIzquierda() : BloqueMovimiento
-    + crearBloqueMovimientoDerecha() : BloqueMovimiento
-}
+
 
 interface Bloque {
     + {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
@@ -62,11 +60,11 @@ class Algoritmo {
 }
 
 Algoritmo "1" o-- "0..*" Bloque
+Interpretador <..right Algoritmo
+Interpretador "1" o--down "1" FabricaDeBloques
+Observable <|.. Algoritmo
+Observable <..left Observador
 
-AlgoBlocks -> Algoritmo
-AlgoBlocks --> FabricaAbstractaDeBloques
-FabricaAbstractaDeBloques <|.. FabricaConcretaBloqueQueDibuja
-FabricaAbstractaDeBloques <|.. FabricaConcretaBloqueQueNoDibuja
 @enduml
 
 ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----
@@ -90,6 +88,15 @@ skinparam note {
 }
 
 title Diagrama de SectorDibujo
+
+interface DibujoObservable{
+    +agregarObservador(Observador : obs) : void
+    +notificarObservadores(): void
+}
+
+interface ObservadorDibujo{
+    +actualizar(Boolean : bool, Posicion : posicionInicial, Posicion : posicionFinal) : void
+}
 
 class SectorDibujo {
     - ultimaPosicion : Posicion
@@ -115,9 +122,12 @@ class Posicion {
     + actualizar(direccion : Direccion) : Posicion
 }
 
+DibujoObservable <|..right SectorDibujo
+DibujoObservable <.. ObservadorDibujo
 SectorDibujo *-- Recorrido
 Recorrido "1" *-- "1..*" Arista
 Arista "1" *-- "2" Posicion
+
 @enduml
 
 ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----
