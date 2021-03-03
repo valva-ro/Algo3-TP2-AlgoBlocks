@@ -7,12 +7,11 @@ import fiuba.algo3.vista.botones.BotonBloqueEspecial;
 import fiuba.algo3.vista.botones.BotonBloquePersonalizado;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
 import fiuba.algo3.vista.sectores.SectorBloquesDisponiblesVista;
-import javafx.event.EventHandler;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.layout.VBox;
 
-public class BotonBloqueEspecialDragDroppedHandler implements EventHandler<DragEvent> {
+public class BotonBloqueEspecialDragDroppedHandler extends BotonDragHandler {
 
     private final VBox bloqueEspecialVista;
     private final Bloques bloqueEspecial;
@@ -30,6 +29,7 @@ public class BotonBloqueEspecialDragDroppedHandler implements EventHandler<DragE
 
     @Override
     public void handle(DragEvent dragEvent) {
+        super.handle(dragEvent);
         Dragboard db = dragEvent.getDragboard();
         boolean success = false;
         if (db.hasString()) {

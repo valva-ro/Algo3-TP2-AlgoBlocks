@@ -6,12 +6,11 @@ import fiuba.algo3.vista.botones.BotonBloqueEspecial;
 import fiuba.algo3.vista.botones.BotonBloquePersonalizado;
 import fiuba.algo3.vista.botones.BotonBloqueSimple;
 import fiuba.algo3.vista.sectores.SectorBloquesDisponiblesVista;
-import javafx.event.EventHandler;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.layout.VBox;
 
-public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<DragEvent> {
+public class SeccionAlgoritmoDragDroppedEventHandler extends BotonDragHandler {
 
     private final Algoritmo algoritmo;
     private final VBox algoritmoVista;
@@ -27,6 +26,7 @@ public class SeccionAlgoritmoDragDroppedEventHandler implements EventHandler<Dra
 
     @Override
     public void handle(DragEvent dragEvent) {
+        super.handle(dragEvent);
         Dragboard db = dragEvent.getDragboard();
         boolean success = false;
         if (db.hasString()) {

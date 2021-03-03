@@ -1,11 +1,10 @@
 package fiuba.algo3.controlador.drags;
 
-import javafx.event.EventHandler;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.VBox;
 
-public class SeccionAlgoritmoDragOverHandler implements EventHandler<DragEvent> {
+public class SeccionAlgoritmoDragOverHandler extends BotonDragHandler {
 
     private VBox contenedorDeBloquesVertical;
 
@@ -15,6 +14,7 @@ public class SeccionAlgoritmoDragOverHandler implements EventHandler<DragEvent> 
 
     @Override
     public void handle(DragEvent dragEvent) {
+        super.handle(dragEvent);
         if (dragEvent.getGestureSource() != this.contenedorDeBloquesVertical && dragEvent.getDragboard().hasString()) {
             dragEvent.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
