@@ -49,5 +49,4 @@ public class DibujoVista extends Canvas {
     public void borrar() {
         this.graficador.clearRect(0, 0, ANCHO_CANVAS, ALTO_CANVAS);
     }
-
 }
