@@ -43,7 +43,7 @@ public class DibujoVista extends Canvas {
 
     public void noDibujar(Posicion posicionInicial, Posicion posicionFinal) {
         this.graficador.setStroke(TRANSPARENT);
-        this.dibujarMovimientos(posicionInicial, posicionFinal);
+        graficador.moveTo(posicionInicial.obtenerX(),posicionFinal.obtenerY());
     }
 
     public void borrar() {
