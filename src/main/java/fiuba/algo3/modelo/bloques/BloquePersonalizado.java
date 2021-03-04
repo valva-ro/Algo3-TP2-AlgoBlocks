@@ -20,7 +20,7 @@ public class BloquePersonalizado implements Bloques {
         bloques.remove(unBloque);
     }
 
-    public void ejecutar(SectorDibujo sectorDibujo) {
+    public void ejecutar(SectorDibujo sectorDibujo) throws BloquePersonalizadoNoPuedeEjecutarseSinBloquesError {
 
         this.contieneBloques();
         for (Bloque bloque : bloques) {
@@ -28,7 +28,7 @@ public class BloquePersonalizado implements Bloques {
         }
     }
 
-    public void ejecutarInvertido(SectorDibujo sectorDibujo) {
+    public void ejecutarInvertido(SectorDibujo sectorDibujo) throws BloquePersonalizadoNoPuedeEjecutarseSinBloquesError {
 
         this.contieneBloques();
         for (Bloque bloque : bloques) {
@@ -36,14 +36,14 @@ public class BloquePersonalizado implements Bloques {
         }
     }
 
-    private void contieneBloques() {
+    private void contieneBloques() throws BloquePersonalizadoNoPuedeEjecutarseSinBloquesError {
         if (bloques.size() < 1) {
             throw new BloquePersonalizadoNoPuedeEjecutarseSinBloquesError();
         }
     }
 
     public void agregar(Bloque[] bloquesEnAlgoritmo) {
-        for (Bloque bloque : bloquesEnAlgoritmo){
+        for (Bloque bloque : bloquesEnAlgoritmo) {
             this.agregar(bloque);
         }
     }

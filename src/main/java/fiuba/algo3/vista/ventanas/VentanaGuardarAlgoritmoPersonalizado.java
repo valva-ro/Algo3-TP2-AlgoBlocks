@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -15,12 +16,13 @@ import javafx.stage.Stage;
 
 public class VentanaGuardarAlgoritmoPersonalizado {
 
-    public static void display(SectorBloquesDisponiblesVista contenedorBloques, String titulo, String mensaje, Algoritmo algoritmo){
+    public static void display(SectorBloquesDisponiblesVista contenedorBloques, String titulo, String mensaje, Algoritmo algoritmo) {
 
         Stage ventana = new Stage();
         ventana.setResizable(false);
         ventana.initModality(Modality.APPLICATION_MODAL);
         ventana.setTitle(titulo);
+        ventana.getIcons().add(new Image("logo.png"));
         ventana.setMinWidth(500);
         ventana.setMinHeight(300);
 

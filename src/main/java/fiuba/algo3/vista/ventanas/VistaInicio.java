@@ -21,12 +21,10 @@ public class VistaInicio extends VBox {
     private static final String RUTA_ICONO = "logo.png";
     private static final int ANCHO = 250;
     private static final int ALTO = 250;
-    Stage escenario;
 
     public VistaInicio(App aplicacion, Stage escenario, Algoritmo algoritmo, Interpretador interpretador) {
         super();
 
-        this.escenario = escenario;
         this.setAlignment(Pos.CENTER);
 
         Boton botonJugar = new Boton("botonJugar", "Jugar");

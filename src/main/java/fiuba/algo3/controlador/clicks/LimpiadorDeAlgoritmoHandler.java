@@ -11,7 +11,7 @@ public class LimpiadorDeAlgoritmoHandler extends BotonClickHandler {
     private final SectorDibujoVista sectorDibujoVista;
     private final Interpretador interpretador;
 
-    public LimpiadorDeAlgoritmoHandler(Algoritmo algoritmo, SectorDibujoVista sectorDibujoVista, Interpretador interpretador){
+    public LimpiadorDeAlgoritmoHandler(Algoritmo algoritmo, SectorDibujoVista sectorDibujoVista, Interpretador interpretador) {
         this.algoritmo = algoritmo;
         this.sectorDibujoVista = sectorDibujoVista;
         this.interpretador = interpretador;
@@ -21,7 +21,6 @@ public class LimpiadorDeAlgoritmoHandler extends BotonClickHandler {
     public void handle(ActionEvent actionEvent) {
         this.algoritmo.vaciar();
         this.sectorDibujoVista.borrarDibujo();
-
         this.interpretador.resetearFabrica();
     }
 }

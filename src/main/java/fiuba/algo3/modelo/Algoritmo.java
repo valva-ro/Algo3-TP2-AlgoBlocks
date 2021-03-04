@@ -1,6 +1,7 @@
 package fiuba.algo3.modelo;
 
 import fiuba.algo3.modelo.bloques.Bloque;
+import fiuba.algo3.modelo.bloques.BloquePersonalizadoNoPuedeEjecutarseSinBloquesError;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class Algoritmo implements Observable {
         this.notificarObservadores();
     }
 
-    public void ejecutar(SectorDibujo sectorDibujo) {
+    public void ejecutar(SectorDibujo sectorDibujo) throws BloquePersonalizadoNoPuedeEjecutarseSinBloquesError, AlgoritmoNoTieneBloquesError {
         if (bloques.size() == 0) {
             throw new AlgoritmoNoTieneBloquesError();
         }
