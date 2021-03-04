@@ -3,12 +3,16 @@ package fiuba.algo3.vista.sectores;
 import fiuba.algo3.modelo.Posicion;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
+import java.util.Random;
 
 public class DibujoVista extends Canvas {
 
     private int xCentro;
     private int yCentro;
     private GraphicsContext graficador;
+    private Random generadorRandom;
 
     private final double ANCHO_CANVAS;
     private final double ALTO_CANVAS;
@@ -23,6 +27,7 @@ public class DibujoVista extends Canvas {
         this.yCentro = (int) ((this.getHeight()) / 2);
         this.graficador = this.getGraphicsContext2D();
         this.graficador.setLineWidth(GROSOR_TRAZO);
+        generadorRandom = new Random();
     }
 
     private void dibujarMovimientos(Posicion posicionInicial, Posicion posicionFinal) {
@@ -34,11 +39,19 @@ public class DibujoVista extends Canvas {
     }
 
     public void dibujar(Posicion posicionInicial, Posicion posicionFinal) {
+        this.cambiarColorDelPincel();
         this.dibujarMovimientos(posicionInicial, posicionFinal);
     }
 
+    private void cambiarColorDelPincel() {
+        int r = generadorRandom.nextInt(255);
+        int g = generadorRandom.nextInt(255);
+        int b = generadorRandom.nextInt(255);
+        this.graficador.setStroke(Color.rgb(r,g,b));
+    }
+
     public void noDibujar(Posicion posicionInicial, Posicion posicionFinal) {
-        this.graficador.moveTo(posicionInicial.obtenerX(), posicionFinal.obtenerY());
+        graficador.moveTo(posicionInicial.obtenerX(),posicionFinal.obtenerY());
     }
 
     public void borrar() {
