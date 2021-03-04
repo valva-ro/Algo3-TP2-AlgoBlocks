@@ -4,9 +4,6 @@ import fiuba.algo3.modelo.Posicion;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
-import static javafx.scene.paint.Color.BLACK;
-import static javafx.scene.paint.Color.TRANSPARENT;
-
 public class DibujoVista extends Canvas {
 
     private int xCentro;
@@ -37,13 +34,11 @@ public class DibujoVista extends Canvas {
     }
 
     public void dibujar(Posicion posicionInicial, Posicion posicionFinal) {
-        this.graficador.setStroke(BLACK);
         this.dibujarMovimientos(posicionInicial, posicionFinal);
     }
 
     public void noDibujar(Posicion posicionInicial, Posicion posicionFinal) {
-        this.graficador.setStroke(TRANSPARENT);
-        graficador.moveTo(posicionInicial.obtenerX(),posicionFinal.obtenerY());
+        this.graficador.moveTo(posicionInicial.obtenerX(), posicionFinal.obtenerY());
     }
 
     public void borrar() {
