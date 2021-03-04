@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 public class VistaInicio extends VBox {
 
-    private static final String RUTA_ICONO = "logo.png";
+    private static final String RUTA_ICONO = "logo_guinando_ojo.gif";
     private static final int ANCHO = 250;
     private static final int ALTO = 250;
     Stage escenario;
