@@ -2,16 +2,16 @@
 'https://plantuml.com/state-diagram
 
 scale 350 width
-[*] --> VistaInicial
+[*] --> VistaPrincipal
 
-state VistaInicial {
-    VistaInicial --> SetearAlgoritmo : drag&drop
+state VistaPrincipal {
+    VistaPrincipal --> SetearAlgoritmo : drag&drop
 }
 
 state SetearAlgoritmo {
     SetearAlgoritmo --> Dibujar : ejecutar
     SetearAlgoritmo --> CrearNuevoBotonPersonalizado : guardar
-    SetearAlgoritmo --> VistaInicial : cancelar
+    SetearAlgoritmo --> VistaPrincipal : cancelar
 }
 
 state CrearNuevoBotonPersonalizado{
@@ -22,5 +22,5 @@ state Dibujar{
 
 }
 
-VistaInicial --> [*] : salir
+VistaPrincipal --> [*] : salir
 @enduml

@@ -18,16 +18,6 @@ skinparam note {
 
 title Diagrama de clase general
 
-interface Observable{
-    +agregarObservador(Observador : obs) : void
-    +sacarObservador((Observador : obs) : void
-    +notificarObservadores(): void
-}
-
-interface Observador{
-    +actualizar() : void
-}
-
 class Interpretador {
     + obtenerBloqueEspecialPorId(String : bloqueID) : Bloques
     + esBloqueEspecial(String : bloqueId) :  boolean
@@ -59,13 +49,93 @@ class Algoritmo {
     + ejecutar(unSectorDibujo : SectorDibujo) : void
 }
 
+interface AlgoritmoNoTieneBloquesError{}
+
+interface RunTimeError
+
 Algoritmo "1" o-- "0..*" Bloque
+AlgoritmoNoTieneBloquesError  <--down Algoritmo
+RunTimeError <|--right AlgoritmoNoTieneBloquesError
 Interpretador <..right Algoritmo
 Interpretador "1" o--down "1" FabricaDeBloques
-Observable <|.. Algoritmo
-Observable <..left Observador
+
 
 @enduml
+
+
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+
+skinparam class {
+    ArrowColor DarkBlue
+    BackgroundColor LightBlue
+    BorderColor DarkBlue
+}
+
+skinparam note {
+    BackgroundColor LightYellow
+    BorderColor DarkBlue
+}
+
+title Relacion entre Algoritmo y sus Observadores
+
+class SectorAlgoritmoVista{
+    - Algoritmo : algoritmo
+    - SectorDibujoVista : sectorDibujoVista
+    - SectorBloquesDisponiblesVista : sectorBloquesDisponiblesVista
+    - VBox : bloquesDelAlgoritmo
+    - HBox : botonera
+    - Interpretador : Interpretador
+    - Boton botonLimpiarDibujo
+    - Boton botonEjecutar
+
+    +configurarVentana () : void
+    +configurarContenidoVentana () : void
+    +botoneraAccionesDisponibles (App aplicacion, Stage escenario)
+}
+
+class SectorBloquesDisponiblesVista{
+    - Vbox : contenedorVerticalBotones
+    - Algoritmo : algoritmo
+    - Boton : botonGuardarBloquePersonalizado
+    - ArrayList <BotonBloquePersonalizado> : botonesGuardados
+    - Interpretador : interpretador
+
+    - bloquesDisponibles() : Vbox
+    + agregarBotonPersonalizado (BotonBloquePersonalizado botonPersonnalizado) : void
+    + existeGuardadoConId (String bloqueId) : boolean
+    + obtenerCopiaPorId(String bloqueId) : BotonBloquePersonalizado
+
+}
+
+class Algoritmo {
+    + agregar(unBloque : Bloque) : void
+    + sacar(unBloque : Bloque) : void
+    + ejecutar(unSectorDibujo : SectorDibujo) : void
+}
+
+interface Observable{
+    +agregarObservador(Observador : obs) : void
+    +sacarObservador((Observador : obs) : void
+    +notificarObservadores(): void
+}
+
+interface Observador{
+    +actualizar() : void
+}
+
+Observable <|.. Algoritmo
+Observable <..right Observador
+Observador <|.. SectorAlgoritmoVista
+Observador <|.. SectorBloquesDisponiblesVista
+
+@enduml
+
+
 
 ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----  --  ----
 
@@ -122,11 +192,22 @@ class Posicion {
     + actualizar(direccion : Direccion) : Posicion
 }
 
+class SectorDibujoVista{
+    - DibujoVista : dibujo
+    - SectorPersonaje : sectorPersonaje
+    - int : ANCHO
+    - int : ALTO
+
+    +borrarDibujo() : void
+
+}
+
 DibujoObservable <|..right SectorDibujo
 DibujoObservable <.. ObservadorDibujo
 SectorDibujo *-- Recorrido
 Recorrido "1" *-- "1..*" Arista
 Arista "1" *-- "2" Posicion
+ObservadorDibujo <|..down SectorDibujoVista
 
 @enduml
 
@@ -217,6 +298,10 @@ skinparam note {
 
 title Diagrama de clase de Bloque y bloques especiales
 
+interface BloquePersonalizadoNoPuedeEjecutarseSinBloquesError{}
+
+interface RunTimeError{}
+
 interface Bloque {
     + {abstract} ejecutar(unSectorDibujo : SectorDibujo) : void
     + {abstract} ejecutarInvertido(unSectorDibujo : SectorDibujo) : void
@@ -263,12 +348,14 @@ class DecoratorBloquePersonalizadoBase {
 }
 
 Bloque <|.. Bloques
-Bloques "1" *-- "1..*" Bloque
-Bloques <|.. BloquePersonalizado
+Bloques "1" *--left "1..*" Bloque
+Bloques <|..right BloquePersonalizado
 Bloques <|.. DecoratorBloquePersonalizadoBase
 DecoratorBloquePersonalizadoBase o-- Bloques
 DecoratorBloquePersonalizadoBase <|-- RepetirDoble
 DecoratorBloquePersonalizadoBase <|-- RepetirTriple
 DecoratorBloquePersonalizadoBase <|-- Invertir
 Bloque <|.. BloqueMovimiento
+BloquePersonalizadoNoPuedeEjecutarseSinBloquesError <--up BloquePersonalizado
+RunTimeError <|--up BloquePersonalizadoNoPuedeEjecutarseSinBloquesError
 @enduml

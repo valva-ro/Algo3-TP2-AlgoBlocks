@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+
+package modelo {
+  [bloques]
+  [dibujo]
+  [direcciones]
+
+}
+
+package vista {
+  [botones]
+  [sectores]
+  [ventanas]
+
+}
+
+package controlador {
+  [clicks]
+  [drags]
+
+}
+
+
+
+[botones] ..> [clicks] : access
+[botones] ..> [drags] : access
+modelo ..> vista
+modelo ..> controlador
+vista ..> modelo
+
+@enduml
