@@ -84,31 +84,20 @@ skinparam note {
 title Relacion entre Algoritmo y sus Observadores
 
 class SectorAlgoritmoVista{
-    - Algoritmo : algoritmo
     - SectorDibujoVista : sectorDibujoVista
-    - SectorBloquesDisponiblesVista : sectorBloquesDisponiblesVista
-    - VBox : bloquesDelAlgoritmo
-    - HBox : botonera
-    - Interpretador : Interpretador
-    - Boton botonLimpiarDibujo
-    - Boton botonEjecutar
 
-    +configurarVentana () : void
-    +configurarContenidoVentana () : void
     +botoneraAccionesDisponibles (App aplicacion, Stage escenario)
+    +actualizar() : void
 }
 
 class SectorBloquesDisponiblesVista{
-    - Vbox : contenedorVerticalBotones
-    - Algoritmo : algoritmo
-    - Boton : botonGuardarBloquePersonalizado
     - ArrayList <BotonBloquePersonalizado> : botonesGuardados
     - Interpretador : interpretador
 
-    - bloquesDisponibles() : Vbox
     + agregarBotonPersonalizado (BotonBloquePersonalizado botonPersonnalizado) : void
     + existeGuardadoConId (String bloqueId) : boolean
     + obtenerCopiaPorId(String bloqueId) : BotonBloquePersonalizado
+    +actualizar() : void
 
 }
 
@@ -129,9 +118,12 @@ interface Observador{
 }
 
 Observable <|.. Algoritmo
-Observable <..right Observador
+Observable <..r Observador
 Observador <|.. SectorAlgoritmoVista
 Observador <|.. SectorBloquesDisponiblesVista
+SectorAlgoritmoVista *-- SectorBloquesDisponiblesVista
+SectorBloquesDisponiblesVista *--l Algoritmo
+SectorAlgoritmoVista *-- Algoritmo
 
 @enduml
 
@@ -195,10 +187,7 @@ class Posicion {
 class SectorDibujoVista{
     - DibujoVista : dibujo
     - SectorPersonaje : sectorPersonaje
-    - int : ANCHO
-    - int : ALTO
-
-    +borrarDibujo() : void
+    + borrarDibujo() : void
 
 }
 
