@@ -19,10 +19,6 @@ public class SeccionAlgoritmoDragDroppedEventHandler extends BotonDragDroppedHan
     void agregarUnBloque(String bloqueID) {
         if (this.interpretador.esBloqueEspecial(bloqueID)) {
             BotonBloqueEspecial bloqueEspecial = this.interpretador.obtenerBotonEspecialPorId(bloqueID, this.algoritmo, this.sectorBloquesDisponiblesVista);
-            bloqueEspecial.setOnDragDetected((MouseEvent mouseEvent) -> {
-                bloqueEspecial.startDragAndDrop(TransferMode.NONE);
-                mouseEvent.consume();
-            });
             this.algoritmo.agregar(bloqueEspecial.obtenerBloque());
             this.vistaBloques.getChildren().add(bloqueEspecial);
         } else if (this.sectorBloquesDisponiblesVista.existeGuardadoConId(bloqueID)) {

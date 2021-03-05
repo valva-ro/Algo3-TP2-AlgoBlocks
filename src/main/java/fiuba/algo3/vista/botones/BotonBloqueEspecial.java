@@ -42,6 +42,13 @@ public class BotonBloqueEspecial extends VBox {
     }
 
     public void setModoAlgoritmo() {
+        this.setOnDragDetected(e ->{
+            Dragboard db = this.startDragAndDrop(TransferMode.MOVE);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(this.getId());
+            db.setContent(content);
+            e.consume();
+        });
         this.setOnDragOver(new DragOverHandler(this));
         this.setOnDragDropped(new BotonBloqueEspecialDragDroppedHandler(this, this.bloquePersonalizado, this.algoritmo, this.interpretador, this.sectorBloquesDisponiblesVista));
     }
